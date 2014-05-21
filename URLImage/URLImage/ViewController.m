@@ -14,22 +14,43 @@
 
 @implementation ViewController
 
--(IBAction)LoadImage:(id)sender
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [txtURL resignFirstResponder];
+    
+    [self LoadImage:self];
+        return NO;
+}
+-(void)LoadImageViewFunction:(NSString *) stringURL
 {
-    NSURL * imageURL = [NSURL URLWithString:@"http://www.jooja.com/wp-content/uploads/2010/02/111dm.jpg"];
-    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+    //NSURL * imageURL = [NSURL URLWithString:@"http://www.jooja.com/wp-content/uploads/2010/02/111dm.jpg"];
+    NSURL * imageURL = [NSURL URLWithString:stringURL];    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
     UIImage * image = [UIImage imageWithData:imageData];
     
-    imageKo.image = image;
+    [imageKo setImage:image];
+}
+
+-(IBAction)LoadImage:(id)sender
+{
+        //imageKo.image = image;
     
-   
+    
+    NSString *url = txtURL.text;
+    
+    [self LoadImageViewFunction:url];
+    
+    
 
     
 }
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    [txtURL setDelegate:self ];
 }
 
 - (void)didReceiveMemoryWarning

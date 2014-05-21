@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITextFieldDelegate>
 {
     IBOutlet UIImageView *imageKo;
+    IBOutlet UITextField *txtURL;
 }
 -(IBAction)LoadImage:(id)sender;
+
 
 @end
