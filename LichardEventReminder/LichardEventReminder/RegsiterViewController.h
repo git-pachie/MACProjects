@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CreateNewReminderViewController.h"
 
 @interface RegsiterViewController : UIViewController
 

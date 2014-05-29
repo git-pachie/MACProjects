@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CreateNewReminderViewController.h"
 
-@interface ReminderTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface ReminderTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, AddReminderDelegate>
 
 @property (nonatomic,strong) NSManagedObjectContext *mangedObjectContext;
 @property (nonatomic,strong) NSFetchedResultsController *fetchedResultsController;
+
 
 
 @end

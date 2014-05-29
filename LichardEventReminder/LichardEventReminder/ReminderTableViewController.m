@@ -17,6 +17,29 @@
 
 @synthesize fetchedResultsController = _fetchedResultsController;
 
+-(void)AddReminderDidCancel:(Reminder *)reminderDelete
+{
+    
+    NSManagedObjectContext *context = self.mangedObjectContext;
+    
+    [context deleteObject:reminderDelete];
+    
+    [self dismissModalViewControllerAnimated:YES];
+    
+}
+
+-(void) AddReminderDidSave
+{
+    NSError *error = nil;
+    NSManagedObjectContext *context = self.mangedObjectContext;
+    if(![context    save:&error])
+    {
+        NSLog(@"Error! %@", error);
+    }
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -69,7 +92,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier =@"Cell";
+    static NSString *CellIdentifier =@"ReminderCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -121,16 +144,24 @@
  }
  */
 
-/*
+
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
+     if ([[segue identifier] isEqualToString:@"segCreateNewReminder"]) {
+         CreateNewReminderViewController *cnvc = (CreateNewReminderViewController *) [segue destinationViewController];
+         cnvc.ReminderDelegate = self;
+         
+         Reminder *newReminder = (Reminder *)[NSEntityDescription insertNewObjectForEntityForName:@"Reminder" inManagedObjectContext:[self mangedObjectContext]];
+         
+         cnvc.currentReminder = newReminder;
+         
+     }
+
  }
- */
+ 
 
 #pragma marks -
 #pragma mark Fetched Results Controller Section
@@ -148,12 +179,12 @@
     
     [fetchRequest setEntity:entity];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"reminderDate" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"reminderType" ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.mangedObjectContext sectionNameKeyPath:@"reminderDate" cacheName:nil];
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.mangedObjectContext sectionNameKeyPath:@"reminderType" cacheName:nil];
     
     _fetchedResultsController.delegate =self;
     
@@ -168,7 +199,7 @@
     UITableView *tableView = self.tableView;
     switch (type) {
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+//            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeDelete:
@@ -177,9 +208,9 @@
             
         case NSFetchedResultsChangeUpdate:
         {
-//            Reminder *rm = [self.fetchedResultsController objectAtIndexPath:indexPath];
-//            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//            cell.textLabel.text = rm.templateBody;
+            Reminder *rm = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            cell.textLabel.text = rm.reminderBody;
         }
             
             break;
@@ -208,6 +239,11 @@
         default:
             break;
     }
+}
+
+-(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [[[self.fetchedResultsController sections] objectAtIndex:section]name];
 }
 
 @end

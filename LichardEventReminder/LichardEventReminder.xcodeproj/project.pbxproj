@@ -29,6 +29,7 @@
 		0CA98CF9193598E100118032 /* AddTemplageViewConroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA98CF8193598E100118032 /* AddTemplageViewConroller.m */; };
 		0CF4DD3F1935D7E0007443B6 /* MessageTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4DD3E1935D7E0007443B6 /* MessageTemplate.m */; };
 		0D01AC30193771EC0099EB3A /* Storyboard2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D01AC2F193771EC0099EB3A /* Storyboard2.storyboard */; };
+		0D01AC3319377F260099EB3A /* CreateNewReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D01AC3219377F260099EB3A /* CreateNewReminderViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		0CF4DD3D1935D7E0007443B6 /* MessageTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTemplate.h; sourceTree = "<group>"; };
 		0CF4DD3E1935D7E0007443B6 /* MessageTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTemplate.m; sourceTree = "<group>"; };
 		0D01AC2F193771EC0099EB3A /* Storyboard2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard2.storyboard; sourceTree = "<group>"; };
+		0D01AC3119377F260099EB3A /* CreateNewReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewReminderViewController.h; sourceTree = "<group>"; };
+		0D01AC3219377F260099EB3A /* CreateNewReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateNewReminderViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,8 @@
 				0C06218B193743250061628F /* ReminderTableViewController.m */,
 				0C062187193742C20061628F /* RegsiterViewController.h */,
 				0C062188193742C20061628F /* RegsiterViewController.m */,
+				0D01AC3119377F260099EB3A /* CreateNewReminderViewController.h */,
+				0D01AC3219377F260099EB3A /* CreateNewReminderViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 				0CA27D751937479E00DAF2B3 /* Reminder.m in Sources */,
 				0CA98CD3193587D100118032 /* AppDelegate.m in Sources */,
 				0C06218C193743250061628F /* ReminderTableViewController.m in Sources */,
+				0D01AC3319377F260099EB3A /* CreateNewReminderViewController.m in Sources */,
 				0CA98CCF193587D100118032 /* main.m in Sources */,
 				0CF4DD3F1935D7E0007443B6 /* MessageTemplate.m in Sources */,
 			);
@@ -442,7 +448,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LichardEventReminder/LichardEventReminder-Prefix.pch";
 				INFOPLIST_FILE = "LichardEventReminder/LichardEventReminder-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -456,7 +462,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LichardEventReminder/LichardEventReminder-Prefix.pch";
 				INFOPLIST_FILE = "LichardEventReminder/LichardEventReminder-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

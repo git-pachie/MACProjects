@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9Qt-ue-Q0F">
     <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
@@ -85,10 +86,10 @@
             </objects>
             <point key="canvasLocation" x="2921" y="-110"/>
         </scene>
-        <!--View Controller-->
+        <!--Create New Reminder View Controller-->
         <scene sceneID="HNx-fn-CA4">
             <objects>
-                <viewController id="BJ6-DN-OcV" sceneMemberID="viewController">
+                <viewController id="BJ6-DN-OcV" customClass="CreateNewReminderViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SHz-X7-Ghn"/>
                         <viewControllerLayoutGuide type="bottom" id="aYz-hV-tb3"/>
@@ -102,8 +103,16 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Create New Reminder" id="Ose-nh-Bxy">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="uwD-VH-60u"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="J4n-p2-dJb"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="uwD-VH-60u">
+                                            <connections>
+                                                <action selector="btnCancel:" destination="BJ6-DN-OcV" id="VEL-ot-V88"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="J4n-p2-dJb">
+                                            <connections>
+                                                <action selector="btnDone:" destination="BJ6-DN-OcV" id="5d2-3r-oLB"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -114,16 +123,26 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IfI-Tt-rSS">
-                                <rect key="frame" x="20" y="130" width="280" height="145"/>
+                                <rect key="frame" x="20" y="173" width="280" height="145"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numbersAndPunctuation"/>
                             </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reminder Date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="48u-uj-swv">
+                                <rect key="frame" x="20" y="135" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="txtRecipient" destination="xjq-dw-uox" id="ujy-G3-OxA"/>
+                        <outlet property="txtReminderBody" destination="IfI-Tt-rSS" id="0tg-h9-LIT"/>
+                        <outlet property="txtReminderDate" destination="48u-uj-swv" id="ZMu-ab-voj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="guM-eD-cmB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
