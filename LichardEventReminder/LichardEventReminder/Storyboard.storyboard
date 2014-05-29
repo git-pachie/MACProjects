@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aRo-aU-2Ux">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="O4x-QW-z4a">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -44,7 +44,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="TpA-fI-Ski">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TpA-fI-Ski" id="abc-Op-WHt">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -63,17 +63,17 @@
             </objects>
             <point key="canvasLocation" x="1041" y="-459"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Reminder Table View Controller-->
         <scene sceneID="ZXj-LB-vWR">
             <objects>
-                <tableViewController id="O4x-QW-z4a" sceneMemberID="viewController">
+                <tableViewController id="O4x-QW-z4a" customClass="ReminderTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Q2s-Ll-hil">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="G90-Ty-5ih">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G90-Ty-5ih" id="krK-Zm-Nk2">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -86,28 +86,33 @@
                             <outlet property="delegate" destination="O4x-QW-z4a" id="vNf-lu-hmX"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="Lgy-9i-ijQ"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="bYo-S3-uWK"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G7k-Jm-kzt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1171" y="-115"/>
+            <point key="canvasLocation" x="2469" y="-129"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="ZOP-Ka-UTD">
+        <scene sceneID="xmv-uK-P9d">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aRo-aU-2Ux" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9im-ZH-52U" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5P7-Kn-TY7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gk6-z0-RlH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="QFz-ub-18Z" kind="relationship" relationship="rootViewController" id="45W-kd-5SE"/>
+                        <segue destination="O4x-QW-z4a" kind="relationship" relationship="rootViewController" id="dTQ-Rl-ai0"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cR8-lu-8Co" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IZN-qR-zBg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="515" y="-459"/>
+            <point key="canvasLocation" x="1943" y="-129"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

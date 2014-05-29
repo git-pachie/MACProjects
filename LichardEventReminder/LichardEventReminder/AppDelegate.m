@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "TMListTableViewController.h"
+#import "ReminderTableViewController.h"
+
 
 @implementation AppDelegate
 
@@ -24,7 +25,7 @@
     
     UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
     
-    TMListTableViewController  *cvtc = (TMListTableViewController *)[[nav viewControllers] objectAtIndex:0];
+    ReminderTableViewController  *cvtc = (ReminderTableViewController *)[[nav viewControllers] objectAtIndex:0];
     cvtc.mangedObjectContext = self.managedObjectContext;
     
     return YES;

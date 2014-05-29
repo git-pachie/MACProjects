@@ -4,7 +4,17 @@
         <attribute name="templateBody" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="templateId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="Reminder" representedClassName="Reminder" syncable="YES">
+        <attribute name="createdByNo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="createdToNo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reminderBody" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reminderDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="reminderGUID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reminderType" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="MessageTemplate" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="Reminder" positionX="-63" positionY="0" width="128" height="150"/>
     </elements>
 </model>

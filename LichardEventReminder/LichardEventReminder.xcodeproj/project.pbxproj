@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0C062186193726500061628F /* TMListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C062185193726500061628F /* TMListTableViewController.m */; };
+		0C062189193742C20061628F /* RegsiterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C062188193742C20061628F /* RegsiterViewController.m */; };
+		0C06218C193743250061628F /* ReminderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C06218B193743250061628F /* ReminderTableViewController.m */; };
+		0CA27D751937479E00DAF2B3 /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA27D741937479E00DAF2B3 /* Reminder.m */; };
 		0CA98CC1193587D100118032 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CA98CC0193587D100118032 /* Foundation.framework */; };
 		0CA98CC3193587D100118032 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CA98CC2193587D100118032 /* CoreGraphics.framework */; };
 		0CA98CC5193587D100118032 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CA98CC4193587D100118032 /* UIKit.framework */; };
@@ -41,6 +44,12 @@
 /* Begin PBXFileReference section */
 		0C062184193726500061628F /* TMListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMListTableViewController.h; sourceTree = "<group>"; };
 		0C062185193726500061628F /* TMListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMListTableViewController.m; sourceTree = "<group>"; };
+		0C062187193742C20061628F /* RegsiterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegsiterViewController.h; sourceTree = "<group>"; };
+		0C062188193742C20061628F /* RegsiterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegsiterViewController.m; sourceTree = "<group>"; };
+		0C06218A193743250061628F /* ReminderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderTableViewController.h; sourceTree = "<group>"; };
+		0C06218B193743250061628F /* ReminderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderTableViewController.m; sourceTree = "<group>"; };
+		0CA27D731937479E00DAF2B3 /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
+		0CA27D741937479E00DAF2B3 /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminder.m; sourceTree = "<group>"; };
 		0CA98CBD193587D100118032 /* LichardEventReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LichardEventReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA98CC0193587D100118032 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0CA98CC2193587D100118032 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -92,6 +101,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0CA27D76193747AB00DAF2B3 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				0CF4DD3D1935D7E0007443B6 /* MessageTemplate.h */,
+				0CF4DD3E1935D7E0007443B6 /* MessageTemplate.m */,
+				0CA27D731937479E00DAF2B3 /* Reminder.h */,
+				0CA27D741937479E00DAF2B3 /* Reminder.m */,
+			);
+			name = Entity;
+			sourceTree = "<group>";
+		};
+		0CA27D77193747D700DAF2B3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0C062184193726500061628F /* TMListTableViewController.h */,
+				0C062185193726500061628F /* TMListTableViewController.m */,
+				0CA98CF7193598E100118032 /* AddTemplageViewConroller.h */,
+				0CA98CF8193598E100118032 /* AddTemplageViewConroller.m */,
+				0C06218A193743250061628F /* ReminderTableViewController.h */,
+				0C06218B193743250061628F /* ReminderTableViewController.m */,
+				0C062187193742C20061628F /* RegsiterViewController.h */,
+				0C062188193742C20061628F /* RegsiterViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		0CA27D781937480D00DAF2B3 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				0CA98CF51935989C00118032 /* Storyboard.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		0CA27D791937482000DAF2B3 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				0CA98CD1193587D100118032 /* AppDelegate.h */,
+				0CA98CD2193587D100118032 /* AppDelegate.m */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
+		};
 		0CA98CB4193587D100118032 = {
 			isa = PBXGroup;
 			children = (
@@ -126,16 +178,11 @@
 		0CA98CC8193587D100118032 /* LichardEventReminder */ = {
 			isa = PBXGroup;
 			children = (
-				0CA98CD1193587D100118032 /* AppDelegate.h */,
-				0CA98CD2193587D100118032 /* AppDelegate.m */,
+				0CA27D791937482000DAF2B3 /* Delegate */,
+				0CA27D781937480D00DAF2B3 /* Storyboard */,
+				0CA27D77193747D700DAF2B3 /* Controllers */,
+				0CA27D76193747AB00DAF2B3 /* Entity */,
 				0CA98CD7193587D100118032 /* Images.xcassets */,
-				0CF4DD3D1935D7E0007443B6 /* MessageTemplate.h */,
-				0CF4DD3E1935D7E0007443B6 /* MessageTemplate.m */,
-				0CA98CF51935989C00118032 /* Storyboard.storyboard */,
-				0C062184193726500061628F /* TMListTableViewController.h */,
-				0C062185193726500061628F /* TMListTableViewController.m */,
-				0CA98CF7193598E100118032 /* AddTemplageViewConroller.h */,
-				0CA98CF8193598E100118032 /* AddTemplageViewConroller.m */,
 				0CA98CC9193587D100118032 /* Supporting Files */,
 			);
 			path = LichardEventReminder;
@@ -269,8 +316,11 @@
 			files = (
 				0C062186193726500061628F /* TMListTableViewController.m in Sources */,
 				0CA98CF9193598E100118032 /* AddTemplageViewConroller.m in Sources */,
+				0C062189193742C20061628F /* RegsiterViewController.m in Sources */,
 				0CA98CD6193587D100118032 /* LichardEventReminder.xcdatamodeld in Sources */,
+				0CA27D751937479E00DAF2B3 /* Reminder.m in Sources */,
 				0CA98CD3193587D100118032 /* AppDelegate.m in Sources */,
+				0C06218C193743250061628F /* ReminderTableViewController.m in Sources */,
 				0CA98CCF193587D100118032 /* main.m in Sources */,
 				0CF4DD3F1935D7E0007443B6 /* MessageTemplate.m in Sources */,
 			);
