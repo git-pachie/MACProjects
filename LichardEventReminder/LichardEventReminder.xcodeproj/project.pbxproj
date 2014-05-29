@@ -26,9 +26,9 @@
 		0CA98CE2193587D100118032 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CA98CC6193587D100118032 /* CoreData.framework */; };
 		0CA98CEA193587D100118032 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0CA98CE8193587D100118032 /* InfoPlist.strings */; };
 		0CA98CEC193587D100118032 /* LichardEventReminderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA98CEB193587D100118032 /* LichardEventReminderTests.m */; };
-		0CA98CF61935989C00118032 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CA98CF51935989C00118032 /* Storyboard.storyboard */; };
 		0CA98CF9193598E100118032 /* AddTemplageViewConroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA98CF8193598E100118032 /* AddTemplageViewConroller.m */; };
 		0CF4DD3F1935D7E0007443B6 /* MessageTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4DD3E1935D7E0007443B6 /* MessageTemplate.m */; };
+		0D01AC30193771EC0099EB3A /* Storyboard2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D01AC2F193771EC0099EB3A /* Storyboard2.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,11 +68,11 @@
 		0CA98CE7193587D100118032 /* LichardEventReminderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LichardEventReminderTests-Info.plist"; sourceTree = "<group>"; };
 		0CA98CE9193587D100118032 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0CA98CEB193587D100118032 /* LichardEventReminderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LichardEventReminderTests.m; sourceTree = "<group>"; };
-		0CA98CF51935989C00118032 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		0CA98CF7193598E100118032 /* AddTemplageViewConroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTemplageViewConroller.h; sourceTree = "<group>"; };
 		0CA98CF8193598E100118032 /* AddTemplageViewConroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTemplageViewConroller.m; sourceTree = "<group>"; };
 		0CF4DD3D1935D7E0007443B6 /* MessageTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTemplate.h; sourceTree = "<group>"; };
 		0CF4DD3E1935D7E0007443B6 /* MessageTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTemplate.m; sourceTree = "<group>"; };
+		0D01AC2F193771EC0099EB3A /* Storyboard2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard2.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +130,7 @@
 		0CA27D781937480D00DAF2B3 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				0CA98CF51935989C00118032 /* Storyboard.storyboard */,
+				0D01AC2F193771EC0099EB3A /* Storyboard2.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -293,9 +293,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D01AC30193771EC0099EB3A /* Storyboard2.storyboard in Resources */,
 				0CA98CCD193587D100118032 /* InfoPlist.strings in Resources */,
 				0CA98CD8193587D100118032 /* Images.xcassets in Resources */,
-				0CA98CF61935989C00118032 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
