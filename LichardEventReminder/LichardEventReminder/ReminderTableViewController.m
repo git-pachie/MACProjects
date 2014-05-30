@@ -98,7 +98,7 @@
     
    Reminder  *mt = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = mt.reminderBody;
-    cell.detailTextLabel.text = mt.createdByNo;
+    cell.detailTextLabel.text = mt.createdToNo;
     
     // Configure the cell...
     
@@ -179,12 +179,12 @@
     
     [fetchRequest setEntity:entity];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"reminderType" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"reminderDate" ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.mangedObjectContext sectionNameKeyPath:@"reminderType" cacheName:nil];
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.mangedObjectContext sectionNameKeyPath:@"reminderDate" cacheName:nil];
     
     _fetchedResultsController.delegate =self;
     
@@ -252,8 +252,65 @@
 
 -(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [[[self.fetchedResultsController sections] objectAtIndex:section]name];
+    //[self.fetchedResultsController sections] objectAtIndex:sectio
+    
+    //NSDate *dateRepresentingThisDay = [self. objectAtIndex:section];
+    
+    //return [self.sectionDateFormatter stringFromDate:dateRepresentingThisDay];
+    
+    //return [[[self.fetchedResultsController sections] objectAtIndex:section]name];
+    
+    //return [[[self.fetchedResultsController sections] objectAtIndex:section]name];
+    
+    if ([[self.fetchedResultsController sections] count] > 0) {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+        
+//        NSDateFormatter *df = [[NSDateFormatter alloc]init];
+//        [df setDateFormat:@"MMM dd, yyyy"];
+//        
+//        NSDate *now = [[NSDate alloc] init];
+//        
+//        
+//        
+//        NSString *s = [sectionInfo name];
+//        
+//        NSDate *d = [df dateFromString:s];
+        
+        NSDateFormatter *inFormat = [[NSDateFormatter alloc] init] ;
+        [inFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
+        NSDate *parsed = [inFormat dateFromString:[sectionInfo name]];
+        
+        //NSLog(@"sectionInfo : %@", [sectionInfo name]);
+        //NSLog(@"date : %@", parsed);
+        
+        inFormat.dateFormat =@"MMMM - yyyy";
+        
+        NSString * monthString = [[inFormat stringFromDate:parsed] capitalizedString];
+
+        
+        NSLog(@"month: %@", monthString);
+        
+        //return [NSDateFormatter datefromString [sectionInfo name];
+        
+        //NSLog(@"sectioninfo : %@", sectionInfo);
+        
+       // NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
+        //[inputFormatter setDateFormat:@"yyyy-MM-dd"];
+        
+        //NSDate *formatterDate = [inputFormatter dateFromString:[sectionInfo name]];
+        
+        //NSDate *eventDate = [sectionInfo name];
+        //NSString *convertedString = [inputFormatter stringFromDate:formatterDate];
+        
+        //return convertedString;
+        
+        return monthString;//[sectionInfo name];
+    } else
+        return nil;
+
 }
+
+
 
 @end
 
