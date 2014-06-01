@@ -2,7 +2,7 @@
 //  Reminder.m
 //  LichardEventReminder
 //
-//  Created by pachie on 29/5/14.
+//  Created by Archie Angeles on 1/6/14.
 //  Copyright (c) 2014 Private. All rights reserved.
 //
 
@@ -18,5 +18,6 @@
 @dynamic reminderDate;
 @dynamic reminderGUID;
 @dynamic reminderType;
+@dynamic reminderDateGroup;
 
 @end

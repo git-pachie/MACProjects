@@ -184,7 +184,7 @@
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.mangedObjectContext sectionNameKeyPath:@"reminderDate" cacheName:nil];
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.mangedObjectContext sectionNameKeyPath:@"reminderDateGroup" cacheName:nil];
     
     _fetchedResultsController.delegate =self;
     
@@ -304,7 +304,9 @@
         
         //return convertedString;
         
-        return monthString;//[sectionInfo name];
+        
+        return [sectionInfo name];
+        //return monthString;//[sectionInfo name];
     } else
         return nil;
 

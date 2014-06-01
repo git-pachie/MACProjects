@@ -77,8 +77,7 @@
     
     [self.currentReminder setCreatedToNo:@"0987654321"];
     
-    
-    
+
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
     
@@ -88,8 +87,16 @@
     
     [self.currentReminder setCreatedDate:[dateFormat dateFromString:_txtReminderDate.text]];
     
-
     
+    NSDateFormatter *inFormat = [[NSDateFormatter alloc] init] ;
+    [inFormat setDateFormat:@"yyyy-MM-dd"];
+    NSDate *parsed = [inFormat dateFromString:_txtReminderDate.text];
+    
+    inFormat.dateFormat =@"MMMM - yyyy";
+    
+    NSString * monthString = [[inFormat stringFromDate:parsed] capitalizedString];
+    NSLog(@"Mont String is :%@",monthString);
+    [self.currentReminder setReminderDateGroup:monthString];
     [self.ReminderDelegate  AddReminderDidSave];
 }
 @end

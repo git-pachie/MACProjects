@@ -2,7 +2,7 @@
 //  Reminder.h
 //  LichardEventReminder
 //
-//  Created by pachie on 29/5/14.
+//  Created by Archie Angeles on 1/6/14.
 //  Copyright (c) 2014 Private. All rights reserved.
 //
 
@@ -19,5 +19,6 @@
 @property (nonatomic, retain) NSDate * reminderDate;
 @property (nonatomic, retain) NSString * reminderGUID;
 @property (nonatomic, retain) NSString * reminderType;
+@property (nonatomic, retain) NSString * reminderDateGroup;
 
 @end

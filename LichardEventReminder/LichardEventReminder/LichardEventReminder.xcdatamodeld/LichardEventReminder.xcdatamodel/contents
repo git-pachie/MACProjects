@@ -10,11 +10,12 @@
         <attribute name="createdToNo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reminderBody" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reminderDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="reminderDateGroup" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reminderGUID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reminderType" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="MessageTemplate" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="Reminder" positionX="-63" positionY="0" width="128" height="150"/>
+        <element name="Reminder" positionX="-63" positionY="0" width="128" height="163"/>
     </elements>
 </model>
