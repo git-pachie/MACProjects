@@ -30,6 +30,7 @@
 		0D01AC30193771EC0099EB3A /* Storyboard2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D01AC2F193771EC0099EB3A /* Storyboard2.storyboard */; };
 		0D01AC3319377F260099EB3A /* CreateNewReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D01AC3219377F260099EB3A /* CreateNewReminderViewController.m */; };
 		0D823F12193B61F1005B2388 /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D823F11193B61F1005B2388 /* Reminder.m */; };
+		0DD42AFE193CB27B008EEAB0 /* EditReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42AFD193CB27B008EEAB0 /* EditReminderViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,8 @@
 		0D01AC3219377F260099EB3A /* CreateNewReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateNewReminderViewController.m; sourceTree = "<group>"; };
 		0D823F10193B61F1005B2388 /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reminder.h; path = ../Reminder.h; sourceTree = "<group>"; };
 		0D823F11193B61F1005B2388 /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reminder.m; path = ../Reminder.m; sourceTree = "<group>"; };
+		0DD42AFC193CB27B008EEAB0 /* EditReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditReminderViewController.h; sourceTree = "<group>"; };
+		0DD42AFD193CB27B008EEAB0 /* EditReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditReminderViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 		0CA27D77193747D700DAF2B3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0DD42AFC193CB27B008EEAB0 /* EditReminderViewController.h */,
+				0DD42AFD193CB27B008EEAB0 /* EditReminderViewController.m */,
 				0C062184193726500061628F /* TMListTableViewController.h */,
 				0C062185193726500061628F /* TMListTableViewController.m */,
 				0CA98CF7193598E100118032 /* AddTemplageViewConroller.h */,
@@ -327,6 +332,7 @@
 				0CA98CD3193587D100118032 /* AppDelegate.m in Sources */,
 				0C06218C193743250061628F /* ReminderTableViewController.m in Sources */,
 				0D01AC3319377F260099EB3A /* CreateNewReminderViewController.m in Sources */,
+				0DD42AFE193CB27B008EEAB0 /* EditReminderViewController.m in Sources */,
 				0CA98CCF193587D100118032 /* main.m in Sources */,
 				0CF4DD3F1935D7E0007443B6 /* MessageTemplate.m in Sources */,
 			);

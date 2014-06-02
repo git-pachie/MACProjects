@@ -67,7 +67,7 @@
     
     NSString *uuid = [[NSUUID UUID] UUIDString];
     
-    [self.currentReminder setReminderGUID:@"fqwerqwer2342352345"];
+    [self.currentReminder setReminderGUID:uuid];
     
     [self.currentReminder setReminderBody:_txtReminderBody.text];
     

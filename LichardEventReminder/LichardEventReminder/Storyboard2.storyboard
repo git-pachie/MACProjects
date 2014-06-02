@@ -67,6 +67,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="esf-rT-ClN" kind="push" identifier="segwayEditReminder" id="TnQ-8J-tDo"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -147,6 +150,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="guM-eD-cmB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3369" y="-110"/>
+        </scene>
+        <!--Edit Reminder View Controller-->
+        <scene sceneID="3GF-6V-MW7">
+            <objects>
+                <viewController id="esf-rT-ClN" customClass="EditReminderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oTv-QR-g6s"/>
+                        <viewControllerLayoutGuide type="bottom" id="uaY-Pe-5hE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fac-JT-IrR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipient Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7i2-yv-40t">
+                                <rect key="frame" x="20" y="81" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mf4-pD-Hrv">
+                                <rect key="frame" x="20" y="162" width="280" height="145"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numbersAndPunctuation"/>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reminder Date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LUl-KU-Acd">
+                                <rect key="frame" x="20" y="124" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dvB-vo-91O">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="WJg-TU-H1c">
+                            <connections>
+                                <action selector="btnCancel:" destination="esf-rT-ClN" id="PxF-a0-EsP"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="2hl-YL-qC7">
+                            <connections>
+                                <action selector="btnDone:" destination="esf-rT-ClN" id="kB7-YN-UrO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="txtRecipientNo" destination="7i2-yv-40t" id="gwc-hd-e1c"/>
+                        <outlet property="txtReminderBody" destination="Mf4-pD-Hrv" id="6GC-fP-WEy"/>
+                        <outlet property="txtReminderDate" destination="LUl-KU-Acd" id="Nxo-s1-0q2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q6W-bx-uxB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3369" y="-804"/>
         </scene>
         <!--List Table View Controller-->
         <scene sceneID="eBL-N3-fFF">

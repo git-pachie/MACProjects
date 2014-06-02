@@ -8,6 +8,7 @@
 
 #import "ReminderTableViewController.h"
 #import "Reminder.h"
+#import "EditReminderViewController.h"
 
 @interface ReminderTableViewController ()
 
@@ -115,18 +116,25 @@
  }
  */
 
-/*
+
  // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        NSManagedObjectContext *context = [self mangedObjectContext];
+        Reminder *reminderToDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [context deleteObject:reminderToDelete];
+        //[context deletedObject:reminderToDelete];
+        
+        NSError *error = nil ;
+        if(![context save:&error])
+        {
+            NSLog(@"Error %@",error);
+        };
+    }
+}
+
 
 /*
  // Override to support rearranging the table view.
@@ -157,6 +165,12 @@
          Reminder *newReminder = (Reminder *)[NSEntityDescription insertNewObjectForEntityForName:@"Reminder" inManagedObjectContext:[self mangedObjectContext]];
          
          cnvc.currentReminder = newReminder;
+         
+     }
+     else if( [[segue identifier] isEqualToString:@"segCreateNewReminder"])
+     {
+         EditReminderViewController *ervc = (EditReminderViewController *) [segue destinationViewController];
+         
          
      }
 
