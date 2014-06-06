@@ -167,10 +167,18 @@
          cnvc.currentReminder = newReminder;
          
      }
-     else if( [[segue identifier] isEqualToString:@"segCreateNewReminder"])
+     else if( [[segue identifier] isEqualToString:@"segwayEditReminder"])
      {
          EditReminderViewController *ervc = (EditReminderViewController *) [segue destinationViewController];
          
+         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+         Reminder *selectedReminder = (Reminder *) [self.fetchedResultsController objectAtIndexPath:indexPath];
+         
+         
+         
+                  
+         ervc.selectedReminder = selectedReminder;
+
          
      }
 

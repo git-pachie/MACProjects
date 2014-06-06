@@ -186,14 +186,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="dvB-vo-91O">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="WJg-TU-H1c">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="qOk-45-oit">
                             <connections>
-                                <action selector="btnCancel:" destination="esf-rT-ClN" id="PxF-a0-EsP"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="2hl-YL-qC7">
-                            <connections>
-                                <action selector="btnDone:" destination="esf-rT-ClN" id="kB7-YN-UrO"/>
+                                <action selector="done:" destination="esf-rT-ClN" id="jb8-HB-s7u"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

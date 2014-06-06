@@ -21,7 +21,7 @@
 
 @property (nonatomic,strong) Reminder *currentReminder;
 
-@property (nonatomic,weak) id <AddReminderDelegate> ReminderDelegate;
+@property (nonatomic,strong) id <AddReminderDelegate> ReminderDelegate;
 
 - (IBAction)btnCancel:(id)sender;
 - (IBAction)btnDone:(id)sender;

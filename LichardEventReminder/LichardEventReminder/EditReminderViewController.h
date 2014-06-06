@@ -7,12 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Reminder.h"
+#import "CreateNewReminderViewController.h"
+
+
+
+
+
 
 @interface EditReminderViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *txtRecipientNo;
 @property (weak, nonatomic) IBOutlet UITextField *txtReminderDate;
 @property (weak, nonatomic) IBOutlet UITextView *txtReminderBody;
-- (IBAction)btnCancel:(id)sender;
 
-- (IBAction)btnDone:(id)sender;
+@property (strong, nonatomic) Reminder *selectedReminder;
+
+
+- (IBAction)done:(id)sender;
+
+
+
 @end
+
