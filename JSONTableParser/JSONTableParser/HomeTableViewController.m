@@ -182,6 +182,18 @@ NSString *author;
        // NSIndexPath *ip = [self.tableView indexPathForSelectedRow];
         
         //vc.TemplateDetail = [[self dictionaryWithValuesForKeys:myObject] objectForKey:@"templateid"];
+        
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        
+        DetailViewController *dv = segue.destinationViewController;
+         NSLog(@"clPanelSeguePathRow = %d", path.row);
+        NSLog(@"myobject = %@", [[myObject objectAtIndex:path.row] objectForKey:@"templateid"]);
+//        NSIndexPath *indexPath = (NSIndexPath *)sender;
+//        NSDictionary *tmpDict = [myObject objectAtIndex:indexPath.row];
+        
+        //klViewController *detailViewController = segue.destinationViewController;
+        NSString *s = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"templateid"]];
+        dv.TemplateDetail = s;
     }
 }
 

@@ -14,7 +14,7 @@
 
 @implementation DetailViewController
 
-@dynamic TemplateDetail;
+@synthesize  TemplateDetail;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    NSLog(@"Log here here %@",TemplateDetail);
     
 }
 
