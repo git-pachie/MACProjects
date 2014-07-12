@@ -201,7 +201,7 @@ NSDictionary *dictionary;
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         
         DetailViewController *dv = segue.destinationViewController;
-         NSLog(@"clPanelSeguePathRow = %d", path.row);
+         NSLog(@"clPanelSeguePathRow = %ld", (long)path.row);
         NSLog(@"myobject = %@", [[myObject objectAtIndex:path.row] objectForKey:@"templateid"]);
 //        NSIndexPath *indexPath = (NSIndexPath *)sender;
 //        NSDictionary *tmpDict = [myObject objectAtIndex:indexPath.row];

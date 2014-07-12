@@ -26,6 +26,7 @@
 		0D6FE4A719686E89002E3880 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6FE4A619686E89002E3880 /* TestViewController.m */; };
 		0D6FE4AA1969B815002E3880 /* DeviceActivationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6FE4A91969B815002E3880 /* DeviceActivationViewController.m */; };
 		0D6FE4AD196AE529002E3880 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6FE4AC196AE529002E3880 /* HomeTableViewController.m */; };
+		0DBE6FF41971A13B0024380E /* MessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBE6FF31971A13B0024380E /* MessageDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		0D6FE4A91969B815002E3880 /* DeviceActivationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceActivationViewController.m; sourceTree = "<group>"; };
 		0D6FE4AB196AE529002E3880 /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
 		0D6FE4AC196AE529002E3880 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
+		0DBE6FF21971A13B0024380E /* MessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetailViewController.h; sourceTree = "<group>"; };
+		0DBE6FF31971A13B0024380E /* MessageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +141,8 @@
 				0D6FE4A91969B815002E3880 /* DeviceActivationViewController.m */,
 				0D6FE4AB196AE529002E3880 /* HomeTableViewController.h */,
 				0D6FE4AC196AE529002E3880 /* HomeTableViewController.m */,
+				0DBE6FF21971A13B0024380E /* MessageDetailViewController.h */,
+				0DBE6FF31971A13B0024380E /* MessageDetailViewController.m */,
 			);
 			path = SampleJSON;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 				0D6FE48119686E1A002E3880 /* AppDelegate.m in Sources */,
 				0D6FE47D19686E1A002E3880 /* main.m in Sources */,
 				0D6FE4A719686E89002E3880 /* TestViewController.m in Sources */,
+				0DBE6FF41971A13B0024380E /* MessageDetailViewController.m in Sources */,
 				0D6FE48419686E1A002E3880 /* SampleJSON.xcdatamodeld in Sources */,
 				0D6FE4AD196AE529002E3880 /* HomeTableViewController.m in Sources */,
 				0D6FE4AA1969B815002E3880 /* DeviceActivationViewController.m in Sources */,

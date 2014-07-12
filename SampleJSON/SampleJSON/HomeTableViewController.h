@@ -14,5 +14,12 @@
 @property (nonatomic, strong) NSString *PhoneNumber;
 @property (nonatomic, strong) NSString *Email;
 @property (nonatomic, strong) NSString *IsDeviceActivated;
+- (IBAction)Join:(id)sender;
+
+
+
+
+
+-(void)LoadTable;
 
 @end
