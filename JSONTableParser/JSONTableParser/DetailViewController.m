@@ -14,7 +14,7 @@
 
 @implementation DetailViewController
 
-@synthesize  TemplateDetail;
+@synthesize  MessageGUID, HiritMessage, CreatedBy, Answer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,7 +29,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"Log here here %@",TemplateDetail);
+    NSLog(@"Log here here %@",MessageGUID);
+    [self.txtdetail setText:HiritMessage];
+    [self.txtanswer setText:Answer];
+    
+    UINavigationController *navCon  = (UINavigationController*) [self.navigationController.viewControllers objectAtIndex:1];
+    navCon.navigationItem.title = HiritMessage;
+
+    
     
 }
 

@@ -16,10 +16,16 @@ NSMutableArray *myObject;
 // A dictionary object
 NSDictionary *dictionary;
 // Define keys
-NSString *title;
-NSString *thumbnail;
-NSString *author;
-    NSString *templateid;
+
+    
+    
+    NSString *MessageGUID ;
+    NSString *HiritMessage ;
+    NSString *CreatedByUserName ;
+    NSString *CreatedByDeviceID ;
+    NSDate *CreatedDate;
+    NSString *Answer1;
+
 }
 
 @end
@@ -40,38 +46,47 @@ NSString *author;
     [super viewDidLoad];
     
     
-    title = @"title";
-    thumbnail = @"thumbnail";
-    author = @"author";
-    templateid = @"templateid";
+    MessageGUID = @"MessageGUID";
+    HiritMessage = @"HiritMessage";
+    CreatedByUserName = @"CreatedByUserName";
+    CreatedByDeviceID = @"CreatedByDeviceID";
+    CreatedDate=    [NSDate date];
+    Answer1 = @"Answer";
     
     
     myObject = [[NSMutableArray alloc] init];
     
     NSData *jsonSource = [NSData dataWithContentsOfURL:
-                          [NSURL URLWithString:@"http://www.amanawaterpark.ph:1980/myjson/service1.svc/getdata"]];
+                          [NSURL URLWithString:@"http://www.amanawaterpark.ph:1980/myjson/service1.svc/GetHiritMessage"]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:
                       jsonSource options:NSJSONReadingMutableContainers error:nil];
     
     for (NSDictionary *dataDict in jsonObjects) {
-        NSString *title_data = [dataDict objectForKey:@"TemplateContent"];
-        NSString *thumbnail_data = [dataDict objectForKey:@"TemplateTitle"];
-        NSString *author_data = [dataDict objectForKey:@"DateCreated"];
-        NSString *template_id = [dataDict objectForKey:@"TemplateID"];
+        NSString *messageGUID = [dataDict objectForKey:@"MessageGUID"];
+        NSString *hiritMessage = [dataDict objectForKey:@"HiritMessage"];
+        NSString *createdByUserName = [dataDict objectForKey:@"CreatedByUserName"];
+        NSString *createdByDeviceID = [dataDict objectForKey:@"CreatedByDeviceID"];
+        NSString *createdDate = [dataDict objectForKey:@"CreatedDate"];
+        NSString *answer1 = [dataDict objectForKey:@"Answer1"];
         
         
-        NSLog(@"TITLE: %@",title_data);
-        NSLog(@"THUMBNAIL: %@",thumbnail_data);
-        NSLog(@"AUTHOR: %@",author_data);
-        NSLog(@"TemplateID: %@",template_id);
+        
+        NSLog(@"MessageGUID: %@",messageGUID);
+        NSLog(@"Message: %@",hiritMessage);
+        NSLog(@"CreatedByUserName: %@",createdByUserName);
+        NSLog(@"CreatedByDeviceID: %@",createdByDeviceID);
+        NSLog(@"CreatedDate: %@",createdDate);
+        
 
         
         dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                      title_data, title,
-                      thumbnail_data, thumbnail,
-                      author_data,author,
-                      template_id,templateid,
+                      messageGUID, MessageGUID,
+                      hiritMessage, HiritMessage,
+                      createdByUserName,CreatedByUserName,
+                      createdByDeviceID,CreatedByDeviceID,
+                      [self mfDateFromDotNetJSONString:createdDate], @"DateCreated",
+                      answer1, Answer1,
                       nil];
         [myObject addObject:dictionary];
     }
@@ -97,7 +112,7 @@ NSString *author;
 {
     
     
-    [self performSegueWithIdentifier:@"detail" sender:indexPath];
+   // [self performSegueWithIdentifier:@"detail" sender:indexPath];
     
     
 }
@@ -117,8 +132,8 @@ NSString *author;
     
     NSDictionary *tmpDict = [myObject objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = [tmpDict objectForKey:@"thumbnail"];
-    cell.detailTextLabel.text = [tmpDict objectForKey:@"title"];
+    cell.textLabel.text = [tmpDict objectForKey:@"HiritMessage"];
+    cell.detailTextLabel.text = [tmpDict objectForKey:@"CreatedDate"];
     
     return cell;
 }
@@ -175,7 +190,7 @@ NSString *author;
         
         //NSIndexPath *tmpDict = [self.tableView indexPathForSelectedRow]; // [myObject objectAtIndex:indexPath.row];
         
-        //////NSDictionary *tmpDict = [myObject objectAtIndex:index(<#const char *#>, <#int#>)]
+        //////NSDictionary *tmpDict = [myObject objectAtIndex:index(const char *, <#int#>)]
         
         ////cell.textLabel.text = [tmpDict objectForKey:@"thumbnail"];
         
@@ -192,10 +207,45 @@ NSString *author;
 //        NSDictionary *tmpDict = [myObject objectAtIndex:indexPath.row];
         
         //klViewController *detailViewController = segue.destinationViewController;
-        NSString *s = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"templateid"]];
-        dv.TemplateDetail = s;
+        NSString *messageGUID = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"MessageGUID"]];
+        NSString *hiritMessage = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"HiritMessage"]];
+        NSString *createdBy = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"CreatedBy"]];
+        
+        NSString *answer1 = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"Answer"]];
+        
+        dv.MessageGUID = messageGUID;
+        dv.HiritMessage = hiritMessage;
+        dv.CreatedBy = createdBy;
+        dv.Answer = answer1;
+        
+                
+        
     }
 }
 
+- (NSDate *)mfDateFromDotNetJSONString:(NSString *)string {
+    static NSRegularExpression *dateRegEx = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dateRegEx = [[NSRegularExpression alloc] initWithPattern:@"^\\/date\\((-?\\d++)(?:([+-])(\\d{2})(\\d{2}))?\\)\\/$" options:NSRegularExpressionCaseInsensitive error:nil];
+    });
+    NSTextCheckingResult *regexResult = [dateRegEx firstMatchInString:string options:0 range:NSMakeRange(0, [string length])];
+    
+    if (regexResult) {
+        // milliseconds
+        NSTimeInterval seconds = [[string substringWithRange:[regexResult rangeAtIndex:1]] doubleValue] / 1000.0;
+        // timezone offset
+        if ([regexResult rangeAtIndex:2].location != NSNotFound) {
+            NSString *sign = [string substringWithRange:[regexResult rangeAtIndex:2]];
+            // hours
+            seconds += [[NSString stringWithFormat:@"%@%@", sign, [string substringWithRange:[regexResult rangeAtIndex:3]]] doubleValue] * 60.0 * 60.0;
+            // minutes
+            seconds += [[NSString stringWithFormat:@"%@%@", sign, [string substringWithRange:[regexResult rangeAtIndex:4]]] doubleValue] * 60.0;
+        }
+        
+        return [NSDate dateWithTimeIntervalSince1970:seconds];
+    }
+    return nil;
+}
 
 @end
