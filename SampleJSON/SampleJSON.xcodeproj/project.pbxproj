@@ -95,6 +95,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D426A311971BE0800809E2C /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		0D6FE46219686E1A002E3880 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +136,7 @@
 		0D6FE47619686E1A002E3880 /* SampleJSON */ = {
 			isa = PBXGroup;
 			children = (
+				0D426A311971BE0800809E2C /* iPad */,
 				0D6FE47F19686E1A002E3880 /* AppDelegate.h */,
 				0D6FE48019686E1A002E3880 /* AppDelegate.m */,
 				0D6FE48519686E1A002E3880 /* Images.xcassets */,
@@ -223,6 +231,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = PachieOrg;
 				TargetAttributes = {
+					0D6FE46A19686E1A002E3880 = {
+						DevelopmentTeam = R3F22UC8DK;
+					};
 					0D6FE48A19686E1A002E3880 = {
 						TestTargetID = 0D6FE46A19686E1A002E3880;
 					};
@@ -395,10 +406,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleJSON/SampleJSON-Prefix.pch";
 				INFOPLIST_FILE = "SampleJSON/SampleJSON-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -408,10 +422,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleJSON/SampleJSON-Prefix.pch";
 				INFOPLIST_FILE = "SampleJSON/SampleJSON-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
