@@ -10,6 +10,7 @@
 #import "TestViewController.h"
 #import "DeviceActivationViewController.h"
 #import "MessageDetailViewController.h"
+#import "CommonFunction.h"
 
 @interface HomeTableViewController ()
 {
@@ -53,10 +54,27 @@
     
     DeviceGUID = uniqueIdentifier;
     
-    NSString *url =[NSString stringWithFormat:@"http://www.riverwayauto.com:1980/WcfService2/Service1.svc/GetUserByDeviceID/%@",DeviceGUID];
+    CommonFunction *common = [[CommonFunction alloc]init];
+    
+    NSString *url =[common GetJsonConnection:[NSString stringWithFormat:@"GetUserByDeviceID/%@",DeviceGUID]];
+
+    
+//    NSString *url =[NSString stringWithFormat:[common GetJsonConnection:[NSString stringWithFormat:@"GetUserByDeviceID/%@",DeviceGUID]]];
     
     NSData *allCoursesData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
     
+    //CommonFunction *common = [[CommonFunction alloc]init];
+    
+    if ([common CheckNSD:allCoursesData] == false) {
+        
+            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
+                                                        message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        
+            [mes show];
+        return;
+    }
+    
+        
     NSError *error;
     NSMutableDictionary *allCourses = [NSJSONSerialization JSONObjectWithData:allCoursesData options:NSJSONReadingMutableContainers error:&error];
     
@@ -339,12 +357,31 @@
     
     
     myObject = [[NSMutableArray alloc] init];
+    CommonFunction *common = [[CommonFunction alloc]init];
+    
+    NSString *x = [common GetJsonConnection:@"GetHiritMessage"];
     
     NSData *jsonSource = [NSData dataWithContentsOfURL:
-                          [NSURL URLWithString:@"http://www.amanawaterpark.ph:1980/myjson/service1.svc/GetHiritMessage"]];
+                          [NSURL URLWithString:x]];
+    
+    
+    
+    
+    
+    if ([common CheckNSD:jsonSource] == false) {
+        
+        UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
+                                                    message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        
+        [mes show];
+        return;
+    }
+    
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:
                       jsonSource options:NSJSONReadingMutableContainers error:nil];
+    
+
     
     for (NSDictionary *dataDict in jsonObjects) {
         NSString *messageGUID = [dataDict objectForKey:@"MessageGUID"];
