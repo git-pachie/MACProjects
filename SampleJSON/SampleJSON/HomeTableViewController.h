@@ -21,5 +21,6 @@
 
 
 -(void)LoadTable;
+-(void)getJsonData;
 
 @end

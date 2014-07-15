@@ -19,6 +19,8 @@
     NSDictionary *dictionary;
     // Define keys
     
+    bool isConnectionOK;
+    
     
     
     NSString *MessageGUID ;
@@ -47,87 +49,11 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
-    NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    
-    DeviceGUID = uniqueIdentifier;
-    
-    CommonFunction *common = [[CommonFunction alloc]init];
-    
-    NSString *url =[common GetJsonConnection:[NSString stringWithFormat:@"GetUserByDeviceID/%@",DeviceGUID]];
-
-    
-//    NSString *url =[NSString stringWithFormat:[common GetJsonConnection:[NSString stringWithFormat:@"GetUserByDeviceID/%@",DeviceGUID]]];
-    
-    NSData *allCoursesData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-    
-    //CommonFunction *common = [[CommonFunction alloc]init];
-    
-    if ([common CheckNSD:allCoursesData] == false) {
-        
-            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
-                                                        message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        
-            [mes show];
+    if (isConnectionOK == NO) {
         return;
     }
     
-        
-    NSError *error;
-    NSMutableDictionary *allCourses = [NSJSONSerialization JSONObjectWithData:allCoursesData options:NSJSONReadingMutableContainers error:&error];
-    
-    if (error) {
-        NSLog(@"%@",[error localizedDescription]);
-    }
-    else {
-        //NSArray *monday = allCourses[@"Monday"];
-        for ( NSDictionary *user in allCourses )
-        {
-            NSLog(@"Checking if device is already registered with device id %@", DeviceGUID);
-            //NSLog(@"Title: %@", theCourse[@"title"] );
-            
-            DeviceGUID = user[@"DeviceGUID"];
-            _Email = user[@"Email"];
-            _PhoneNumber = user[@"PhoneNumber"];
-            _IsDeviceActivated = user[@"isDeviceActivated"];
-            
-        }
-        
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-        
-        if ([_IsDeviceActivated isEqualToString:@"NO"]) {
-            DeviceActivationViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"acid"];
-            [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-            vc.deviceGUID = DeviceGUID;
-            vc.emailAddress = _Email;
-            
-            
-            [self presentViewController:vc animated:YES completion:nil];
-        }
-        else if ([_IsDeviceActivated isEqualToString:@"YES"])
-        {
-        
-            return;
-            
-        }
-        else
-        {
-            
-            TestViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"register"];
-            [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-            vc.DeviceGUID = DeviceGUID;
-            
-            
-            [self presentViewController:vc animated:YES completion:nil];
-        }
-        
-        
-        
-        
-    }
-    
-    
-    
+    //[self getJsonData];
     
 }
 
@@ -136,18 +62,25 @@
 {
     
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to refresh"];
-    [refresh addTarget:self
-                  action:@selector(refreshView:)
-                  forControlEvents:UIControlEventValueChanged];
+    
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    
+    [refresh addTarget:self action:@selector(LoadTable)forControlEvents:UIControlEventValueChanged];
+    
     self.refreshControl = refresh;
-    
-    
-    
     
     [self LoadTable];
 }
 
+- (void)stopRefresh
+
+{
+    if (isConnectionOK==true) {
+        [self.tableView reloadData];
+    }
+    [self.refreshControl endRefreshing];
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -173,12 +106,19 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSDictionary *tmpDict = [myObject objectAtIndex:indexPath.row];
-    
-    cell.textLabel.text = [tmpDict objectForKey:@"HiritMessage"];
-    cell.detailTextLabel.text =[NSString stringWithFormat:@"Created By %@",[tmpDict objectForKey:@"CreatedByUserName"]] ;
-    
+    if (isConnectionOK == true) {
+        
+        
+        NSDictionary *tmpDict = [myObject objectAtIndex:indexPath.row];
+        
+        cell.textLabel.text = [tmpDict objectForKey:@"HiritMessage"];
+        cell.detailTextLabel.text =[NSString stringWithFormat:@"Created By %@",[tmpDict objectForKey:@"CreatedByUserName"]] ;
+        
+        
+    }
     return cell;
+    
+    
 }
 
 
@@ -305,17 +245,20 @@
                           [NSURL URLWithString:x]];
     
     
-    
-    
-    
     if ([common CheckNSD:jsonSource] == false) {
         
         UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
                                                     message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         
+        isConnectionOK = NO;
         [mes show];
+        
+        [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+        
         return;
     }
+    
+    isConnectionOK = YES;
     
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:
@@ -352,25 +295,93 @@
         [myObject addObject:dictionary];
     }
     
+    [self getJsonData];
+    
+    
 }
 
--(void)refreshView:(UIRefreshControl *)refresh {
-         refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
-    
-         // custom refresh logic would be placed here...
-    [self LoadTable];
-    
-         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-         [formatter setDateFormat:@"MMM d, h:mm a"];
-         NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
-                                                                        [formatter stringFromDate:[NSDate date]]];
-         refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
-    
-    [self.tableView reloadData];
-         [refresh endRefreshing];
-     }
 
+-(void)getJsonData
+{
+    NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    
+    DeviceGUID = uniqueIdentifier;
+    
+    CommonFunction *common = [[CommonFunction alloc]init];
+    
+    NSString *url =[common GetJsonConnection:[NSString stringWithFormat:@"GetUserByDeviceID/%@",DeviceGUID]];
+    
+    
+    //    NSString *url =[NSString stringWithFormat:[common GetJsonConnection:[NSString stringWithFormat:@"GetUserByDeviceID/%@",DeviceGUID]]];
+    
+    NSData *allCoursesData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
+    
+    //CommonFunction *common = [[CommonFunction alloc]init];
+    
+    if ([common CheckNSD:allCoursesData] == false) {
+        
+        UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
+                                                    message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        
+        [mes show];
+        [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+        return;
+    }
+    
+    
+    NSError *error;
+    NSMutableDictionary *allCourses = [NSJSONSerialization JSONObjectWithData:allCoursesData options:NSJSONReadingMutableContainers error:&error];
+    
+    if (error) {
+        NSLog(@"%@",[error localizedDescription]);
+    }
+    else {
+        //NSArray *monday = allCourses[@"Monday"];
+        for ( NSDictionary *user in allCourses )
+        {
+            NSLog(@"Checking if device is already registered with device id %@", DeviceGUID);
+            //NSLog(@"Title: %@", theCourse[@"title"] );
+            
+            DeviceGUID = user[@"DeviceGUID"];
+            _Email = user[@"Email"];
+            _PhoneNumber = user[@"PhoneNumber"];
+            _IsDeviceActivated = user[@"isDeviceActivated"];
+            
+        }
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+        
+        if ([_IsDeviceActivated isEqualToString:@"NO"]) {
+            DeviceActivationViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"acid"];
+            [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+            vc.deviceGUID = DeviceGUID;
+            vc.emailAddress = _Email;
+            
+            
+            [self presentViewController:vc animated:YES completion:nil];
+        }
+        else if ([_IsDeviceActivated isEqualToString:@"YES"])
+        {
+            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+            return;
+            
+        }
+        else
+        {
+            
+            TestViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"register"];
+            [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+            vc.DeviceGUID = DeviceGUID;
+            
+            
+            [self presentViewController:vc animated:YES completion:nil];
+        }
+        
+        
+        
+        
+    }
 
-
+}
 
 @end

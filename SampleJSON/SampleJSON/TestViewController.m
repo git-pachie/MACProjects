@@ -9,6 +9,7 @@
 #import "TestViewController.h"
 #import "DeviceActivationViewController.h"
 #import "HomeTableViewController.h"
+#import "CommonFunction.h"
 
 
 
@@ -58,89 +59,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
- //   NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    
-//    
-//    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-//    
-//    
-//    NSString *UUID = [prefs stringForKey:@"deviceguid"];
-//    
-//    if (UUID == nil) {
-//        UUID = [[NSUUID UUID] UUIDString];
-//        
-//        [prefs setObject:DeviceGUID forKey:@"deviceguid"];
-//    }
-//
-    
-//    DeviceGUID = uniqueIdentifier;
-    
-//    NSString *url =[NSString stringWithFormat:@"http://www.riverwayauto.com:1980/WcfService2/Service1.svc/GetUserByDeviceID/%@",DeviceGUID];
-//    
-//    NSData *allCoursesData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-//    
-//    NSError *error;
-//    NSMutableDictionary *allCourses = [NSJSONSerialization JSONObjectWithData:allCoursesData options:NSJSONReadingMutableContainers error:&error];
-//    
-//    if (error) {
-//        NSLog(@"%@",[error localizedDescription]);
-//    }
-//    else {
-//        //NSArray *monday = allCourses[@"Monday"];
-//        for ( NSDictionary *user in allCourses )
-//            {
-//                NSLog(@"Checking if device is already registered with device id %@", DeviceGUID);
-//                //NSLog(@"Title: %@", theCourse[@"title"] );
-//                
-//                DeviceGUID = user[@"DeviceGUID"];
-//                _Email = user[@"Email"];
-//                _PhoneNumber = user[@"PhoneNumber"];
-//                _isDeviceActivated = user[@"isDeviceActivated"];
-//                
-//            }
-//        
-//        
-//        
-//       
-//    }
-//    
-//    
-//    if (_isDeviceActivated == nil) {
-//        return;
-//    }
-//    else
-//    {
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-//
-//        if ([_isDeviceActivated isEqualToString:@"NO"]) {
-//            //[self performSegueWithIdentifier:@"SegActivateDevice" sender:sender];
-//            
-//            DeviceActivationViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"acid"];
-//            [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-//            vc.deviceGUID = DeviceGUID;
-//            
-//            [self presentViewController:vc animated:YES completion:nil];
-//            
-//        }
-//        else
-//        {
-//        
-//            HomeTableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"home"];
-//            [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-//            vc.deviceGUID = DeviceGUID;
-//            vc.phoneNumber = _PhoneNumber;
-//            
-//            [self presentViewController:vc animated:YES completion:nil];
-//        }
-//    }
-//
-
-    
-    
-    // saving an NSString
-    
     
 }
 
@@ -180,37 +98,6 @@
 
 - (IBAction)sendDataToJSON:(id)sender {
     
-//    
-//    "DateCreated":"\/Date(1404548576073+0800)\/","DateModified":null,"Email":"pachie.angeles@gmail.com","9876546",@:"96646585","UserID":103,"UserName":"pachie"
-    
-//    NSString *phonNumber = [self.txtPhoneNumber text];
-//    NSString *emailEmail = [self.txtEmailAddress text];
-//    
-//    NSString *UUID = [[NSUUID UUID] UUIDString];
-//    
-//    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:emailEmail,@"Email",phonNumber,@"PhoneNumber",@"pachie",@"UserName",UUID,@"DeviceGUID", nil];
-//    
-//    if ([NSJSONSerialization isValidJSONObject:dict]) {
-//        NSError *error = nil;
-//        
-//        NSData *result = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&error];
-//        
-//
-//        
-//        if (error == nil && result != nil) {
-//            NSLog(@"You have json object");
-//            [self jsonPostRequest:result];
-//            
-//            
-//            
-//            
-//        }
-//    }
-    
-    
-    
-    
-    //DeviceGUID = UUID;
     
     if ([txtPhoneNumber.text isEqualToString:@""] || [txtEmailAddress.text isEqualToString:@""])
     {
@@ -218,15 +105,16 @@
                                                     message:@"Phone number and email address must not be empty" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         
         [mes show];
-        
         return;
-
     }
     
+    CommonFunction *common = [[CommonFunction alloc]init];
     
-    NSString *post = [NSString stringWithFormat:@"http://www.riverwayauto.com:1980/myjson/Service1.svc/RegisterUser/%1@/archie/%2@/%3@",txtEmailAddress.text,txtPhoneNumber.text,DeviceGUID];
+    
+    NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"RegisterUser/%1@/archie/%2@/%3@",txtEmailAddress.text,txtPhoneNumber.text,DeviceGUID]];
     
     NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    
     NSString *postLenght = [NSString stringWithFormat:@"%lu", (unsigned long)[data length]];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
