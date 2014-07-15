@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C6FE133197540E7003B0EF6 /* CustomStaticTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6FE132197540E7003B0EF6 /* CustomStaticTableViewController.m */; };
 		0CA596771973E1F80032D144 /* CommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA596761973E1F80032D144 /* CommonFunction.m */; };
 		0D6FE46F19686E1A002E3880 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6FE46E19686E1A002E3880 /* Foundation.framework */; };
 		0D6FE47119686E1A002E3880 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6FE47019686E1A002E3880 /* CoreGraphics.framework */; };
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C6FE131197540E7003B0EF6 /* CustomStaticTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStaticTableViewController.h; sourceTree = "<group>"; };
+		0C6FE132197540E7003B0EF6 /* CustomStaticTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStaticTableViewController.m; sourceTree = "<group>"; };
 		0CA596751973E1F80032D144 /* CommonFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFunction.h; sourceTree = "<group>"; };
 		0CA596761973E1F80032D144 /* CommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunction.m; sourceTree = "<group>"; };
 		0D6FE46B19686E1A002E3880 /* SampleJSON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleJSON.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +159,8 @@
 				0DBE6FF31971A13B0024380E /* MessageDetailViewController.m */,
 				0CA596751973E1F80032D144 /* CommonFunction.h */,
 				0CA596761973E1F80032D144 /* CommonFunction.m */,
+				0C6FE131197540E7003B0EF6 /* CustomStaticTableViewController.h */,
+				0C6FE132197540E7003B0EF6 /* CustomStaticTableViewController.m */,
 			);
 			path = SampleJSON;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 			files = (
 				0D6FE48119686E1A002E3880 /* AppDelegate.m in Sources */,
 				0D6FE47D19686E1A002E3880 /* main.m in Sources */,
+				0C6FE133197540E7003B0EF6 /* CustomStaticTableViewController.m in Sources */,
 				0CA596771973E1F80032D144 /* CommonFunction.m in Sources */,
 				0D6FE4A719686E89002E3880 /* TestViewController.m in Sources */,
 				0DBE6FF41971A13B0024380E /* MessageDetailViewController.m in Sources */,
