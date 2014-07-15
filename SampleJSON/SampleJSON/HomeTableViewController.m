@@ -48,8 +48,6 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     
-    
-    
     NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     
     DeviceGUID = uniqueIdentifier;
@@ -108,16 +106,8 @@
         }
         else if ([_IsDeviceActivated isEqualToString:@"YES"])
         {
-            
-            
-            
-            
-            
+        
             return;
-            
-            
-            
-            
             
         }
         else
@@ -141,71 +131,21 @@
     
 }
 
+
 - (void)viewDidLoad
 {
-//    [super viewDidLoad];
-//    
-//    NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-//    
-//    DeviceGUID = uniqueIdentifier;
-//    
-//    NSString *url =[NSString stringWithFormat:@"http://www.riverwayauto.com:1980/WcfService2/Service1.svc/GetUserByDeviceID/%@",DeviceGUID];
-//    
-//    NSData *allCoursesData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-//    
-//    NSError *error;
-//    NSMutableDictionary *allCourses = [NSJSONSerialization JSONObjectWithData:allCoursesData options:NSJSONReadingMutableContainers error:&error];
-//    
-//    if (error) {
-//        NSLog(@"%@",[error localizedDescription]);
-//    }
-//    else {
-//        //NSArray *monday = allCourses[@"Monday"];
-//        for ( NSDictionary *user in allCourses )
-//        {
-//            NSLog(@"Checking if device is already registered with device id %@", DeviceGUID);
-//            //NSLog(@"Title: %@", theCourse[@"title"] );
-//            
-//            DeviceGUID = user[@"DeviceGUID"];
-//            _Email = user[@"Email"];
-//            _PhoneNumber = user[@"PhoneNumber"];
-//            _IsDeviceActivated = user[@"isDeviceActivated"];
-//            
-//        }
-//        
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-//        if ([_IsDeviceActivated isEqualToString:@"NO"]) {
-//            DeviceActivationViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"acid"];
-//            [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-//            vc.deviceGUID = DeviceGUID;
-//            vc.emailAddress = _Email;
-//            
-//            
-//            [self presentViewController:vc animated:YES completion:nil];
-//        }
-//        else if ([_IsDeviceActivated isEqualToString:@"YES"])
-//        {
-//            return;
-//        }
-//        else
-//        {
-//            
-//            TestViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"register"];
-//            [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-//            vc.DeviceGUID = DeviceGUID;
-//            
-//            
-//            [self presentViewController:vc animated:YES completion:nil];
-//        }
-//        
-//        
-//        
-//        
-//    }
+    
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to refresh"];
+    [refresh addTarget:self
+                  action:@selector(refreshView:)
+                  forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
+    
+    
     
     
     [self LoadTable];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -411,8 +351,25 @@
                       nil];
         [myObject addObject:dictionary];
     }
-
+    
 }
+
+-(void)refreshView:(UIRefreshControl *)refresh {
+         refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+    
+         // custom refresh logic would be placed here...
+    [self LoadTable];
+    
+         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+         [formatter setDateFormat:@"MMM d, h:mm a"];
+         NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
+                                                                        [formatter stringFromDate:[NSDate date]]];
+         refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+    
+    [self.tableView reloadData];
+         [refresh endRefreshing];
+     }
+
 
 
 
