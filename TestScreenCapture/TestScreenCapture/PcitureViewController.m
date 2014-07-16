@@ -27,6 +27,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = YES;
     
     _image1.image = [self loadImage];
 }
@@ -40,6 +42,7 @@
     NSString* path = [documentsDirectory stringByAppendingPathComponent:
                       @"test123.png" ];
     UIImage* image = [UIImage imageWithContentsOfFile:path];
+    _image1.contentMode = UIViewContentModeCenter;
     return image;
 }
 
@@ -107,6 +110,8 @@
     
     if (image != nil)
     {
+        
+        
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                              NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
