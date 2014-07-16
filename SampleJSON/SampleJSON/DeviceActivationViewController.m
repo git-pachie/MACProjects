@@ -9,6 +9,7 @@
 #import "DeviceActivationViewController.h"
 //#import "HomeTableViewController.h"
 #import "TestViewController.h"
+#import "AppDelegate.h"
 
 
 
@@ -80,6 +81,10 @@
     if ([theReply isEqualToString:@"true"]) {
         NSLog(@"Yes");
         //[self performSegueWithIdentifier:@"SegActivateDevice" sender:sender];
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        delegate.DeviceGUID = _deviceGUID;
+        delegate.isDeviceRegistered = @"YES";
+        
         UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Pickup Lines"
                                                     message:@"Congratulation you activated this device to use Pickup Lines Application" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         

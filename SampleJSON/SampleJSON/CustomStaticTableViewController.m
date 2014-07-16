@@ -7,6 +7,7 @@
 //
 
 #import "CustomStaticTableViewController.h"
+#import "AppDelegate.h"
 
 @interface CustomStaticTableViewController ()
 
@@ -27,14 +28,21 @@
 {
     [super viewDidLoad];
     
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     self.lblAccountName.text = @"Free";
-    self.lblEmail.text  = _emailAddress;
+    self.lblEmail.text  = delegate.EmailAddress;
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    NSString * urlString = [@"http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg"stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSURL * imageURL = [NSURL URLWithString:urlString];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+
+    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImage * image = [UIImage imageWithData:imageData];
+    
+    [self.profilepic setImage:image];
+
 }
 
 - (void)didReceiveMemoryWarning

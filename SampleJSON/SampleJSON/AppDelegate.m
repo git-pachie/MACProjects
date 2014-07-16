@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SystemEntity.h"
 
 @implementation AppDelegate
 

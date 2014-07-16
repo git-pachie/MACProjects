@@ -11,6 +11,7 @@
 #import "DeviceActivationViewController.h"
 #import "MessageDetailViewController.h"
 #import "CommonFunction.h"
+#import "AppDelegate.h"
 
 @interface HomeTableViewController ()
 {
@@ -47,13 +48,32 @@
 }
 
 
+
+
 -(void)viewDidAppear:(BOOL)animated
 {
     if (isConnectionOK == NO) {
         return;
     }
     
-    //[self getJsonData];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if ([delegate.isDeviceRegistered isEqualToString:@"NO"]) {
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+        
+        
+            DeviceActivationViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"acid"];
+            [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+            vc.deviceGUID = DeviceGUID;
+            vc.emailAddress = _Email;
+            
+            
+            [self presentViewController:vc animated:YES completion:nil];
+        
+        
+    }
+
     
 }
 
@@ -362,6 +382,12 @@
         }
         else if ([_IsDeviceActivated isEqualToString:@"YES"])
         {
+            
+            AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            delegate.DeviceGUID = DeviceGUID;
+            delegate.isDeviceRegistered = @"YES";
+            delegate.EmailAddress = _Email;
+
             [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
             return;
             
@@ -372,6 +398,8 @@
             TestViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"register"];
             [vc setModalPresentationStyle:UIModalPresentationFullScreen];
             vc.DeviceGUID = DeviceGUID;
+            
+            
             
             
             [self presentViewController:vc animated:YES completion:nil];

@@ -10,6 +10,7 @@
 #import "DeviceActivationViewController.h"
 #import "HomeTableViewController.h"
 #import "CommonFunction.h"
+#import "AppDelegate.h"
 
 
 
@@ -131,13 +132,11 @@
     
     if ([theReply isEqualToString:@"true"]) {
         NSLog(@"Yes");
-        //[self performSegueWithIdentifier:@"SegActivateDevice" sender:sender];
+ 
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        delegate.DeviceGUID = DeviceGUID;
+        delegate.isDeviceRegistered = @"NO";
         
-        
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-//        DeviceActivationViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"acid"];
-//        [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-//        vc.deviceGUID = DeviceGUID;
         
         [self dismissViewControllerAnimated:NO completion:nil];
 

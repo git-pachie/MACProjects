@@ -16,4 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblAccountName;
 @property (weak, nonatomic) IBOutlet UILabel *lblEmail;
 
+@property (weak, nonatomic) IBOutlet UIImageView *profilepic;
+
 @end

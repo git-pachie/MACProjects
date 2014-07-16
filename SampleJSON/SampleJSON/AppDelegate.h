@@ -16,6 +16,13 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (nonatomic, strong) NSString *isDeviceRegistered;
+@property (nonatomic, strong) NSString *DeviceGUID;
+@property (nonatomic,strong) NSString *EmailAddress;
+@property (nonatomic, strong) NSString *PhoneNumber;
+
+
+
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory; 
 
