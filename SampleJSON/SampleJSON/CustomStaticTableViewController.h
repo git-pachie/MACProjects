@@ -17,5 +17,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblEmail;
 
 @property (weak, nonatomic) IBOutlet UIImageView *profilepic;
+- (IBAction)takePhoto:(id)sender;
+- (IBAction)loadExistingPhoto:(id)sender;
+
+
 
 @end

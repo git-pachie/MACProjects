@@ -70,16 +70,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleJSON/CustomStaticTableViewController.m"
-            timestampString = "427126919.138329"
+            timestampString = "427214153.17391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "-loadImage"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

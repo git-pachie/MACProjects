@@ -30,19 +30,23 @@
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    self.lblAccountName.text = @"Free";
-    self.lblEmail.text  = delegate.EmailAddress;
+   // self.lblAccountName.text = @"Free";
+    //self.lblEmail.text  = delegate.EmailAddress;
     
-    NSString * urlString = [@"http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg"stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    NSURL * imageURL = [NSURL URLWithString:urlString];
+//    NSString * urlString = [@"http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg"stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+//    NSURL * imageURL = [NSURL URLWithString:urlString];
+//    
+//
+//
+//    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+//    UIImage * image = [UIImage imageWithData:imageData];
+//    
+//    [self.profilepic setImage:image];
     
-
-
-    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage * image = [UIImage imageWithData:imageData];
     
-    [self.profilepic setImage:image];
-
+    //_profilepic.contentMode = UIViewContentModeBottom;
+    _profilepic.image = [self loadImage];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,4 +131,80 @@
 }
 */
 
+- (IBAction)takePhoto:(id)sender {
+    
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        [imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
+    }
+    
+    // image picker needs a delegate,
+    [imagePickerController setDelegate:self];
+    
+    // Place image picker on the screen
+    
+    //[self presentModalViewController:imagePickerController animated:YES];
+    
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+
+}
+
+- (IBAction)loadExistingPhoto:(id)sender {
+    
+    UIImagePickerController *imagePickerController= [[UIImagePickerController alloc] init];
+    [imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    
+    // image picker needs a delegate so we can respond to its messages
+    [imagePickerController setDelegate:self];
+    
+    // Place image picker on the screen
+    //[self presentModalViewController:imagePickerController animated:YES];
+    
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+    
+    
+
+}
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    
+        // "myImageView" name of any UIImageView.
+    
+    if (image != nil)
+    {
+        
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                             NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString* path = [documentsDirectory stringByAppendingPathComponent:
+                          @"test123.png" ];
+        NSData* data = UIImagePNGRepresentation(image);
+        [data writeToFile:path atomically:YES];
+    }
+    
+    _profilepic.image = [self loadImage];
+}
+
+- (UIImage*)loadImage
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString* path = [documentsDirectory stringByAppendingPathComponent:
+                      @"test123.png" ];
+    UIImage* image = [UIImage imageWithContentsOfFile:path];
+    //_profilepic.contentMode = UIViewContentModeCenter;
+    
+    _profilepic.contentMode = UIViewContentModeScaleAspectFill;
+
+    return image;
+}
 @end
