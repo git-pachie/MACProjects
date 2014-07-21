@@ -16,6 +16,7 @@
 @interface HomeTableViewController ()
 {
     NSMutableArray *myObject;
+    NSArray *myObjectSearch;
     // A dictionary object
     NSDictionary *dictionary;
     // Define keys
@@ -117,19 +118,56 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return myObject.count  ;
+    //return myObject.count  ;
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        
+        return myObjectSearch.count;
+        
+        
+        
+    } else {
+        
+        return myObject.count;
+        
+        
+        
+    }
+    
+    
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+   // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
     
     if (isConnectionOK == true) {
         
         
-        NSDictionary *tmpDict = [myObject objectAtIndex:indexPath.row];
+        NSDictionary *tmpDict = nil;//[myObject objectAtIndex:indexPath.row];
+        
+        
+        
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            
+            tmpDict = [myObjectSearch objectAtIndex:indexPath.row];
+            
+            
+        } else {
+            
+            tmpDict = [myObject objectAtIndex:indexPath.row];
+            
+            
+        }
+
         
         cell.textLabel.text = [tmpDict objectForKey:@"HiritMessage"];
         cell.detailTextLabel.text =[NSString stringWithFormat:@"Created By %@",[tmpDict objectForKey:@"CreatedByUserName"]] ;
@@ -142,43 +180,6 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation
@@ -187,8 +188,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"MessageDetail"]) {
-        
-        
               
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         
@@ -211,6 +210,12 @@
 
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        [self performSegueWithIdentifier: @"MessageDetail" sender: self];
+    }
+}
 
 - (NSDate *)mfDateFromDotNetJSONString:(NSString *)string {
     static NSRegularExpression *dateRegEx = nil;
@@ -412,4 +417,31 @@
 
 }
 
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+//    NSPredicate *resultPredicate = [NSPredicate
+//                                    predicateWithFormat:@"CreatedByUserName contains[cd] %@",
+//                                    searchText];
+//
+    NSString *nameFilter = [NSString stringWithFormat:@"%@*", searchText];
+    NSString *desFilter = [NSString stringWithFormat:@"*%@*", searchText];
+    
+    NSPredicate *resultPredicate = [NSPredicate
+                                    predicateWithFormat:@"(CreatedByUserName LIKE [cd]%@) or (HiritMessage LIKE [cd] %@)",
+                                    nameFilter, desFilter];
+
+    
+    myObjectSearch = [myObject filteredArrayUsingPredicate:resultPredicate];
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller
+shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
 @end
