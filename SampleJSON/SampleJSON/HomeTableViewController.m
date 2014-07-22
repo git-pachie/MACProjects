@@ -22,9 +22,6 @@
     // Define keys
     
     bool isConnectionOK;
-    
-    
-    
     NSString *MessageGUID ;
     NSString *HiritMessage ;
     NSString *CreatedByUserName ;
@@ -63,15 +60,11 @@
         
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
         
-        
             DeviceActivationViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"acid"];
             [vc setModalPresentationStyle:UIModalPresentationFullScreen];
             vc.deviceGUID = DeviceGUID;
             vc.emailAddress = _Email;
-            
-            
             [self presentViewController:vc animated:YES completion:nil];
-        
         
     }
 
@@ -112,7 +105,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
     return 1;
 }
 
@@ -123,15 +115,10 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         
         return myObjectSearch.count;
-        
-        
-        
+
     } else {
         
         return myObject.count;
-        
-        
-        
     }
     
     
@@ -141,8 +128,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-   // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
@@ -151,31 +136,22 @@
     
     if (isConnectionOK == true) {
         
-        
         NSDictionary *tmpDict = nil;//[myObject objectAtIndex:indexPath.row];
-        
-        
-        
+
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             
             tmpDict = [myObjectSearch objectAtIndex:indexPath.row];
             
-            
         } else {
             
             tmpDict = [myObject objectAtIndex:indexPath.row];
-            
-            
+
         }
 
-        
         cell.textLabel.text = [tmpDict objectForKey:@"HiritMessage"];
         cell.detailTextLabel.text =[NSString stringWithFormat:@"Created By %@",[tmpDict objectForKey:@"CreatedByUserName"]] ;
-        
-        
     }
     return cell;
-    
     
 }
 
@@ -203,7 +179,6 @@
         if ([self.searchDisplayController isActive]) {
             
             path = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            
             messageGUID = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"MessageGUID"]];
             hiritMessage = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"HiritMessage"]];
             createdBy = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"CreatedBy"]];
@@ -212,14 +187,10 @@
         }
         else
         {
-//            NSLog(@"clPanelSeguePathRow = %ld", (long)path.row);
-//            NSLog(@"myobject = %@", [[myObject objectAtIndex:path.row] objectForKey:@"templateid"]);
             messageGUID = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"MessageGUID"]];
             hiritMessage = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"HiritMessage"]];
             createdBy = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"CreatedBy"]];
             answer1 = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"Answer"]];
-            
-
             
         }
         
@@ -227,15 +198,8 @@
         dv.HiritMessage = hiritMessage;
         dv.CreatedBy = createdBy;
         dv.Answer = answer1;
-        
-        
-        
     }
     
-    
-    
-    
-
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -277,8 +241,6 @@
     [mes show];
 }
 
-
-
 -(void)LoadTable
 {
     MessageGUID = @"MessageGUID";
@@ -288,15 +250,10 @@
     CreatedDate=    [NSDate date];
     Answer1 = @"Answer";
     
-    
     myObject = [[NSMutableArray alloc] init];
     CommonFunction *common = [[CommonFunction alloc]init];
-    
     NSString *x = [common GetJsonConnection:@"GetHiritMessage"];
-    
-    NSData *jsonSource = [NSData dataWithContentsOfURL:
-                          [NSURL URLWithString:x]];
-    
+    NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
     
     if ([common CheckNSD:jsonSource] == false) {
         
@@ -313,11 +270,8 @@
     
     isConnectionOK = YES;
     
-    
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:
                       jsonSource options:NSJSONReadingMutableContainers error:nil];
-    
-
     
     for (NSDictionary *dataDict in jsonObjects) {
         NSString *messageGUID = [dataDict objectForKey:@"MessageGUID"];
@@ -327,15 +281,11 @@
         NSString *createdDate = [dataDict objectForKey:@"CreatedDate"];
         NSString *answer1 = [dataDict objectForKey:@"Answer1"];
         
-        
-        
         NSLog(@"MessageGUID: %@",messageGUID);
         NSLog(@"Message: %@",hiritMessage);
         NSLog(@"CreatedByUserName: %@",createdByUserName);
         NSLog(@"CreatedByDeviceID: %@",createdByDeviceID);
         NSLog(@"CreatedDate: %@",createdDate);
-        
-        
         
         dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                       messageGUID, MessageGUID,
@@ -364,12 +314,7 @@
     
     NSString *url =[common GetJsonConnection:[NSString stringWithFormat:@"GetUserByDeviceID/%@",DeviceGUID]];
     
-    
-    //    NSString *url =[NSString stringWithFormat:[common GetJsonConnection:[NSString stringWithFormat:@"GetUserByDeviceID/%@",DeviceGUID]]];
-    
     NSData *allCoursesData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-    
-    //CommonFunction *common = [[CommonFunction alloc]init];
     
     if ([common CheckNSD:allCoursesData] == false) {
         
@@ -383,22 +328,20 @@
     
     
     NSError *error;
-    NSMutableDictionary *allCourses = [NSJSONSerialization JSONObjectWithData:allCoursesData options:NSJSONReadingMutableContainers error:&error];
+    NSMutableDictionary *allHirit= [NSJSONSerialization JSONObjectWithData:allCoursesData options:NSJSONReadingMutableContainers error:&error];
     
     if (error) {
         NSLog(@"%@",[error localizedDescription]);
     }
     else {
-        //NSArray *monday = allCourses[@"Monday"];
-        for ( NSDictionary *user in allCourses )
+        for (NSDictionary *dic in allHirit )
         {
             NSLog(@"Checking if device is already registered with device id %@", DeviceGUID);
-            //NSLog(@"Title: %@", theCourse[@"title"] );
             
-            DeviceGUID = user[@"DeviceGUID"];
-            _Email = user[@"Email"];
-            _PhoneNumber = user[@"PhoneNumber"];
-            _IsDeviceActivated = user[@"isDeviceActivated"];
+            self.DeviceGUID = dic[@"DeviceGUID"];
+            self.Email = dic[@"Email"];
+            self.PhoneNumber = dic[@"PhoneNumber"];
+            self.IsDeviceActivated = dic[@"isDeviceActivated"];
             
         }
         
@@ -408,12 +351,11 @@
             DeviceActivationViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"acid"];
             [vc setModalPresentationStyle:UIModalPresentationFullScreen];
             vc.deviceGUID = DeviceGUID;
-            vc.emailAddress = _Email;
-            
+            vc.emailAddress = self.Email;
             
             [self presentViewController:vc animated:YES completion:nil];
         }
-        else if ([_IsDeviceActivated isEqualToString:@"YES"])
+        else if ([self.IsDeviceActivated isEqualToString:@"YES"])
         {
             
             AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -422,8 +364,8 @@
             delegate.EmailAddress = _Email;
 
             [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
-            return;
             
+            return;
         }
         else
         {
@@ -431,26 +373,22 @@
             TestViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"register"];
             [vc setModalPresentationStyle:UIModalPresentationFullScreen];
             vc.DeviceGUID = DeviceGUID;
-            
-            
-            
-            
+
             [self presentViewController:vc animated:YES completion:nil];
         }
-        
-        
         
         
     }
 
 }
 
+/*
+ #pragma mark - Filter
+ */
+// Search Filter
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-//    NSPredicate *resultPredicate = [NSPredicate
-//                                    predicateWithFormat:@"CreatedByUserName contains[cd] %@",
-//                                    searchText];
-//
+
     NSString *nameFilter = [NSString stringWithFormat:@"%@*", searchText];
     NSString *desFilter = [NSString stringWithFormat:@"*%@*", searchText];
     
@@ -458,7 +396,6 @@
                                     predicateWithFormat:@"(CreatedByUserName LIKE [cd]%@) or (HiritMessage LIKE [cd] %@)",
                                     nameFilter, desFilter];
 
-    
     myObjectSearch = [myObject filteredArrayUsingPredicate:resultPredicate];
 }
 
