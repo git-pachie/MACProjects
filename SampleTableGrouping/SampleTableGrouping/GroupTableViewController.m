@@ -11,7 +11,8 @@
 @interface GroupTableViewController ()
 {
     NSMutableArray *MyArray;
-    NSMutableArray *xArray;
+    NSArray *xArray;
+    NSCountedSet *countedSet;
 }
 
 @end
@@ -169,16 +170,16 @@
 //    
 //    [xArray addObjectsFromArray:[MyArray filteredArrayUsingPredicate:resultPredicate]];
     
-   for (int i=0; i<=[MyArray count] - 1; i++) {
+   //for (int i=0; i<=[MyArray count] - 1; i++) {
        
-        NSDictionary *dic = [MyArray objectAtIndex:i];
+       // NSDictionary *dic = [MyArray objectAtIndex:i];
        
         NSPredicate *resultPredicate = [NSPredicate
-                                        predicateWithFormat:@"%@ contains [cd] %@",[[dic allKeys] objectAtIndex:0],searchText];
+                                        predicateWithFormat:@"contains [cd] %@",searchText];
        
-        [xArray addObjectsFromArray:[MyArray filteredArrayUsingPredicate:resultPredicate]];
+        xArray = [MyArray filteredArrayUsingPredicate:resultPredicate];
        
-    }
+   // }
 //    
     
    

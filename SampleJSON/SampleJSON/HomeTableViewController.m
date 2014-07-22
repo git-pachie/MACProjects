@@ -17,8 +17,12 @@
 {
     NSMutableArray *myObject;
     NSArray *myObjectSearch;
+    NSMutableDictionary *mutDictionary;
     // A dictionary object
     NSDictionary *dictionary;
+    NSCountedSet *countedSet;
+    NSMutableArray *arrayGroup;
+    NSMutableArray *arrayGroupSearch;
     // Define keys
     
     bool isConnectionOK;
@@ -105,7 +109,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    //return 1;
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        
+        return [arrayGroupSearch count];
+        
+    } else {
+        
+        return [arrayGroup count];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -114,11 +127,48 @@
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         
-        return myObjectSearch.count;
+        //return myObjectSearch.count;
+        
+        NSString *nameFilter = [NSString stringWithFormat:@"%@*", [arrayGroupSearch objectAtIndex:section]];
+        
+        
+        NSPredicate *resultPredicate = [NSPredicate
+                                        predicateWithFormat:@"(CreatedByUserName LIKE [cd]%@)",
+                                        nameFilter];
+        
+        
+        return [[myObjectSearch filteredArrayUsingPredicate:resultPredicate] count] ;
 
     } else {
         
-        return myObject.count;
+        //return myObject.count;
+    
+    
+        NSString *nameFilter = [NSString stringWithFormat:@"%@*", [arrayGroup objectAtIndex:section]];
+        
+        
+        NSPredicate *resultPredicate = [NSPredicate
+                                        predicateWithFormat:@"(CreatedByUserName LIKE [cd]%@)",
+                                        nameFilter];
+        
+       
+        return [[myObject filteredArrayUsingPredicate:resultPredicate] count] ;
+
+    
+    }
+    
+    
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return  [arrayGroupSearch objectAtIndex:section];
+    }
+    else
+    {
+        return  [arrayGroup objectAtIndex:section];
     }
     
     
@@ -134,22 +184,71 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
+    
+
+
+ 
     if (isConnectionOK == true) {
         
-        NSDictionary *tmpDict = nil;//[myObject objectAtIndex:indexPath.row];
+        NSDictionary *tmpDict = nil;
 
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             
-            tmpDict = [myObjectSearch objectAtIndex:indexPath.row];
+            
+            NSString *nameFilter = [NSString stringWithFormat:@"%@*", [arrayGroupSearch objectAtIndex:indexPath.section]];
+            
+            
+            NSPredicate *resultPredicate = [NSPredicate
+                                            predicateWithFormat:@"(CreatedByUserName LIKE [cd]%@)",
+                                            nameFilter];
+            
+            // NSLog(@"numberOfRowsInSection %lu",(unsigned long)[[myObject filteredArrayUsingPredicate:resultPredicate] count]);
+            tmpDict =  [[myObjectSearch filteredArrayUsingPredicate:resultPredicate] objectAtIndex:indexPath.row ] ;
+            
+
+            
+            
+            //tmpDict = [myObjectSearch objectAtIndex:indexPath.row];
             
         } else {
             
-            tmpDict = [myObject objectAtIndex:indexPath.row];
+            
+            NSString *nameFilter = [NSString stringWithFormat:@"%@*", [arrayGroup objectAtIndex:indexPath.section]];
+            
+            
+            NSPredicate *resultPredicate = [NSPredicate
+                                            predicateWithFormat:@"(CreatedByUserName LIKE [cd]%@)",
+                                            nameFilter];
+            
+            // NSLog(@"numberOfRowsInSection %lu",(unsigned long)[[myObject filteredArrayUsingPredicate:resultPredicate] count]);
+            tmpDict =  [[myObject filteredArrayUsingPredicate:resultPredicate] objectAtIndex:indexPath.row ] ;
+
+            
+            
+//            tmpDict = [myObject objectAtIndex:indexPath.row];
+//            NSLog(@"tmpDict ---> %@",tmpDict);
 
         }
+        
+         NSLog(@"isection %ld",(long)indexPath.section);
+        NSLog(@"Item0 %@",[tmpDict objectForKey:@"CreatedByUserName"]);
+        NSLog(@"Item1 %@",[arrayGroup objectAtIndex:indexPath.section]);
+        
+       // if ([tmpDict objectForKey:@"CreatedByUserName"] == [arrayGroup objectAtIndex:indexPath.section]) {
+            
+            cell.textLabel.text = [tmpDict objectForKey:@"HiritMessage"];
+            cell.detailTextLabel.text =[NSString stringWithFormat:@"Created By %@",[tmpDict objectForKey:@"CreatedByUserName"]] ;
 
-        cell.textLabel.text = [tmpDict objectForKey:@"HiritMessage"];
-        cell.detailTextLabel.text =[NSString stringWithFormat:@"Created By %@",[tmpDict objectForKey:@"CreatedByUserName"]] ;
+            
+       // }
+       //// else
+       // {
+       //     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+      //  }
+    
+        
+      
+        
     }
     return cell;
     
@@ -174,25 +273,54 @@
         NSString *createdBy = @"";//[NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"CreatedBy"]];
         NSString *answer1 = @"";//[NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"Answer"]];
         
+        
+        NSDictionary *tmpDict = nil;
 
         
         if ([self.searchDisplayController isActive]) {
             
             path = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            messageGUID = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"MessageGUID"]];
-            hiritMessage = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"HiritMessage"]];
-            createdBy = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"CreatedBy"]];
-            answer1 = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"Answer"]];
+            
+            NSString *nameFilter = [NSString stringWithFormat:@"%@*", [arrayGroupSearch objectAtIndex:path.section]];
+            
+            
+            NSPredicate *resultPredicate = [NSPredicate
+                                            predicateWithFormat:@"(CreatedByUserName LIKE [cd]%@)",
+                                            nameFilter];
+            
+            tmpDict =  [[myObjectSearch filteredArrayUsingPredicate:resultPredicate] objectAtIndex:path.row ] ;
+            
+            
+//            
+//            
+//            
+//            messageGUID = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"MessageGUID"]];
+//            hiritMessage = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"HiritMessage"]];
+//            createdBy = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"CreatedBy"]];
+//            answer1 = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"Answer"]];
             
         }
         else
         {
-            messageGUID = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"MessageGUID"]];
-            hiritMessage = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"HiritMessage"]];
-            createdBy = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"CreatedBy"]];
-            answer1 = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"Answer"]];
+            
+            NSString *nameFilter = [NSString stringWithFormat:@"%@*", [arrayGroup objectAtIndex:path.section]];
+            
+            
+            NSPredicate *resultPredicate = [NSPredicate
+                                            predicateWithFormat:@"(CreatedByUserName LIKE [cd]%@)",
+                                            nameFilter];
+            
+            tmpDict =  [[myObject filteredArrayUsingPredicate:resultPredicate] objectAtIndex:path.row ] ;
+            
+            
             
         }
+        
+        messageGUID = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"MessageGUID"]];
+        hiritMessage = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"HiritMessage"]];
+        createdBy = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"CreatedBy"]];
+        answer1 = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"Answer"]];
+
         
         dv.MessageGUID = messageGUID;
         dv.HiritMessage = hiritMessage;
@@ -273,6 +401,8 @@
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:
                       jsonSource options:NSJSONReadingMutableContainers error:nil];
     
+    countedSet = [NSCountedSet set];
+    
     for (NSDictionary *dataDict in jsonObjects) {
         NSString *messageGUID = [dataDict objectForKey:@"MessageGUID"];
         NSString *hiritMessage = [dataDict objectForKey:@"HiritMessage"];
@@ -281,11 +411,11 @@
         NSString *createdDate = [dataDict objectForKey:@"CreatedDate"];
         NSString *answer1 = [dataDict objectForKey:@"Answer1"];
         
-        NSLog(@"MessageGUID: %@",messageGUID);
-        NSLog(@"Message: %@",hiritMessage);
-        NSLog(@"CreatedByUserName: %@",createdByUserName);
-        NSLog(@"CreatedByDeviceID: %@",createdByDeviceID);
-        NSLog(@"CreatedDate: %@",createdDate);
+//        NSLog(@"MessageGUID: %@",messageGUID);
+//        NSLog(@"Message: %@",hiritMessage);
+//        NSLog(@"CreatedByUserName: %@",createdByUserName);
+//        NSLog(@"CreatedByDeviceID: %@",createdByDeviceID);
+//        NSLog(@"CreatedDate: %@",createdDate);
         
         dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                       messageGUID, MessageGUID,
@@ -296,6 +426,17 @@
                       answer1, Answer1,
                       nil];
         [myObject addObject:dictionary];
+        
+        [countedSet addObject:createdByUserName];
+        
+        
+    }
+    
+    arrayGroup = [[NSMutableArray alloc]init];
+    
+    
+    for (NSString *s in countedSet) {
+        [arrayGroup addObject:s];
     }
     
     [self getJsonData];
@@ -397,6 +538,19 @@
                                     nameFilter, desFilter];
 
     myObjectSearch = [myObject filteredArrayUsingPredicate:resultPredicate];
+    
+    
+    
+    for (NSDictionary *dic in myObjectSearch) {
+        [countedSet addObject:[dic objectForKey:@"CreatedByUserName"]];
+    }
+    
+    arrayGroupSearch = [[NSMutableArray alloc]init];
+    
+    
+    for (NSString *s in countedSet) {
+        [arrayGroupSearch addObject:s];
+    }
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller
