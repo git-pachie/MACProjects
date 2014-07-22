@@ -192,12 +192,36 @@
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         
         MessageDetailViewController *dv = segue.destinationViewController;
-        NSLog(@"clPanelSeguePathRow = %ld", (long)path.row);
-        NSLog(@"myobject = %@", [[myObject objectAtIndex:path.row] objectForKey:@"templateid"]);
-        NSString *messageGUID = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"MessageGUID"]];
-        NSString *hiritMessage = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"HiritMessage"]];
-        NSString *createdBy = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"CreatedBy"]];
-        NSString *answer1 = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"Answer"]];
+        
+        NSString *messageGUID = @"";//   [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"MessageGUID"]];
+        NSString *hiritMessage = @"";// [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"HiritMessage"]];
+        NSString *createdBy = @"";//[NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"CreatedBy"]];
+        NSString *answer1 = @"";//[NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"Answer"]];
+        
+
+        
+        if ([self.searchDisplayController isActive]) {
+            
+            path = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            
+            messageGUID = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"MessageGUID"]];
+            hiritMessage = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"HiritMessage"]];
+            createdBy = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"CreatedBy"]];
+            answer1 = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"Answer"]];
+            
+        }
+        else
+        {
+//            NSLog(@"clPanelSeguePathRow = %ld", (long)path.row);
+//            NSLog(@"myobject = %@", [[myObject objectAtIndex:path.row] objectForKey:@"templateid"]);
+            messageGUID = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"MessageGUID"]];
+            hiritMessage = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"HiritMessage"]];
+            createdBy = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"CreatedBy"]];
+            answer1 = [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"Answer"]];
+            
+
+            
+        }
         
         dv.MessageGUID = messageGUID;
         dv.HiritMessage = hiritMessage;
@@ -207,6 +231,10 @@
         
         
     }
+    
+    
+    
+    
 
 }
 
