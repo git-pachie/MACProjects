@@ -90,7 +90,8 @@
     
     [self LoadTable];
     
-    self.tableView.sectionHeaderHeight = 24;
+    self.tableView.sectionHeaderHeight = 28;
+    [[UITabBar appearance]  setSelectedImageTintColor:[UIColor purpleColor]];
 }
 
 - (void)stopRefresh
