@@ -540,12 +540,14 @@
     myObjectSearch = [myObject filteredArrayUsingPredicate:resultPredicate];
     
     
-    
+    [countedSet removeAllObjects];
     for (NSDictionary *dic in myObjectSearch) {
         [countedSet addObject:[dic objectForKey:@"CreatedByUserName"]];
     }
     
     arrayGroupSearch = [[NSMutableArray alloc]init];
+    
+    
     
     
     for (NSString *s in countedSet) {
