@@ -32,6 +32,7 @@
     NSString *CreatedByDeviceID ;
     NSDate *CreatedDate;
     NSString *Answer1;
+    
 }
 
 @end
@@ -88,6 +89,8 @@
     self.refreshControl = refresh;
     
     [self LoadTable];
+    
+    self.tableView.sectionHeaderHeight = 24;
 }
 
 - (void)stopRefresh
@@ -133,7 +136,7 @@
         
         
         NSPredicate *resultPredicate = [NSPredicate
-                                        predicateWithFormat:@"(CreatedByUserName LIKE [cd]%@)",
+                                        predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)",
                                         nameFilter];
         
         
@@ -148,7 +151,7 @@
         
         
         NSPredicate *resultPredicate = [NSPredicate
-                                        predicateWithFormat:@"(CreatedByUserName LIKE [cd]%@)",
+                                        predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)",
                                         nameFilter];
         
        
@@ -175,6 +178,8 @@
 }
 
 
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -199,7 +204,7 @@
             
             
             NSPredicate *resultPredicate = [NSPredicate
-                                            predicateWithFormat:@"(CreatedByUserName LIKE [cd]%@)",
+                                            predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)",
                                             nameFilter];
             
             // NSLog(@"numberOfRowsInSection %lu",(unsigned long)[[myObject filteredArrayUsingPredicate:resultPredicate] count]);
@@ -217,7 +222,7 @@
             
             
             NSPredicate *resultPredicate = [NSPredicate
-                                            predicateWithFormat:@"(CreatedByUserName LIKE [cd]%@)",
+                                            predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)",
                                             nameFilter];
             
             // NSLog(@"numberOfRowsInSection %lu",(unsigned long)[[myObject filteredArrayUsingPredicate:resultPredicate] count]);
@@ -230,10 +235,10 @@
 
         }
         
-         NSLog(@"isection %ld",(long)indexPath.section);
-        NSLog(@"Item0 %@",[tmpDict objectForKey:@"CreatedByUserName"]);
-        NSLog(@"Item1 %@",[arrayGroup objectAtIndex:indexPath.section]);
-        
+//         NSLog(@"isection %ld",(long)indexPath.section);
+//        NSLog(@"Item0 %@",[tmpDict objectForKey:@"CreatedByUserName"]);
+//        NSLog(@"Item1 %@",[arrayGroup objectAtIndex:indexPath.section]);
+//        
        // if ([tmpDict objectForKey:@"CreatedByUserName"] == [arrayGroup objectAtIndex:indexPath.section]) {
             
             cell.textLabel.text = [tmpDict objectForKey:@"HiritMessage"];
@@ -252,6 +257,24 @@
     }
     return cell;
     
+}
+
+
+
+
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    // Background color
+    view.tintColor = [UIColor purpleColor];
+    
+    // Text Color
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:[UIColor whiteColor]];
+    
+    // Another way to set the background color
+    // Note: does not preserve gradient effect of original header
+    // header.contentView.backgroundColor = [UIColor blackColor];
 }
 
 
@@ -285,7 +308,7 @@
             
             
             NSPredicate *resultPredicate = [NSPredicate
-                                            predicateWithFormat:@"(CreatedByUserName LIKE [cd]%@)",
+                                            predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)",
                                             nameFilter];
             
             tmpDict =  [[myObjectSearch filteredArrayUsingPredicate:resultPredicate] objectAtIndex:path.row ] ;
@@ -307,7 +330,7 @@
             
             
             NSPredicate *resultPredicate = [NSPredicate
-                                            predicateWithFormat:@"(CreatedByUserName LIKE [cd]%@)",
+                                            predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)",
                                             nameFilter];
             
             tmpDict =  [[myObject filteredArrayUsingPredicate:resultPredicate] objectAtIndex:path.row ] ;
@@ -377,10 +400,11 @@
     CreatedByDeviceID = @"CreatedByDeviceID";
     CreatedDate=    [NSDate date];
     Answer1 = @"Answer";
+   
     
     myObject = [[NSMutableArray alloc] init];
     CommonFunction *common = [[CommonFunction alloc]init];
-    NSString *x = [common GetJsonConnection:@"GetHiritMessage"];
+    NSString *x = [common GetJsonConnection:@"GetHiritMessage2"];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
     
     if ([common CheckNSD:jsonSource] == false) {
@@ -410,6 +434,8 @@
         NSString *createdByDeviceID = [dataDict objectForKey:@"CreatedByDeviceID"];
         NSString *createdDate = [dataDict objectForKey:@"CreatedDate"];
         NSString *answer1 = [dataDict objectForKey:@"Answer1"];
+        NSString *dateCreatedSTR = [dataDict objectForKey:@"DateCreatedSTR"];
+        
         
 //        NSLog(@"MessageGUID: %@",messageGUID);
 //        NSLog(@"Message: %@",hiritMessage);
@@ -424,21 +450,19 @@
                       createdByDeviceID,CreatedByDeviceID,
                       [self mfDateFromDotNetJSONString:createdDate], @"DateCreated",
                       answer1, Answer1,
+                      dateCreatedSTR,@"DateCreatedSTR",
                       nil];
         [myObject addObject:dictionary];
         
-        [countedSet addObject:createdByUserName];
+        [countedSet addObject:dateCreatedSTR];
         
         
     }
     
-    arrayGroup = [[NSMutableArray alloc]init];
     
+    arrayGroup = [self SortObjects:arrayGroup CountedOjbect:countedSet];
     
-    for (NSString *s in countedSet) {
-        [arrayGroup addObject:s];
-    }
-    
+
     [self getJsonData];
     
     
@@ -539,13 +563,14 @@
 
     myObjectSearch = [myObject filteredArrayUsingPredicate:resultPredicate];
     
+    countedSet = [NSCountedSet set];
     
     [countedSet removeAllObjects];
     for (NSDictionary *dic in myObjectSearch) {
-        [countedSet addObject:[dic objectForKey:@"CreatedByUserName"]];
+        [countedSet addObject:[dic objectForKey:@"DateCreatedSTR"]];
     }
     
-    arrayGroupSearch = [[NSMutableArray alloc]init];
+    //arrayGroupSearch = [[NSMutableArray alloc]init];
     
     
     
@@ -553,6 +578,9 @@
     for (NSString *s in countedSet) {
         [arrayGroupSearch addObject:s];
     }
+    
+    
+    arrayGroupSearch = [self SortObjects:arrayGroupSearch CountedOjbect:countedSet];
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller
@@ -565,4 +593,40 @@ shouldReloadTableForSearchString:(NSString *)searchString
     
     return YES;
 }
+
+-(NSMutableArray *) SortObjects:(NSMutableArray *)ArraryToSort CountedOjbect:(NSCountedSet *) countedset;
+{
+    ArraryToSort = [[NSMutableArray alloc]init];
+    
+    for (NSString *s in countedset ) {
+        [ArraryToSort addObject:s];
+    }
+    
+    countedset = [NSCountedSet setWithArray:ArraryToSort];
+    
+    NSCountedSet *totalSet = [NSCountedSet setWithArray:ArraryToSort];
+    NSMutableArray *dictArray = [NSMutableArray array];
+    for (NSNumber *num in totalSet) {
+        NSDictionary *dict = @{@"number":num, @"count":@([totalSet countForObject:num])};
+        [dictArray addObject:dict];
+    }
+    NSArray *final = [dictArray sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES ]]];
+    NSLog(@"%@",final);
+    
+    [ArraryToSort removeAllObjects];
+    
+    
+    for (int i=0; i <= [final count] - 1 ; i++) {
+        
+        NSDictionary *dict2 = [final objectAtIndex:i];
+        
+        [ArraryToSort addObject:[dict2 objectForKey:@"number"]];
+    }
+    
+    return ArraryToSort;
+    
+
+}
+
+
 @end
