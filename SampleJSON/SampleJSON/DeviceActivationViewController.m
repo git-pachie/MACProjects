@@ -10,6 +10,7 @@
 //#import "HomeTableViewController.h"
 #import "TestViewController.h"
 #import "AppDelegate.h"
+#import "CommonFunction.h"
 
 
 
@@ -61,7 +62,16 @@
 - (IBAction)activateDevice:(id)sender {
     
     
-    NSString *post = [NSString stringWithFormat:@"http://www.riverwayauto.com:1980/myjson/Service1.svc/ActivateDevice/%1@/%2@",_deviceGUID,txtActivationCode.text];
+    CommonFunction *com = [[CommonFunction alloc]init];
+    
+    [com GetJsonConnection:[NSString stringWithFormat:@"ActivateDevice/%1@/%2@",_deviceGUID,txtActivationCode.text]];
+    
+    
+    //NSString *post = [NSString stringWithFormat:@"http://www.riverwayauto.com:1980/myjson/Service1.svc/ActivateDevice/%1@/%2@",_deviceGUID,txtActivationCode.text];
+    
+    NSString *post =  [com GetJsonConnection:[NSString stringWithFormat:@"ActivateDevice/%1@/%2@",_deviceGUID,txtActivationCode.text]];
+    
+
     
     NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLenght = [NSString stringWithFormat:@"%luu",(unsigned long) (unsigned long)[data length]];

@@ -92,6 +92,14 @@
     
     self.tableView.sectionHeaderHeight = 28;
     [[UITabBar appearance]  setSelectedImageTintColor:[UIColor purpleColor]];
+    
+    UINavigationBar *nav = [[UINavigationBar alloc]init];
+    nav.barTintColor = [UIColor purpleColor];
+    nav.tintColor =[UIColor purpleColor];
+    nav.translucent = NO;
+    
+    
+    
 }
 
 - (void)stopRefresh
@@ -272,6 +280,8 @@
     // Text Color
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     [header.textLabel setTextColor:[UIColor whiteColor]];
+    
+    
     
     // Another way to set the background color
     // Note: does not preserve gradient effect of original header
