@@ -23,11 +23,16 @@
     
     [[self window] makeKeyAndVisible];
     
-    UINavigationController *navigationController = (UINavigationController*) self.window.rootViewController;
+    
+    UITabBarController *tab =(UITabBarController *)self.window.rootViewController;
+    
+    tab.selectedIndex = 0;
+    
+    UINavigationController *nav = (UINavigationController *)[tab selectedViewController];
     
     HomeViewController *dv = [[HomeViewController alloc]init];
     
-    dv = [[navigationController viewControllers] objectAtIndex:0];
+    dv = [[nav viewControllers] objectAtIndex:0];
 
     
     if ([notification.userInfo valueForKey:@"myKey1"] != nil) {
