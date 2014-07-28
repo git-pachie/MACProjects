@@ -1,5 +1,5 @@
 //
-//  OneViewController.h
+//  TwoViewController.h
 //  SampleLocalNotification
 //
 //  Created by pachie on 28/7/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OneViewController : UIViewController
+@interface TwoViewController : UIViewController
 
 @property (nonatomic,strong) NSString *messageID;
 @property (weak, nonatomic) IBOutlet UILabel *lblMessageID;

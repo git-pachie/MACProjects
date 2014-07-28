@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="1227" y="58"/>
         </scene>
-        <!--View Controller - Two-->
+        <!--Two View Controller - Two-->
         <scene sceneID="hBI-3P-uuW">
             <objects>
-                <viewController id="b6L-NP-WZh" sceneMemberID="viewController">
+                <viewController id="b6L-NP-WZh" customClass="TwoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kZN-Pt-IKr"/>
                         <viewControllerLayoutGuide type="bottom" id="ESk-Qr-ABg"/>
@@ -61,9 +61,20 @@
                     <view key="view" contentMode="scaleToFill" id="SZD-xA-srE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rr-ew-grN">
+                                <rect key="frame" x="20" y="89" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Two" id="zgv-zh-tEe"/>
+                    <connections>
+                        <outlet property="lblMessageID" destination="9rr-ew-grN" id="CB7-bS-1Zp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nns-cg-Nfq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -80,9 +91,21 @@
                     <view key="view" contentMode="scaleToFill" id="yuv-t5-l0l">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1x-zx-Gth">
+                                <rect key="frame" x="20" y="85" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="One" id="rfl-Vf-sFt"/>
+                    <connections>
+                        <outlet property="lblMessageID" destination="l1x-zx-Gth" id="vbm-n6-U9V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ycv-TL-xDE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

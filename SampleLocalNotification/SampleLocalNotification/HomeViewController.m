@@ -7,6 +7,8 @@
 //
 
 #import "HomeViewController.h"
+#import "OneViewController.h"
+#import "TwoViewController.h"
 
 @interface HomeViewController ()
 
@@ -88,6 +90,39 @@
 
 -(void)CallOtherView
 {
+    [self performSegueWithIdentifier:@"segone" sender:self];
+}
+
+-(void)CallOtherView2
+{
+    [self performSegueWithIdentifier:@"segtwo" sender:self];
+}
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    NSLog(@"User Info %@", self.notificationID);
+    
+    if([segue.identifier isEqualToString:@"segone"])
+        
+    {
+        
+        OneViewController *dv = segue.destinationViewController;
+        dv.messageID = self.notificationID;
+        
+
+        
+        
+        
+    }else if([segue.identifier isEqualToString:@"segtwo"]){
+        
+        
+         TwoViewController *dv = segue.destinationViewController;
+        dv.messageID = self.notificationID;
+
+        
+    }
     
 }
+
 @end
