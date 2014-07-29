@@ -13,5 +13,6 @@
 
 @dynamic reminderDate;
 @dynamic reminderName;
+@dynamic messageGUID;
 
 @end

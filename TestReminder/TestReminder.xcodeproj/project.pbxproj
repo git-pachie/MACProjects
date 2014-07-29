@@ -24,8 +24,9 @@
 		0C4E3BBD19875C8F0006045C /* TestReminderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4E3BBC19875C8F0006045C /* TestReminderTests.m */; };
 		0C4E3BC719875CE40006045C /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C4E3BC619875CE40006045C /* Storyboard.storyboard */; };
 		0C4E3BD019875F140006045C /* NewReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4E3BCF19875F140006045C /* NewReminderViewController.m */; };
-		0C4E3BD61987884C0006045C /* Reminders1.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4E3BD51987884C0006045C /* Reminders1.m */; };
 		0C4E3BD919878F8A0006045C /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4E3BD819878F8A0006045C /* HomeTableViewController.m */; };
+		0C4E3BDC1987B6F90006045C /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4E3BDB1987B6F90006045C /* DetailsViewController.m */; };
+		0C4E3BDF1987E6350006045C /* Reminders1.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4E3BDE1987E6350006045C /* Reminders1.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,10 +61,12 @@
 		0C4E3BC619875CE40006045C /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		0C4E3BCE19875F140006045C /* NewReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewReminderViewController.h; sourceTree = "<group>"; };
 		0C4E3BCF19875F140006045C /* NewReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewReminderViewController.m; sourceTree = "<group>"; };
-		0C4E3BD41987884C0006045C /* Reminders1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminders1.h; sourceTree = "<group>"; };
-		0C4E3BD51987884C0006045C /* Reminders1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminders1.m; sourceTree = "<group>"; };
 		0C4E3BD719878F8A0006045C /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
 		0C4E3BD819878F8A0006045C /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
+		0C4E3BDA1987B6F90006045C /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		0C4E3BDB1987B6F90006045C /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		0C4E3BDD1987E6350006045C /* Reminders1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminders1.h; sourceTree = "<group>"; };
+		0C4E3BDE1987E6350006045C /* Reminders1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminders1.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +98,6 @@
 		0C4E3B8519875C8F0006045C = {
 			isa = PBXGroup;
 			children = (
-				0C4E3BD41987884C0006045C /* Reminders1.h */,
-				0C4E3BD51987884C0006045C /* Reminders1.m */,
 				0C4E3BCE19875F140006045C /* NewReminderViewController.h */,
 				0C4E3BCF19875F140006045C /* NewReminderViewController.m */,
 				0C4E3BC619875CE40006045C /* Storyboard.storyboard */,
@@ -135,9 +136,13 @@
 				0C4E3BA319875C8F0006045C /* AppDelegate.m */,
 				0C4E3BA819875C8F0006045C /* Images.xcassets */,
 				0C4E3BA519875C8F0006045C /* TestReminder.xcdatamodeld */,
+				0C4E3BDD1987E6350006045C /* Reminders1.h */,
+				0C4E3BDE1987E6350006045C /* Reminders1.m */,
 				0C4E3B9A19875C8F0006045C /* Supporting Files */,
 				0C4E3BD719878F8A0006045C /* HomeTableViewController.h */,
 				0C4E3BD819878F8A0006045C /* HomeTableViewController.m */,
+				0C4E3BDA1987B6F90006045C /* DetailsViewController.h */,
+				0C4E3BDB1987B6F90006045C /* DetailsViewController.m */,
 			);
 			path = TestReminder;
 			sourceTree = "<group>";
@@ -270,10 +275,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C4E3BDF1987E6350006045C /* Reminders1.m in Sources */,
 				0C4E3BA419875C8F0006045C /* AppDelegate.m in Sources */,
 				0C4E3BA019875C8F0006045C /* main.m in Sources */,
 				0C4E3BA719875C8F0006045C /* TestReminder.xcdatamodeld in Sources */,
-				0C4E3BD61987884C0006045C /* Reminders1.m in Sources */,
+				0C4E3BDC1987B6F90006045C /* DetailsViewController.m in Sources */,
 				0C4E3BD919878F8A0006045C /* HomeTableViewController.m in Sources */,
 				0C4E3BD019875F140006045C /* NewReminderViewController.m in Sources */,
 			);

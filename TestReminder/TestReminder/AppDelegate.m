@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "HomeTableViewController.h"
 
 @implementation AppDelegate
 
@@ -61,7 +62,7 @@
         localNotification.timeZone = [NSTimeZone defaultTimeZone];
         localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
         
-        NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:@"10", @"myKey1", nil];
+        NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:[ma valueForKey:@"messageGUID"], @"myKey1", nil];
         
         localNotification.userInfo = infoDict;
         
@@ -80,32 +81,34 @@
     
     
     
-//    [[UIApplication sharedApplication] cancelLocalNotification:notification];
-//    
-//    [[self window] makeKeyAndVisible];
-//    
-//    
-//    UITabBarController *tab =(UITabBarController *)self.window.rootViewController;
-//    
-//    tab.selectedIndex = 0;
-//    
-//    UINavigationController *nav = (UINavigationController *)[tab selectedViewController];
-//    
-//    HomeViewController *dv = [[HomeViewController alloc]init];
-//    
-//    dv = [[nav viewControllers] objectAtIndex:0];
-//    
-//    
-//    if ([notification.userInfo valueForKey:@"myKey1"] != nil) {
-//        NSLog(@"This is notifcation window1 and key %@",notification.userInfo);
-//        
-//        //[dv performSegueWithIdentifier:@"segone" sender:self];
-//        dv.notificationID = [notification.userInfo valueForKey:@"myKey1"];
-//        
-//        [dv CallOtherView];
-//        
-//        
-//    }
+    [[UIApplication sharedApplication] cancelLocalNotification:notification];
+    
+    [[self window] makeKeyAndVisible];
+    
+    
+    UITabBarController *tab =(UITabBarController *)self.window.rootViewController;
+    
+    tab.selectedIndex = 0;
+    
+    UINavigationController *nav = (UINavigationController *)[tab selectedViewController];
+    
+    HomeTableViewController *dv = [[HomeTableViewController alloc]init];
+    
+    dv = [[nav viewControllers] objectAtIndex:0];
+    
+    
+    if ([notification.userInfo valueForKey:@"myKey1"] != nil) {
+       
+        
+        //[dv performSegueWithIdentifier:@"segone" sender:self];
+        NSString *para = [notification.userInfo valueForKey:@"myKey1"];
+        
+        dv.notificationID = para;
+        
+        [dv CallFromNotification];
+        
+        
+    }
 //    else
 //    {
 //        NSLog(@"This is notifcation window2 and key %@",[notification.userInfo valueForKey:@"myKey2"]);
@@ -131,6 +134,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

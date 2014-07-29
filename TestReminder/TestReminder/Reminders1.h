@@ -14,5 +14,6 @@
 
 @property (nonatomic, retain) NSDate * reminderDate;
 @property (nonatomic, retain) NSString * reminderName;
+@property (nonatomic, retain) NSString * messageGUID;
 
 @end

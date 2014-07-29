@@ -8,6 +8,7 @@
 
 #import "HomeTableViewController.h"
 #import "AppDelegate.h"
+#import "DetailsViewController.h"
 
 @interface HomeTableViewController ()
 {
@@ -117,6 +118,43 @@
     return cell;
 }
 
+-(void)CallFromNotification
+{
+    [self performSegueWithIdentifier:@"segnotification" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.identifier isEqualToString:@"segdetails"])
+        
+    {
+        
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        
+        //MessageDetailViewController *dv = segue.destinationViewController;
+        
+        NSManagedObject *mno = nil;
+        
+        
+        mno =  [dataArray objectAtIndex:path.row ] ;
+        
+        DetailsViewController *dv = segue.destinationViewController;
+        dv.messageGUID = [mno valueForKey:@"messageGUID"];
+        
+        
+        
+    }
+    
+    else if([segue.identifier isEqualToString:@"segnotification"]){
+        
+        
+        DetailsViewController *dv = segue.destinationViewController;
+        dv.messageGUID = self.notificationID;
+        
+        
+    }
+
+}
 
 /*
 // Override to support conditional editing of the table view.

@@ -10,4 +10,9 @@
 
 @interface HomeTableViewController : UITableViewController
 
+@property (nonatomic, strong)NSString *notificationID;
+
+
+-(void)CallFromNotification;
+
 @end

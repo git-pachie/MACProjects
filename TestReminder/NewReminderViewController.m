@@ -34,6 +34,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.reminderDate.date = [NSDate dateWithTimeIntervalSinceNow:5];
+    
     self.reminderDescription.delegate = self;
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -116,8 +118,10 @@
     NSDate *convertedDate = [[NSDate alloc] init];
     convertedDate = [self  dateFromString:convertedString withFormat:@"dd/MM/yyyy hh:mm a"];
     
+    NSUUID  *UUID = [NSUUID UUID];
+    NSString* stringUUID = [UUID UUIDString];
     
-    
+    [newReminder setValue: stringUUID forKey:@"messageGUID"];
     [newReminder setValue: _reminderDescription.text forKey:@"reminderName"];
     [newReminder setValue: convertedDate forKey:@"reminderDate"];
     
