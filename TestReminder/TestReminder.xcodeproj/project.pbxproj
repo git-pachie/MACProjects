@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C2B089C1988F06D008E3008 /* mycell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C2B089B1988F06D008E3008 /* mycell.xib */; };
+		0C2B089F1988F134008E3008 /* xTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B089E1988F134008E3008 /* xTableViewCell.m */; };
 		0C4E3B9219875C8F0006045C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4E3B9119875C8F0006045C /* Foundation.framework */; };
 		0C4E3B9419875C8F0006045C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4E3B9319875C8F0006045C /* CoreGraphics.framework */; };
 		0C4E3B9619875C8F0006045C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4E3B9519875C8F0006045C /* UIKit.framework */; };
@@ -40,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C2B089B1988F06D008E3008 /* mycell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mycell.xib; sourceTree = "<group>"; };
+		0C2B089D1988F134008E3008 /* xTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xTableViewCell.h; sourceTree = "<group>"; };
+		0C2B089E1988F134008E3008 /* xTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xTableViewCell.m; sourceTree = "<group>"; };
 		0C4E3B8E19875C8F0006045C /* TestReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C4E3B9119875C8F0006045C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0C4E3B9319875C8F0006045C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -98,6 +103,9 @@
 		0C4E3B8519875C8F0006045C = {
 			isa = PBXGroup;
 			children = (
+				0C2B089D1988F134008E3008 /* xTableViewCell.h */,
+				0C2B089E1988F134008E3008 /* xTableViewCell.m */,
+				0C2B089B1988F06D008E3008 /* mycell.xib */,
 				0C4E3BCE19875F140006045C /* NewReminderViewController.h */,
 				0C4E3BCF19875F140006045C /* NewReminderViewController.m */,
 				0C4E3BC619875CE40006045C /* Storyboard.storyboard */,
@@ -255,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C4E3B9E19875C8F0006045C /* InfoPlist.strings in Resources */,
+				0C2B089C1988F06D008E3008 /* mycell.xib in Resources */,
 				0C4E3BA919875C8F0006045C /* Images.xcassets in Resources */,
 				0C4E3BC719875CE40006045C /* Storyboard.storyboard in Resources */,
 			);
@@ -281,6 +290,7 @@
 				0C4E3BA719875C8F0006045C /* TestReminder.xcdatamodeld in Sources */,
 				0C4E3BDC1987B6F90006045C /* DetailsViewController.m in Sources */,
 				0C4E3BD919878F8A0006045C /* HomeTableViewController.m in Sources */,
+				0C2B089F1988F134008E3008 /* xTableViewCell.m in Sources */,
 				0C4E3BD019875F140006045C /* NewReminderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -480,6 +490,7 @@
 				0C4E3BC219875C8F0006045C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0C4E3BC319875C8F0006045C /* Build configuration list for PBXNativeTarget "TestReminderTests" */ = {
 			isa = XCConfigurationList;
@@ -488,6 +499,7 @@
 				0C4E3BC519875C8F0006045C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

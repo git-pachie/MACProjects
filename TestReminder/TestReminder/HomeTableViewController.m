@@ -9,6 +9,8 @@
 #import "HomeTableViewController.h"
 #import "AppDelegate.h"
 #import "DetailsViewController.h"
+#import "xTableViewCell.h"
+
 
 @interface HomeTableViewController ()
 {
@@ -33,6 +35,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //[self.tableView registerNib:[UINibnibWithNibName:@"xTableCell"bundle:nil] forCellReuseIdentifier:@"Cell"];
+    //[self.tableView registerNib:[uini:@"CustomCell"bundle:nil] forCellReuseIdentifier:@"Cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"mycell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
     [self LoadData];
     
@@ -51,13 +56,11 @@
     NSEntityDescription *entityDesc =    [NSEntityDescription entityForName:@"Reminders1"   inManagedObjectContext:context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
-    //    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(reminderDescription = %@)", _name.text];
-    //    [request setPredicate:pred];
-    //NSManagedObject *matches = nil;
+  
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(reminderDate >= %@)", [NSDate dateWithTimeIntervalSinceNow:1]];
-    
-    [request setPredicate:predicate];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(reminderDate >= %@)", [NSDate dateWithTimeIntervalSinceNow:1]];
+//    
+//    [request setPredicate:predicate];
     
     NSError *error;
     
@@ -91,31 +94,38 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    xTableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[xTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-
-    
-    // Configure the cell...
-    
+//
+//    
+//    // Configure the cell...
+//    
     NSManagedObject *object = [dataArray objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = [object valueForKey:@"reminderName"];
+    cell.testLabel.text = [object valueForKey:@"reminderName"];
     
-    //NSDate *date = [dateFormatter dateFromString: str]; // here you can fetch date from string with define format
-    
+//    //NSDate *date = [dateFormatter dateFromString: str]; // here you can fetch date from string with define format
+//    
     NSDateFormatter *dateFormatter;
     
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd/MM/yyyy hh:mm a"];// here set format which you want...
     
     NSString *convertedString = [dateFormatter stringFromDate:[object valueForKey:@"reminderDate"]];
-    
-    cell.detailTextLabel.text = convertedString;
-    
+//    
+    cell.lblsub.text = convertedString;
+//    
+//    
+//    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"segdetails" sender:indexPath];
 }
 
 -(void)CallFromNotification

@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeTableViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UILabel *lblReminderName;
+@property (weak, nonatomic) IBOutlet UIImageView *image1;
+
 
 @property (nonatomic, strong)NSString *notificationID;
 

@@ -30,6 +30,7 @@
     // Do any additional setup after loading the view.
     NSLog(@"MessageGUID %@",self.messageGUID);
     
+
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context =   [appDelegate managedObjectContext];
