@@ -8,6 +8,7 @@
 
 #import "DetailsViewController.h"
 #import "AppDelegate.h"
+#import "CommonCoreData.h"
 
 @interface DetailsViewController ()
 
@@ -32,26 +33,24 @@
     
 
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context =   [appDelegate managedObjectContext];
-    NSEntityDescription *entityDesc =    [NSEntityDescription entityForName:@"Reminders1"   inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDesc];
-    //    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(reminderDescription = %@)", _name.text];
-    //    [request setPredicate:pred];
-    //NSManagedObject *matches = nil;
+//    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    NSManagedObjectContext *context =   [appDelegate managedObjectContext];
+//    NSEntityDescription *entityDesc =    [NSEntityDescription entityForName:@"Reminders1"   inManagedObjectContext:context];
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    [request setEntity:entityDesc];
+//    
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(messageGUID = %@)", self.messageGUID];
     
-    [request setPredicate:predicate];
+//    [request setPredicate:predicate];
     
-    NSError *error;
+//    NSError *error;
+//    
+//    NSArray *dataArray = [[NSArray alloc]init];
     
-    NSArray *dataArray = [[NSArray alloc]init];
+//    dataArray = [context executeFetchRequest:request error:&error];
     
-    dataArray = [context executeFetchRequest:request error:&error];
-    
-    NSManagedObject *mn = [dataArray objectAtIndex:0];
+    NSManagedObject *mn = [[CommonCoreData GetReminderArray:predicate] objectAtIndex:0];
     
     
     self.reminderName.text = [mn valueForKey:@"reminderName"];

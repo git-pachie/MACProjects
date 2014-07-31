@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HomeTableViewController.h"
+#import "CommonCoreData.h"
 
 @implementation AppDelegate
 
@@ -34,24 +35,24 @@
 {
     
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context =   [appDelegate managedObjectContext];
-    NSEntityDescription *entityDesc =    [NSEntityDescription entityForName:@"Reminders1"   inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDesc];
-    //    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(reminderDescription = %@)", _name.text];
-    //    [request setPredicate:pred];
-    //NSManagedObject *matches = nil;
+//    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    NSManagedObjectContext *context =   [appDelegate managedObjectContext];
+//    NSEntityDescription *entityDesc =    [NSEntityDescription entityForName:@"Reminders1"   inManagedObjectContext:context];
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    [request setEntity:entityDesc];
+//    //    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(reminderDescription = %@)", _name.text];
+//    //    [request setPredicate:pred];
+//    //NSManagedObject *matches = nil;
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(reminderDate >= %@)", [NSDate dateWithTimeIntervalSinceNow:1]];
     
-    [request setPredicate:predicate];
+//    [request setPredicate:predicate];
+//    
+//    NSError *error;
+//    
+    NSArray *dataArray = [CommonCoreData GetReminderArray:predicate];
     
-    NSError *error;
-    
-    NSArray *dataArray = [[NSArray alloc]init];
-    
-    dataArray = [context executeFetchRequest:request error:&error];
+    //dataArray =[CommonCoreData GetReminderArray:predicate] ;// [context executeFetchRequest:request error:&error];
     
     
     for (NSManagedObject *ma in dataArray) {

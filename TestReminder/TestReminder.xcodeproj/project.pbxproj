@@ -29,6 +29,7 @@
 		0C4E3BD919878F8A0006045C /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4E3BD819878F8A0006045C /* HomeTableViewController.m */; };
 		0C4E3BDC1987B6F90006045C /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4E3BDB1987B6F90006045C /* DetailsViewController.m */; };
 		0C4E3BDF1987E6350006045C /* Reminders1.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4E3BDE1987E6350006045C /* Reminders1.m */; };
+		0CB695E31989F58B00F9A071 /* CommonCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB695E21989F58B00F9A071 /* CommonCoreData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		0C4E3BDB1987B6F90006045C /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		0C4E3BDD1987E6350006045C /* Reminders1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminders1.h; sourceTree = "<group>"; };
 		0C4E3BDE1987E6350006045C /* Reminders1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminders1.m; sourceTree = "<group>"; };
+		0CB695E11989F58B00F9A071 /* CommonCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCoreData.h; sourceTree = "<group>"; };
+		0CB695E21989F58B00F9A071 /* CommonCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCoreData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,7 @@
 		0C4E3B8519875C8F0006045C = {
 			isa = PBXGroup;
 			children = (
+				0CB695E01989EAC500F9A071 /* Common */,
 				0C2B089D1988F134008E3008 /* xTableViewCell.h */,
 				0C2B089E1988F134008E3008 /* xTableViewCell.m */,
 				0C2B089B1988F06D008E3008 /* mycell.xib */,
@@ -182,6 +186,15 @@
 				0C4E3BB919875C8F0006045C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0CB695E01989EAC500F9A071 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0CB695E11989F58B00F9A071 /* CommonCoreData.h */,
+				0CB695E21989F58B00F9A071 /* CommonCoreData.m */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +300,7 @@
 				0C4E3BDF1987E6350006045C /* Reminders1.m in Sources */,
 				0C4E3BA419875C8F0006045C /* AppDelegate.m in Sources */,
 				0C4E3BA019875C8F0006045C /* main.m in Sources */,
+				0CB695E31989F58B00F9A071 /* CommonCoreData.m in Sources */,
 				0C4E3BA719875C8F0006045C /* TestReminder.xcdatamodeld in Sources */,
 				0C4E3BDC1987B6F90006045C /* DetailsViewController.m in Sources */,
 				0C4E3BD919878F8A0006045C /* HomeTableViewController.m in Sources */,
