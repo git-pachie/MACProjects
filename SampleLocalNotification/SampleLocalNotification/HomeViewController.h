@@ -12,4 +12,10 @@
 - (IBAction)createNotification:(id)sender;
 - (IBAction)createNotification2:(id)sender;
 
+
+@property (nonatomic,strong)NSString *notificationID;
+
+-(void)CallOtherView;
+-(void)CallOtherView2;
+
 @end

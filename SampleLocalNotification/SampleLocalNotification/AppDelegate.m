@@ -23,17 +23,25 @@
     
     [[self window] makeKeyAndVisible];
     
-    UINavigationController *navigationController = (UINavigationController*) self.window.rootViewController;
+    
+    UITabBarController *tab =(UITabBarController *)self.window.rootViewController;
+    
+    tab.selectedIndex = 0;
+    
+    UINavigationController *nav = (UINavigationController *)[tab selectedViewController];
     
     HomeViewController *dv = [[HomeViewController alloc]init];
     
-    dv = [[navigationController viewControllers] objectAtIndex:0];
+    dv = [[nav viewControllers] objectAtIndex:0];
 
     
     if ([notification.userInfo valueForKey:@"myKey1"] != nil) {
         NSLog(@"This is notifcation window1 and key %@",notification.userInfo);
     
-        [dv performSegueWithIdentifier:@"segone" sender:self];
+        //[dv performSegueWithIdentifier:@"segone" sender:self];
+        dv.notificationID = [notification.userInfo valueForKey:@"myKey1"];
+        
+        [dv CallOtherView];
 
     
     }
@@ -41,7 +49,10 @@
     {
         NSLog(@"This is notifcation window2 and key %@",[notification.userInfo valueForKey:@"myKey2"]);
         
-        [dv performSegueWithIdentifier:@"segtwo" sender:self];
+        //[dv performSegueWithIdentifier:@"segtwo" sender:self];
+        
+        dv.notificationID = [notification.userInfo valueForKey:@"myKey2"];
+        [dv CallOtherView2];
 
     }
     

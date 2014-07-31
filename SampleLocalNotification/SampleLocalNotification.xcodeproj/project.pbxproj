@@ -22,6 +22,7 @@
 		0C2A6BC719855B8200800606 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C2A6BC619855B8200800606 /* Storyboard.storyboard */; };
 		0C2A6BCA19855BBA00800606 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2A6BC919855BBA00800606 /* HomeViewController.m */; };
 		0C2A6BCD19862D6000800606 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2A6BCC19862D6000800606 /* OneViewController.m */; };
+		0C2E5F9919869F4C00BAD520 /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2E5F9819869F4C00BAD520 /* TwoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		0C2A6BC919855BBA00800606 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		0C2A6BCB19862D6000800606 /* OneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneViewController.h; sourceTree = "<group>"; };
 		0C2A6BCC19862D6000800606 /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
+		0C2E5F9719869F4C00BAD520 /* TwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
+		0C2E5F9819869F4C00BAD520 /* TwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 				0C2A6BC919855BBA00800606 /* HomeViewController.m */,
 				0C2A6BCB19862D6000800606 /* OneViewController.h */,
 				0C2A6BCC19862D6000800606 /* OneViewController.m */,
+				0C2E5F9719869F4C00BAD520 /* TwoViewController.h */,
+				0C2E5F9819869F4C00BAD520 /* TwoViewController.m */,
 			);
 			path = SampleLocalNotification;
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 				0C2A6BA819855A7E00800606 /* AppDelegate.m in Sources */,
 				0C2A6BA419855A7E00800606 /* main.m in Sources */,
 				0C2A6BCA19855BBA00800606 /* HomeViewController.m in Sources */,
+				0C2E5F9919869F4C00BAD520 /* TwoViewController.m in Sources */,
 				0C2A6BCD19862D6000800606 /* OneViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,6 +459,7 @@
 				0C2A6BC219855A7E00800606 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0C2A6BC319855A7E00800606 /* Build configuration list for PBXNativeTarget "SampleLocalNotificationTests" */ = {
 			isa = XCConfigurationList;
@@ -461,6 +468,7 @@
 				0C2A6BC519855A7E00800606 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
