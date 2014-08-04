@@ -86,6 +86,10 @@
     
 }
 
+- (IBAction)cancel:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)doneDed:(id)sender {
     
     AppDelegate *delegate = [[UIApplication sharedApplication]delegate];

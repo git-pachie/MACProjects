@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *sellingPrice;
 
 @property (nonatomic,assign) id <ModalViewControllerDelegate> delegate1;
+- (IBAction)cancel:(id)sender;
 
 
 
