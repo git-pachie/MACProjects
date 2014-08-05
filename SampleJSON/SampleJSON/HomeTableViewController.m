@@ -15,6 +15,8 @@
 
 @interface HomeTableViewController ()
 {
+    dispatch_queue_t myQueue;
+    
     NSMutableArray *myObject;
     NSArray *myObjectSearch;
     NSMutableDictionary *mutDictionary;
@@ -88,7 +90,15 @@
     
     self.refreshControl = refresh;
     
-    [self LoadTable];
+    if (!myQueue) {
+        myQueue = dispatch_queue_create("com.samplejson", NULL);
+    }
+    
+    dispatch_async(myQueue, ^{
+        [self LoadTable];
+    });
+    
+    
     
     self.tableView.sectionHeaderHeight = 28;
     [[UITabBar appearance]  setSelectedImageTintColor:[UIColor purpleColor]];
@@ -405,76 +415,81 @@
 
 -(void)LoadTable
 {
-    MessageGUID = @"MessageGUID";
-    HiritMessage = @"HiritMessage";
-    CreatedByUserName = @"CreatedByUserName";
-    CreatedByDeviceID = @"CreatedByDeviceID";
-    CreatedDate=    [NSDate date];
-    Answer1 = @"Answer";
-   
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MessageGUID = @"MessageGUID";
+        HiritMessage = @"HiritMessage";
+        CreatedByUserName = @"CreatedByUserName";
+        CreatedByDeviceID = @"CreatedByDeviceID";
+        CreatedDate=    [NSDate date];
+        Answer1 = @"Answer";
+        
+        
+        myObject = [[NSMutableArray alloc] init];
+        CommonFunction *common = [[CommonFunction alloc]init];
+        NSString *x = [common GetJsonConnection:@"GetHiritMessage2"];
+        NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
+        
+        if ([common CheckNSD:jsonSource] == false) {
+            
+            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
+                                                        message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            
+            isConnectionOK = NO;
+            [mes show];
+            
+            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+            
+            return;
+        }
+        
+        isConnectionOK = YES;
+        
+        id jsonObjects = [NSJSONSerialization JSONObjectWithData:
+                          jsonSource options:NSJSONReadingMutableContainers error:nil];
+        
+        countedSet = [NSCountedSet set];
+        
+        for (NSDictionary *dataDict in jsonObjects) {
+            NSString *messageGUID = [dataDict objectForKey:@"MessageGUID"];
+            NSString *hiritMessage = [dataDict objectForKey:@"HiritMessage"];
+            NSString *createdByUserName = [dataDict objectForKey:@"CreatedByUserName"];
+            NSString *createdByDeviceID = [dataDict objectForKey:@"CreatedByDeviceID"];
+            NSString *createdDate = [dataDict objectForKey:@"CreatedDate"];
+            NSString *answer1 = [dataDict objectForKey:@"Answer1"];
+            NSString *dateCreatedSTR = [dataDict objectForKey:@"DateCreatedSTR"];
+            
+            
+            //        NSLog(@"MessageGUID: %@",messageGUID);
+            //        NSLog(@"Message: %@",hiritMessage);
+            //        NSLog(@"CreatedByUserName: %@",createdByUserName);
+            //        NSLog(@"CreatedByDeviceID: %@",createdByDeviceID);
+            //        NSLog(@"CreatedDate: %@",createdDate);
+            
+            dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                          messageGUID, MessageGUID,
+                          hiritMessage, HiritMessage,
+                          createdByUserName,CreatedByUserName,
+                          createdByDeviceID,CreatedByDeviceID,
+                          [self mfDateFromDotNetJSONString:createdDate], @"DateCreated",
+                          answer1, Answer1,
+                          dateCreatedSTR,@"DateCreatedSTR",
+                          nil];
+            [myObject addObject:dictionary];
+            
+            [countedSet addObject:dateCreatedSTR];
+            
+            
+        }
+        
+        
+        arrayGroup = [self SortObjects:arrayGroup CountedOjbect:countedSet];
+        
+        
+        [self getJsonData];
+    });
     
-    myObject = [[NSMutableArray alloc] init];
-    CommonFunction *common = [[CommonFunction alloc]init];
-    NSString *x = [common GetJsonConnection:@"GetHiritMessage2"];
-    NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
-    
-    if ([common CheckNSD:jsonSource] == false) {
-        
-        UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
-                                                    message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        
-        isConnectionOK = NO;
-        [mes show];
-        
-        [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
-        
-        return;
-    }
-    
-    isConnectionOK = YES;
-    
-    id jsonObjects = [NSJSONSerialization JSONObjectWithData:
-                      jsonSource options:NSJSONReadingMutableContainers error:nil];
-    
-    countedSet = [NSCountedSet set];
-    
-    for (NSDictionary *dataDict in jsonObjects) {
-        NSString *messageGUID = [dataDict objectForKey:@"MessageGUID"];
-        NSString *hiritMessage = [dataDict objectForKey:@"HiritMessage"];
-        NSString *createdByUserName = [dataDict objectForKey:@"CreatedByUserName"];
-        NSString *createdByDeviceID = [dataDict objectForKey:@"CreatedByDeviceID"];
-        NSString *createdDate = [dataDict objectForKey:@"CreatedDate"];
-        NSString *answer1 = [dataDict objectForKey:@"Answer1"];
-        NSString *dateCreatedSTR = [dataDict objectForKey:@"DateCreatedSTR"];
-        
-        
-//        NSLog(@"MessageGUID: %@",messageGUID);
-//        NSLog(@"Message: %@",hiritMessage);
-//        NSLog(@"CreatedByUserName: %@",createdByUserName);
-//        NSLog(@"CreatedByDeviceID: %@",createdByDeviceID);
-//        NSLog(@"CreatedDate: %@",createdDate);
-        
-        dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                      messageGUID, MessageGUID,
-                      hiritMessage, HiritMessage,
-                      createdByUserName,CreatedByUserName,
-                      createdByDeviceID,CreatedByDeviceID,
-                      [self mfDateFromDotNetJSONString:createdDate], @"DateCreated",
-                      answer1, Answer1,
-                      dateCreatedSTR,@"DateCreatedSTR",
-                      nil];
-        [myObject addObject:dictionary];
-        
-        [countedSet addObject:dateCreatedSTR];
-        
-        
-    }
     
     
-    arrayGroup = [self SortObjects:arrayGroup CountedOjbect:countedSet];
-    
-
-    [self getJsonData];
     
     
 }

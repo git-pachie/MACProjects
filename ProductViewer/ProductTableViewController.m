@@ -12,6 +12,9 @@
 #import "AddProductViewController.h"
 
 @interface ProductTableViewController ()
+{
+    dispatch_queue_t myQueue;
+}
 
 @end
 
@@ -33,21 +36,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self shouldChangeNumber];
+    
+    if (!myQueue) {
+        myQueue = dispatch_queue_create("com.abc.com", NULL);
+    }
+    
+    dispatch_async(myQueue, ^{
+         [self shouldChangeNumber];
+    });
+    
+   
     
    
 }
 
 -(void)shouldChangeNumber
 {
-    NSError *error;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSError *error;
+        
+        if (![[self fetch] performFetch:&error]) {
+            NSLog(@"An error occured : %@", [error localizedDescription]);
+        }
+        
+        [self.tableView reloadData];
+
+    });
     
-    if (![[self fetch] performFetch:&error]) {
-        NSLog(@"An error occured : %@", [error localizedDescription]);
     }
-    
-    [self.tableView reloadData];
-}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

@@ -34,7 +34,7 @@
 {
      NSString *result = nil;
     
-    result = [NSString stringWithFormat:@"http://service.bmcseatransport.com/Service1.svc/%@",MethodToCall];
+    result = [NSString stringWithFormat:@"http://www.riverwayauto.com:1980/myjson/service1.svc/%@",MethodToCall];
     
     //http://www.amanawaterpark.ph:1980/myjson/service1.svc/GetHiritMessage"
     
