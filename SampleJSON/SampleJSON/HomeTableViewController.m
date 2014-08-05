@@ -13,6 +13,8 @@
 #import "CommonFunction.h"
 #import "AppDelegate.h"
 
+
+
 @interface HomeTableViewController ()
 {
     dispatch_queue_t myQueue;
@@ -35,13 +37,22 @@
     NSDate *CreatedDate;
     NSString *Answer1;
     
+    UILabel *label;
+    UIActivityIndicatorView* spinner;
+    
 }
 
 @end
 
 @implementation HomeTableViewController
 
+#define LABEL_WIDTH 80
+#define LABEL_HEIGHT 20
+
 @synthesize DeviceGUID;
+
+
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -82,6 +93,22 @@
 - (void)viewDidLoad
 {
     
+    label = [[UILabel alloc] initWithFrame:CGRectMake((self.view.bounds.size.width-LABEL_WIDTH)/2+20,(self.view.bounds.size.height-LABEL_HEIGHT)/2,
+                                                               LABEL_WIDTH,
+                                                               LABEL_HEIGHT)];
+    
+    label.text = @"Loading…";
+    //label.center = self.view.center;
+    
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
+    
+    spinner.frame = CGRectMake(label.frame.origin.x - LABEL_HEIGHT - 5,
+                               label.frame.origin.y,
+                               LABEL_HEIGHT,
+                               LABEL_HEIGHT);
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
@@ -94,7 +121,23 @@
         myQueue = dispatch_queue_create("com.samplejson", NULL);
     }
     
+    UINavigationController *navCon  = (UINavigationController*) [self.navigationController.viewControllers objectAtIndex:0];
+    navCon.navigationItem.title = @"Loading...";
+    
     dispatch_async(myQueue, ^{
+        
+        
+        
+        [spinner startAnimating];
+        
+        [self.view addSubview: spinner];
+        [self.view addSubview: label];
+        
+        //spinner.center = self.tableView.center;
+        
+        [self performSelector:@selector(LoadTable) withObject:nil afterDelay:0.0];
+        
+
         [self LoadTable];
     });
     
@@ -110,7 +153,10 @@
     
     
     
+    
 }
+
+
 
 - (void)stopRefresh
 
@@ -415,7 +461,9 @@
 
 -(void)LoadTable
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    //dispatch_async(dispatch_get_main_queue()
+    
+    dispatch_async(dispatch_get_main_queue(),^{
         MessageGUID = @"MessageGUID";
         HiritMessage = @"HiritMessage";
         CreatedByUserName = @"CreatedByUserName";
@@ -435,6 +483,15 @@
                                                         message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
             
             isConnectionOK = NO;
+            
+            
+            
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
+            
+            self.navigationItem.title = @"Network Error";
+
+            
+            
             [mes show];
             
             [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
@@ -459,12 +516,6 @@
             NSString *dateCreatedSTR = [dataDict objectForKey:@"DateCreatedSTR"];
             
             
-            //        NSLog(@"MessageGUID: %@",messageGUID);
-            //        NSLog(@"Message: %@",hiritMessage);
-            //        NSLog(@"CreatedByUserName: %@",createdByUserName);
-            //        NSLog(@"CreatedByDeviceID: %@",createdByDeviceID);
-            //        NSLog(@"CreatedDate: %@",createdDate);
-            
             dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                           messageGUID, MessageGUID,
                           hiritMessage, HiritMessage,
@@ -482,11 +533,32 @@
         }
         
         
+        
         arrayGroup = [self SortObjects:arrayGroup CountedOjbect:countedSet];
         
         
+        
+        
         [self getJsonData];
-    });
+        
+        self.navigationItem.title = @"Home";
+        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
+        sleep(1);
+        
+        [spinner stopAnimating];
+        label.hidden = true;
+        //spinner.hidden= true;
+        
+        
+        });
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -497,6 +569,9 @@
 
 -(void)getJsonData
 {
+    
+    
+    
     NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     
     DeviceGUID = uniqueIdentifier;
@@ -514,6 +589,11 @@
         
         [mes show];
         [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+        
+         dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.title = @"Network Error";
+             });
+        
         return;
     }
     
@@ -554,8 +634,18 @@
             delegate.isDeviceRegistered = @"YES";
             delegate.EmailAddress = _Email;
 
-            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:1.5];
             
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+            
+           
+            
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
+            
+            self.navigationItem.title = @"Home";
+
+            });
             return;
         }
         else
