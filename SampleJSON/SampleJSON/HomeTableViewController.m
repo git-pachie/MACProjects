@@ -102,6 +102,10 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
     
+    //[self setNeedsStatusBarAppearanceUpdate];
+    
+   self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    
     
     
     [self preferredStatusBarStyle];
