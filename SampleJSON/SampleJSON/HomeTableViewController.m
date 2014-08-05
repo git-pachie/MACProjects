@@ -90,11 +90,22 @@
 }
 
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidLoad
 {
     
     
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor purpleColor]};
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+    
+    
+    
+    
+    [self preferredStatusBarStyle];
+    
     
     label = [[UILabel alloc] initWithFrame:CGRectMake((self.view.bounds.size.width-LABEL_WIDTH)/2+20,(self.view.bounds.size.height-LABEL_HEIGHT)/2,
                                                                LABEL_WIDTH,
@@ -146,12 +157,12 @@
     
     
     self.tableView.sectionHeaderHeight = 28;
-    [[UITabBar appearance]  setSelectedImageTintColor:[UIColor purpleColor]];
+    //[[UITabBar appearance]  setSelectedImageTintColor:[UIColor purpleColor]];
     
-    UINavigationBar *nav = [[UINavigationBar alloc]init];
-    nav.barTintColor = [UIColor purpleColor];
-    nav.tintColor =[UIColor purpleColor];
-    nav.translucent = NO;
+    //UINavigationBar *nav = [[UINavigationBar alloc]init];
+    //nav.barTintColor = [UIColor purpleColor];
+    //nav.tintColor =[UIColor purpleColor];
+    //nav.translucent = NO;
     
     
     
