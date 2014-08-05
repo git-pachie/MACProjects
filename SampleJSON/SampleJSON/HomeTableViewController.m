@@ -93,6 +93,9 @@
 - (void)viewDidLoad
 {
     
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor purpleColor]};
+    
     label = [[UILabel alloc] initWithFrame:CGRectMake((self.view.bounds.size.width-LABEL_WIDTH)/2+20,(self.view.bounds.size.height-LABEL_HEIGHT)/2,
                                                                LABEL_WIDTH,
                                                                LABEL_HEIGHT)];
@@ -102,6 +105,9 @@
     
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
+    
+    spinner.color = [UIColor purpleColor];
+    label.textColor = [UIColor purpleColor];
     
     spinner.frame = CGRectMake(label.frame.origin.x - LABEL_HEIGHT - 5,
                                label.frame.origin.y,
@@ -132,10 +138,6 @@
         
         [self.view addSubview: spinner];
         [self.view addSubview: label];
-        
-        //spinner.center = self.tableView.center;
-        
-        [self performSelector:@selector(LoadTable) withObject:nil afterDelay:0.0];
         
 
         [self LoadTable];
