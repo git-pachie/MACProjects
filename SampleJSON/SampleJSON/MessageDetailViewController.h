@@ -14,8 +14,12 @@
 @property (nonatomic, strong) NSString *HiritMessage;
 @property (nonatomic, strong) NSString *CreatedBy;
 @property (nonatomic, strong) NSString *Answer;
-@property (weak, nonatomic) IBOutlet UITextView *txtPickupDetail;
-@property (weak, nonatomic) IBOutlet UITextView *txtPickupAnswer;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *lblhiritMessage;
+@property (weak, nonatomic) IBOutlet UILabel *lblhiritAnswer;
+
+
 - (IBAction)Send:(UIBarButtonItem *)sender;
 
 @end

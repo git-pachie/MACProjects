@@ -30,12 +30,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.txtPickupDetail setText:HiritMessage];
-    [self.txtPickupAnswer setText:Answer];
+    [self.lblhiritMessage setText:HiritMessage];
     
-    _txtPickupDetail.editable = NO;
-    _txtPickupAnswer.editable = NO;
+    self.lblhiritMessage.numberOfLines = 0;
+//    
+   // [self.lblhiritMessage setLineBreakMode:NSLineBreakByWordWrapping];
 
+    
+    self.lblhiritAnswer.text = self.Answer;
+    
+    //textView.textContainer.lineBreakMode = NSLineBreakByCharWrapping
+    
+   
     
 }
 
