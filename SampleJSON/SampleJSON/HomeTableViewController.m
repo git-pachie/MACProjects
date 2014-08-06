@@ -95,12 +95,40 @@
     return UIStatusBarStyleLightContent;
 }
 
+-(void)doneButtonPressed:(id)sender
+{
+    UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Pickup Lines"
+                                                message:@"Sorry function not yet ready" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    
+    [mes show];
+    
+}
 - (void)viewDidLoad
 {
     
+    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self  action:@selector(doneButtonPressed:)];
+    UIBarButtonItem *cameraItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(doneButtonPressed:)];
     
+    NSArray *actionButtonItems = @[shareItem, cameraItem];
+    self.navigationItem.rightBarButtonItems = actionButtonItems;
+    
+    for (UIBarButtonItem * item in self.navigationItem.rightBarButtonItems)
+    {
+        item.style = UIBarButtonItemStylePlain;
+        item.style = UIBarButtonItemStyleBordered;
+        item.tintColor = [UIColor whiteColor];
+    }
+    
+    // Add tint
+    //toolbar.tintColor = [UIColor colorWithRed:0.83 green:0.43 blue:0.57 alpha:0.5];
+    
+    // Toolbar content
+//    NSArray *items=[NSArray arrayWithObjects: ... ]; // PSEUDO CODE HERE
+//    [toolbar setItems:items];
+//    
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0], NSFontAttributeName, nil]];
     
     //[self setNeedsStatusBarAppearanceUpdate];
     

@@ -26,14 +26,21 @@
    // [[UINavigationBar appearance] setBarTintColor:[UIColor purpleColor]];
     
     
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                       [UIColor whiteColor], UITextAttributeTextColor,
-                                                       nil] forState:UIControlStateNormal];
-    UIColor *titleHighlightedColor = [UIColor colorWithRed:153/255.0 green:192/255.0 blue:48/255.0 alpha:1.0];
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                       titleHighlightedColor, UITextAttributeTextColor,
-         
-                                                       nil] forState:UIControlStateHighlighted];
+//    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+//                                                       [UIColor whiteColor], UITextAttributeTextColor,
+//                                                       nil] forState:UIControlStateNormal];
+//    UIColor *titleHighlightedColor = [UIColor colorWithRed:153/255.0 green:192/255.0 blue:48/255.0 alpha:1.0];
+//    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+//                                                       titleHighlightedColor, UITextAttributeTextColor,
+//         
+//                                                       nil] forState:UIControlStateHighlighted];
+//    
+    
+    
+    
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBarBackground"] forBarMetrics:UIBarMetricsDefault];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
     
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
     

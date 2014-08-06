@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    //AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
    // self.lblAccountName.text = @"Free";
     //self.lblEmail.text  = delegate.EmailAddress;
