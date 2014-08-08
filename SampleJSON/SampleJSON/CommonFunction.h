@@ -13,6 +13,7 @@
 -(BOOL)CheckNSD:(NSData *)yourData;
 -(void)ConnectionError;
 -(NSString *)GetJsonConnection:(NSString *)MethodToCall;
+- (NSDate *)mfDateFromDotNetJSONString:(NSString *)string;
 //-(void) SortObjects:(NSMutableArray *)ArraryToSort CountedOjbect:(NSCountedSet *) countedset;
 
 @end

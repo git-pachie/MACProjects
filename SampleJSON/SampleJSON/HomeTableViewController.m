@@ -125,7 +125,7 @@
         
     //[self setNeedsStatusBarAppearanceUpdate];
     
-   self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+   //self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     
     
  
@@ -141,8 +141,8 @@
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
     
-    spinner.color = [UIColor purpleColor];
-    label.textColor = [UIColor purpleColor];
+    //spinner.color = [UIColor purpleColor];
+    //label.textColor = [UIColor purpleColor];
     
     spinner.frame = CGRectMake(label.frame.origin.x - LABEL_HEIGHT - 5,
                                label.frame.origin.y,
@@ -418,13 +418,6 @@
             tmpDict =  [[myObjectSearch filteredArrayUsingPredicate:resultPredicate] objectAtIndex:path.row ] ;
             
             
-//            
-//            
-//            
-//            messageGUID = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"MessageGUID"]];
-//            hiritMessage = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"HiritMessage"]];
-//            createdBy = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"CreatedBy"]];
-//            answer1 = [NSString stringWithFormat:@"%@",[[myObjectSearch objectAtIndex:path.row] objectForKey:@"Answer"]];
             
         }
         else
@@ -670,6 +663,7 @@
             delegate.DeviceGUID = DeviceGUID;
             delegate.isDeviceRegistered = @"YES";
             delegate.EmailAddress = _Email;
+            delegate.PhoneNumber = _PhoneNumber;
 
             [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:1.5];
             

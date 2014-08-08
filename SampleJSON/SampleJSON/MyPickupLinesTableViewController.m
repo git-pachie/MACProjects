@@ -9,11 +9,15 @@
 #import "MyPickupLinesTableViewController.h"
 #import "MyTableViewCell.h"
 #import "CommonFunction.h"
+#import "AppDelegate.h"
+
 
 @interface MyPickupLinesTableViewController ()
 
 {
     NSMutableArray *mArray;
+    CommonFunction *com;
+    AppDelegate *del;
 }
 
 @end
@@ -33,11 +37,19 @@
 {
     [super viewDidLoad];
     
+    del = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
     mArray = [[NSMutableArray alloc]init];
+    com = [[CommonFunction alloc]init];
    
     [self.tableView registerNib:[UINib nibWithNibName:@"View" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
-    self.PhoneNumber = @"96641621";
+    //self.PhoneNumber = @"96641621";
+    //self.receipientName = @"96641621";
+        
+    UINavigationController *navCon  = (UINavigationController*) [self.navigationController.viewControllers objectAtIndex:1];
+    navCon.navigationItem.title = self.receipientName;
+    
     
     [self LoadMessage];
 }
@@ -69,17 +81,44 @@
     
     NSDictionary *dic = [mArray objectAtIndex:indexPath.row];
     
-    cell.labelSentReceivedDate.text = [dic objectForKey:@"DateCreated"];
+    
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//    [formatter setDateFormat:@"MMM dd, yyyy 'at' hh:mm a"];
+    
+    NSDate *date =  [com mfDateFromDotNetJSONString:[dic objectForKey:@"DateCreated"]];
+    
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [dateFormatter setLocale:locale];
+    [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm a"];
+    
+    
+    NSString *convertedDate = [dateFormatter stringFromDate:date];
+    
+    cell.labelSentReceivedDate.text = convertedDate;// [dic objectForKey:@"DateCreated"];
     cell.lablePickupLineHeader.text = [dic objectForKey:@"PickupLineContent"];
     cell.labelPickupLineAnswer.text = [dic objectForKey:@"PickupLineAnswer"];
     
     cell.labelCreatedby.text =[NSString stringWithFormat:@"Created By %@",[dic objectForKey:@"SenderPhoneNumber"]];
     
+    if ([del.PhoneNumber isEqualToString:[dic objectForKey:@"ToPhoneNumber"]]) {
+        cell.labelSendReceived.text = @"RECEIVED";
+        [cell.labelSendReceived setBackgroundColor:[UIColor redColor]];
+    }
+    else
+    {
+        cell.labelSendReceived.text = @"SENT";
+        UIColor *myColor=[[UIColor alloc]initWithRed:33/255.0 green:99/255.0 blue:66/255.0 alpha:1];
+        [cell.labelSendReceived setBackgroundColor:myColor];
+        
+    }
+    
     [cell.labelPickupLineAnswer setLineBreakMode:NSLineBreakByCharWrapping];
-    [cell.labelPickupLineAnswer setNumberOfLines:0];
+    [cell.labelPickupLineAnswer setNumberOfLines:2];
     
     [cell.lablePickupLineHeader setLineBreakMode:NSLineBreakByCharWrapping];
-    [cell.lablePickupLineHeader setNumberOfLines:0];
+    [cell.lablePickupLineHeader setNumberOfLines:2];
     
     
     
@@ -92,7 +131,7 @@
 -(void)LoadMessage
 {
     CommonFunction *common = [[CommonFunction alloc]init];
-    NSString *x =  [common GetJsonConnection:[NSString stringWithFormat:@"GetMyMessageByNumber/%1@/%2@",self.PhoneNumber,self.MyPhoneNumber]];
+    NSString *x =  [common GetJsonConnection:[NSString stringWithFormat:@"GetMyMessageByNumber/%1@/%2@",self.PhoneNumber,del.PhoneNumber]];
     
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
     

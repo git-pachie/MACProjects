@@ -10,6 +10,6 @@
 
 @interface MyPickupLineHeaderTableViewController : UITableViewController
 
-@property (nonatomic,strong) NSString *MyPhoneNumber;
+
 
 @end

@@ -11,6 +11,6 @@
 @interface MyPickupLinesTableViewController : UITableViewController
 
 @property (nonatomic,strong) NSString *PhoneNumber;
-@property (nonatomic,strong) NSString *MyPhoneNumber;
+@property (nonatomic,strong) NSString *receipientName;
 
 @end

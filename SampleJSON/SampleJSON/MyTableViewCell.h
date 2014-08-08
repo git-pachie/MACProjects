@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lablePickupLineHeader;
 @property (weak, nonatomic) IBOutlet UILabel *labelPickupLineAnswer;
 @property (weak, nonatomic) IBOutlet UILabel *labelCreatedby;
+@property (weak, nonatomic) IBOutlet UILabel *labelSendReceived;
 
 @end

@@ -31,11 +31,30 @@
 {
     [super viewDidLoad];
     
+    
     mArray = [[NSMutableArray alloc]init];
     
-    NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"85713568",@"PhoneNumber", nil];
+    NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"96641621",@"PhoneNumber", nil];
     
     [mArray addObject:dic];
+    
+    dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"12345678",@"PhoneNumber", nil];
+    
+    [mArray addObject:dic];
+    
+    dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"22222222",@"PhoneNumber", nil];
+    
+    [mArray addObject:dic];
+    
+    dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"85713568",@"PhoneNumber", nil];
+    
+    [mArray addObject:dic];
+
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,7 +145,9 @@
         
         NSDictionary *dic = [mArray objectAtIndex:path.row];
         
-        dv.MyPhoneNumber = [dic objectForKey:@"PhoneNumber"];
+        dv.PhoneNumber = [dic objectForKey:@"PhoneNumber"];
+        dv.receipientName = [dic objectForKey:@"PhoneNumber"];
+        
     }
 }
 
