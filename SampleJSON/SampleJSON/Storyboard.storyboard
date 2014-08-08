@@ -212,34 +212,6 @@
             </objects>
             <point key="canvasLocation" x="3158" y="376"/>
         </scene>
-        <!--View Controller - My Account-->
-        <scene sceneID="Lat-Q9-OIW">
-            <objects>
-                <viewController id="xNA-id-iom" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="auL-7g-9JH"/>
-                        <viewControllerLayoutGuide type="bottom" id="oRJ-hR-Zbp"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rSV-nt-Xzs">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Qi-3P-Rs3">
-                                <rect key="frame" x="93" y="123" width="134" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Resign My Account">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="My Account" id="HsB-mB-pim"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DyP-qS-mGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3158" y="1166"/>
-        </scene>
         <!--Message Detail View Controller - Message Detail-->
         <scene sceneID="LkX-HZ-Tg3">
             <objects>
@@ -287,6 +259,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Send" id="0SI-bc-fVW">
                             <connections>
                                 <action selector="Send:" destination="e2e-51-pIn" id="kCm-d5-jGg"/>
+                                <segue destination="PpA-8f-6Ep" kind="push" identifier="sendPickupLine" id="WXs-Sd-ecA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -298,6 +271,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ktP-AP-E3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3765" y="-383"/>
+        </scene>
+        <!--Send Pickup View Controller-->
+        <scene sceneID="4wa-Lf-Jxo">
+            <objects>
+                <viewController id="PpA-8f-6Ep" customClass="SendPickupViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Nuu-5c-1r1"/>
+                        <viewControllerLayoutGuide type="bottom" id="9mj-wl-KPK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="d65-nm-ewZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b7s-f7-hWb">
+                                <rect key="frame" x="20" y="89" width="289" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTf-cE-PHy">
+                                <rect key="frame" x="20" y="127" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendNow:" destination="PpA-8f-6Ep" eventType="touchUpInside" id="R7Z-Fi-0hh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fKG-xP-bka"/>
+                    <connections>
+                        <outlet property="sendToPhoneNumber" destination="b7s-f7-hWb" id="tsK-Yc-RBE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3rG-oC-lr9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4291" y="-383"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="uaN-gY-ySC">
@@ -454,12 +467,73 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="xNA-id-iom" kind="relationship" relationship="rootViewController" id="FPx-nv-fda"/>
+                        <segue destination="pvB-jG-Olc" kind="relationship" relationship="rootViewController" id="TAM-4O-LFo"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6bP-bZ-zoM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2632" y="1166"/>
+            <point key="canvasLocation" x="2632" y="1136"/>
+        </scene>
+        <!--My Pickup Line Header Table View Controller - My Pickup Lines-->
+        <scene sceneID="FfQ-d7-R55">
+            <objects>
+                <tableViewController id="pvB-jG-Olc" customClass="MyPickupLineHeaderTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="CcE-F4-PIA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="XMA-TE-6GZ">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XMA-TE-6GZ" id="57Q-P5-nF6">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="rUm-oR-3dc" kind="push" identifier="pickupLineDetails" id="Ogb-Wx-Ord"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pvB-jG-Olc" id="eBs-jS-uu6"/>
+                            <outlet property="delegate" destination="pvB-jG-Olc" id="VcG-l2-ZMP"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Pickup Lines" id="738-jm-pKT"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qbK-CH-U6P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3070" y="1136"/>
+        </scene>
+        <!--My Pickup Lines Table View Controller - My Pickup Lines-->
+        <scene sceneID="hp4-q7-6XH">
+            <objects>
+                <tableViewController id="rUm-oR-3dc" customClass="MyPickupLinesTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="138" sectionHeaderHeight="22" sectionFooterHeight="22" id="IMt-FC-8rW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="138" id="XuQ-Rc-zQL">
+                                <rect key="frame" x="0.0" y="86" width="320" height="138"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XuQ-Rc-zQL" id="YTG-Oh-nln">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="137"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="rUm-oR-3dc" id="0j0-b8-sOQ"/>
+                            <outlet property="delegate" destination="rUm-oR-3dc" id="nBs-ZT-aUO"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Pickup Lines" id="KUH-hW-Fde"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2lv-4R-TiX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3478" y="1136"/>
         </scene>
     </scenes>
     <resources>
