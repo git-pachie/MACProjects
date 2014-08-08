@@ -6,41 +6,63 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="98" id="tsh-db-pLe" customClass="MyTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="tsh-db-pLe" customClass="MyTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="371" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tsh-db-pLe" id="Pel-vs-eqE">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="97"/>
+                <rect key="frame" x="0.0" y="0.0" width="371" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hindi kaba napapagod" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rpE-gs-Y2D">
-                        <rect key="frame" x="9" y="20" width="291" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hindi kaba napapagod" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="342" translatesAutoresizingMaskIntoConstraints="NO" id="rpE-gs-Y2D">
+                        <rect key="frame" x="9" y="20" width="342" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="77f-vz-stk">
-                        <rect key="frame" x="9" y="42" width="302" height="26"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="77f-vz-stk">
+                        <rect key="frame" x="9" y="42" width="353" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sent Jun 25, 2014, 12:00 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmP-Wm-yfR">
-                        <rect key="frame" x="127" y="0.0" width="173" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sent Jun 25, 2014, 12:00 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmP-Wm-yfR">
+                        <rect key="frame" x="178" y="0.0" width="173" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="173" id="A0u-Z2-xhc"/>
+                            <constraint firstAttribute="height" constant="21" id="rKv-Oz-Emm"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="0.8046875" green="0.037178724160000003" blue="0.24699795920000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="By Boy Banat" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f51-Um-qNH">
-                        <rect key="frame" x="127" y="76" width="173" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Boy Banat" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f51-Um-qNH">
+                        <rect key="frame" x="9" y="78" width="342" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Mkr-XA-dxa"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="0.8046875" green="0.037178724160000003" blue="0.24699795920000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="f51-Um-qNH" secondAttribute="bottom" id="7AH-ec-dVd"/>
+                    <constraint firstItem="rpE-gs-Y2D" firstAttribute="top" secondItem="Pel-vs-eqE" secondAttribute="top" constant="20" symbolic="YES" id="CYg-2D-Luj"/>
+                    <constraint firstItem="77f-vz-stk" firstAttribute="centerX" secondItem="Pel-vs-eqE" secondAttribute="centerX" id="DgY-yf-ey6"/>
+                    <constraint firstItem="rpE-gs-Y2D" firstAttribute="trailing" secondItem="vmP-Wm-yfR" secondAttribute="trailing" id="GvB-ud-ObT"/>
+                    <constraint firstItem="77f-vz-stk" firstAttribute="top" secondItem="vmP-Wm-yfR" secondAttribute="bottom" constant="21" id="JgU-A6-sFJ"/>
+                    <constraint firstItem="f51-Um-qNH" firstAttribute="top" secondItem="77f-vz-stk" secondAttribute="bottom" constant="8" symbolic="YES" id="Jh1-wJ-sYJ"/>
+                    <constraint firstItem="f51-Um-qNH" firstAttribute="leading" secondItem="77f-vz-stk" secondAttribute="leading" id="Nft-nz-6eW"/>
+                    <constraint firstAttribute="trailing" secondItem="vmP-Wm-yfR" secondAttribute="trailing" constant="20" symbolic="YES" id="Rdr-18-aDe"/>
+                    <constraint firstItem="77f-vz-stk" firstAttribute="leading" secondItem="rpE-gs-Y2D" secondAttribute="leading" id="eBf-3V-Kbx"/>
+                    <constraint firstItem="rpE-gs-Y2D" firstAttribute="leading" secondItem="Pel-vs-eqE" secondAttribute="leading" constant="9" id="f9P-Ww-r5w"/>
+                    <constraint firstItem="77f-vz-stk" firstAttribute="top" secondItem="rpE-gs-Y2D" secondAttribute="bottom" constant="1" id="fVV-E1-cMu"/>
+                    <constraint firstItem="vmP-Wm-yfR" firstAttribute="top" secondItem="Pel-vs-eqE" secondAttribute="top" id="mu7-vl-xBK"/>
+                    <constraint firstItem="f51-Um-qNH" firstAttribute="trailing" secondItem="rpE-gs-Y2D" secondAttribute="trailing" id="wq2-t3-PYI"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="labelCreatedby" destination="f51-Um-qNH" id="mFf-hi-X5h"/>
