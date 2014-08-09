@@ -52,9 +52,9 @@
     }
     
    
-    dispatch_async(myQue, ^{
-        
-        
+//    dispatch_async(myQue, ^{
+//            });
+    
         loader.label.text = @"Loading...";
         [self.view addSubview:loader.xview];
         [self.view addSubview:loader.spinner];
@@ -66,7 +66,7 @@
         
         
         
-    });
+
     
     
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
@@ -176,8 +176,9 @@
 {
     
     
-    dispatch_async(dispatch_get_main_queue(),^{
-        
+//    dispatch_async(dispatch_get_main_queue(),^{
+//        });
+    
         mArray = [[NSMutableArray alloc]init];
     
     common = [[CommonFunction alloc]init];
@@ -229,7 +230,7 @@
         
         
     }
-    });
+    
     
     [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
     

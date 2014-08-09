@@ -76,8 +76,9 @@
     }
     
     dispatch_async(myQue, ^{
-        
-        
+    });
+
+    
         
         loader.label.text = @"Loading...";
         [self.view addSubview:loader.xview];
@@ -88,8 +89,7 @@
        
         [self LoadMessage];
         
-    });
-    
+       
     
     
 
@@ -180,7 +180,7 @@
 
 -(void)LoadMessage
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    //dispatch_async(dispatch_get_main_queue(), ^{});
         
         mArray = [[NSMutableArray alloc]init];
         
@@ -244,7 +244,7 @@
         }
         
         
-    });
+    
     
     [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
     
