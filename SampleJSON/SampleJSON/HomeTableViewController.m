@@ -39,6 +39,7 @@
     
     UILabel *label;
     UIActivityIndicatorView* spinner;
+    UIView *xview;
     
 }
 
@@ -46,8 +47,7 @@
 
 @implementation HomeTableViewController
 
-#define LABEL_WIDTH 80
-#define LABEL_HEIGHT 20
+
 
 @synthesize DeviceGUID;
 
@@ -101,55 +101,11 @@
 }
 - (void)viewDidLoad
 {
-//    
-//    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self  action:@selector(doneButtonPressed:)];
-//    UIBarButtonItem *cameraItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(doneButtonPressed:)];
-//    
-//    NSArray *actionButtonItems = @[shareItem, cameraItem];
-//    self.navigationItem.rightBarButtonItems = actionButtonItems;
-//    
-//    for (UIBarButtonItem * item in self.navigationItem.rightBarButtonItems)
-//    {
-//        item.style = UIBarButtonItemStylePlain;
-//        item.style = UIBarButtonItemStyleBordered;
-//        item.tintColor = [UIColor whiteColor];
-//    }
+
     
-    // Add tint
-    //toolbar.tintColor = [UIColor colorWithRed:0.83 green:0.43 blue:0.57 alpha:0.5];
+    [self configureLoading];
     
-    // Toolbar content
-//    NSArray *items=[NSArray arrayWithObjects: ... ]; // PSEUDO CODE HERE
-//    [toolbar setItems:items];
-//    
-        
-    //[self setNeedsStatusBarAppearanceUpdate];
-    
-   //self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    
-    
- 
-    
-    
-    label = [[UILabel alloc] initWithFrame:CGRectMake((self.view.bounds.size.width-LABEL_WIDTH)/2+20,(self.view.bounds.size.height-LABEL_HEIGHT)/2,
-                                                               LABEL_WIDTH,
-                                                               LABEL_HEIGHT)];
-    
-    label.text = @"Loading…";
-    //label.center = self.view.center;
-    
-    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    
-    
-    //spinner.color = [UIColor purpleColor];
-    //label.textColor = [UIColor purpleColor];
-    
-    spinner.frame = CGRectMake(label.frame.origin.x - LABEL_HEIGHT - 5,
-                               label.frame.origin.y,
-                               LABEL_HEIGHT,
-                               LABEL_HEIGHT);
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
+
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
@@ -162,38 +118,52 @@
         myQueue = dispatch_queue_create("com.samplejson", NULL);
     }
     
-    UINavigationController *navCon  = (UINavigationController*) [self.navigationController.viewControllers objectAtIndex:0];
-    navCon.navigationItem.title = @"Loading...";
     
     dispatch_async(myQueue, ^{
         
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
         
-        
+        UINavigationController *navCon  = (UINavigationController*) [self.navigationController.viewControllers objectAtIndex:0];
+        navCon.navigationItem.title = @"Loading...";
+
+        label.text = @"Loading...";
+        [self.view addSubview:xview];
+        [self.view addSubview:spinner];
+        [self.view addSubview:label];
         [spinner startAnimating];
-        
-        [self.view addSubview: spinner];
-        [self.view addSubview: label];
         
 
         [self LoadTable];
     });
     
-    
-    
+
     self.tableView.sectionHeaderHeight = 28;
-    //[[UITabBar appearance]  setSelectedImageTintColor:[UIColor purpleColor]];
-    
-    //UINavigationBar *nav = [[UINavigationBar alloc]init];
-    //nav.barTintColor = [UIColor purpleColor];
-    //nav.tintColor =[UIColor purpleColor];
-    //nav.translucent = NO;
-    
-    
-    
+
     
 }
 
+-(void)configureLoading{
+    
+    CGRect loadingSize = CGRectMake((self.view.bounds.size.width-120)/2, (self.view.bounds.size.height-170) / 2, 120, 100);
+    CGRect loadingSizeInd = CGRectMake((self.view.bounds.size.width-120)/2, (self.view.bounds.size.height-160) / 2-24, 120, 100);
+    CGRect loadingSizeLabel = CGRectMake((self.view.bounds.size.width - 65)/2-4, (self.view.bounds.size.height-120) / 2, 120, 100);
+    
+    xview = [[UIView alloc]initWithFrame:loadingSize];
+    [xview setBackgroundColor:[UIColor grayColor]];
+    
+    xview.layer.cornerRadius = 8;
+    xview.layer.masksToBounds = YES;
+    xview.alpha = 0.9;
+    
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.frame = loadingSizeInd;
+    label = [[UILabel alloc] initWithFrame:loadingSizeLabel];
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont boldSystemFontOfSize:18];
+    label.alpha = 0.8;
 
+    
+}
 
 - (void)stopRefresh
 
