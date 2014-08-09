@@ -74,15 +74,15 @@
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    if ([delegate.isDeviceRegistered isEqualToString:@"NO"]) {
+    if ([delegate.isDeviceRegistered isEqualToString:@"NO"])
+    {
         
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-        
-            DeviceActivationViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"acid"];
-            [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-            vc.deviceGUID = DeviceGUID;
-            vc.emailAddress = _Email;
-            [self presentViewController:vc animated:YES completion:nil];
+        DeviceActivationViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"acid"];
+        [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+        vc.deviceGUID = DeviceGUID;
+        vc.emailAddress = _Email;
+        [self presentViewController:vc animated:YES completion:nil];
         
     }
 
@@ -114,6 +114,8 @@
     
     self.refreshControl = refresh;
     
+    self.tableView.sectionHeaderHeight = 28;
+    
     if (!myQueue) {
         myQueue = dispatch_queue_create("com.samplejson", NULL);
     }
@@ -123,8 +125,8 @@
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
         
-        UINavigationController *navCon  = (UINavigationController*) [self.navigationController.viewControllers objectAtIndex:0];
-        navCon.navigationItem.title = @"Loading...";
+//        UINavigationController *navCon  = (UINavigationController*) [self.navigationController.viewControllers objectAtIndex:0];
+//        navCon.navigationItem.title = @"Loading...";
 
         label.text = @"Loading...";
         [self.view addSubview:xview];
@@ -137,7 +139,7 @@
     });
     
 
-    self.tableView.sectionHeaderHeight = 28;
+   
 
     
 }
@@ -154,6 +156,7 @@
     xview.layer.cornerRadius = 8;
     xview.layer.masksToBounds = YES;
     xview.alpha = 0.9;
+    xview.tag = 1;
     
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     spinner.frame = loadingSizeInd;
@@ -161,7 +164,10 @@
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont boldSystemFontOfSize:18];
     label.alpha = 0.8;
-
+    label.tag = 1;
+    
+    spinner.tag = 1;
+    
     
 }
 
@@ -184,11 +190,10 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //return 1;
-    
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        
-        return [arrayGroupSearch count];
+
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+       return [arrayGroupSearch count];
         
     } else {
         
@@ -198,38 +203,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return myObject.count  ;
-    
+
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        
-        //return myObjectSearch.count;
-        
+
         NSString *nameFilter = [NSString stringWithFormat:@"%@*", [arrayGroupSearch objectAtIndex:section]];
-        
-        
-        NSPredicate *resultPredicate = [NSPredicate
-                                        predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)",
-                                        nameFilter];
-        
-        
+        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)",nameFilter];
         return [[myObjectSearch filteredArrayUsingPredicate:resultPredicate] count] ;
 
     } else {
         
-        //return myObject.count;
-    
-    
         NSString *nameFilter = [NSString stringWithFormat:@"%@*", [arrayGroup objectAtIndex:section]];
-        
-        
-        NSPredicate *resultPredicate = [NSPredicate
-                                        predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)",
-                                        nameFilter];
-        
-       
+        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)", nameFilter];
         return [[myObject filteredArrayUsingPredicate:resultPredicate] count] ;
 
-    
     }
     
     
@@ -257,74 +243,36 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (cell == nil) {
+    if (cell == nil)
+    {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    
 
-
- 
     if (isConnectionOK == true) {
         
         NSDictionary *tmpDict = nil;
 
         if (tableView == self.searchDisplayController.searchResultsTableView) {
-            
-            
+        
             NSString *nameFilter = [NSString stringWithFormat:@"%@*", [arrayGroupSearch objectAtIndex:indexPath.section]];
-            
-            
-            NSPredicate *resultPredicate = [NSPredicate
-                                            predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)",
-                                            nameFilter];
-            
-            // NSLog(@"numberOfRowsInSection %lu",(unsigned long)[[myObject filteredArrayUsingPredicate:resultPredicate] count]);
-            tmpDict =  [[myObjectSearch filteredArrayUsingPredicate:resultPredicate] objectAtIndex:indexPath.row ] ;
-            
+        
+            NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)",nameFilter];
 
-            
-            
-            //tmpDict = [myObjectSearch objectAtIndex:indexPath.row];
+            tmpDict =  [[myObjectSearch filteredArrayUsingPredicate:resultPredicate] objectAtIndex:indexPath.row ] ;
+
             
         } else {
             
             
             NSString *nameFilter = [NSString stringWithFormat:@"%@*", [arrayGroup objectAtIndex:indexPath.section]];
-            
-            
-            NSPredicate *resultPredicate = [NSPredicate
-                                            predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)",
-                                            nameFilter];
-            
-            // NSLog(@"numberOfRowsInSection %lu",(unsigned long)[[myObject filteredArrayUsingPredicate:resultPredicate] count]);
+            NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)",nameFilter];
             tmpDict =  [[myObject filteredArrayUsingPredicate:resultPredicate] objectAtIndex:indexPath.row ] ;
-
-            
-            
-//            tmpDict = [myObject objectAtIndex:indexPath.row];
-//            NSLog(@"tmpDict ---> %@",tmpDict);
-
         }
         
-//         NSLog(@"isection %ld",(long)indexPath.section);
-//        NSLog(@"Item0 %@",[tmpDict objectForKey:@"CreatedByUserName"]);
-//        NSLog(@"Item1 %@",[arrayGroup objectAtIndex:indexPath.section]);
-//        
-       // if ([tmpDict objectForKey:@"CreatedByUserName"] == [arrayGroup objectAtIndex:indexPath.section]) {
-            
             cell.textLabel.text = [tmpDict objectForKey:@"HiritMessage"];
             cell.detailTextLabel.text =[NSString stringWithFormat:@"Created By %@",[tmpDict objectForKey:@"CreatedByUserName"]] ;
 
-            
-       // }
-       //// else
-       // {
-       //     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-      //  }
-    
-        
-      
         
     }
     return cell;
@@ -332,23 +280,13 @@
 }
 
 
-
-
-
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
-    // Background color
+
     view.tintColor = [UIColor purpleColor];
-    
-    // Text Color
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     [header.textLabel setTextColor:[UIColor whiteColor]];
-    
-    
-    
-    // Another way to set the background color
-    // Note: does not preserve gradient effect of original header
-    // header.contentView.backgroundColor = [UIColor blackColor];
+
 }
 
 
@@ -365,10 +303,10 @@
         
         MessageDetailViewController *dv = segue.destinationViewController;
         
-        NSString *messageGUID = @"";//   [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"MessageGUID"]];
-        NSString *hiritMessage = @"";// [NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"HiritMessage"]];
-        NSString *createdBy = @"";//[NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"CreatedBy"]];
-        NSString *answer1 = @"";//[NSString stringWithFormat:@"%@",[[myObject objectAtIndex:path.row] objectForKey:@"Answer"]];
+        NSString *messageGUID = @"";
+        NSString *hiritMessage = @"";
+        NSString *createdBy = @"";
+        NSString *answer1 = @"";
         
         
         NSDictionary *tmpDict = nil;
@@ -380,14 +318,12 @@
             
             NSString *nameFilter = [NSString stringWithFormat:@"%@*", [arrayGroupSearch objectAtIndex:path.section]];
             
-            
             NSPredicate *resultPredicate = [NSPredicate
                                             predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)",
                                             nameFilter];
             
             tmpDict =  [[myObjectSearch filteredArrayUsingPredicate:resultPredicate] objectAtIndex:path.row ] ;
-            
-            
+   
             
         }
         else
@@ -395,14 +331,12 @@
             
             NSString *nameFilter = [NSString stringWithFormat:@"%@*", [arrayGroup objectAtIndex:path.section]];
             
-            
             NSPredicate *resultPredicate = [NSPredicate
                                             predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)",
                                             nameFilter];
             
             tmpDict =  [[myObject filteredArrayUsingPredicate:resultPredicate] objectAtIndex:path.row ] ;
-            
-            
+        
             
         }
         
@@ -411,7 +345,6 @@
         createdBy = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"CreatedBy"]];
         answer1 = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"Answer"]];
 
-        
         dv.MessageGUID = messageGUID;
         dv.HiritMessage = hiritMessage;
         dv.CreatedBy = createdBy;
@@ -461,9 +394,9 @@
 
 -(void)LoadTable
 {
-    //dispatch_async(dispatch_get_main_queue()
     
     dispatch_async(dispatch_get_main_queue(),^{
+        
         MessageGUID = @"MessageGUID";
         HiritMessage = @"HiritMessage";
         CreatedByUserName = @"CreatedByUserName";
@@ -484,14 +417,10 @@
             
             isConnectionOK = NO;
             
-            
-            
             [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
             
             self.navigationItem.title = @"Network Error";
 
-            
-            
             [mes show];
             
             [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
@@ -529,40 +458,24 @@
             
             [countedSet addObject:dateCreatedSTR];
             
-            
         }
-        
         
         
         arrayGroup = [self SortObjects:arrayGroup CountedOjbect:countedSet];
         
+        dispatch_async(myQueue, ^{
+            [self getJsonData];
+        });
         
         
-        
-        [self getJsonData];
-        
-        self.navigationItem.title = @"Home";
-        
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
-        sleep(1);
-        
-        [spinner stopAnimating];
-        label.hidden = true;
-        //spinner.hidden= true;
+        dispatch_async(myQueue, ^{
+            [self HideLoading];
+        });
         
         
         });
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
 }
 
@@ -570,98 +483,114 @@
 -(void)getJsonData
 {
     
+    dispatch_async(dispatch_get_main_queue(),^{
     
-    
-    NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    
-    DeviceGUID = uniqueIdentifier;
-    
-    CommonFunction *common = [[CommonFunction alloc]init];
-    
-    NSString *url =[common GetJsonConnection:[NSString stringWithFormat:@"GetUserByDeviceID/%@",DeviceGUID]];
-    
-    NSData *allCoursesData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-    
-    if ([common CheckNSD:allCoursesData] == false) {
+        NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
         
-        UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
-                                                    message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        DeviceGUID = uniqueIdentifier;
         
-        [mes show];
-        [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+        CommonFunction *common = [[CommonFunction alloc]init];
         
-         dispatch_async(dispatch_get_main_queue(), ^{
-        self.navigationItem.title = @"Network Error";
-             });
+        NSString *url =[common GetJsonConnection:[NSString stringWithFormat:@"GetUserByDeviceID/%@",DeviceGUID]];
         
-        return;
-    }
-    
-    
-    NSError *error;
-    NSMutableDictionary *allHirit= [NSJSONSerialization JSONObjectWithData:allCoursesData options:NSJSONReadingMutableContainers error:&error];
-    
-    if (error) {
-        NSLog(@"%@",[error localizedDescription]);
-    }
-    else {
-        for (NSDictionary *dic in allHirit )
-        {
-            NSLog(@"Checking if device is already registered with device id %@", DeviceGUID);
-            
-            self.DeviceGUID = dic[@"DeviceGUID"];
-            self.Email = dic[@"Email"];
-            self.PhoneNumber = dic[@"PhoneNumber"];
-            self.IsDeviceActivated = dic[@"isDeviceActivated"];
-            
-        }
+        NSData *allCoursesData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
         
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-        
-        if ([_IsDeviceActivated isEqualToString:@"NO"]) {
-            DeviceActivationViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"acid"];
-            [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-            vc.deviceGUID = DeviceGUID;
-            vc.emailAddress = self.Email;
+        if ([common CheckNSD:allCoursesData] == false) {
             
-            [self presentViewController:vc animated:YES completion:nil];
-        }
-        else if ([self.IsDeviceActivated isEqualToString:@"YES"])
-        {
+            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
+                                                        message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
             
-            AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            delegate.DeviceGUID = DeviceGUID;
-            delegate.isDeviceRegistered = @"YES";
-            delegate.EmailAddress = _Email;
-            delegate.PhoneNumber = _PhoneNumber;
-
-            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:1.5];
+            [mes show];
+            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
             
+            self.navigationItem.title = @"Network Error";
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-            
-           
-            
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
-            
-            self.navigationItem.title = @"Home";
-
-            });
             return;
         }
-        else
-        {
+        
+        
+        NSError *error;
+        NSMutableDictionary *allHirit= [NSJSONSerialization JSONObjectWithData:allCoursesData options:NSJSONReadingMutableContainers error:&error];
+        
+        if (error) {
+            NSLog(@"%@",[error localizedDescription]);
+        }
+        else {
+            for (NSDictionary *dic in allHirit )
+            {
+                NSLog(@"Checking if device is already registered with device id %@", DeviceGUID);
+                
+                self.DeviceGUID = dic[@"DeviceGUID"];
+                self.Email = dic[@"Email"];
+                self.PhoneNumber = dic[@"PhoneNumber"];
+                self.IsDeviceActivated = dic[@"isDeviceActivated"];
+                
+            }
             
-            TestViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"register"];
-            [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-            vc.DeviceGUID = DeviceGUID;
-
-            [self presentViewController:vc animated:YES completion:nil];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+            
+            if ([_IsDeviceActivated isEqualToString:@"NO"]) {
+                DeviceActivationViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"acid"];
+                [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+                vc.deviceGUID = DeviceGUID;
+                vc.emailAddress = self.Email;
+                
+                [self presentViewController:vc animated:YES completion:nil];
+            }
+            else if ([self.IsDeviceActivated isEqualToString:@"YES"])
+            {
+                
+                AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                delegate.DeviceGUID = DeviceGUID;
+                delegate.isDeviceRegistered = @"YES";
+                delegate.EmailAddress = _Email;
+                delegate.PhoneNumber = _PhoneNumber;
+                
+                [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:1.5];
+                
+                return;
+            }
+            else
+            {
+                
+                TestViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"register"];
+                [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+                vc.DeviceGUID = DeviceGUID;
+                
+                [self presentViewController:vc animated:YES completion:nil];
+            }
+            
+            
         }
         
         
-    }
+    
+    
+    });
 
+    
+    
+
+}
+
+-(void)HideLoading
+{
+    
+    sleep(1);
+    dispatch_async(dispatch_get_main_queue(),^{
+
+    self.navigationItem.title = @"Home";
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
+    
+    [spinner stopAnimating];
+    
+    for (UIView *subview in [self.view subviews]) {
+        // Only remove the subviews with tag not equal to 1
+        if (subview.tag == 1) {
+            [subview removeFromSuperview];
+        }
+    }
+    });
 }
 
 /*
