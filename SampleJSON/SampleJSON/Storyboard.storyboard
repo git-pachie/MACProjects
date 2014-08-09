@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="83M-Lj-RoP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="83M-Lj-RoP">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -317,15 +317,15 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="83M-Lj-RoP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="HYI-6C-Ufq">
+                    <tabBar key="tabBar" contentMode="bottom" id="HYI-6C-Ufq">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="94b-sH-92x" kind="relationship" relationship="viewControllers" id="o1d-Lh-z7X"/>
-                        <segue destination="nCb-g0-fB8" kind="relationship" relationship="viewControllers" id="WwM-3O-HEG"/>
                         <segue destination="zfP-2N-6ye" kind="relationship" relationship="viewControllers" id="UXE-vG-Kun"/>
+                        <segue destination="nCb-g0-fB8" kind="relationship" relationship="viewControllers" id="WwM-3O-HEG"/>
                         <segue destination="60F-jP-Q8r" kind="relationship" relationship="viewControllers" id="NsS-LU-MPr"/>
                     </connections>
                 </tabBarController>
@@ -337,7 +337,10 @@
         <scene sceneID="8Ol-0n-z8V">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="94b-sH-92x" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="cottage-32.png" id="kTE-J5-0Oe"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="cottage-32.png" id="kTE-J5-0Oe">
+                        <inset key="imageInsets" minX="2" minY="5" maxX="2" maxY="1"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HrB-6V-iv0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -352,7 +355,7 @@
             </objects>
             <point key="canvasLocation" x="2632" y="-383"/>
         </scene>
-        <!--Custom Static Table View Controller - Item-->
+        <!--Custom Static Table View Controller - Other-->
         <scene sceneID="SSL-8W-YP9">
             <objects>
                 <tableViewController id="60F-jP-Q8r" customClass="CustomStaticTableViewController" sceneMemberID="viewController">
@@ -425,7 +428,9 @@
                             <outlet property="delegate" destination="60F-jP-Q8r" id="aIN-0Y-sme"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="szR-7y-1ma"/>
+                    <tabBarItem key="tabBarItem" title="Other" id="szR-7y-1ma">
+                        <inset key="imageInsets" minX="2" minY="5" maxX="2" maxY="1"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="profilepic" destination="YQa-yw-bnZ" id="MAB-cQ-uRA"/>
                     </connections>
@@ -438,7 +443,9 @@
         <scene sceneID="RfA-Hf-mtF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nCb-g0-fB8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="automatic-32.png" id="w4r-hF-eT1"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="automatic-32.png" id="w4r-hF-eT1">
+                        <inset key="imageInsets" minX="2" minY="5" maxX="2" maxY="1"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RCW-zL-3Kn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -453,11 +460,13 @@
             </objects>
             <point key="canvasLocation" x="2632" y="376"/>
         </scene>
-        <!--Navigation Controller - My Account-->
+        <!--Navigation Controller - Pickup Lines-->
         <scene sceneID="2p1-GX-ISs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zfP-2N-6ye" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Account" image="user_male3-32.png" id="Gjr-j4-CS1"/>
+                    <tabBarItem key="tabBarItem" title="Pickup Lines" image="user_male3-32.png" id="Gjr-j4-CS1">
+                        <inset key="imageInsets" minX="2" minY="5" maxX="2" maxY="1"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ven-4o-lMe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -476,17 +485,33 @@
         <scene sceneID="FfQ-d7-R55">
             <objects>
                 <tableViewController id="pvB-jG-Olc" customClass="MyPickupLineHeaderTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="CcE-F4-PIA">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="53" sectionHeaderHeight="22" sectionFooterHeight="22" id="CcE-F4-PIA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="XMA-TE-6GZ">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="MOQ-Bf-cdV" detailTextLabel="KmL-bt-4M9" rowHeight="53" style="IBUITableViewCellStyleSubtitle" id="XMA-TE-6GZ">
+                                <rect key="frame" x="0.0" y="86" width="320" height="53"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XMA-TE-6GZ" id="57Q-P5-nF6">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MOQ-Bf-cdV">
+                                            <rect key="frame" x="15" y="8" width="34" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KmL-bt-4M9">
+                                            <rect key="frame" x="15" y="30" width="43" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="rUm-oR-3dc" kind="push" identifier="pickupLineDetails" id="Ogb-Wx-Ord"/>

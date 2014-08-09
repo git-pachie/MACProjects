@@ -16,4 +16,7 @@
 - (NSDate *)mfDateFromDotNetJSONString:(NSString *)string;
 //-(void) SortObjects:(NSMutableArray *)ArraryToSort CountedOjbect:(NSCountedSet *) countedset;
 
+
+-(UIRefreshControl *) CommonRefreshControl: (SEL)MethodToCall;
+
 @end

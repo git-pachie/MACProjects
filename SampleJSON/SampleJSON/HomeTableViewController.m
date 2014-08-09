@@ -12,6 +12,7 @@
 #import "MessageDetailViewController.h"
 #import "CommonFunction.h"
 #import "AppDelegate.h"
+#import "CustomLoader.h"
 
 
 
@@ -37,9 +38,9 @@
     NSDate *CreatedDate;
     NSString *Answer1;
     
-    UILabel *label;
-    UIActivityIndicatorView* spinner;
-    UIView *xview;
+    
+    CustomLoader *customLoader;
+    
     
 }
 
@@ -99,12 +100,12 @@
     [mes show];
     
 }
+
 - (void)viewDidLoad
 {
 
-    
-    [self configureLoading];
-    
+    customLoader = [[CustomLoader alloc]init];
+    [customLoader InitializeLoader:self];
 
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     
@@ -112,6 +113,7 @@
     
     [refresh addTarget:self action:@selector(LoadTable)forControlEvents:UIControlEventValueChanged];
     
+   
     self.refreshControl = refresh;
     
     self.tableView.sectionHeaderHeight = 28;
@@ -128,14 +130,15 @@
 //        UINavigationController *navCon  = (UINavigationController*) [self.navigationController.viewControllers objectAtIndex:0];
 //        navCon.navigationItem.title = @"Loading...";
 
-        label.text = @"Loading...";
-        [self.view addSubview:xview];
-        [self.view addSubview:spinner];
-        [self.view addSubview:label];
-        [spinner startAnimating];
+        customLoader.label.text = @"Loading...";
+        [self.view addSubview:customLoader.xview];
+        [self.view addSubview:customLoader.spinner];
+        [self.view addSubview:customLoader.label];
+        [customLoader.spinner startAnimating];
         
 
         [self LoadTable];
+        
     });
     
 
@@ -144,32 +147,7 @@
     
 }
 
--(void)configureLoading{
-    
-    CGRect loadingSize = CGRectMake((self.view.bounds.size.width-120)/2, (self.view.bounds.size.height-170) / 2, 120, 100);
-    CGRect loadingSizeInd = CGRectMake((self.view.bounds.size.width-120)/2, (self.view.bounds.size.height-160) / 2-24, 120, 100);
-    CGRect loadingSizeLabel = CGRectMake((self.view.bounds.size.width - 65)/2-4, (self.view.bounds.size.height-120) / 2, 120, 100);
-    
-    xview = [[UIView alloc]initWithFrame:loadingSize];
-    [xview setBackgroundColor:[UIColor grayColor]];
-    
-    xview.layer.cornerRadius = 8;
-    xview.layer.masksToBounds = YES;
-    xview.alpha = 0.9;
-    xview.tag = 1;
-    
-    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    spinner.frame = loadingSizeInd;
-    label = [[UILabel alloc] initWithFrame:loadingSizeLabel];
-    label.textColor = [UIColor whiteColor];
-    label.font = [UIFont boldSystemFontOfSize:18];
-    label.alpha = 0.8;
-    label.tag = 1;
-    
-    spinner.tag = 1;
-    
-    
-}
+
 
 - (void)stopRefresh
 
@@ -592,7 +570,7 @@
     self.navigationItem.title = @"Home";
     [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
     
-    [spinner stopAnimating];
+    [customLoader.spinner stopAnimating];
     
     for (UIView *subview in [self.view subviews]) {
         // Only remove the subviews with tag not equal to 1

@@ -10,6 +10,7 @@
 #import "MyTableViewCell.h"
 #import "CommonFunction.h"
 #import "AppDelegate.h"
+#import "CustomLoader.h"
 
 
 @interface MyPickupLinesTableViewController ()
@@ -18,7 +19,11 @@
     NSMutableArray *mArray;
     CommonFunction *com;
     AppDelegate *del;
+    
+    CustomLoader *loader;
+    dispatch_queue_t myQue;
 }
+
 
 @end
 
@@ -37,6 +42,10 @@
 {
     [super viewDidLoad];
     
+    loader = [[CustomLoader alloc]init];
+    [loader InitializeLoader:self];
+
+    
     del = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     mArray = [[NSMutableArray alloc]init];
@@ -51,8 +60,48 @@
     navCon.navigationItem.title = self.receipientName;
     
     
-    [self LoadMessage];
+   
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    
+    [refresh addTarget:self action:@selector(LoadMessage)forControlEvents:UIControlEventValueChanged];
+    
+    
+    self.refreshControl = refresh;
+
+    
+    if (!myQue) {
+        myQue = dispatch_queue_create("detail.pickuplines", NULL);
+    }
+    
+    dispatch_async(myQue, ^{
+        
+        
+        
+        loader.label.text = @"Loading...";
+        [self.view addSubview:loader.xview];
+        [self.view addSubview:loader.spinner];
+        [self.view addSubview:loader.label];
+        [loader.spinner startAnimating];
+        
+       
+        [self LoadMessage];
+        
+    });
+    
+    
+    
+
 }
+- (void)stopRefresh
+{
+    
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -82,9 +131,6 @@
     NSDictionary *dic = [mArray objectAtIndex:indexPath.row];
     
     
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//    [formatter setDateFormat:@"MMM dd, yyyy 'at' hh:mm a"];
-    
     NSDate *date =  [com mfDateFromDotNetJSONString:[dic objectForKey:@"DateCreated"]];
     
     
@@ -100,7 +146,7 @@
     cell.lablePickupLineHeader.text = [dic objectForKey:@"PickupLineContent"];
     cell.labelPickupLineAnswer.text = [dic objectForKey:@"PickupLineAnswer"];
     
-    cell.labelCreatedby.text =[NSString stringWithFormat:@"Created By %@",[dic objectForKey:@"SenderPhoneNumber"]];
+    cell.labelCreatedby.text =[NSString stringWithFormat:@"Created By: %@",[dic objectForKey:@"SenderPhoneNumber"]];
     
     if ([del.PhoneNumber isEqualToString:[dic objectForKey:@"ToPhoneNumber"]]) {
         cell.labelSendReceived.text = @"RECEIVED";
@@ -111,6 +157,10 @@
         cell.labelSendReceived.text = @"SENT";
         UIColor *myColor=[[UIColor alloc]initWithRed:33/255.0 green:99/255.0 blue:66/255.0 alpha:1];
         [cell.labelSendReceived setBackgroundColor:myColor];
+        
+        
+        cell.labelCreatedby.text = @"Created By: Me";
+
         
     }
     
@@ -130,60 +180,75 @@
 
 -(void)LoadMessage
 {
-    CommonFunction *common = [[CommonFunction alloc]init];
-    NSString *x =  [common GetJsonConnection:[NSString stringWithFormat:@"GetMyMessageByNumber/%1@/%2@",self.PhoneNumber,del.PhoneNumber]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        mArray = [[NSMutableArray alloc]init];
+        
+        CommonFunction *common = [[CommonFunction alloc]init];
+        NSString *x =  [common GetJsonConnection:[NSString stringWithFormat:@"GetMyMessageByNumber/%1@/%2@",self.PhoneNumber,del.PhoneNumber]];
+        
+        NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
+        
+        if ([common CheckNSD:jsonSource] == false) {
+            
+            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
+                                                        message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
+            
+            self.navigationItem.title = @"Network Error";
+            
+            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+            
+            [loader HideLoading:self :dispatch_get_main_queue()];
+            
+            [mes show];
+            
+            return;
+        }
+        
+        
+        
+        id jsonObjects = [NSJSONSerialization JSONObjectWithData:
+                          jsonSource options:NSJSONReadingMutableContainers error:nil];
+        
+        //countedSet = [NSCountedSet set];
+        
+        for (NSDictionary *dataDict in jsonObjects) {
+            NSString *messageID = [dataDict objectForKey:@"MessageID"];
+            NSString *senderPhoneNumber = [dataDict objectForKey:@"SenderPhoneNumber"];
+            NSString *toPhoneNumber = [dataDict objectForKey:@"ToPhoneNumber"];
+            NSString *pickupLineGUID = [dataDict objectForKey:@"PickupLineGUID"];
+            NSString *pickupLineContent = [dataDict objectForKey:@"PickupLineContent"];
+            NSString *pickupLineAnswer = [dataDict objectForKey:@"PickupLineAnswer"];
+            NSString *isRead = [dataDict objectForKey:@"IsRead"];
+            NSString *dateCreated = [dataDict objectForKey:@"DateCreated"];
+            
+            NSDictionary *dictionary = [[NSDictionary alloc]initWithObjectsAndKeys:             messageID,@"MessageID"
+                                        ,senderPhoneNumber,@"SenderPhoneNumber"
+                                        ,toPhoneNumber,@"ToPhoneNumber"
+                                        ,pickupLineGUID,@"PickupLineGUID"
+                                        ,pickupLineContent,@"PickupLineContent"
+                                        ,pickupLineAnswer,@"PickupLineAnswer"
+                                        ,isRead,@"IsRead"
+                                        ,dateCreated,@"DateCreated"
+                                        ,nil];
+            
+            [mArray addObject:dictionary];
+            
+            //[countedSet addObject:dateCreatedSTR];
+            [loader HideLoading:self :dispatch_get_main_queue()];
+            
+            
+            
+        }
+        
+        
+    });
     
-    NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
+    [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
     
-    if ([common CheckNSD:jsonSource] == false) {
-        
-        UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
-                                                    message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
-        
-        self.navigationItem.title = @"Network Error";
-        
-        
-        
-        [mes show];
-        
-        return;
-    }
     
-   
-    
-    id jsonObjects = [NSJSONSerialization JSONObjectWithData:
-                      jsonSource options:NSJSONReadingMutableContainers error:nil];
-    
-    //countedSet = [NSCountedSet set];
-    
-    for (NSDictionary *dataDict in jsonObjects) {
-        NSString *messageID = [dataDict objectForKey:@"MessageID"];
-        NSString *senderPhoneNumber = [dataDict objectForKey:@"SenderPhoneNumber"];
-        NSString *toPhoneNumber = [dataDict objectForKey:@"ToPhoneNumber"];
-        NSString *pickupLineGUID = [dataDict objectForKey:@"PickupLineGUID"];
-        NSString *pickupLineContent = [dataDict objectForKey:@"PickupLineContent"];
-        NSString *pickupLineAnswer = [dataDict objectForKey:@"PickupLineAnswer"];
-        NSString *isRead = [dataDict objectForKey:@"IsRead"];
-        NSString *dateCreated = [dataDict objectForKey:@"DateCreated"];
-        
-        NSDictionary *dictionary = [[NSDictionary alloc]initWithObjectsAndKeys:             messageID,@"MessageID"
-                                    ,senderPhoneNumber,@"SenderPhoneNumber"
-                                    ,toPhoneNumber,@"ToPhoneNumber"
-                                    ,pickupLineGUID,@"PickupLineGUID"
-                                    ,pickupLineContent,@"PickupLineContent"
-                                    ,pickupLineAnswer,@"PickupLineAnswer"
-                                    ,isRead,@"IsRead"
-                                    ,dateCreated,@"DateCreated"
-                                    ,nil];
-        
-        [mArray addObject:dictionary];
-        
-        //[countedSet addObject:dateCreatedSTR];
-        
-        
-    }
 }
 
 /*

@@ -8,10 +8,17 @@
 
 #import "MyPickupLineHeaderTableViewController.h"
 #import "MyPickupLinesTableViewController.h"
+#import "CommonFunction.h"
+#import "AppDelegate.h"
+#import "CustomLoader.h"
 
 @interface MyPickupLineHeaderTableViewController ()
 {
     NSMutableArray *mArray;
+    CommonFunction *common;
+    AppDelegate *del;
+    CustomLoader *loader;
+    dispatch_queue_t myQue;
 }
 
 @end
@@ -31,25 +38,57 @@
 {
     [super viewDidLoad];
     
+    loader = [[CustomLoader alloc]init];
+    [loader InitializeLoader:self];
+    
+    common = [[CommonFunction alloc]init];
+    del = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
     
     mArray = [[NSMutableArray alloc]init];
     
-    NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"96641621",@"PhoneNumber", nil];
+    if (!myQue) {
+        myQue = dispatch_queue_create("get_distinc_names", NULL);
+    }
     
-    [mArray addObject:dic];
+   
+    dispatch_async(myQue, ^{
+        
+        
+        loader.label.text = @"Loading...";
+        [self.view addSubview:loader.xview];
+        [self.view addSubview:loader.spinner];
+        [self.view addSubview:loader.label];
+        [loader.spinner startAnimating];
+        
     
-    dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"12345678",@"PhoneNumber", nil];
+        [self LoadUserByMessage];
+        
+        
+        
+    });
     
-    [mArray addObject:dic];
     
-    dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"22222222",@"PhoneNumber", nil];
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     
-    [mArray addObject:dic];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
     
-    dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"85713568",@"PhoneNumber", nil];
+    [refresh addTarget:self action:@selector(LoadUserByMessage)forControlEvents:UIControlEventValueChanged];
     
-    [mArray addObject:dic];
+    
+    self.refreshControl = refresh;
+    
+    
+}
 
+
+
+- (void)stopRefresh
+{
+    
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -85,50 +124,23 @@
     
      NSDictionary *dic = [mArray objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = [dic objectForKey:@"PhoneNumber"];
+    
+    if ([[dic objectForKey:@"UserName"] isEqualToString:@""]) {
+        cell.textLabel.text = [dic objectForKey:@"PhoneNumber"];
+    }
+    else
+    {
+        cell.textLabel.text = [dic objectForKey:@"UserName"];
+    }
+    
+
+    cell.detailTextLabel.text = [dic objectForKey:@"Email"];
     
     
     return cell;
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark - Navigation
@@ -146,10 +158,81 @@
         NSDictionary *dic = [mArray objectAtIndex:path.row];
         
         dv.PhoneNumber = [dic objectForKey:@"PhoneNumber"];
-        dv.receipientName = [dic objectForKey:@"PhoneNumber"];
+        
+        if ([[dic objectForKey:@"UserName"]  isEqual: @""]) {
+            dv.receipientName = [dic objectForKey:@"PhoneNumber"];
+        }
+        else
+        {
+            dv.receipientName = [dic objectForKey:@"UserName"];
+        }
         
     }
 }
 
+#pragma mark - Query Data from JSON objects
 
+-(void)LoadUserByMessage
+{
+    
+    
+    dispatch_async(dispatch_get_main_queue(),^{
+        
+        mArray = [[NSMutableArray alloc]init];
+    
+    common = [[CommonFunction alloc]init];
+    NSString *x =  [common GetJsonConnection:[NSString stringWithFormat:@"GetDistincMessage/%1@",del.PhoneNumber]];
+    
+    NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
+    
+    if ([common CheckNSD:jsonSource] == false) {
+        
+        UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
+                                                    message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
+        
+        self.navigationItem.title = @"Network Error";
+        
+        [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+
+        
+        [mes show];
+        
+        return;
+    }
+    
+    
+    
+    id jsonObjects = [NSJSONSerialization JSONObjectWithData:
+                      jsonSource options:NSJSONReadingMutableContainers error:nil];
+    
+    //countedSet = [NSCountedSet set];
+    
+    for (NSDictionary *dataDict in jsonObjects) {
+        NSString *phoneNumber = [dataDict objectForKey:@"PhoneNumber"];
+        NSString *email = [dataDict objectForKey:@"Email"];
+        NSString *userName = [dataDict objectForKey:@"UserName"];
+        
+        NSDictionary *dictionary = [[NSDictionary alloc]initWithObjectsAndKeys:
+                                     phoneNumber,@"PhoneNumber"
+                                    ,email,@"Email"
+                                    ,userName,@"UserName"
+                                    ,nil];
+        
+        [mArray addObject:dictionary];
+        
+        //[countedSet addObject:dateCreatedSTR];
+        
+        [loader HideLoading:self :dispatch_get_main_queue()];
+        
+        
+        
+    }
+    });
+    
+    [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+    
+
+}
 @end
