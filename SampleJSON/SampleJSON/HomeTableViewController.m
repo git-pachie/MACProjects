@@ -420,7 +420,12 @@
             [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
             
             self.navigationItem.title = @"Network Error";
+            
+            dispatch_async(myQueue, ^{
+                [self HideLoading];
+            });
 
+            
             [mes show];
             
             [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
@@ -504,6 +509,11 @@
             [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
             
             self.navigationItem.title = @"Network Error";
+            
+            dispatch_async(myQueue, ^{
+                [self HideLoading];
+            });
+
             
             return;
         }
