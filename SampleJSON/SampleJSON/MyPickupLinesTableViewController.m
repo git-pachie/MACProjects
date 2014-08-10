@@ -42,25 +42,22 @@
 {
     [super viewDidLoad];
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"View" bundle:nil] forCellReuseIdentifier:@"Cell"];
+    com = [[CommonFunction alloc]init];
+    
     loader = [[CustomLoader alloc]init];
     [loader InitializeLoader:self];
-
     
     del = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
-    mArray = [[NSMutableArray alloc]init];
+    //mArray = [[NSMutableArray alloc]init];
     com = [[CommonFunction alloc]init];
    
-    [self.tableView registerNib:[UINib nibWithNibName:@"View" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
-    //self.PhoneNumber = @"96641621";
-    //self.receipientName = @"96641621";
         
     UINavigationController *navCon  = (UINavigationController*) [self.navigationController.viewControllers objectAtIndex:1];
     navCon.navigationItem.title = self.receipientName;
     
-    
-   
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
@@ -69,25 +66,31 @@
     
     
     self.refreshControl = refresh;
+    
 
     
+    
     if (!myQue) {
-        myQue = dispatch_queue_create("detail.pickuplines", NULL);
+        myQue = dispatch_queue_create("com.samplejson", NULL);
     }
     
     dispatch_async(myQue, ^{
-    });
-
-    
+        
         
         loader.label.text = @"Loading...";
         [self.view addSubview:loader.xview];
         [self.view addSubview:loader.spinner];
         [self.view addSubview:loader.label];
         [loader.spinner startAnimating];
+    
         
-       
         [self LoadMessage];
+
+    });
+
+    
+        
+    
         
        
     
@@ -96,9 +99,11 @@
 }
 - (void)stopRefresh
 {
-    
-    [self.tableView reloadData];
-    [self.refreshControl endRefreshing];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
+
+    });
     
 }
 
@@ -180,16 +185,17 @@
 
 -(void)LoadMessage
 {
-    //dispatch_async(dispatch_get_main_queue(), ^{});
+    dispatch_async(dispatch_get_main_queue(), ^{
+    
         
         mArray = [[NSMutableArray alloc]init];
         
-        CommonFunction *common = [[CommonFunction alloc]init];
-        NSString *x =  [common GetJsonConnection:[NSString stringWithFormat:@"GetMyMessageByNumber/%1@/%2@",self.PhoneNumber,del.PhoneNumber]];
+       // CommonFunction *common = [[CommonFunction alloc]init];
+        NSString *x =  [com GetJsonConnection:[NSString stringWithFormat:@"GetMyMessageByNumber/%1@/%2@",self.PhoneNumber,del.PhoneNumber]];
         
         NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
         
-        if ([common CheckNSD:jsonSource] == false) {
+        if ([com CheckNSD:jsonSource] == false) {
             
             UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
                                                         message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
@@ -200,7 +206,7 @@
             
             [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
             
-            [loader HideLoading:self :dispatch_get_main_queue()];
+            [loader HideLoading:self];
             
             [mes show];
             
@@ -237,19 +243,59 @@
             [mArray addObject:dictionary];
             
             //[countedSet addObject:dateCreatedSTR];
-            [loader HideLoading:self :dispatch_get_main_queue()];
+            
             
             
             
         }
         
+        //sleep(1);
         
-    
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //[loader HideLoading:self];
+            
+            [self HideLoading];
+
+        });
     
     [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+        
+        
+
+    
+    });
+    
+   
+    [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+    
+
+    //[self.tableView reloadData];
+    
     
     
 }
+
+-(void)HideLoading
+{
+    
+    dispatch_async(dispatch_get_main_queue(),^{
+        
+        sleep(2);
+        
+        //self.navigationItem.title = @"Home";
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
+        
+        [loader.spinner stopAnimating];
+        
+        for (UIView *subview in [self.view subviews]) {
+            // Only remove the subviews with tag not equal to 1
+            if (subview.tag == 1) {
+                [subview removeFromSuperview];
+            }
+        }
+    });
+}
+
 
 /*
 #pragma mark - Navigation

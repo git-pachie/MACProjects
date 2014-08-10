@@ -127,8 +127,8 @@
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
         
-//        UINavigationController *navCon  = (UINavigationController*) [self.navigationController.viewControllers objectAtIndex:0];
-//        navCon.navigationItem.title = @"Loading...";
+        //UINavigationController *navCon  = (UINavigationController*) [self.navigationController.viewControllers objectAtIndex:0];
+        //navCon.navigationItem.title = @"Loading...";
 
         customLoader.label.text = @"Loading...";
         [self.view addSubview:customLoader.xview];
@@ -152,10 +152,13 @@
 - (void)stopRefresh
 
 {
-    if (isConnectionOK==true) {
-        [self.tableView reloadData];
-    }
-    [self.refreshControl endRefreshing];
+   // dispatch_async(dispatch_get_main_queue(), ^{
+        if (isConnectionOK==true) {
+            [self.tableView reloadData];
+        }
+        [self.refreshControl endRefreshing];
+    //});
+    
     
 }
 - (void)didReceiveMemoryWarning
@@ -564,8 +567,9 @@
 -(void)HideLoading
 {
     
-    sleep(1);
     dispatch_async(dispatch_get_main_queue(),^{
+
+    sleep(1);
 
     self.navigationItem.title = @"Home";
     [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;

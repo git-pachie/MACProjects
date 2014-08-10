@@ -14,7 +14,7 @@
 @property (nonatomic, strong) UIActivityIndicatorView* spinner;
 @property (nonatomic, strong) UIView *xview;
 
--(void)HideLoading:(UITableViewController * ) table : (dispatch_queue_t) mainQue;
+-(void)HideLoading:(UITableViewController * ) table ;
 -(void)InitializeLoader: (UITableViewController * ) table;
 
 @end

@@ -44,31 +44,6 @@
     common = [[CommonFunction alloc]init];
     del = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
-    
-    mArray = [[NSMutableArray alloc]init];
-    
-    if (!myQue) {
-        myQue = dispatch_queue_create("get_distinc_names", NULL);
-    }
-    
-   
-//    dispatch_async(myQue, ^{
-//            });
-    
-        loader.label.text = @"Loading...";
-        [self.view addSubview:loader.xview];
-        [self.view addSubview:loader.spinner];
-        [self.view addSubview:loader.label];
-        [loader.spinner startAnimating];
-        
-    
-        [self LoadUserByMessage];
-        
-        
-        
-
-    
-    
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
@@ -77,6 +52,39 @@
     
     
     self.refreshControl = refresh;
+    
+
+    
+    
+    //mArray = [[NSMutableArray alloc]init];
+    
+    if (!myQue) {
+        myQue = dispatch_queue_create("com.samplejson", NULL);
+    }
+    
+//   
+//    
+    
+    
+    
+        dispatch_async(myQue, ^{
+            
+            
+            
+        loader.label.text = @"Loading...";
+        [self.view addSubview:loader.xview];
+        [self.view addSubview:loader.spinner];
+        [self.view addSubview:loader.label];
+        [loader.spinner startAnimating];
+        
+    
+        [self LoadUserByMessage];
+            
+
+        
+
+    });
+    
     
     
 }
@@ -174,14 +182,13 @@
 
 -(void)LoadUserByMessage
 {
+    mArray = [[NSMutableArray alloc]init];
+
     
-    
-//    dispatch_async(dispatch_get_main_queue(),^{
-//        });
-    
-        mArray = [[NSMutableArray alloc]init];
-    
-    common = [[CommonFunction alloc]init];
+    dispatch_async(dispatch_get_main_queue(),^{
+     
+        
+    //common = [[CommonFunction alloc]init];
     NSString *x =  [common GetJsonConnection:[NSString stringWithFormat:@"GetDistincMessage/%1@",del.PhoneNumber]];
     
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
@@ -223,17 +230,55 @@
         
         [mArray addObject:dictionary];
         
-        //[countedSet addObject:dateCreatedSTR];
         
-        [loader HideLoading:self :dispatch_get_main_queue()];
+        
         
         
         
     }
     
-    
-    [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+       // sleep(1);
+        
+       // [loader.spinner stopAnimating];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self HideLoading];
+
+        });
+        
+        [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+        
+        
+    });
+
     
 
+    
+    
+    
+    
+    
 }
+
+-(void)HideLoading
+{
+    
+    dispatch_async(dispatch_get_main_queue(),^{
+        
+        sleep(2);
+        
+        //self.navigationItem.title = @"Home";
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
+        
+        [loader.spinner stopAnimating];
+        
+        for (UIView *subview in [self.view subviews]) {
+            // Only remove the subviews with tag not equal to 1
+            if (subview.tag == 1) {
+                [subview removeFromSuperview];
+            }
+        }
+    });
+}
+
 @end
