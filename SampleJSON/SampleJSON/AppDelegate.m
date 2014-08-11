@@ -39,12 +39,17 @@
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0], NSFontAttributeName, nil]];
     
     
-    
 //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBarBackground"] forBarMetrics:UIBarMetricsDefault];
 //    
 //    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
     
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
+    
+    for (UIBarButtonItem *item in [UITabBar ) {
+        <#statements#>
+    }
+    //[barItem setImageInsets:UIEdgeInsetsMake(15, 7.5, 0, 7.5)]
+
     
     return YES;
 }

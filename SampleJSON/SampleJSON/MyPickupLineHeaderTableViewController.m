@@ -59,7 +59,7 @@
     //mArray = [[NSMutableArray alloc]init];
     
     if (!myQue) {
-        myQue = dispatch_queue_create("com.samplejson", NULL);
+        myQue = dispatch_queue_create("com.samplejson11", NULL);
     }
     
 //   
