@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="83M-Lj-RoP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="83M-Lj-RoP">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -337,10 +337,7 @@
         <scene sceneID="8Ol-0n-z8V">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="94b-sH-92x" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="cottage-32.png" id="kTE-J5-0Oe">
-                        <inset key="imageInsets" minX="2" minY="5" maxX="2" maxY="1"/>
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Home" image="cottage-32.png" id="kTE-J5-0Oe"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HrB-6V-iv0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -428,9 +425,7 @@
                             <outlet property="delegate" destination="60F-jP-Q8r" id="aIN-0Y-sme"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Other" id="szR-7y-1ma">
-                        <inset key="imageInsets" minX="2" minY="5" maxX="2" maxY="1"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Other" id="szR-7y-1ma"/>
                     <connections>
                         <outlet property="profilepic" destination="YQa-yw-bnZ" id="MAB-cQ-uRA"/>
                     </connections>
@@ -443,9 +438,7 @@
         <scene sceneID="RfA-Hf-mtF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nCb-g0-fB8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="automatic-32.png" id="w4r-hF-eT1">
-                        <inset key="imageInsets" minX="2" minY="5" maxX="2" maxY="1"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Settings" image="automatic-32.png" id="w4r-hF-eT1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RCW-zL-3Kn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -464,9 +457,7 @@
         <scene sceneID="2p1-GX-ISs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zfP-2N-6ye" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Pickup Lines" image="user_male3-32.png" id="Gjr-j4-CS1">
-                        <inset key="imageInsets" minX="2" minY="5" maxX="2" maxY="1"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Pickup Lines" image="user_male3-32.png" id="Gjr-j4-CS1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ven-4o-lMe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
