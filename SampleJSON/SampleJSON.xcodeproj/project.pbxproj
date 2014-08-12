@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		0C6362CD199484F30023A387 /* SendPickupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6362CC199484F30023A387 /* SendPickupViewController.m */; };
 		0C6FE133197540E7003B0EF6 /* CustomStaticTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6FE132197540E7003B0EF6 /* CustomStaticTableViewController.m */; };
+		0C7C79B8199A7098001E6D29 /* EntityPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7C79B7199A7098001E6D29 /* EntityPerson.m */; };
+		0C7C79BA199A7235001E6D29 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7C79B9199A7235001E6D29 /* AddressBookUI.framework */; };
+		0C7C79BC199A7265001E6D29 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7C79BB199A7265001E6D29 /* AddressBook.framework */; };
+		0C7C79C1199A73C3001E6D29 /* PhoneBookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7C79BE199A73C3001E6D29 /* PhoneBookTableViewController.m */; };
+		0C7C79C2199A73C3001E6D29 /* PhoneContactClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7C79C0199A73C3001E6D29 /* PhoneContactClass.m */; };
 		0C8327341994CEC800C2CEF0 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8327331994CEC800C2CEF0 /* MyTableViewCell.m */; };
 		0C8327361994CEDB00C2CEF0 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C8327351994CEDB00C2CEF0 /* View.xib */; };
 		0C8327391994CF5F00C2CEF0 /* MyPickupLinesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8327381994CF5F00C2CEF0 /* MyPickupLinesTableViewController.m */; };
@@ -56,6 +61,14 @@
 		0C6362CC199484F30023A387 /* SendPickupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendPickupViewController.m; sourceTree = "<group>"; };
 		0C6FE131197540E7003B0EF6 /* CustomStaticTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStaticTableViewController.h; sourceTree = "<group>"; };
 		0C6FE132197540E7003B0EF6 /* CustomStaticTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStaticTableViewController.m; sourceTree = "<group>"; };
+		0C7C79B6199A7098001E6D29 /* EntityPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityPerson.h; sourceTree = "<group>"; };
+		0C7C79B7199A7098001E6D29 /* EntityPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityPerson.m; sourceTree = "<group>"; };
+		0C7C79B9199A7235001E6D29 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		0C7C79BB199A7265001E6D29 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		0C7C79BD199A73C3001E6D29 /* PhoneBookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhoneBookTableViewController.h; path = ../../TestPhoneBook/PhoneBookTableViewController.h; sourceTree = "<group>"; };
+		0C7C79BE199A73C3001E6D29 /* PhoneBookTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhoneBookTableViewController.m; path = ../../TestPhoneBook/PhoneBookTableViewController.m; sourceTree = "<group>"; };
+		0C7C79BF199A73C3001E6D29 /* PhoneContactClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhoneContactClass.h; path = ../../TestPhoneBook/PhoneContactClass.h; sourceTree = "<group>"; };
+		0C7C79C0199A73C3001E6D29 /* PhoneContactClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhoneContactClass.m; path = ../../TestPhoneBook/PhoneContactClass.m; sourceTree = "<group>"; };
 		0C8327321994CEC800C2CEF0 /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
 		0C8327331994CEC800C2CEF0 /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
 		0C8327351994CEDB00C2CEF0 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
@@ -106,6 +119,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C7C79BC199A7265001E6D29 /* AddressBook.framework in Frameworks */,
+				0C7C79BA199A7235001E6D29 /* AddressBookUI.framework in Frameworks */,
 				0D6FE47119686E1A002E3880 /* CoreGraphics.framework in Frameworks */,
 				0D6FE47519686E1A002E3880 /* CoreData.framework in Frameworks */,
 				0D6FE47319686E1A002E3880 /* UIKit.framework in Frameworks */,
@@ -175,6 +190,8 @@
 		0D6FE46D19686E1A002E3880 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C7C79BB199A7265001E6D29 /* AddressBook.framework */,
+				0C7C79B9199A7235001E6D29 /* AddressBookUI.framework */,
 				0D6FE46E19686E1A002E3880 /* Foundation.framework */,
 				0D6FE47019686E1A002E3880 /* CoreGraphics.framework */,
 				0D6FE47219686E1A002E3880 /* UIKit.framework */,
@@ -237,6 +254,12 @@
 		0DA05E8F19756571001D1A85 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				0C7C79BD199A73C3001E6D29 /* PhoneBookTableViewController.h */,
+				0C7C79BE199A73C3001E6D29 /* PhoneBookTableViewController.m */,
+				0C7C79BF199A73C3001E6D29 /* PhoneContactClass.h */,
+				0C7C79C0199A73C3001E6D29 /* PhoneContactClass.m */,
+				0C7C79B6199A7098001E6D29 /* EntityPerson.h */,
+				0C7C79B7199A7098001E6D29 /* EntityPerson.m */,
 				0CD8EF8E19969D8E00E88A04 /* Loader */,
 				0CA596751973E1F80032D144 /* CommonFunction.h */,
 				0CA596761973E1F80032D144 /* CommonFunction.m */,
@@ -392,8 +415,11 @@
 				0D6FE48119686E1A002E3880 /* AppDelegate.m in Sources */,
 				0D6FE47D19686E1A002E3880 /* main.m in Sources */,
 				0C6362CD199484F30023A387 /* SendPickupViewController.m in Sources */,
+				0C7C79B8199A7098001E6D29 /* EntityPerson.m in Sources */,
+				0C7C79C2199A73C3001E6D29 /* PhoneContactClass.m in Sources */,
 				0C6FE133197540E7003B0EF6 /* CustomStaticTableViewController.m in Sources */,
 				0CD8EF8D199690EE00E88A04 /* CustomLoader.m in Sources */,
+				0C7C79C1199A73C3001E6D29 /* PhoneBookTableViewController.m in Sources */,
 				0CA596771973E1F80032D144 /* CommonFunction.m in Sources */,
 				0D6FE4A719686E89002E3880 /* TestViewController.m in Sources */,
 				0DBE6FF41971A13B0024380E /* MessageDetailViewController.m in Sources */,

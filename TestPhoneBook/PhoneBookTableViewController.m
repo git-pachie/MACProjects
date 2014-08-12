@@ -136,7 +136,29 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.selectedPerson = [mArary objectAtIndex:indexPath.row];
-    [self.Xdelexgate GetSelectedPerson:self.selectedPerson];
+    
+    EntityPerson *p = self.selectedPerson;
+    
+    
+    
+    NSString *number = [p.Number stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    
+    number = [number stringByReplacingOccurrencesOfString:@")" withString:@""];
+    
+    number = [number stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    
+    number = [number stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    
+    number = [number substringFromIndex:[number length]-8];
+
+    
+    
+    
+    p.Number = number;
+    
+    
+    [self.Xdelexgate GetSelectedPerson:p];
     
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -200,9 +222,4 @@
 }
 */
 
-- (IBAction)closena:(UIBarButtonItem *)sender {
-    //[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    //[navigationController popViewControllerAnimated:YES];
-    [self.navigationController popViewControllerAnimated:YES];
-}
 @end

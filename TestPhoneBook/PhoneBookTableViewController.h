@@ -21,7 +21,7 @@
 
 @property (nonatomic, assign) id<ModalViewControllerDelegate> Xdelexgate;
 @property (nonatomic, strong) EntityPerson *selectedPerson;
-- (IBAction)closena:(UIBarButtonItem *)sender;
+
 
 
 

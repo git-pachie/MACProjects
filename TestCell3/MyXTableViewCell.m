@@ -1,14 +1,14 @@
 //
-//  MyTableViewCell.m
-//  CustomCell2
+//  MyXTableViewCell.m
+//  TestCell3
 //
-//  Created by pachie on 8/8/14.
+//  Created by pachie on 12/8/14.
 //  Copyright (c) 2014 Private. All rights reserved.
 //
 
-#import "MyTableViewCell.h"
+#import "MyXTableViewCell.h"
 
-@implementation MyTableViewCell
+@implementation MyXTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

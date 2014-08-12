@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>9F451245-A63C-4B4D-8C61-ED97317475FD</string>
+	<string>AB5637BD-BF34-4DB1-85E7-AD8F0A975956</string>
 	<key>IDESourceControlProjectName</key>
-	<string>SampleJSON</string>
+	<string>TestCell3</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>5E350125-FB34-4BE1-9404-15264F692220</key>
 		<string>https://github.com/git-pachie/MACProjects.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SampleJSON/SampleJSON.xcodeproj/project.xcworkspace</string>
+	<string>TestCell3/TestCell3.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>5E350125-FB34-4BE1-9404-15264F692220</key>
