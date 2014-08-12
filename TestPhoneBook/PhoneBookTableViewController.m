@@ -86,6 +86,12 @@
         
         mArary = [PhoneContactClass GetPhoneContact];
         [self.tableView reloadData];
+        
+        
+        for (EntityPerson *p in mArary) {
+            NSLog(@"Name :%@",p.Name);
+            NSLog(@"Number :%@",p.Number);
+        }
     });
     
     //[self.tableView reloadData];
@@ -148,6 +154,8 @@
     number = [number stringByReplacingOccurrencesOfString:@"-" withString:@""];
     
     number = [number stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    number = [number stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     
     number = [number substringFromIndex:[number length]-8];

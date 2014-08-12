@@ -48,7 +48,7 @@
             NSString *FullName = fullName;
             NSString *pEmail;
             NSString *pwEmail;
-            person.Name = fullName;
+            person.Name = [fullName stringByReplacingOccurrencesOfString:@"(null)" withString:@""  ];
             
             //email
             //5
@@ -90,6 +90,10 @@
 //            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:FullName,@"Name"
 //                                 ,pMobile,@"Mobile"
 //                                 , nil];
+            
+            if ([person.Name isEqual:@""]) {
+                continue;
+            }
             
             [mArray  addObject:person];
             //7
