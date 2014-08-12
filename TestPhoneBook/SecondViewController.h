@@ -1,5 +1,5 @@
 //
-//  HomeViewController.h
+//  SecondViewController.h
 //  TestPhoneBook
 //
 //  Created by pachie on 11/8/14.
@@ -8,13 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "PhoneBookTableViewController.h"
-#import "EntityPerson.h"
 
-@interface HomeViewController : UIViewController <ModalViewControllerDelegate>
+@interface SecondViewController : UIViewController <ModalViewControllerDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *labelName;
+- (IBAction)btnSelectContact:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *labelSelectedContact;
-@property (nonatomic,strong) EntityPerson *selectedPerson;
-
-- (IBAction)showmodal:(id)sender;
-
 
 @end

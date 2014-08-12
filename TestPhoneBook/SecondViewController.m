@@ -1,54 +1,32 @@
 //
-//  HomeViewController.m
+//  SecondViewController.m
 //  TestPhoneBook
 //
 //  Created by pachie on 11/8/14.
 //  Copyright (c) 2014 Private. All rights reserved.
 //
 
-#import "HomeViewController.h"
-#import "PhoneBookTableViewController.h"
+#import "SecondViewController.h"
 
-@interface HomeViewController ()
+@interface SecondViewController ()
 
 @end
 
-@implementation HomeViewController
-
--(void)GetSelectedPerson:(EntityPerson *)selectedPerson
-{
-    self.labelSelectedContact.text = selectedPerson.Name;
-    
-}
-
-
-//-(void)performSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-//{
-//    
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-//    
-//    PhoneBookTableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"selectContact"];
-//    [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-//    
-//    vc.Xdelexgate = self;
-//    
-//    [self presentViewController:vc animated:YES completion:nil];
-//
-//}
+@implementation SecondViewController
 
 //-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 //{
 //    if ([[segue identifier] isEqualToString:@"selectContact"]) {
-//    
+//        
 //        PhoneBookTableViewController *add = (PhoneBookTableViewController *) segue.destinationViewController;
 //        
 //        
 //        add.Xdelexgate = self ;// = self;
 //        
-//        
-//        
 //    }
 //}
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -71,7 +49,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 /*
 #pragma mark - Navigation
 
@@ -83,21 +60,26 @@
 }
 */
 
-- (IBAction)showmodal:(id)sender {
+-(void)GetSelectedPerson:(EntityPerson *)selectedPerson
+{
+    self.labelSelectedContact.text = selectedPerson.Name;
+    
+}
+
+- (IBAction)btnSelectContact:(id)sender {
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     
     PhoneBookTableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ModalContact"];
-   
+    
     vc.Xdelexgate = self;
     
     
-
+    
     //show push
     [self.navigationController pushViewController:vc animated:YES];
-   
+    
     //show modal
     //[self presentViewController:vc animated:YES completion:nil];
-   
 }
 @end

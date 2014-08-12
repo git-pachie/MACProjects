@@ -32,7 +32,40 @@
 {
     [super viewDidLoad];
     
-   
+    
+    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusDenied
+        || ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusRestricted) {
+        NSLog(@"Denied");
+        
+      
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No Permission" message:@"Unable to access your contacts." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [alert show];
+        
+    }
+    else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized)
+    {
+        NSLog(@"Granted");
+    }
+    else
+    {
+       
+    ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
+        if (!granted) {
+            NSLog(@"Denied");
+        }
+        else
+        {
+            NSLog(@"Just granted");
+        }
+    });
+    
+    }
+    
+//    [self.tableView setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
+//    self.tabBarController.navigationItem.title =@"Select Contact";
+//    self.tabBarController.navigationItem.title =@"fafda";
+    
     dispatch_queue_t myQ;
     
     if (!myQ) {
@@ -105,8 +138,17 @@
     self.selectedPerson = [mArary objectAtIndex:indexPath.row];
     [self.Xdelexgate GetSelectedPerson:self.selectedPerson];
     
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+
+    //[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    
+    
+    
+    
 }
+
+
 
 
 /*
@@ -158,4 +200,9 @@
 }
 */
 
+- (IBAction)closena:(UIBarButtonItem *)sender {
+    //[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    //[navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
