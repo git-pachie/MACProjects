@@ -115,7 +115,11 @@
                                                options:NSStringDrawingUsesLineFragmentOrigin
                                                context:nil];
     
-    cell.labelMessage.attributedText = attributedText ;
+    NSMutableAttributedString *att = [[NSMutableAttributedString alloc]initWithString:@"My Aarchie"];
+    
+    [att appendAttributedString:attributedText];
+    
+    cell.labelMessage.attributedText = att ;
     
     [cell.labelMessage setFrame:rect];
     
