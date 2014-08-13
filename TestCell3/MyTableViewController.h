@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyXTableViewCell.h"
 
 @interface MyTableViewController : UITableViewController
+
+@property (strong) MyXTableViewCell *cellPrototype;
 
 @end

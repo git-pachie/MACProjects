@@ -12,6 +12,7 @@
 @interface MyTableViewController ()
 {
     NSMutableArray *mArray;
+    
 }
 
 @end
@@ -35,7 +36,7 @@
     mArray = [[NSMutableArray alloc]init];
     
     NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:
-                         @"Hindi kaba napapagod Hindi kaba napapagod Hindi kaba kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Hindi kaba napapagod 123",@"Message",
+                         @"Hindi kaba napapagod Hindi kaba napapagod Hindi kaba kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Vestibulum ligula quam, gravida ut convallis semper, bibendum in turpis. Break on objc_exception_throw to catch this in the debugger.The methods in the UIConstraintBasedLayoutDebugging \n\ncategory on UIView listed in <UIKit/UIView.h> may also be helpful.2014-08-13 18:49:34.816 TestCell3[9856:60b] Unable to simultaneously satisfy constraints123",@"Message",
                          @"Jun 30, 2014 11:55 AM",@"SentDate",
                          @"Kasi ayaw ko syo",@"Answer",
                          @"Boy Basag",@"CreatedBy",
@@ -45,6 +46,15 @@
     
     dic = [[NSDictionary alloc]initWithObjectsAndKeys:
            @"Duling Kaba",@"Message",
+           @"Jun 30, 2014 11:55 AM",@"SentDate",
+           @"Kasi baho mo eh",@"Answer",
+           @"Boy Konyat",@"CreatedBy",
+           nil];
+    
+    [mArray addObject:dic];
+    
+    dic = [[NSDictionary alloc]initWithObjectsAndKeys:
+           @"Duling Kaba kasi ayaw ko syo eh, anu ba gusto mo mangyari?",@"Message",
            @"Jun 30, 2014 11:55 AM",@"SentDate",
            @"Kasi baho mo eh",@"Answer",
            @"Boy Konyat",@"CreatedBy",
@@ -75,70 +85,98 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MyXTableViewCell *cell = (MyXTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
- 
-    // Configure the cell...
     
+    
+    
+    //register cell identifier from custom cell NIB
+    static NSString *CellIdentifier = @"Cell";
+    MyXTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     NSDictionary *dic = [[NSDictionary alloc]init];
     dic = [mArray objectAtIndex:indexPath.row];
     
-    NSString *x = [dic objectForKey:@"Message"];
-
+    //NSString *x = [dic objectForKey:@"Message"];
+    
     cell.labelMessage.text = [dic objectForKey:@"Message"] ;
     [cell.labelMessage setNumberOfLines:0];
     [cell.labelMessage setLineBreakMode:NSLineBreakByWordWrapping];
-    [cell.labelMessage setBackgroundColor:[UIColor greenColor]];
-    
-    CGSize maxlabel = CGSizeMake(283, FLT_MAX);
-    
-    CGSize expected =[ x sizeWithFont:[UIFont systemFontOfSize:18 ] constrainedToSize:maxlabel lineBreakMode:NSLineBreakByWordWrapping];
-    
-    
-    
-    
-    CGSize size = [[dic objectForKey:@"Message"] sizeWithFont:[UIFont systemFontOfSize:18]
-                                            constrainedToSize:CGSizeMake(283,cell.labelMessage.frame.size.height)];
-    CGRect rec = CGRectMake(10, 10, size.width, size.height);
-    CGRect rec2 = CGRectMake(10, 10, size.width, size.height);
-    
-    [cell.labelMessage setFrame:rec];
-    [cell setFrame:rec2];
+    //[cell.labelMessage setBackgroundColor:[UIColor greenColor]];
 
+    CGFloat width = 280;
+    UIFont *font = [UIFont systemFontOfSize:13];
+    NSAttributedString *attributedText =
+    [[NSAttributedString alloc]
+     initWithString:[dic objectForKey:@"Message"]
+     attributes:@
+     {
+     NSFontAttributeName: font
+     }];
+    CGRect rect = [attributedText boundingRectWithSize:(CGSize){width, CGFLOAT_MAX}
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                               context:nil];
     
-    NSLog(@"Height= %f",cell.labelMessage.frame.size.height);
+    cell.labelMessage.attributedText = attributedText ;
+    
+    [cell.labelMessage setFrame:rect];
+    
+    [cell setFrame:rect];
     
     return cell;
+       
+    
+
+}
+
+- (NSString *)quotationTextForRow:(int)row {
+    
+    NSDictionary *dic = [[NSDictionary alloc]init];
+    
+    dic = [mArray objectAtIndex:row];
+    
+    return [dic objectForKey:@"Message"];
 }
 
 
+
+- (CGSize)sizeOfLabel:(UILabel *)label withText:(NSString *)text {
+   // return [text sizeWithFont:label.font constrainedToSize:label.frame.size lineBreakMode:label.lineBreakMode];
+
+    //NSString *text =  text;
+    CGFloat width = 280;
+    UIFont *font = [UIFont systemFontOfSize:13];
+    NSAttributedString *attributedText =
+    [[NSAttributedString alloc]
+     initWithString:text
+     attributes:@
+     {
+     NSFontAttributeName: font
+     }];
+    CGRect rect = [attributedText boundingRectWithSize:(CGSize){width, CGFLOAT_MAX}
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                               context:nil];
+    CGSize size = rect.size;
     
+    return size;
+}
+
+
+
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //set width depending on device orientation
+    self.cellPrototype.frame = CGRectMake(self.cellPrototype.frame.origin.x, self.cellPrototype.frame.origin.y, tableView.frame.size.width, self.cellPrototype.frame.size.height);
     
-//-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSDictionary *dic = [[NSDictionary alloc]init];
-//    dic = [mArray objectAtIndex:indexPath.row];
-//    
-//    
-//        UILabel *label = [[UILabel alloc]init];
-//        label.text = [dic objectForKey:@"Message"];
-//        [label setNumberOfLines:0];
-//        [label setLineBreakMode:NSLineBreakByWordWrapping];
-//    
-//    
-//    //NSString *text = [dic objectForKey:@"Message"];
-//    
-//    CGSize size = [[dic objectForKey:@"Message"] sizeWithFont:[UIFont systemFontOfSize:18]
-//                                            constrainedToSize:CGSizeMake(340,label.frame.size.height+20)];
-//
-////    
-////    
-//    NSLog(@"Height %f",size.height + 20);
-////    
-////    CGSize size = [label]
-//    
-//    return size.height;
-//}
+    CGFloat quotationLabelHeight = [self sizeOfLabel:self.cellPrototype.labelMessage withText:[self quotationTextForRow:indexPath.row]].height;
+//    CGFloat attributionLabelHeight = [self sizeOfLabel:self.cellPrototype.labelMessage withText:[self attributionTextForRow:indexPath.row]].height;
+    CGFloat padding = self.cellPrototype.labelMessage.frame.origin.y;
+    
+    CGFloat combinedHeight = padding + quotationLabelHeight + padding/2 + padding;
+    CGFloat minHeight = padding + self.cellPrototype.labelMessage.frame.size.height + padding;
+    
+    return quotationLabelHeight+50;//MAX(combinedHeight, minHeight);
+
+
+}
 
 /*
 // Override to support conditional editing of the table view.
