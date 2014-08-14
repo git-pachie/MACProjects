@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MyXTableViewCell.h"
 
-@interface MyTableViewController : UITableViewController
+@interface MyTableViewController : UITableViewController <NSXMLParserDelegate>
 
 @property (strong) MyXTableViewCell *cellPrototype;
 

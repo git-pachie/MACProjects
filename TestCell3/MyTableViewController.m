@@ -12,7 +12,12 @@
 @interface MyTableViewController ()
 {
     NSMutableArray *mArray;
-    
+    NSXMLParser *parser;
+    NSMutableDictionary *item;
+    NSMutableString *title;
+    NSMutableString *link;
+    NSMutableString *description;
+    NSString *element;
 }
 
 @end
@@ -28,6 +33,55 @@
     return self;
 }
 
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
+    
+    element = elementName;
+    
+    
+    if ([element isEqualToString:@"item"]) {
+        
+        item    = [[NSMutableDictionary alloc] init];
+        title   = [[NSMutableString alloc] init];
+        link    = [[NSMutableString alloc] init];
+        description = [[NSMutableString alloc]init];
+        
+    }
+    
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+    
+    if ([element isEqualToString:@"title"]) {
+        [title appendString:string];
+    } else if ([element isEqualToString:@"link"]) {
+        [link appendString:string];
+    } else if ([element isEqualToString:@"description"]) {
+        [description appendString:string];
+
+    }
+    
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
+    
+    if ([elementName isEqualToString:@"item"]) {
+        
+        [item setObject:title forKey:@"title"];
+        [item setObject:link forKey:@"link"];
+        [item setObject:description forKey:@"description"];
+        
+        [mArray addObject:[item copy]];
+        
+    }
+    
+}
+
+- (void)parserDidEndDocument:(NSXMLParser *)parser {
+    
+    [self.tableView reloadData];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -35,32 +89,42 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"View" bundle:nil] forCellReuseIdentifier:@"Cell"];
     mArray = [[NSMutableArray alloc]init];
     
-    NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:
-                         @"Hindi kaba napapagod Hindi kaba napapagod Hindi kaba kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Vestibulum ligula quam, gravida ut convallis semper, bibendum in turpis. Break on objc_exception_throw to catch this in the debugger.The methods in the UIConstraintBasedLayoutDebugging \n\ncategory on UIView listed in <UIKit/UIView.h> may also be helpful.2014-08-13 18:49:34.816 TestCell3[9856:60b] Unable to simultaneously satisfy constraints123",@"Message",
-                         @"Jun 30, 2014 11:55 AM",@"SentDate",
-                         @"Kasi ayaw ko syo",@"Answer",
-                         @"Boy Basag",@"CreatedBy",
-                         nil];
     
-    [mArray addObject:dic];
+    //feeds = [[NSMutableArray alloc] init];
+    NSURL *url = [NSURL URLWithString:@"http://images.apple.com/main/rss/hotnews/hotnews.rss"];
+    parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     
-    dic = [[NSDictionary alloc]initWithObjectsAndKeys:
-           @"Duling Kaba",@"Message",
-           @"Jun 30, 2014 11:55 AM",@"SentDate",
-           @"Kasi baho mo eh",@"Answer",
-           @"Boy Konyat",@"CreatedBy",
-           nil];
+    [parser setDelegate:self];
+    [parser setShouldResolveExternalEntities:NO];
+    [parser parse];
     
-    [mArray addObject:dic];
     
-    dic = [[NSDictionary alloc]initWithObjectsAndKeys:
-           @"Duling Kaba kasi ayaw ko syo eh, anu ba gusto mo mangyari?",@"Message",
-           @"Jun 30, 2014 11:55 AM",@"SentDate",
-           @"Kasi baho mo eh",@"Answer",
-           @"Boy Konyat",@"CreatedBy",
-           nil];
-    
-    [mArray addObject:dic];
+//    NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:
+//                         @"Hindi kaba napapagod Hindi kaba napapagod Hindi kaba kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Vestibulum ligula quam, gravida ut convallis semper, bibendum in turpis. Break on objc_exception_throw to catch this in the debugger.The methods in the UIConstraintBasedLayoutDebugging \n\ncategory on UIView listed in <UIKit/UIView.h> may also be helpful.2014-08-13 18:49:34.816 TestCell3[9856:60b] Unable to simultaneously satisfy constraints123",@"Message",
+//                         @"Jun 30, 2014 11:55 AM",@"SentDate",
+//                         @"Kasi ayaw ko syo",@"Answer",
+//                         @"Boy Basag",@"CreatedBy",
+//                         nil];
+//    
+//    [mArray addObject:dic];
+//    
+//    dic = [[NSDictionary alloc]initWithObjectsAndKeys:
+//           @"Duling Kaba Hindi kaba napapagod Hindi kaba napapagod Hindi kaba kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Vestibulum ligula quam, gravida ut convallis semper, bibendum in turpis. Break on objc_exception_throw to catch this in the debugger.The methods in the UIConstraintBasedLayoutDebugging \n\ncategory on UIView listed in <UIKit/UIView.h> may also be helpful.2014-08-13 18:49:34.816 TestCell3[9856:60b] Unable to simultaneously satisfy constraints123Hindi kaba napapagod Hindi kaba napapagod Hindi kaba kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Vestibulum ligula quam, gravida ut convallis semper, bibendum in turpis. Break on objc_exception_throw to catch this in the debugger.The methods in the UIConstraintBasedLayoutDebugging \n\ncategory on UIView listed in <UIKit/UIView.h> may also be helpful.2014-08-13 18:49:34.816 TestCell3[9856:60b] Unable to simultaneously satisfy constraints123Hindi kaba napapagod Hindi kaba napapagod Hindi kaba kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Vestibulum ligula quam, gravida ut convallis semper, bibendum in turpis. Break on objc_exception_throw to catch this in the debugger.The methods in the UIConstraintBasedLayoutDebugging \n\ncategory on UIView listed in <UIKit/UIView.h> may also be helpful.2014-08-13 18:49:34.816 TestCell3[9856:60b] Unable to simultaneously satisfy constraints123Hindi kaba napapagod Hindi kaba napapagod Hindi kaba kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Vestibulum ligula quam, gravida ut convallis semper, bibendum in turpis. Break on objc_exception_throw to catch this in the debugger.The methods in the UIConstraintBasedLayoutDebugging \n\ncategory on UIView listed in <UIKit/UIView.h> may also be helpful.2014-08-13 18:49:34.816 TestCell3[9856:60b] Unable to simultaneously satisfy constraints123Hindi kaba napapagod Hindi kaba napapagod Hindi kaba kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Hindi kaba napapagod Vestibulum ligula quam, gravida ut convallis semper, bibendum in turpis. Break on objc_exception_throw to catch this in the debugger.The methods in the UIConstraintBasedLayoutDebugging \n\ncategory on UIView listed in <UIKit/UIView.h> may also be helpful.2014-08-13 18:49:34.816 TestCell3[9856:60b] Unable to simultaneously satisfy constraints123",@"Message",
+//           @"Jun 30, 2014 11:55 AM",@"SentDate",
+//           @"Kasi baho mo eh",@"Answer",
+//           @"Boy Konyat",@"CreatedBy",
+//           nil];
+//    
+//    [mArray addObject:dic];
+//    
+//    dic = [[NSDictionary alloc]initWithObjectsAndKeys:
+//           @"Duling Kaba kasi ayaw ko syo eh, anu ba gusto mo mangyari?",@"Message",
+//           @"Jun 30, 2014 11:55 AM",@"SentDate",
+//           @"Kasi baho mo eh",@"Answer",
+//           @"Boy Konyat",@"CreatedBy",
+//           nil];
+//    
+//    [mArray addObject:dic];
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,16 +161,20 @@
     
     //NSString *x = [dic objectForKey:@"Message"];
     
-    cell.labelMessage.text = [dic objectForKey:@"Message"] ;
+    cell.labelMessage.text = [dic objectForKey:@"description"] ;
     [cell.labelMessage setNumberOfLines:0];
     [cell.labelMessage setLineBreakMode:NSLineBreakByWordWrapping];
     //[cell.labelMessage setBackgroundColor:[UIColor greenColor]];
 
     CGFloat width = 280;
-    UIFont *font = [UIFont systemFontOfSize:13];
-    NSAttributedString *attributedText =
-    [[NSAttributedString alloc]
-     initWithString:[dic objectForKey:@"Message"]
+    UIFont *font = [UIFont fontWithName:@"TrebuchetMS" size:12];
+    
+    NSMutableParagraphStyle *pStyle =  [[NSMutableParagraphStyle alloc]init];
+    [pStyle setLineSpacing:4];
+    
+    
+    NSMutableAttributedString
+    *attributedText =  [[NSMutableAttributedString alloc] initWithString:[dic objectForKey:@"description"]
      attributes:@
      {
      NSFontAttributeName: font
@@ -115,11 +183,26 @@
                                                options:NSStringDrawingUsesLineFragmentOrigin
                                                context:nil];
     
-    NSMutableAttributedString *att = [[NSMutableAttributedString alloc]initWithString:@"My Aarchie"];
+    [attributedText addAttribute:NSParagraphStyleAttributeName value:pStyle range:NSMakeRange(0, attributedText.length)];
     
-    [att appendAttributedString:attributedText];
     
-    cell.labelMessage.attributedText = att ;
+    
+    UIFont *myboldFont = [UIFont fontWithName:@"TrebuchetMS-Bold" size:12];
+    
+    NSMutableAttributedString
+    *attributedText2 =  [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%1@\n", [dic objectForKey:@"title"]]
+              attributes:@
+                        {
+                        NSFontAttributeName: myboldFont
+                        }];
+    //CGRect rect = [attributedText boundingRectWithSize:(CGSize){width, CGFLOAT_MAX}
+                                               //options:NSStringDrawingUsesLineFragmentOrigin
+                                               //context:nil];
+    
+    [attributedText2 appendAttributedString:attributedText];
+    
+    cell.labelMessage.attributedText = attributedText2 ;
+    
     
     [cell.labelMessage setFrame:rect];
     
@@ -137,24 +220,60 @@
     
     dic = [mArray objectAtIndex:row];
     
-    return [dic objectForKey:@"Message"];
+    return [dic objectForKey:@"description"];
 }
 
 
 
-- (CGSize)sizeOfLabel:(UILabel *)label withText:(NSString *)text {
-   // return [text sizeWithFont:label.font constrainedToSize:label.frame.size lineBreakMode:label.lineBreakMode];
+- (CGSize)sizeOfLabel:(UILabel *)label withText:(NSString *)text withText2:(NSString *)text2{
 
-    //NSString *text =  text;
+//    CGFloat width = 280;
+//    UIFont *font = [UIFont systemFontOfSize:12];
+//    NSAttributedString *attributedText =
+//    [[NSAttributedString alloc]
+//     initWithString:text
+//     attributes:@
+//     {
+//     NSFontAttributeName: font
+//     }];
+//    
+//    
+    
     CGFloat width = 280;
-    UIFont *font = [UIFont systemFontOfSize:13];
-    NSAttributedString *attributedText =
-    [[NSAttributedString alloc]
-     initWithString:text
-     attributes:@
-     {
-     NSFontAttributeName: font
-     }];
+    UIFont *font = [UIFont fontWithName:@"TrebuchetMS" size:12];
+    UIFont *myboldFont = [UIFont fontWithName:@"TrebuchetMS-Bold" size:12];
+
+    
+    NSMutableParagraphStyle *pStyle =  [[NSMutableParagraphStyle alloc]init];
+    [pStyle setLineSpacing:4];
+    
+    NSMutableAttributedString
+    *attributedText2 =  [[NSMutableAttributedString alloc] initWithString:text2
+                                                               attributes:@
+                         {
+                         NSFontAttributeName: myboldFont
+                         }];
+    
+    NSMutableAttributedString
+    *attributedText =  [[NSMutableAttributedString alloc] initWithString:text
+                                                              attributes:@
+                        {
+                        NSFontAttributeName: font
+                        }];
+//    CGRect rect = [attributedText boundingRectWithSize:(CGSize){width, CGFLOAT_MAX}
+//                                               options:NSStringDrawingUsesLineFragmentOrigin
+//                                               context:nil];
+    
+    [attributedText addAttribute:NSParagraphStyleAttributeName value:pStyle range:NSMakeRange(0, attributedText.length)];
+    
+    
+    
+    
+    [attributedText appendAttributedString:attributedText2];
+    
+    
+    
+    
     CGRect rect = [attributedText boundingRectWithSize:(CGSize){width, CGFLOAT_MAX}
                                                options:NSStringDrawingUsesLineFragmentOrigin
                                                context:nil];
@@ -170,14 +289,17 @@
     //set width depending on device orientation
     self.cellPrototype.frame = CGRectMake(self.cellPrototype.frame.origin.x, self.cellPrototype.frame.origin.y, tableView.frame.size.width, self.cellPrototype.frame.size.height);
     
-    CGFloat quotationLabelHeight = [self sizeOfLabel:self.cellPrototype.labelMessage withText:[self quotationTextForRow:indexPath.row]].height;
+    NSDictionary *dic = [mArray objectAtIndex:indexPath.row];
+    NSString *ti = [dic objectForKey:@"title"];
+    
+    CGFloat quotationLabelHeight = [self sizeOfLabel:self.cellPrototype.labelMessage withText:[self quotationTextForRow:indexPath.row] withText2:ti].height;
 //    CGFloat attributionLabelHeight = [self sizeOfLabel:self.cellPrototype.labelMessage withText:[self attributionTextForRow:indexPath.row]].height;
-    CGFloat padding = self.cellPrototype.labelMessage.frame.origin.y;
+    //CGFloat padding = self.cellPrototype.labelMessage.frame.origin.y;
     
-    CGFloat combinedHeight = padding + quotationLabelHeight + padding/2 + padding;
-    CGFloat minHeight = padding + self.cellPrototype.labelMessage.frame.size.height + padding;
+    //CGFloat combinedHeight = padding + quotationLabelHeight + padding/2 + padding;
+    //CGFloat minHeight = padding + self.cellPrototype.labelMessage.frame.size.height + padding;
     
-    return quotationLabelHeight+50;//MAX(combinedHeight, minHeight);
+    return quotationLabelHeight+90;//MAX(combinedHeight, minHeight);
 
 
 }
