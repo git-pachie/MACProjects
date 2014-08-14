@@ -28,7 +28,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtF-46-6iN">
-                        <rect key="frame" x="154" y="1" width="149" height="21"/>
+                        <rect key="frame" x="154" y="0.0" width="149" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <attributedString key="attributedText">
                             <fragment content="Aug 22, 2014 10:30 PM">
@@ -53,6 +53,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="labelDate" destination="VtF-46-6iN" id="R7G-Dy-iu3"/>
                 <outlet property="labelMessage" destination="F5J-8f-Xt2" id="vuB-Rw-iej"/>
             </connections>
         </tableViewCell>

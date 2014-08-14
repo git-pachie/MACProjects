@@ -8,6 +8,7 @@
 
 #import "MyTableViewController.h"
 #import "MyXTableViewCell.h"
+#import "PageDetailViewController.h"
 
 @interface MyTableViewController ()
 {
@@ -17,6 +18,7 @@
     NSMutableString *title;
     NSMutableString *link;
     NSMutableString *description;
+    NSMutableString *pubdate;
     NSString *element;
 }
 
@@ -44,6 +46,7 @@
         title   = [[NSMutableString alloc] init];
         link    = [[NSMutableString alloc] init];
         description = [[NSMutableString alloc]init];
+        pubdate = [[NSMutableString alloc]init];
         
     }
     
@@ -59,7 +62,12 @@
         [description appendString:string];
 
     }
+ else if ([element isEqualToString:@"pubDate"]) {
+    [pubdate appendString:string];
     
+}
+
+
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
@@ -69,6 +77,7 @@
         [item setObject:title forKey:@"title"];
         [item setObject:link forKey:@"link"];
         [item setObject:description forKey:@"description"];
+        [item setObject:pubdate forKey:@"pubDate"];
         
         [mArray addObject:[item copy]];
         
@@ -166,7 +175,7 @@
     [cell.labelMessage setLineBreakMode:NSLineBreakByWordWrapping];
     //[cell.labelMessage setBackgroundColor:[UIColor greenColor]];
 
-    CGFloat width = 280;
+    CGFloat width = 283;
     UIFont *font = [UIFont fontWithName:@"TrebuchetMS" size:12];
     
     NSMutableParagraphStyle *pStyle =  [[NSMutableParagraphStyle alloc]init];
@@ -206,6 +215,19 @@
     
     [cell.labelMessage setFrame:rect];
     
+    [cell.labelMessage sizeToFit];
+    
+    
+   // NSDateFormatter *format = [[NSDateFormatter alloc]init];
+    //[format setDateFormat:@"dd MMM yyyy hh:mm a"];
+    
+   // NSDate *date = [format dateFromString:[dic objectForKey:@"pubDate"]];
+    
+    
+    NSString *datestr =  [[dic objectForKey:@"pubDate"] stringByReplacingOccurrencesOfString:@" PDT" withString:@""];
+    
+    cell.labelDate.text = datestr;
+    
     [cell setFrame:rect];
     
     return cell;
@@ -239,7 +261,7 @@
 //    
 //    
     
-    CGFloat width = 280;
+    CGFloat width = 283;
     UIFont *font = [UIFont fontWithName:@"TrebuchetMS" size:12];
     UIFont *myboldFont = [UIFont fontWithName:@"TrebuchetMS-Bold" size:12];
 
@@ -272,7 +294,7 @@
     [attributedText appendAttributedString:attributedText2];
     
     
-    
+    [label sizeToFit];
     
     CGRect rect = [attributedText boundingRectWithSize:(CGSize){width, CGFLOAT_MAX}
                                                options:NSStringDrawingUsesLineFragmentOrigin
@@ -281,9 +303,29 @@
     
     return size;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+        [self performSegueWithIdentifier: @"showdetail" sender: self];
+   
+}
 
-
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqual:@"showdetail"]) {
+        NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
+        
+        NSDictionary *dic = [mArray objectAtIndex:indexpath.row];
+        NSString *str = [dic objectForKey:@"link"];
+        
+        PageDetailViewController *dv = segue.destinationViewController;
+        
+        dv.strURL = str;
+        
+//        [[segue destinationViewController] setURL:[NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    }
+    
+}
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //set width depending on device orientation
@@ -299,7 +341,7 @@
     //CGFloat combinedHeight = padding + quotationLabelHeight + padding/2 + padding;
     //CGFloat minHeight = padding + self.cellPrototype.labelMessage.frame.size.height + padding;
     
-    return quotationLabelHeight+90;//MAX(combinedHeight, minHeight);
+    return quotationLabelHeight+60;//MAX(combinedHeight, minHeight);
 
 
 }
