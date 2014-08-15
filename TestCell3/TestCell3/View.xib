@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="323" height="61"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="300" placeholderIntrinsicHeight="32" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="283" translatesAutoresizingMaskIntoConstraints="NO" id="F5J-8f-Xt2">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="300" placeholderIntrinsicHeight="32" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="283" translatesAutoresizingMaskIntoConstraints="NO" id="F5J-8f-Xt2">
                         <rect key="frame" x="20" y="20" width="283" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <attributedString key="attributedText">
@@ -28,7 +28,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtF-46-6iN">
-                        <rect key="frame" x="154" y="0.0" width="149" height="21"/>
+                        <rect key="frame" x="19" y="0.0" width="284" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <attributedString key="attributedText">
                             <fragment content="Aug 22, 2014 10:30 PM">
@@ -43,13 +43,12 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="VtF-46-6iN" secondAttribute="trailing" constant="20" id="FRA-NL-Kpt"/>
-                    <constraint firstItem="F5J-8f-Xt2" firstAttribute="top" secondItem="iOi-Cd-5xe" secondAttribute="top" constant="20" id="Foy-2a-Dfk"/>
-                    <constraint firstItem="F5J-8f-Xt2" firstAttribute="leading" secondItem="iOi-Cd-5xe" secondAttribute="leading" constant="20" id="I0T-8q-8hI"/>
-                    <constraint firstItem="F5J-8f-Xt2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iOi-Cd-5xe" secondAttribute="leading" constant="20" id="Ixf-TB-LGN"/>
-                    <constraint firstAttribute="trailing" secondItem="F5J-8f-Xt2" secondAttribute="trailing" constant="20" id="npr-D0-IEV"/>
-                    <constraint firstAttribute="bottom" secondItem="F5J-8f-Xt2" secondAttribute="bottom" constant="20" id="odA-xL-7cl"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="F5J-8f-Xt2" secondAttribute="trailing" constant="20" id="tGL-O3-QcP"/>
+                    <constraint firstAttribute="trailing" secondItem="VtF-46-6iN" secondAttribute="trailing" constant="20" id="4yq-YK-zO3"/>
+                    <constraint firstAttribute="bottom" secondItem="F5J-8f-Xt2" secondAttribute="bottom" constant="21" id="6SE-Ec-eNk"/>
+                    <constraint firstAttribute="trailing" secondItem="F5J-8f-Xt2" secondAttribute="trailing" constant="20" id="XMX-qQ-S2B"/>
+                    <constraint firstItem="F5J-8f-Xt2" firstAttribute="leading" secondItem="iOi-Cd-5xe" secondAttribute="leading" constant="20" id="Z7x-v4-Z4Q"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="F5J-8f-Xt2" secondAttribute="trailing" constant="20" id="oNj-xo-KKu"/>
+                    <constraint firstItem="F5J-8f-Xt2" firstAttribute="top" secondItem="iOi-Cd-5xe" secondAttribute="top" constant="20" id="sju-dh-m6M"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

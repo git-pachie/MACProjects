@@ -181,9 +181,12 @@
     [cell.labelMessage setNumberOfLines:0];
     [cell.labelMessage setLineBreakMode:NSLineBreakByWordWrapping];
     //[cell.labelMessage setBackgroundColor:[UIColor greenColor]];
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
+    CGFloat screenWidth = screenSize.width;
 
-    CGFloat width = 283;
-    UIFont *font = [UIFont fontWithName:@"TrebuchetMS" size:12];
+    CGFloat width = screenWidth;
+    UIFont *font = [UIFont fontWithName:@"TrebuchetMS" size:14];
     
     NSMutableParagraphStyle *pStyle =  [[NSMutableParagraphStyle alloc]init];
     [pStyle setLineSpacing:4];
@@ -203,7 +206,7 @@
     
     
     
-    UIFont *myboldFont = [UIFont fontWithName:@"TrebuchetMS-Bold" size:12];
+    UIFont *myboldFont = [UIFont fontWithName:@"TrebuchetMS-Bold" size:14];
     
     NSMutableAttributedString
     *attributedText2 =  [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%1@\n", [dic objectForKey:@"title"]]
@@ -236,6 +239,10 @@
     cell.labelDate.text = datestr;
     
     [cell setFrame:rect];
+    
+    //[cell.labelMessage setBackgroundColor:[UIColor redColor]];
+    //
+    //[cell setBackgroundColor:[UIColor greenColor]];
     
     return cell;
        
@@ -273,8 +280,8 @@
     //CGFloat screenHeight = screenSize.height;
     
     CGFloat width =    screenWidth;
-    UIFont *font = [UIFont fontWithName:@"TrebuchetMS" size:12];
-    UIFont *myboldFont = [UIFont fontWithName:@"TrebuchetMS-Bold" size:12];
+    UIFont *font = [UIFont fontWithName:@"TrebuchetMS" size:14];
+    UIFont *myboldFont = [UIFont fontWithName:@"TrebuchetMS-Bold" size:14];
 
     
     NSMutableParagraphStyle *pStyle =  [[NSMutableParagraphStyle alloc]init];
@@ -288,7 +295,7 @@
                          }];
     
     NSMutableAttributedString
-    *attributedText =  [[NSMutableAttributedString alloc] initWithString:text
+    *attributedText =  [[NSMutableAttributedString alloc] initWithString:[text stringByReplacingOccurrencesOfString:@"\n" withString:@""]
                                                               attributes:@
                         {
                         NSFontAttributeName: font
@@ -348,7 +355,7 @@
     NSDictionary *dic = [mArray objectAtIndex:indexPath.row];
     NSString *ti = [dic objectForKey:@"title"];
     
-    CGFloat quotationLabelHeight = [self sizeOfLabel:self.cellPrototype.labelMessage withText:[self quotationTextForRow:indexPath.row] withText2:ti].height;
+    CGFloat quotationLabelHeight = [self sizeOfLabel:self.cellPrototype.labelMessage withText:[self quotationTextForRow:indexPath.row] withText2:[ti stringByReplacingOccurrencesOfString:@"\n" withString:@""]].height;
 //    CGFloat attributionLabelHeight = [self sizeOfLabel:self.cellPrototype.labelMessage withText:[self attributionTextForRow:indexPath.row]].height;
     //CGFloat padding = self.cellPrototype.labelMessage.frame.origin.y;
     
@@ -359,10 +366,10 @@
     
     if (UIDeviceOrientationIsPortrait(self.interfaceOrientation)){
         //DO Portrait
-        return quotationLabelHeight + 60;
+        return quotationLabelHeight + 160;
     }else{
         //DO Landscape
-        return quotationLabelHeight - 40;
+        return quotationLabelHeight +60;
     }
     //;//MAX(combinedHeight, minHeight);
 
