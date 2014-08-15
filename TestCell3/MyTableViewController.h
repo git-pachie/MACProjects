@@ -13,4 +13,6 @@
 
 @property (strong) MyXTableViewCell *cellPrototype;
 
+//- (NSString *)urlEncode;
+
 @end

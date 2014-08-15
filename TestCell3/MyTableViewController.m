@@ -9,6 +9,9 @@
 #import "MyTableViewController.h"
 #import "MyXTableViewCell.h"
 #import "PageDetailViewController.h"
+//#import "NSString+URLEncode.h"
+
+
 
 @interface MyTableViewController ()
 {
@@ -25,6 +28,7 @@
 @end
 
 @implementation MyTableViewController
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -101,6 +105,9 @@
     
     //feeds = [[NSMutableArray alloc] init];
     NSURL *url = [NSURL URLWithString:@"http://images.apple.com/main/rss/hotnews/hotnews.rss"];
+    //NSURL *url = [NSURL URLWithString:@"http://feeds.bbci.co.uk/news/rss.xml"];
+    
+    
     parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     
     [parser setDelegate:self];
@@ -259,9 +266,13 @@
 //     NSFontAttributeName: font
 //     }];
 //    
-//    
+//
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
+    CGFloat screenWidth = screenSize.width;
+    //CGFloat screenHeight = screenSize.height;
     
-    CGFloat width = 283;
+    CGFloat width =    screenWidth;
     UIFont *font = [UIFont fontWithName:@"TrebuchetMS" size:12];
     UIFont *myboldFont = [UIFont fontWithName:@"TrebuchetMS-Bold" size:12];
 
@@ -303,6 +314,9 @@
     
     return size;
 }
+
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -341,7 +355,16 @@
     //CGFloat combinedHeight = padding + quotationLabelHeight + padding/2 + padding;
     //CGFloat minHeight = padding + self.cellPrototype.labelMessage.frame.size.height + padding;
     
-    return quotationLabelHeight+60;//MAX(combinedHeight, minHeight);
+    
+    
+    if (UIDeviceOrientationIsPortrait(self.interfaceOrientation)){
+        //DO Portrait
+        return quotationLabelHeight + 60;
+    }else{
+        //DO Landscape
+        return quotationLabelHeight - 40;
+    }
+    //;//MAX(combinedHeight, minHeight);
 
 
 }
