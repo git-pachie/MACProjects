@@ -13,6 +13,12 @@
 
 
 @interface MessageDetailViewController ()
+{
+    dispatch_queue_t myQueue;
+    NSString *theReply;
+}
+
+
 
 @end
 
@@ -96,61 +102,96 @@
 {
     //self.labelSelectedContact.text = selectedPerson.Name;
     
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    
-    if ([selectedPerson.Number isEqualToString:@""] || [selectedPerson.Number isEqualToString:@""])
-    {
-        UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Invalid Input"
-                                                    message:@"Phone number required" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        
-        [mes show];
-        return;
+    if (!myQueue) {
+        myQueue = dispatch_queue_create("com.samplejson", NULL);
     }
     
-    CommonFunction *common = [[CommonFunction alloc]init];
     
-    
-    NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"SendPickupLine/%1@/%2@/%3@",delegate.DeviceGUID,selectedPerson.Number,self.MessageGUID]];
-    
-    NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    
-    NSString *postLenght = [NSString stringWithFormat:@"%lu", (unsigned long)[data length]];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:post]];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:postLenght forHTTPHeaderField:@"Content-Length"];
-    [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:data];
-    
-    NSURLResponse *response;
-    NSData *POSTReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
-    NSString *theReply = [[NSString alloc] initWithBytes:[POSTReply bytes] length:[POSTReply length] encoding: NSASCIIStringEncoding];
-    NSLog(@"Reply: %@", theReply);
-    
-    
-    theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-    
-    
-    if ( [theReply isEqualToString:@"1"]) {
+    dispatch_async(myQueue, ^{
+        
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         
         
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        if ([selectedPerson.Number isEqualToString:@""] || [selectedPerson.Number isEqualToString:@""])
+        {
+            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Invalid Input"
+                                                        message:@"Phone number required" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            
+            [mes show];
+            return;
+        }
         
-    }
-    else{
+        CommonFunction *common = [[CommonFunction alloc]init];
         
         
-        UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Error"
-                                                    message:@"Error sending pickuplines" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"SendPickupLine/%1@/%2@/%3@",delegate.DeviceGUID,selectedPerson.Number,self.MessageGUID]];
         
-        [mes show];
-    }
+        NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+        
+        NSString *postLenght = [NSString stringWithFormat:@"%lu", (unsigned long)[data length]];
+        
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:post]];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:postLenght forHTTPHeaderField:@"Content-Length"];
+        [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPBody:data];
+        
+        NSURLResponse *response;
+        NSData *POSTReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+        theReply = [[NSString alloc] initWithBytes:[POSTReply bytes] length:[POSTReply length] encoding: NSASCIIStringEncoding];
+        NSLog(@"Reply: %@", theReply);
+        
+        
+        [self SendDelegate:selectedPerson];
+        
+    });
+    
+    
+    
+    
+}
+
+-(void)SendDelegate:(EntityPerson*)selectedPerson
+{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+ 
+        sleep(2);
+        
+        theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        
+        
+        if ( [theReply isEqualToString:@"1"]) {
+            
+            
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+        }
+        else{
+            
+            
+            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Error sending pickuplines" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            
+            [mes show];
+        }
+    });
+    
+    
     
 
-    [self.navigationController popViewControllerAnimated:YES ];
-    
+}
+
+
+-(void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:    (NSInteger)buttonIndex
+{
+    if(buttonIndex==0)
+    {
+        //Code that will run after you press ok button
+        [self.navigationController popViewControllerAnimated:YES ];
+    }
 }
 
 @end

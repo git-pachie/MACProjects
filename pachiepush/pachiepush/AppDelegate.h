@@ -1,8 +1,8 @@
 //
 //  AppDelegate.h
-//  SampleJSON
+//  pachiepush
 //
-//  Created by Archie Angeles on 6/7/14.
+//  Created by Archie Angeles on 16/8/14.
 //  Copyright (c) 2014 PachieOrg. All rights reserved.
 //
 
@@ -16,15 +16,7 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-@property (nonatomic, strong) NSString *isDeviceRegistered;
-@property (nonatomic, strong) NSString *DeviceGUID;
-@property (nonatomic,strong) NSString *EmailAddress;
-@property (nonatomic, strong) NSString *PhoneNumber;
-@property (nonatomic, strong) NSString *DevinceToken;
-
-
-
 - (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory; 
+- (NSURL *)applicationDocumentsDirectory;
 
 @end

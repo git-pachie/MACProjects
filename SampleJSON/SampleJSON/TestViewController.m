@@ -110,9 +110,10 @@
     }
     
     CommonFunction *common = [[CommonFunction alloc]init];
+    AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     
-    NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"RegisterUser/%1@/archie/%2@/%3@",txtEmailAddress.text,txtPhoneNumber.text,DeviceGUID]];
+    NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"RegisterUser/%1@/archie/%2@/%3@/%4@",txtEmailAddress.text,txtPhoneNumber.text,DeviceGUID, del.DevinceToken]];
     
     NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     
