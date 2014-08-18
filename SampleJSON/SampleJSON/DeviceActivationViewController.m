@@ -66,8 +66,7 @@
     
     [com GetJsonConnection:[NSString stringWithFormat:@"ActivateDevice/%1@/%2@",_deviceGUID,txtActivationCode.text]];
     
-    
-    //NSString *post = [NSString stringWithFormat:@"http://www.riverwayauto.com:1980/myjson/Service1.svc/ActivateDevice/%1@/%2@",_deviceGUID,txtActivationCode.text];
+
     
     NSString *post =  [com GetJsonConnection:[NSString stringWithFormat:@"ActivateDevice/%1@/%2@",_deviceGUID,txtActivationCode.text]];
     

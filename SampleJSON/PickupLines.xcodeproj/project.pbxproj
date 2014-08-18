@@ -80,22 +80,22 @@
 		0CA596761973E1F80032D144 /* CommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunction.m; sourceTree = "<group>"; };
 		0CD8EF8B199690EE00E88A04 /* CustomLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLoader.h; sourceTree = "<group>"; };
 		0CD8EF8C199690EE00E88A04 /* CustomLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLoader.m; sourceTree = "<group>"; };
-		0D6FE46B19686E1A002E3880 /* SampleJSON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleJSON.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D6FE46B19686E1A002E3880 /* PickupLines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickupLines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D6FE46E19686E1A002E3880 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0D6FE47019686E1A002E3880 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		0D6FE47219686E1A002E3880 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0D6FE47419686E1A002E3880 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		0D6FE47819686E1A002E3880 /* SampleJSON-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SampleJSON-Info.plist"; sourceTree = "<group>"; };
+		0D6FE47819686E1A002E3880 /* PickupLines-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PickupLines-Info.plist"; sourceTree = "<group>"; };
 		0D6FE47A19686E1A002E3880 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0D6FE47C19686E1A002E3880 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0D6FE47E19686E1A002E3880 /* SampleJSON-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SampleJSON-Prefix.pch"; sourceTree = "<group>"; };
+		0D6FE47E19686E1A002E3880 /* PickupLines-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PickupLines-Prefix.pch"; sourceTree = "<group>"; };
 		0D6FE47F19686E1A002E3880 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0D6FE48019686E1A002E3880 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0D6FE48319686E1A002E3880 /* SampleJSON.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SampleJSON.xcdatamodel; sourceTree = "<group>"; };
 		0D6FE48519686E1A002E3880 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		0D6FE48B19686E1A002E3880 /* SampleJSONTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleJSONTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D6FE48B19686E1A002E3880 /* PickupLinesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PickupLinesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D6FE48C19686E1A002E3880 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		0D6FE49519686E1A002E3880 /* SampleJSONTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SampleJSONTests-Info.plist"; sourceTree = "<group>"; };
+		0D6FE49519686E1A002E3880 /* PickupLinesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PickupLinesTests-Info.plist"; sourceTree = "<group>"; };
 		0D6FE49719686E1A002E3880 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0D6FE49919686E1A002E3880 /* SampleJSONTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleJSONTests.m; sourceTree = "<group>"; };
 		0D6FE4A319686E34002E3880 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
@@ -161,13 +161,6 @@
 			name = Loader;
 			sourceTree = "<group>";
 		};
-		0D426A311971BE0800809E2C /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = iPad;
-			sourceTree = "<group>";
-		};
 		0D6FE46219686E1A002E3880 = {
 			isa = PBXGroup;
 			children = (
@@ -181,8 +174,8 @@
 		0D6FE46C19686E1A002E3880 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0D6FE46B19686E1A002E3880 /* SampleJSON.app */,
-				0D6FE48B19686E1A002E3880 /* SampleJSONTests.xctest */,
+				0D6FE46B19686E1A002E3880 /* PickupLines.app */,
+				0D6FE48B19686E1A002E3880 /* PickupLinesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,7 +200,6 @@
 				0DA0ABF91980292B0061E723 /* user_male3-32.png */,
 				0DA0ABF7198028A60061E723 /* automatic-32.png */,
 				0DA0ABF5198027F10061E723 /* cottage-32.png */,
-				0D426A311971BE0800809E2C /* iPad */,
 				0DA05E95197567C5001D1A85 /* ApplicationDelegate */,
 				0D6FE48519686E1A002E3880 /* Images.xcassets */,
 				0D6FE48219686E1A002E3880 /* SampleJSON.xcdatamodeld */,
@@ -225,10 +217,10 @@
 				0DA05E901975658F001D1A85 /* Storyboard */,
 				0DA05E91197565BA001D1A85 /* Home */,
 				0DA05E8F19756571001D1A85 /* Common */,
-				0D6FE47819686E1A002E3880 /* SampleJSON-Info.plist */,
+				0D6FE47819686E1A002E3880 /* PickupLines-Info.plist */,
 				0D6FE47919686E1A002E3880 /* InfoPlist.strings */,
 				0D6FE47C19686E1A002E3880 /* main.m */,
-				0D6FE47E19686E1A002E3880 /* SampleJSON-Prefix.pch */,
+				0D6FE47E19686E1A002E3880 /* PickupLines-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -245,7 +237,7 @@
 		0D6FE49419686E1A002E3880 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0D6FE49519686E1A002E3880 /* SampleJSONTests-Info.plist */,
+				0D6FE49519686E1A002E3880 /* PickupLinesTests-Info.plist */,
 				0D6FE49619686E1A002E3880 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -310,9 +302,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0D6FE46A19686E1A002E3880 /* SampleJSON */ = {
+		0D6FE46A19686E1A002E3880 /* PickupLines */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0D6FE49D19686E1A002E3880 /* Build configuration list for PBXNativeTarget "SampleJSON" */;
+			buildConfigurationList = 0D6FE49D19686E1A002E3880 /* Build configuration list for PBXNativeTarget "PickupLines" */;
 			buildPhases = (
 				0D6FE46719686E1A002E3880 /* Sources */,
 				0D6FE46819686E1A002E3880 /* Frameworks */,
@@ -322,14 +314,14 @@
 			);
 			dependencies = (
 			);
-			name = SampleJSON;
+			name = PickupLines;
 			productName = SampleJSON;
-			productReference = 0D6FE46B19686E1A002E3880 /* SampleJSON.app */;
+			productReference = 0D6FE46B19686E1A002E3880 /* PickupLines.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0D6FE48A19686E1A002E3880 /* SampleJSONTests */ = {
+		0D6FE48A19686E1A002E3880 /* PickupLinesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0D6FE4A019686E1A002E3880 /* Build configuration list for PBXNativeTarget "SampleJSONTests" */;
+			buildConfigurationList = 0D6FE4A019686E1A002E3880 /* Build configuration list for PBXNativeTarget "PickupLinesTests" */;
 			buildPhases = (
 				0D6FE48719686E1A002E3880 /* Sources */,
 				0D6FE48819686E1A002E3880 /* Frameworks */,
@@ -340,9 +332,9 @@
 			dependencies = (
 				0D6FE49219686E1A002E3880 /* PBXTargetDependency */,
 			);
-			name = SampleJSONTests;
+			name = PickupLinesTests;
 			productName = SampleJSONTests;
-			productReference = 0D6FE48B19686E1A002E3880 /* SampleJSONTests.xctest */;
+			productReference = 0D6FE48B19686E1A002E3880 /* PickupLinesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -362,7 +354,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0D6FE46619686E1A002E3880 /* Build configuration list for PBXProject "SampleJSON" */;
+			buildConfigurationList = 0D6FE46619686E1A002E3880 /* Build configuration list for PBXProject "PickupLines" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -374,8 +366,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0D6FE46A19686E1A002E3880 /* SampleJSON */,
-				0D6FE48A19686E1A002E3880 /* SampleJSONTests */,
+				0D6FE46A19686E1A002E3880 /* PickupLines */,
+				0D6FE48A19686E1A002E3880 /* PickupLinesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -444,7 +436,7 @@
 /* Begin PBXTargetDependency section */
 		0D6FE49219686E1A002E3880 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0D6FE46A19686E1A002E3880 /* SampleJSON */;
+			target = 0D6FE46A19686E1A002E3880 /* PickupLines */;
 			targetProxy = 0D6FE49119686E1A002E3880 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -546,10 +538,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SampleJSON/SampleJSON-Prefix.pch";
-				INFOPLIST_FILE = "SampleJSON/SampleJSON-Info.plist";
+				GCC_PREFIX_HEADER = "SampleJSON/PickupLines-Prefix.pch";
+				INFOPLIST_FILE = "SampleJSON/PickupLines-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PickupLines;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -562,10 +554,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SampleJSON/SampleJSON-Prefix.pch";
-				INFOPLIST_FILE = "SampleJSON/SampleJSON-Info.plist";
+				GCC_PREFIX_HEADER = "SampleJSON/PickupLines-Prefix.pch";
+				INFOPLIST_FILE = "SampleJSON/PickupLines-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PickupLines;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -586,8 +578,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "SampleJSONTests/SampleJSONTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "SampleJSONTests/PickupLinesTests-Info.plist";
+				PRODUCT_NAME = PickupLinesTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -604,8 +596,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleJSON/SampleJSON-Prefix.pch";
-				INFOPLIST_FILE = "SampleJSONTests/SampleJSONTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "SampleJSONTests/PickupLinesTests-Info.plist";
+				PRODUCT_NAME = PickupLinesTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -614,7 +606,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0D6FE46619686E1A002E3880 /* Build configuration list for PBXProject "SampleJSON" */ = {
+		0D6FE46619686E1A002E3880 /* Build configuration list for PBXProject "PickupLines" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0D6FE49B19686E1A002E3880 /* Debug */,
@@ -623,7 +615,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0D6FE49D19686E1A002E3880 /* Build configuration list for PBXNativeTarget "SampleJSON" */ = {
+		0D6FE49D19686E1A002E3880 /* Build configuration list for PBXNativeTarget "PickupLines" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0D6FE49E19686E1A002E3880 /* Debug */,
@@ -632,7 +624,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0D6FE4A019686E1A002E3880 /* Build configuration list for PBXNativeTarget "SampleJSONTests" */ = {
+		0D6FE4A019686E1A002E3880 /* Build configuration list for PBXNativeTarget "PickupLinesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0D6FE4A119686E1A002E3880 /* Debug */,

@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0D6FE46A19686E1A002E3880"
                BuildableName = "SampleJSON.app"
-               BlueprintName = "SampleJSON"
-               ReferencedContainer = "container:SampleJSON.xcodeproj">
+               BlueprintName = "PickupLines"
+               ReferencedContainer = "container:PickupLines.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0D6FE48A19686E1A002E3880"
                BuildableName = "SampleJSONTests.xctest"
-               BlueprintName = "SampleJSONTests"
-               ReferencedContainer = "container:SampleJSON.xcodeproj">
+               BlueprintName = "PickupLinesTests"
+               ReferencedContainer = "container:PickupLines.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0D6FE46A19686E1A002E3880"
             BuildableName = "SampleJSON.app"
-            BlueprintName = "SampleJSON"
-            ReferencedContainer = "container:SampleJSON.xcodeproj">
+            BlueprintName = "PickupLines"
+            ReferencedContainer = "container:PickupLines.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0D6FE46A19686E1A002E3880"
             BuildableName = "SampleJSON.app"
-            BlueprintName = "SampleJSON"
-            ReferencedContainer = "container:SampleJSON.xcodeproj">
+            BlueprintName = "PickupLines"
+            ReferencedContainer = "container:PickupLines.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0D6FE46A19686E1A002E3880"
             BuildableName = "SampleJSON.app"
-            BlueprintName = "SampleJSON"
-            ReferencedContainer = "container:SampleJSON.xcodeproj">
+            BlueprintName = "PickupLines"
+            ReferencedContainer = "container:PickupLines.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
