@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0D6FE46A19686E1A002E3880"
-               BuildableName = "SampleJSON.app"
+               BuildableName = "PickupLines.app"
                BlueprintName = "PickupLines"
                ReferencedContainer = "container:PickupLines.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0D6FE48A19686E1A002E3880"
-               BuildableName = "SampleJSONTests.xctest"
+               BuildableName = "PickupLinesTests.xctest"
                BlueprintName = "PickupLinesTests"
                ReferencedContainer = "container:PickupLines.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0D6FE46A19686E1A002E3880"
-            BuildableName = "SampleJSON.app"
+            BuildableName = "PickupLines.app"
             BlueprintName = "PickupLines"
             ReferencedContainer = "container:PickupLines.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0D6FE46A19686E1A002E3880"
-            BuildableName = "SampleJSON.app"
+            BuildableName = "PickupLines.app"
             BlueprintName = "PickupLines"
             ReferencedContainer = "container:PickupLines.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0D6FE46A19686E1A002E3880"
-            BuildableName = "SampleJSON.app"
+            BuildableName = "PickupLines.app"
             BlueprintName = "PickupLines"
             ReferencedContainer = "container:PickupLines.xcodeproj">
          </BuildableReference>

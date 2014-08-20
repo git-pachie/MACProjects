@@ -346,9 +346,6 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = PachieOrg;
 				TargetAttributes = {
-					0D6FE46A19686E1A002E3880 = {
-						DevelopmentTeam = R3F22UC8DK;
-					};
 					0D6FE48A19686E1A002E3880 = {
 						TestTargetID = 0D6FE46A19686E1A002E3880;
 					};

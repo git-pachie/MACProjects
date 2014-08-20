@@ -95,10 +95,26 @@
                 continue;
             }
             
+            
+            
             [mArray  addObject:person];
             //7
             // [mArary addObject:person];
         }
+        
+        
+        NSArray *sortedArray;
+        
+        sortedArray = [mArray sortedArrayUsingComparator:^NSComparisonResult(EntityPerson *a,  EntityPerson *b) {
+            NSString *first = [(EntityPerson *) a Name];
+            NSString *second = [(EntityPerson *) b Name];
+            
+            
+            return [first compare:second];
+            
+        }];
+
+        mArray = sortedArray;
         
         //8
         CFRelease(addressBook);
