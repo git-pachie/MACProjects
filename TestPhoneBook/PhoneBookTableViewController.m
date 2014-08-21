@@ -13,6 +13,7 @@
 @interface PhoneBookTableViewController ()
 {
     NSMutableArray *mArary;
+    NSArray *mArarySearch;
 }
 
 @end
@@ -32,6 +33,7 @@
 {
     [super viewDidLoad];
     
+    mArarySearch = [[NSArray alloc]init];
     
     if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusDenied
         || ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusRestricted) {
@@ -46,6 +48,7 @@
     else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized)
     {
         NSLog(@"Granted");
+        [self OK];
     }
     else
     {
@@ -57,6 +60,8 @@
         else
         {
             NSLog(@"Just granted");
+            
+            [self OK];
         }
     });
     
@@ -66,6 +71,12 @@
 //    self.tabBarController.navigationItem.title =@"Select Contact";
 //    self.tabBarController.navigationItem.title =@"fafda";
     
+    
+
+}
+
+-(void)OK
+{
     dispatch_queue_t myQ;
     
     if (!myQ) {
@@ -76,7 +87,6 @@
     dispatch_async(myQ, ^{
         [self loaddata];
     });
-
 }
 
 
@@ -117,19 +127,45 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return [mArary count];
+    //return [mArary count];
+    
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        return [mArarySearch count];
+        
+    } else {
+        
+        return [mArary count];
+    }
+
 }
 
 /**/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+//    
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+
     
     EntityPerson *person = [[EntityPerson alloc]init];
     
-    person = [mArary objectAtIndex:indexPath.row];
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        person = [mArarySearch objectAtIndex:indexPath.row];
+    }
+    else{
+        person = [mArary objectAtIndex:indexPath.row];
+    }
+    
+    
     
     cell.textLabel.text = person.Name;
     cell.detailTextLabel.text = person.Number;
@@ -229,5 +265,38 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+/*
+ #pragma mark - Filter
+ */
+// Search Filter
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    
+    NSString *nameFilter = [NSString stringWithFormat:@"%@*", searchText];
+    //NSString *desFilter = [NSString stringWithFormat:@"*%@*", searchText];
+    
+    NSPredicate *resultPredicate = [NSPredicate
+                                    predicateWithFormat:@"(Name LIKE [cd]%@) ",
+                                    nameFilter];
+    
+    mArarySearch = [mArary filteredArrayUsingPredicate:resultPredicate];
+    
+    
+}
+
+
+
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller
+shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
 
 @end

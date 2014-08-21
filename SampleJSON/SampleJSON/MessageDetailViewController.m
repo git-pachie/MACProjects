@@ -10,12 +10,14 @@
 #import "SendPickupViewController.h"
 #import "CommonFunction.h"
 #import "AppDelegate.h"
+#import "CustomLoader.h"
 
 
 @interface MessageDetailViewController ()
 {
     dispatch_queue_t myQueue;
     NSString *theReply;
+    CustomLoader *customLoader;
 }
 
 
@@ -38,8 +40,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
+    customLoader = [[CustomLoader alloc]init];
+    [customLoader InitializeLoaderView:self];
+
     
     [self.lblhiritMessage setText:HiritMessage];
     
@@ -52,7 +55,6 @@
     
     //textView.textContainer.lineBreakMode = NSLineBreakByCharWrapping
     
-   
     
 }
 
@@ -103,12 +105,15 @@
     //self.labelSelectedContact.text = selectedPerson.Name;
     
     if (!myQueue) {
-        myQueue = dispatch_queue_create("com.samplejson", NULL);
+        myQueue = dispatch_queue_create("com.samplejson33", NULL);
     }
     
+    customLoader.label.text = @"Sending...";
+    [self.view addSubview:customLoader.xview];
+    [self.view addSubview:customLoader.spinner];
+    [self.view addSubview:customLoader.label];
+    [customLoader.spinner startAnimating];
     
-    dispatch_async(myQueue, ^{
-        
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         
         
@@ -137,51 +142,88 @@
         [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
         [request setHTTPBody:data];
         
-        NSURLResponse *response;
-        NSData *POSTReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
-        theReply = [[NSString alloc] initWithBytes:[POSTReply bytes] length:[POSTReply length] encoding: NSASCIIStringEncoding];
-        NSLog(@"Reply: %@", theReply);
+//        NSURLResponse *response;
+//        NSData *POSTReply = [NSURLConnection  sendSynchronousRequest:request returningResponse:&response error:nil];
+//    
+//        theReply = [[NSString alloc] initWithBytes:[POSTReply bytes] length:[POSTReply length] encoding: NSASCIIStringEncoding];
+//        NSLog(@"Reply: %@", theReply);
+//        
+//        
+    
+
+        
+        //[self SendDelegate:selectedPerson];
         
         
-        [self SendDelegate:selectedPerson];
-        
-    });
+
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     
     
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (error) {
+            NSLog(@"error: %@",error);
+            
+            [self.sendMessageDelegate GetSendResult:0];
+        }
+        else
+        {
+            theReply = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding: NSASCIIStringEncoding];
+            NSLog(@"Reply: %@", theReply);
+            
+            [self SendDelegate:selectedPerson];
+            
+        }
+    }];
     
     
+    //[self.navigationController popToRootViewControllerAnimated:YES];
+    
+
 }
 
 -(void)SendDelegate:(EntityPerson*)selectedPerson
 {
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
- 
-        //sleep(2);
-        
+    
+//    [customLoader.spinner stopAnimating];
+//    
+//    for (UIView *subview in [self.view subviews]) {
+//        // Only remove the subviews with tag not equal to 1
+//        if (subview.tag == 1) {
+//            [subview removeFromSuperview];
+//        }
+//    }
+    
         theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
         
         
         if ( [theReply isEqualToString:@"1"]) {
             
             
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            //[self.navigationController popToRootViewControllerAnimated:YES];
+//            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Successful"
+//                                                        message:@"Pickup lines sent" delegate:self cancelButtonTitle:@"Close" otherButtonTitles: nil];
+//            
+//            [mes show];
             
+            [self.sendMessageDelegate GetSendResult:1];
         }
         else{
             
             
-            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:@"Error sending pickuplines" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+//            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Error"
+//                                                        message:@"Error sending pickuplines" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+//            
+//            [mes show];
             
-            [mes show];
+            [self.sendMessageDelegate GetSendResult:0];
         }
-    });
+        
+        
     
+    [self.navigationController popToRootViewControllerAnimated:YES];
     
-    
-
 }
 
 
@@ -190,7 +232,8 @@
     if(buttonIndex==0)
     {
         //Code that will run after you press ok button
-        [self.navigationController popViewControllerAnimated:YES ];
+        //[self.navigationController popViewControllerAnimated:YES ];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 

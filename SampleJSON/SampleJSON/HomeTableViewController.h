@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MessageDetailViewController.h"
 
-@interface HomeTableViewController : UITableViewController
+
+
+@interface HomeTableViewController : UITableViewController <SendMessageDelegate>
 
 @property (nonatomic, strong) NSString *DeviceGUID;
 @property (nonatomic, strong) NSString *PhoneNumber;

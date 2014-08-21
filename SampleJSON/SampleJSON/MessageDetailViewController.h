@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "PhoneBookTableViewController.h"
 
+@protocol SendMessageDelegate <NSObject>
+
+-(void)GetSendResult: (int) sendResult;
+
+@end
+
 @interface MessageDetailViewController : UIViewController <ModalViewControllerDelegate>
 
 @property (nonatomic, strong) NSString *MessageGUID;
@@ -16,6 +22,7 @@
 @property (nonatomic, strong) NSString *CreatedBy;
 @property (nonatomic, strong) NSString *Answer;
 
+@property (nonatomic, strong) id<SendMessageDelegate> sendMessageDelegate;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblhiritMessage;
 @property (weak, nonatomic) IBOutlet UILabel *lblhiritAnswer;

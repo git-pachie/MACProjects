@@ -291,6 +291,8 @@
         NSString *answer1 = @"";
         
         
+        dv.sendMessageDelegate = self;
+        
         NSDictionary *tmpDict = nil;
 
         
@@ -633,6 +635,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
     return YES;
 }
 
+
 -(NSMutableArray *) SortObjects:(NSMutableArray *)ArraryToSort CountedOjbect:(NSCountedSet *) countedset;
 {
     ArraryToSort = [[NSMutableArray alloc]init];
@@ -667,6 +670,11 @@ shouldReloadTableForSearchString:(NSString *)searchString
 
 }
 
+
+-(void)GetSendResult:(int)sendResult
+{
+    NSLog(@"Send Result :%d",sendResult);
+}
 
 
 @end
