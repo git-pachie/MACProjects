@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>681DC205-E7A6-43CF-9396-F0D19D5B9FD5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PickupLines</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>902C0715-FF97-4EFD-86EB-AD45AC47A2AC</key>
+		<string>https://github.com/git-pachie/MACProjects.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SampleJSON/PickupLines.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>902C0715-FF97-4EFD-86EB-AD45AC47A2AC</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/git-pachie/MACProjects.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>902C0715-FF97-4EFD-86EB-AD45AC47A2AC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>902C0715-FF97-4EFD-86EB-AD45AC47A2AC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MACProjects</string>
+		</dict>
+	</array>
+</dict>
+</plist>

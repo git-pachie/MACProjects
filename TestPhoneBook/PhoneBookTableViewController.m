@@ -177,7 +177,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.selectedPerson = [mArary objectAtIndex:indexPath.row];
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        self.selectedPerson = [mArarySearch objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        self.selectedPerson = [mArary objectAtIndex:indexPath.row];
+    }
+    
     
     EntityPerson *p = self.selectedPerson;
     

@@ -671,10 +671,113 @@ shouldReloadTableForSearchString:(NSString *)searchString
 }
 
 
--(void)GetSendResult:(int)sendResult
+-(void)sendMessageToSelectedPerson:(EntityPerson *)selectedPerson MessageGUID:(NSString *)messageGUID
 {
-    NSLog(@"Send Result :%d",sendResult);
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    
+    if ([selectedPerson.Number isEqualToString:@""] || [selectedPerson.Number isEqualToString:@""])
+    {
+        UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Invalid Input"
+                                                    message:@"Phone number required" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        
+        [mes show];
+        return;
+    }
+    
+    CommonFunction *common = [[CommonFunction alloc]init];
+    
+    
+    NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"SendPickupLine/%1@/%2@/%3@",delegate.DeviceGUID,selectedPerson.Number,messageGUID]];
+    
+    NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    
+    NSString *postLenght = [NSString stringWithFormat:@"%lu", (unsigned long)[data length]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:post]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLenght forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:data];
+    
+    //        NSURLResponse *response;
+    //        NSData *POSTReply = [NSURLConnection  sendSynchronousRequest:request returningResponse:&response error:nil];
+    //
+    //        theReply = [[NSString alloc] initWithBytes:[POSTReply bytes] length:[POSTReply length] encoding: NSASCIIStringEncoding];
+    //        NSLog(@"Reply: %@", theReply);
+    //
+    //
+    
+    
+    
+    //[self SendDelegate:selectedPerson];
+    
+    
+    
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (error) {
+            NSLog(@"error: %@",error);
+            
+            
+        }
+        else
+        {
+            
+            NSString *theReply;
+            
+            theReply = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding: NSASCIIStringEncoding];
+            NSLog(@"Reply: %@", theReply);
+            
+            
+            theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+            
+            
+            if ( [theReply isEqualToString:@"1"]) {
+                
+                
+                //[self.navigationController popToRootViewControllerAnimated:YES];
+                //            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Successful"
+                //                                                        message:@"Pickup lines sent" delegate:self cancelButtonTitle:@"Close" otherButtonTitles: nil];
+                //
+                //            [mes show];
+                
+                NSLog(@"Pickup line sent: %@", selectedPerson.Number);
+
+            }
+            else{
+                
+                
+//                UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Error"
+//                                                                        message:@"Error sending pickuplines" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+//                
+//                            [mes show];
+                
+                
+                NSLog(@"Error sending pickup lines: %@", selectedPerson.Number);
+                
+            }
+            
+            
+            
+            
+        }
+    }];
+
 }
 
+-(void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:    (NSInteger)buttonIndex
+{
+    if(buttonIndex==0)
+    {
+        //Code that will run after you press ok button
+        //[self.navigationController popViewControllerAnimated:YES ];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
 
 @end

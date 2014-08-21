@@ -43,9 +43,9 @@
             
             EntityPerson *person = [[EntityPerson alloc]init];
             
-            NSString *pFirstName = firstName;
-            NSString *pLasttName = lastName;
-            NSString *FullName = fullName;
+//            NSString *pFirstName = firstName;
+//            NSString *pLasttName = lastName;
+//            NSString *FullName = fullName;
             NSString *pEmail;
             NSString *pwEmail;
             person.Name = [fullName stringByReplacingOccurrencesOfString:@"(null)" withString:@""  ];
@@ -114,7 +114,7 @@
             
         }];
 
-        mArray = sortedArray;
+        mArray = (NSMutableArray *)sortedArray;
         
         //8
         CFRelease(addressBook);

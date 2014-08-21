@@ -104,78 +104,8 @@
 {
     //self.labelSelectedContact.text = selectedPerson.Name;
     
-    if (!myQueue) {
-        myQueue = dispatch_queue_create("com.samplejson33", NULL);
-    }
     
-    customLoader.label.text = @"Sending...";
-    [self.view addSubview:customLoader.xview];
-    [self.view addSubview:customLoader.spinner];
-    [self.view addSubview:customLoader.label];
-    [customLoader.spinner startAnimating];
-    
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        
-        
-        if ([selectedPerson.Number isEqualToString:@""] || [selectedPerson.Number isEqualToString:@""])
-        {
-            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Invalid Input"
-                                                        message:@"Phone number required" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-            
-            [mes show];
-            return;
-        }
-        
-        CommonFunction *common = [[CommonFunction alloc]init];
-        
-        
-        NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"SendPickupLine/%1@/%2@/%3@",delegate.DeviceGUID,selectedPerson.Number,self.MessageGUID]];
-        
-        NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-        
-        NSString *postLenght = [NSString stringWithFormat:@"%lu", (unsigned long)[data length]];
-        
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:[NSURL URLWithString:post]];
-        [request setHTTPMethod:@"POST"];
-        [request setValue:postLenght forHTTPHeaderField:@"Content-Length"];
-        [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-        [request setHTTPBody:data];
-        
-//        NSURLResponse *response;
-//        NSData *POSTReply = [NSURLConnection  sendSynchronousRequest:request returningResponse:&response error:nil];
-//    
-//        theReply = [[NSString alloc] initWithBytes:[POSTReply bytes] length:[POSTReply length] encoding: NSASCIIStringEncoding];
-//        NSLog(@"Reply: %@", theReply);
-//        
-//        
-    
-
-        
-        //[self SendDelegate:selectedPerson];
-        
-        
-
-    
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        if (error) {
-            NSLog(@"error: %@",error);
-            
-            [self.sendMessageDelegate GetSendResult:0];
-        }
-        else
-        {
-            theReply = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding: NSASCIIStringEncoding];
-            NSLog(@"Reply: %@", theReply);
-            
-            [self SendDelegate:selectedPerson];
-            
-        }
-    }];
-    
+    [self SendDelegate:selectedPerson];
     
     //[self.navigationController popToRootViewControllerAnimated:YES];
     
@@ -185,42 +115,8 @@
 -(void)SendDelegate:(EntityPerson*)selectedPerson
 {
     
+    [self.sendMessageDelegate sendMessageToSelectedPerson:selectedPerson MessageGUID:self.MessageGUID];
     
-//    [customLoader.spinner stopAnimating];
-//    
-//    for (UIView *subview in [self.view subviews]) {
-//        // Only remove the subviews with tag not equal to 1
-//        if (subview.tag == 1) {
-//            [subview removeFromSuperview];
-//        }
-//    }
-    
-        theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-        
-        
-        if ( [theReply isEqualToString:@"1"]) {
-            
-            
-            //[self.navigationController popToRootViewControllerAnimated:YES];
-//            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Successful"
-//                                                        message:@"Pickup lines sent" delegate:self cancelButtonTitle:@"Close" otherButtonTitles: nil];
-//            
-//            [mes show];
-            
-            [self.sendMessageDelegate GetSendResult:1];
-        }
-        else{
-            
-            
-//            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Error"
-//                                                        message:@"Error sending pickuplines" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-//            
-//            [mes show];
-            
-            [self.sendMessageDelegate GetSendResult:0];
-        }
-        
-        
     
     [self.navigationController popToRootViewControllerAnimated:YES];
     

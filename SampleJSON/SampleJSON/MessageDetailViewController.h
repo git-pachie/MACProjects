@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "PhoneBookTableViewController.h"
+//#import "EntityPerson.h"
 
 @protocol SendMessageDelegate <NSObject>
 
--(void)GetSendResult: (int) sendResult;
+-(void)sendMessageToSelectedPerson: (EntityPerson *) selectedPerson MessageGUID:(NSString *) messageGUID;
 
 @end
 
