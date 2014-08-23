@@ -20,6 +20,7 @@
 		0C83273C1994D91900C2CEF0 /* MyPickupLineHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C83273B1994D91900C2CEF0 /* MyPickupLineHeaderTableViewController.m */; };
 		0CA596771973E1F80032D144 /* CommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA596761973E1F80032D144 /* CommonFunction.m */; };
 		0CD8EF8D199690EE00E88A04 /* CustomLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8EF8C199690EE00E88A04 /* CustomLoader.m */; };
+		0D4878E819A888CF00F342B9 /* CommonSendRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4878E719A888CF00F342B9 /* CommonSendRequest.m */; };
 		0D6FE46F19686E1A002E3880 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6FE46E19686E1A002E3880 /* Foundation.framework */; };
 		0D6FE47119686E1A002E3880 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6FE47019686E1A002E3880 /* CoreGraphics.framework */; };
 		0D6FE47319686E1A002E3880 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6FE47219686E1A002E3880 /* UIKit.framework */; };
@@ -80,6 +81,8 @@
 		0CA596761973E1F80032D144 /* CommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunction.m; sourceTree = "<group>"; };
 		0CD8EF8B199690EE00E88A04 /* CustomLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLoader.h; sourceTree = "<group>"; };
 		0CD8EF8C199690EE00E88A04 /* CustomLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLoader.m; sourceTree = "<group>"; };
+		0D4878E619A888CF00F342B9 /* CommonSendRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSendRequest.h; sourceTree = "<group>"; };
+		0D4878E719A888CF00F342B9 /* CommonSendRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSendRequest.m; sourceTree = "<group>"; };
 		0D6FE46B19686E1A002E3880 /* PickupLines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickupLines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D6FE46E19686E1A002E3880 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0D6FE47019686E1A002E3880 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -257,6 +260,8 @@
 				0CA596761973E1F80032D144 /* CommonFunction.m */,
 				0DA05E9219756640001D1A85 /* SystemEntity.h */,
 				0DA05E9319756640001D1A85 /* SystemEntity.m */,
+				0D4878E619A888CF00F342B9 /* CommonSendRequest.h */,
+				0D4878E719A888CF00F342B9 /* CommonSendRequest.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -346,6 +351,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = PachieOrg;
 				TargetAttributes = {
+					0D6FE46A19686E1A002E3880 = {
+						DevelopmentTeam = R3F22UC8DK;
+					};
 					0D6FE48A19686E1A002E3880 = {
 						TestTargetID = 0D6FE46A19686E1A002E3880;
 					};
@@ -401,6 +409,7 @@
 			files = (
 				0C83273C1994D91900C2CEF0 /* MyPickupLineHeaderTableViewController.m in Sources */,
 				0C8327391994CF5F00C2CEF0 /* MyPickupLinesTableViewController.m in Sources */,
+				0D4878E819A888CF00F342B9 /* CommonSendRequest.m in Sources */,
 				0D6FE48119686E1A002E3880 /* AppDelegate.m in Sources */,
 				0D6FE47D19686E1A002E3880 /* main.m in Sources */,
 				0C6362CD199484F30023A387 /* SendPickupViewController.m in Sources */,
@@ -533,11 +542,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Archie Angeles (A4JFXR598D)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleJSON/PickupLines-Prefix.pch";
 				INFOPLIST_FILE = "SampleJSON/PickupLines-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = PickupLines;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -549,11 +558,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Archie Angeles (A4JFXR598D)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleJSON/PickupLines-Prefix.pch";
 				INFOPLIST_FILE = "SampleJSON/PickupLines-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = PickupLines;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

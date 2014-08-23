@@ -17,5 +17,6 @@
 -(void)HideLoading:(UITableViewController * ) table ;
 -(void)InitializeLoader: (UITableViewController * ) table;
 -(void)InitializeLoaderView: (UIViewController * ) table;
+-(void)ShowSendingMessage: (UITableViewController * ) table;
 
 @end
