@@ -185,7 +185,7 @@
     mArray = [[NSMutableArray alloc]init];
 
     
-    dispatch_async(dispatch_get_main_queue(),^{
+    dispatch_async(myQue,^{
      
         
     //common = [[CommonFunction alloc]init];
@@ -241,14 +241,17 @@
         
        // [loader.spinner stopAnimating];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(myQue, ^{
             [self HideLoading];
 
         });
         
-        [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+        dispatch_async(dispatch_get_main_queue(),^{
+            
         
+        [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:1.5];
         
+        });
     });
 
     
@@ -278,6 +281,8 @@
                 [subview removeFromSuperview];
             }
         }
+        
+        [self.tableView reloadData];
     });
 }
 

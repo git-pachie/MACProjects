@@ -12,19 +12,7 @@
 #import "CustomLoader.h"
 
 @implementation CommonSendRequest
-{
-    
-        UIAlertView *alert;
-    CustomLoader *loader;
-    
-    
 
-    
-}
-
-
-
-    
 
 
 -(BOOL)SendPickupLines: (NSString *) deviceGUID : (NSString *) personNumber : (NSString *) messageGUID
@@ -48,14 +36,6 @@
    
      NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     
-    
-    
-    
-    
-    
-        
-        
-        
         [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
          {
              if (error)

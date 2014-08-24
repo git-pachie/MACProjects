@@ -9,11 +9,14 @@
 #import "PhoneBookTableViewController.h"
 #import "PhoneContactClass.h"
 #import "EntityPerson.h"
+#import "Venu.h"
 
 @interface PhoneBookTableViewController ()
 {
     NSMutableArray *mArary;
     NSArray *mArarySearch;
+    dispatch_queue_t myQ2;
+    Venu *venu;
 }
 
 @end
@@ -32,6 +35,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    venu = [[Venu alloc]init];
+    
+    
+    
+    if (!myQ2) {
+        myQ2 = dispatch_queue_create("loadimage",NULL);
+    }
     
     mArarySearch = [[NSArray alloc]init];
     
@@ -98,10 +109,12 @@
         [self.tableView reloadData];
         
         
-        for (EntityPerson *p in mArary) {
-            NSLog(@"Name :%@",p.Name);
-            NSLog(@"Number :%@",p.Number);
-        }
+//        for (EntityPerson *p in mArary) {
+//            NSLog(@"Name :%@",p.Name);
+//            NSLog(@"Number :%@",p.Number);
+//        }
+        
+        //[self.tableView reloadData];
     });
     
     //[self.tableView reloadData];
@@ -168,11 +181,133 @@
     
     
     cell.textLabel.text = person.Name;
+    
     cell.detailTextLabel.text = person.Number;
+    
+    //NSDictionary *item = (NSDictionary *)[self.content objectAtIndex:indexPath.row];
+    //NSString *imagepath = [[NSBundle mainBundle] pathForResource:[item objectForKey:@"profile.png"] ofType:@"png"];
+    //UIImage *theImage = [UIImage imageWithContentsOfFile:imagepath];
+    
+    
+    
+    //cell.imageView.image = [UIImage imageNamed:@"profile.png"];
+    
+//    [cell.imageView setimage  setImageWithURL:[NSURL URLWithString:@"http://www.domain.com/path/to/image.jpg"]
+//                   placeholderImage:[UIImage imageNamed:@"placeholder.png"]
+//                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {... completion code here ...}];
+//
+    
+    
+//
+    //venu = ((Venu * )mArary [indexPath.row]);
+    
+   
+       // cell.imageView.image = venue.image;
+   
+    if (!cell.imageView.image) {
+        cell.imageView.image = venu.image;
+    }
+    
+    cell.imageView.image = [UIImage imageNamed:@"profile.png"];
+    
+    // download the image asynchronously
+    [self downloadImageWithURL:[NSURL URLWithString:@"http://sms.latestsms.in/wp-content/uploads/facebook-profile-pictures2.jpg"] completionBlock:^(BOOL succeeded, UIImage *image) {
+        if (succeeded) {
+            // change the image in the cell
+            //ImageToProcess.clipsToBounds = YES;
+            //cell.imageView.layer.borderWidth = 1;
+            //cell.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+            
+            //cell.imageView.image.size =  cell.imageView.frame.size - 4;
+            //venu.image = image;
+            
+            //UIImage *yourImage = [UIImage imageWithData:image];
+            //UIImageView *imageViewToPutInCell = [[UIImageView alloc] initWithImage:image];
+            //imageViewToPutInCell.frame = CGRectMake(0, 0, 5, 5);
+            
+            //cell.imageView.image = image;
+            
+            //[cell.imageView  setImage:imageViewToPutInCell.image];
+            //cell.imageView.frame = imageViewToPutInCell.frame;
+            //cell.imageView.layer.cornerRadius = 10;//cell.imageView.frame.size.width/2;// self.profileImageView.frame.size.width / 2
+            //cell.imageView.clipsToBounds = YES;
+            
+            
+            // Get your image somehow
+            //UIImage *image = [UIImage imageNamed:@"image.jpg"];
+            
+            // Begin a new image that will be the new image with the rounded corners
+            // (here with the size of an UIImageView)
+            UIGraphicsBeginImageContextWithOptions(cell.imageView.bounds.size, NO, [UIScreen mainScreen].scale);
+            
+            // Add a clip before drawing anything, in the shape of an rounded rect
+            [[UIBezierPath bezierPathWithRoundedRect:cell.imageView.bounds
+                                        cornerRadius:cell.imageView.frame.size.width/2] addClip];
+            // Draw your image
+            [image drawInRect:cell.imageView.bounds];
+            
+            // Get the image, here setting the UIImageView image
+            cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+            
+            // Lets forget about that we were drawing
+            UIGraphicsEndImageContext();
+            
+            // cache the image for use later (when scrolling up)
+            //venue.image = image;
+        }
+    }];
+    
+    
+    
+    
+//    dispatch_async(myQ2, ^{
+//        
+//        [self ProcessImage:cell.imageView];
+//    });
+//    
     
     
     
     return cell;
+}
+
+- (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
+{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if ( !error )
+                               {
+                                   UIImage *image = [[UIImage alloc] initWithData:data];
+                                   completionBlock(YES,image);
+                               } else{
+                                   completionBlock(NO,nil);
+                               }
+                           }];
+}
+
+-(void)ProcessImage : (UIImageView *)ImageToProcess
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        NSString *MyURL = @"http://www.almostsavvy.com/wp-content/uploads/2011/04/profile-photo.jpg";
+        
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:MyURL]]];
+        
+        
+        
+        ImageToProcess.image = image;
+        
+        ImageToProcess.layer.cornerRadius = 20;//ImageToProcess.frame.size.width/2;// self.profileImageView.frame.size.width / 2
+        ImageToProcess.layer.masksToBounds = YES;
+        //ImageToProcess.clipsToBounds = YES;
+        ImageToProcess.layer.borderWidth = 4;
+        ImageToProcess.layer.borderColor = [UIColor whiteColor].CGColor;
+    });
+    
+    
+
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -285,8 +420,8 @@
     //NSString *desFilter = [NSString stringWithFormat:@"*%@*", searchText];
     
     NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"(Name LIKE [cd]%@) ",
-                                    nameFilter];
+                                    predicateWithFormat:@"(Name LIKE [cd]%@) or FirstName LIKE[cd]%@ or LastName LIKE[cd]%@",
+                                    nameFilter,nameFilter,nameFilter];
     
     mArarySearch = [mArary filteredArrayUsingPredicate:resultPredicate];
     

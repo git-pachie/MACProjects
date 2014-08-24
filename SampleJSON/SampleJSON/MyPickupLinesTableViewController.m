@@ -185,7 +185,7 @@
 
 -(void)LoadMessage
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(myQue, ^{
     
         
         mArray = [[NSMutableArray alloc]init];
@@ -251,17 +251,21 @@
         
         //sleep(1);
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(myQue, ^{
             //[loader HideLoading:self];
             
             [self HideLoading];
 
         });
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //[loader HideLoading:self];
+
     
     [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
         
         
-
+        });
     
     });
     

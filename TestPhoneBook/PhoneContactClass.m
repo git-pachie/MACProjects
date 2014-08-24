@@ -48,7 +48,10 @@
 //            NSString *FullName = fullName;
             NSString *pEmail;
             NSString *pwEmail;
+            
             person.Name = [fullName stringByReplacingOccurrencesOfString:@"(null)" withString:@""  ];
+            person.FirstName = [firstName stringByReplacingOccurrencesOfString:@"(null)" withString:@""  ];
+            person.LastName = [lastName stringByReplacingOccurrencesOfString:@"(null)" withString:@""  ];
             
             //email
             //5
@@ -91,7 +94,10 @@
 //                                 ,pMobile,@"Mobile"
 //                                 , nil];
             
-            if ([person.Name isEqual:@""]) {
+            if (!person.Name) {
+                continue;
+            }
+            if (!person.Number) {
                 continue;
             }
             

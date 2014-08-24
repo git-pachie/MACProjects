@@ -380,7 +380,7 @@
 -(void)LoadTable
 {
     
-    dispatch_async(dispatch_get_main_queue(),^{
+    dispatch_async(myQueue,^{
         
         MessageGUID = @"MessageGUID";
         HiritMessage = @"HiritMessage";
@@ -473,7 +473,7 @@
 -(void)getJsonData
 {
     
-    dispatch_async(dispatch_get_main_queue(),^{
+    dispatch_async(myQueue,^{
     
         NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
         
@@ -541,7 +541,11 @@
                 delegate.EmailAddress = _Email;
                 delegate.PhoneNumber = _PhoneNumber;
                 
-                [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:1.5];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:1.5];
+
+                });
+                
                 
                 return;
             }
@@ -586,6 +590,8 @@
             [subview removeFromSuperview];
         }
     }
+        
+        [self.tableView reloadData];
     });
 }
 
