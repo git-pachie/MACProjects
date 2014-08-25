@@ -80,8 +80,12 @@
     
     number = [number stringByReplacingOccurrencesOfString:@" " withString:@""];
     
+    if ([number length] >7) {
+         number = [number substringFromIndex:[number length]-8];
+    }
     
-    number = [number substringFromIndex:[number length]-8];
+    
+   
     
     
     return [NSString stringWithFormat:@"%@/%@.jpg",ProfileImageURL,number];

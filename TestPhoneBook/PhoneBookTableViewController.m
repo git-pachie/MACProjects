@@ -205,9 +205,9 @@
    
        // cell.imageView.image = venue.image;
    
-    if (!cell.imageView.image) {
-        cell.imageView.image = venu.image;
-    }
+//    if (!cell.imageView.image) {
+//        cell.imageView.image = venu.image;
+//    }
     
     cell.imageView.image = [UIImage imageNamed:@"profile.png"];
     
@@ -215,7 +215,9 @@
     
     NSString *userImage = [CommonFunction ProfieImageURLByPhone:person.Number];
     
-    [self downloadImageWithURL:[NSURL URLWithString:userImage ] completionBlock:^(BOOL succeeded, UIImage *image) {
+    NSLog(@"userimage %@",userImage);
+    
+    [self downloadImageWithURL:[NSURL URLWithString:userImage] completionBlock:^(BOOL succeeded, UIImage *image) {
         if (succeeded) {
             // change the image in the cell
             //ImageToProcess.clipsToBounds = YES;
@@ -242,8 +244,9 @@
             
                         // cache the image for use later (when scrolling up)
             //venue.image = image;
-            NSLog(@"image ok");
+            //NSLog(@"image ok");
             
+            cell.imageView.image = image;
             
             
             // Begin a new image that will be the new image with the rounded corners
@@ -264,16 +267,18 @@
             
             
         }
-        else
-        {
-            NSLog(@"no image ok");
-            cell.imageView.image = [UIImage imageNamed:@"profile.png"];
-        }
+        
+        
         
        
 
     }];
     
+    
+    cell.imageView.image = [UIImage imageNamed:@"profile.png"];
+    
+    
+
     
     
     
@@ -284,20 +289,22 @@
 - (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
 {
     
+   
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                   if ( !error )
+                                   {
+                                       UIImage *image = [[UIImage alloc] initWithData:data];
+                                       completionBlock(YES,image);
+                                   } else{
+                                       completionBlock(NO,nil);
+                                   }
+                               }];
+   
     
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               if ( !error )
-                               {
-                                   UIImage *image = [[UIImage alloc] initWithData:data];
-                                   completionBlock(YES,image);
-                               } else{
-                                   completionBlock(NO,nil);
-                               }
-                           }];
 }
 
 
