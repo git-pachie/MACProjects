@@ -256,25 +256,6 @@
             </objects>
             <point key="canvasLocation" x="3158" y="-383"/>
         </scene>
-        <!--View Controller - Settings-->
-        <scene sceneID="sAV-SZ-27B">
-            <objects>
-                <viewController id="7QC-KA-uju" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="WVn-hx-ODV"/>
-                        <viewControllerLayoutGuide type="bottom" id="zHt-I6-t4L"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="KG7-zK-3u9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Settings" id="qJc-mB-Hge"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="V9I-86-mCJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3158" y="376"/>
-        </scene>
         <!--Message Detail View Controller - Message Detail-->
         <scene sceneID="LkX-HZ-Tg3">
             <objects>
@@ -388,8 +369,8 @@
                     <connections>
                         <segue destination="94b-sH-92x" kind="relationship" relationship="viewControllers" id="o1d-Lh-z7X"/>
                         <segue destination="zfP-2N-6ye" kind="relationship" relationship="viewControllers" id="UXE-vG-Kun"/>
-                        <segue destination="nCb-g0-fB8" kind="relationship" relationship="viewControllers" id="WwM-3O-HEG"/>
                         <segue destination="60F-jP-Q8r" kind="relationship" relationship="viewControllers" id="NsS-LU-MPr"/>
+                        <segue destination="rBt-fJ-pen" kind="relationship" relationship="viewControllers" id="JZf-Kc-HEq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAf-bO-Zlz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -497,24 +478,43 @@
             </objects>
             <point key="canvasLocation" x="2632" y="1922"/>
         </scene>
-        <!--Navigation Controller - Settings-->
-        <scene sceneID="RfA-Hf-mtF">
+        <!--Settings2 View Controller - Settings-->
+        <scene sceneID="jci-A8-16y">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nCb-g0-fB8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="automatic-32.png" id="w4r-hF-eT1"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RCW-zL-3Kn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <viewController id="GM3-pR-6wR" customClass="Settings2ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cRU-mM-9qi"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Ax-0w-POX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fzl-HD-NMp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrn-H7-EEU">
+                                <rect key="frame" x="137" y="269" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadImage:" destination="GM3-pR-6wR" eventType="touchUpInside" id="9oi-zE-hcM"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ct-NS-LfG">
+                                <rect key="frame" x="40" y="93" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="qek-Oa-22P"/>
                     <connections>
-                        <segue destination="7QC-KA-uju" kind="relationship" relationship="rootViewController" id="x4W-LJ-cbD"/>
+                        <outlet property="myimage" destination="2ct-NS-LfG" id="92m-6c-UvW"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jJo-j4-vAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jMn-Vd-e38" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2632" y="376"/>
+            <point key="canvasLocation" x="3169" y="440"/>
         </scene>
         <!--Navigation Controller - Pickup Lines-->
         <scene sceneID="2p1-GX-ISs">
@@ -612,9 +612,27 @@
             </objects>
             <point key="canvasLocation" x="3478" y="1136"/>
         </scene>
+        <!--Navigation Controller - Item-->
+        <scene sceneID="Cbu-QU-SUz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rBt-fJ-pen" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="qGt-Vt-5qW"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mCO-vE-zlY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GM3-pR-6wR" kind="relationship" relationship="rootViewController" id="GwH-J0-hli"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zm7-xV-2LU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2643" y="440"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="automatic-32.png" width="32" height="32"/>
         <image name="cottage-32.png" width="32" height="32"/>
         <image name="user_male3-32.png" width="32" height="32"/>
     </resources>

@@ -8,6 +8,8 @@
 
 #import "CommonFunction.h"
 
+#define ProfileImageURL    @"http://www.riverwayauto.com:1980/FileUpload/ProfileImage"
+
 @implementation CommonFunction
 
 -(BOOL)CheckNSD:(NSData *)yourData
@@ -66,5 +68,23 @@
     return nil;
 }
 
++(NSString *)ProfieImageURLByPhone :(NSString *)phoneNumber
+{
+    NSString *number = [phoneNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    
+    number = [number stringByReplacingOccurrencesOfString:@")" withString:@""];
+    
+    number = [number stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    
+    number = [number stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    number = [number stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    
+    number = [number substringFromIndex:[number length]-8];
+    
+    
+    return [NSString stringWithFormat:@"%@/%@.jpg",ProfileImageURL,number];
+}
 
 @end

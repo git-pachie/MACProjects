@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C27B56019AB14DC00AB2DDF /* Settings2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C27B55F19AB14DC00AB2DDF /* Settings2ViewController.m */; };
 		0C6362CD199484F30023A387 /* SendPickupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6362CC199484F30023A387 /* SendPickupViewController.m */; };
 		0C6FE133197540E7003B0EF6 /* CustomStaticTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6FE132197540E7003B0EF6 /* CustomStaticTableViewController.m */; };
 		0C7C79B8199A7098001E6D29 /* EntityPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7C79B7199A7098001E6D29 /* EntityPerson.m */; };
@@ -60,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C27B55E19AB14DC00AB2DDF /* Settings2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings2ViewController.h; sourceTree = "<group>"; };
+		0C27B55F19AB14DC00AB2DDF /* Settings2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings2ViewController.m; sourceTree = "<group>"; };
 		0C6362CB199484F30023A387 /* SendPickupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendPickupViewController.h; sourceTree = "<group>"; };
 		0C6362CC199484F30023A387 /* SendPickupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendPickupViewController.m; sourceTree = "<group>"; };
 		0C6FE131197540E7003B0EF6 /* CustomStaticTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStaticTableViewController.h; sourceTree = "<group>"; };
@@ -150,6 +153,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C27B55A19AB0FA800AB2DDF /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0C27B55E19AB14DC00AB2DDF /* Settings2ViewController.h */,
+				0C27B55F19AB14DC00AB2DDF /* Settings2ViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		0C8327311994CE7700C2CEF0 /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +234,7 @@
 		0D6FE47719686E1A002E3880 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0C27B55A19AB0FA800AB2DDF /* Settings */,
 				0C8327311994CE7700C2CEF0 /* CustomCell */,
 				0DA05E901975658F001D1A85 /* Storyboard */,
 				0DA05E91197565BA001D1A85 /* Home */,
@@ -431,6 +444,7 @@
 				0D6FE4A719686E89002E3880 /* TestViewController.m in Sources */,
 				0DBE6FF41971A13B0024380E /* MessageDetailViewController.m in Sources */,
 				0D6FE48419686E1A002E3880 /* SampleJSON.xcdatamodeld in Sources */,
+				0C27B56019AB14DC00AB2DDF /* Settings2ViewController.m in Sources */,
 				0D4878ED19AA563C00F342B9 /* Venu.m in Sources */,
 				0D6FE4AD196AE529002E3880 /* HomeTableViewController.m in Sources */,
 				0C8327341994CEC800C2CEF0 /* MyTableViewCell.m in Sources */,

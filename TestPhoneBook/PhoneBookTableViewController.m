@@ -10,6 +10,7 @@
 #import "PhoneContactClass.h"
 #import "EntityPerson.h"
 #import "Venu.h"
+#import "CommonFunction.h"
 
 @interface PhoneBookTableViewController ()
 {
@@ -211,7 +212,10 @@
     cell.imageView.image = [UIImage imageNamed:@"profile.png"];
     
     // download the image asynchronously
-    [self downloadImageWithURL:[NSURL URLWithString:@"http://sms.latestsms.in/wp-content/uploads/facebook-profile-pictures2.jpg"] completionBlock:^(BOOL succeeded, UIImage *image) {
+    
+    NSString *userImage = [CommonFunction ProfieImageURLByPhone:person.Number];
+    
+    [self downloadImageWithURL:[NSURL URLWithString:userImage ] completionBlock:^(BOOL succeeded, UIImage *image) {
         if (succeeded) {
             // change the image in the cell
             //ImageToProcess.clipsToBounds = YES;
@@ -236,6 +240,12 @@
             // Get your image somehow
             //UIImage *image = [UIImage imageNamed:@"image.jpg"];
             
+                        // cache the image for use later (when scrolling up)
+            //venue.image = image;
+            NSLog(@"image ok");
+            
+            
+            
             // Begin a new image that will be the new image with the rounded corners
             // (here with the size of an UIImageView)
             UIGraphicsBeginImageContextWithOptions(cell.imageView.bounds.size, NO, [UIScreen mainScreen].scale);
@@ -244,7 +254,7 @@
             [[UIBezierPath bezierPathWithRoundedRect:cell.imageView.bounds
                                         cornerRadius:cell.imageView.frame.size.width/2] addClip];
             // Draw your image
-            [image drawInRect:cell.imageView.bounds];
+            [cell.imageView.image drawInRect:cell.imageView.bounds];
             
             // Get the image, here setting the UIImageView image
             cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
@@ -252,27 +262,30 @@
             // Lets forget about that we were drawing
             UIGraphicsEndImageContext();
             
-            // cache the image for use later (when scrolling up)
-            //venue.image = image;
+            
         }
+        else
+        {
+            NSLog(@"no image ok");
+            cell.imageView.image = [UIImage imageNamed:@"profile.png"];
+        }
+        
+       
+
     }];
     
-    
-    
-    
-//    dispatch_async(myQ2, ^{
-//        
-//        [self ProcessImage:cell.imageView];
-//    });
-//    
     
     
     
     return cell;
 }
 
+
 - (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
 {
+    
+    
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
@@ -287,28 +300,7 @@
                            }];
 }
 
--(void)ProcessImage : (UIImageView *)ImageToProcess
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        NSString *MyURL = @"http://www.almostsavvy.com/wp-content/uploads/2011/04/profile-photo.jpg";
-        
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:MyURL]]];
-        
-        
-        
-        ImageToProcess.image = image;
-        
-        ImageToProcess.layer.cornerRadius = 20;//ImageToProcess.frame.size.width/2;// self.profileImageView.frame.size.width / 2
-        ImageToProcess.layer.masksToBounds = YES;
-        //ImageToProcess.clipsToBounds = YES;
-        ImageToProcess.layer.borderWidth = 4;
-        ImageToProcess.layer.borderColor = [UIColor whiteColor].CGColor;
-    });
-    
-    
 
-}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
