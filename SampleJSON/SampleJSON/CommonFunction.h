@@ -19,5 +19,7 @@
 
 -(UIRefreshControl *) CommonRefreshControl: (SEL)MethodToCall;
 +(NSString *)ProfieImageURLByPhone :(NSString *)phoneNumber;
++(NSString *)ProfileImageFileName;
+
 
 @end

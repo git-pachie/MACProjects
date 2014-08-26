@@ -7,8 +7,11 @@
 //
 
 #import "CommonFunction.h"
+#import "CustomLoader.h"
+#import "CustomStringClass.h"
+#import "AppDelegate.h"
 
-#define ProfileImageURL    @"http://www.riverwayauto.com:1980/PickupLinesProfile/profileimage.aspx?fFileName="
+
 
 @implementation CommonFunction
 
@@ -36,7 +39,7 @@
 {
      NSString *result = nil;
     
-    result = [NSString stringWithFormat:@"http://www.riverwayauto.com:1980/myjson/service1.svc/%@",MethodToCall];
+    result = [NSString stringWithFormat:[CustomStringClass UrlJSonConnection],MethodToCall];
     
     //http://www.amanawaterpark.ph:1980/myjson/service1.svc/GetHiritMessage"
     
@@ -88,7 +91,14 @@
    
     
     
-    return [NSString stringWithFormat:@"%@/%@",ProfileImageURL,number];
+    return [NSString stringWithFormat:@"%@%@",[CustomStringClass UrlProfileImageConnection],number];
+}
+
++(NSString *)ProfileImageFileName
+{
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    return [NSString stringWithFormat:@"%@.png", delegate.PhoneNumber];
 }
 
 @end

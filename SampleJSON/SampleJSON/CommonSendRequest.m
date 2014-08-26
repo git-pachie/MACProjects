@@ -10,6 +10,10 @@
 #import "EntityPerson.h"
 #import "CommonFunction.h"
 #import "CustomLoader.h"
+#import "AppDelegate.h"
+#import "CustomStringClass.h"
+
+#define DataDownloaderRunMode @"myapp.run_mode"
 
 @implementation CommonSendRequest
 
@@ -89,6 +93,75 @@
     return true;
 }
 
++(UIImage*)imageWithImage:(UIImage*)image
+scaledToSize:(CGSize)newSize;
+{
+    UIGraphicsBeginImageContext( newSize );
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 
++(void)SendProfileToServer: (UIImage *) img
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    //UIImage * img = [UIImage imageNamed:imageName];
+    CGSize size123= CGSizeMake(200, 200);
+    img = [self imageWithImage:img scaledToSize:size123];
+    
+    NSData *imageData = [NSData dataWithData:UIImagePNGRepresentation(img)];
+    
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@%@.jpg", [CustomStringClass UrlProfileUpload ],appDelegate.PhoneNumber];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:fileName]];
+    
+   
+    [request setHTTPMethod:@"POST"];
+    
+    // We need to add a header field named Content-Type with a value that tells that it's a form and also add a boundary.
+    // I just picked a boundary by using one from a previous trace, you can just copy/paste from the traces.
+    NSString *boundary = @"----WebKitFormBoundarycC4YiaUFwM44F6rT";
+    
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    // end of what we've added to the header
+    
+    // the body of the post
+    NSMutableData *body = [NSMutableData data];
+    
+    // Now we need to append the different data 'segments'. We first start by adding the boundary.
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+	
+    // Now append the image
+    // Note that the name of the form field is exactly the same as in the trace ('attachment[file]' in my case)!
+    // You can choose whatever filename you want.
+    [body appendData:[@"Content-Disposition: form-data; name=\"attachment[file]\";filename=\"picture.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // We now need to tell the receiver what content type we have
+    // In my case it's a png image. If you have a jpg, set it to 'image/jpg'
+    [body appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // Now we append the actual image data
+    [body appendData:[NSData dataWithData:imageData]];
+    
+    // and again the delimiting boundary
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+	
+    // adding the body we've created to the request
+    [request setHTTPBody:body];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request
+                                                                  delegate:self
+                                                          startImmediately:NO]; 
+    
+    [connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:DataDownloaderRunMode]; 
+    
+    [connection start];
+}
 
 @end

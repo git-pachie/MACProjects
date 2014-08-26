@@ -8,6 +8,9 @@
 
 #import "CustomStaticTableViewController.h"
 #import "AppDelegate.h"
+#import "CustomStringClass.h"
+#import "CommonFunction.h"
+#import "CommonSendRequest.h"
 
 @interface CustomStaticTableViewController ()
 
@@ -185,7 +188,7 @@
                                                              NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString* path = [documentsDirectory stringByAppendingPathComponent:
-                          @"test123.png" ];
+                          [CommonFunction ProfileImageFileName]];
         NSData* data = UIImagePNGRepresentation(image);
         [data writeToFile:path atomically:YES];
     }
@@ -199,12 +202,16 @@
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString* path = [documentsDirectory stringByAppendingPathComponent:
-                      @"test123.png" ];
+                      [CommonFunction ProfileImageFileName]];
     UIImage* image = [UIImage imageWithContentsOfFile:path];
     //_profilepic.contentMode = UIViewContentModeCenter;
     
     _profilepic.contentMode = UIViewContentModeScaleAspectFill;
+    
+    [CommonSendRequest  SendProfileToServer:image];
 
     return image;
+    
+    
 }
 @end

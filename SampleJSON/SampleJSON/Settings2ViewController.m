@@ -8,7 +8,7 @@
 
 #import "Settings2ViewController.h"
 #import "AppDelegate.h"
-
+#import "CustomStringClass.h"
 #define DataDownloaderRunMode @"myapp.run_mode" 
 
 @interface Settings2ViewController ()
@@ -140,8 +140,10 @@
 //    BOOL success = [returnString isEqualToString:@"ok"];
 //    //[returnString release];
 //
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@%@.jpg", [CustomStringClass UrlProfileUpload ],appDelegate.PhoneNumber];
 
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.3.100/myjson/service1.svc/UploadFile?fileName=ffff.jpg"]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:fileName]];
     
 //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:@"http://192.168.3.100/myjson/service1.svc/UploadFile?fileName=ffff.jpg"
 //                                                                cachePolicy:NSURLRequestUseProtocolCachePolicy

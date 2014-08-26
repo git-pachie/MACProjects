@@ -12,4 +12,6 @@
 
 -(BOOL)SendPickupLines: (NSString *) deviceGUID : (NSString *) personNumber : (NSString *) messageGUID;
 
++(void)SendProfileToServer: (UIImage *) img;
+
 @end

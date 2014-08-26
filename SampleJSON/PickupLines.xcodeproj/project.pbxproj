@@ -43,6 +43,7 @@
 		0D6FE4A719686E89002E3880 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6FE4A619686E89002E3880 /* TestViewController.m */; };
 		0D6FE4AA1969B815002E3880 /* DeviceActivationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6FE4A91969B815002E3880 /* DeviceActivationViewController.m */; };
 		0D6FE4AD196AE529002E3880 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6FE4AC196AE529002E3880 /* HomeTableViewController.m */; };
+		0D7EDB4119ACF89A009DBCCF /* CustomStringClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7EDB4019ACF89A009DBCCF /* CustomStringClass.m */; };
 		0DA05E9419756640001D1A85 /* SystemEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA05E9319756640001D1A85 /* SystemEntity.m */; };
 		0DA0ABF6198027F10061E723 /* cottage-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA0ABF5198027F10061E723 /* cottage-32.png */; };
 		0DA0ABF8198028A60061E723 /* automatic-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA0ABF7198028A60061E723 /* automatic-32.png */; };
@@ -116,6 +117,8 @@
 		0D6FE4A91969B815002E3880 /* DeviceActivationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceActivationViewController.m; sourceTree = "<group>"; };
 		0D6FE4AB196AE529002E3880 /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
 		0D6FE4AC196AE529002E3880 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
+		0D7EDB3F19ACF89A009DBCCF /* CustomStringClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStringClass.h; sourceTree = "<group>"; };
+		0D7EDB4019ACF89A009DBCCF /* CustomStringClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStringClass.m; sourceTree = "<group>"; };
 		0DA05E9219756640001D1A85 /* SystemEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemEntity.h; sourceTree = "<group>"; };
 		0DA05E9319756640001D1A85 /* SystemEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemEntity.m; sourceTree = "<group>"; };
 		0DA0ABF5198027F10061E723 /* cottage-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cottage-32.png"; sourceTree = "<group>"; };
@@ -283,6 +286,8 @@
 				0D4878E719A888CF00F342B9 /* CommonSendRequest.m */,
 				0D4878EB19AA563C00F342B9 /* Venu.h */,
 				0D4878EC19AA563C00F342B9 /* Venu.m */,
+				0D7EDB3F19ACF89A009DBCCF /* CustomStringClass.h */,
+				0D7EDB4019ACF89A009DBCCF /* CustomStringClass.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -445,6 +450,7 @@
 				0DBE6FF41971A13B0024380E /* MessageDetailViewController.m in Sources */,
 				0D6FE48419686E1A002E3880 /* SampleJSON.xcdatamodeld in Sources */,
 				0C27B56019AB14DC00AB2DDF /* Settings2ViewController.m in Sources */,
+				0D7EDB4119ACF89A009DBCCF /* CustomStringClass.m in Sources */,
 				0D4878ED19AA563C00F342B9 /* Venu.m in Sources */,
 				0D6FE4AD196AE529002E3880 /* HomeTableViewController.m in Sources */,
 				0C8327341994CEC800C2CEF0 /* MyTableViewCell.m in Sources */,
