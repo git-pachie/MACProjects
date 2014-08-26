@@ -211,6 +211,7 @@
     
     cell.imageView.image = [UIImage imageNamed:@"profile.png"];
     
+    
     // download the image asynchronously
     
     NSString *userImage = [CommonFunction ProfieImageURLByPhone:person.Number];
@@ -249,20 +250,27 @@
             cell.imageView.image = image;
             
             
+            
             // Begin a new image that will be the new image with the rounded corners
             // (here with the size of an UIImageView)
             UIGraphicsBeginImageContextWithOptions(cell.imageView.bounds.size, NO, [UIScreen mainScreen].scale);
             
             // Add a clip before drawing anything, in the shape of an rounded rect
+            
             [[UIBezierPath bezierPathWithRoundedRect:cell.imageView.bounds
-                                        cornerRadius:cell.imageView.frame.size.width/2] addClip];
+                                        cornerRadius:cell.imageView.frame.size.width/2 ] addClip];
             // Draw your image
             [cell.imageView.image drawInRect:cell.imageView.bounds];
             
             // Get the image, here setting the UIImageView image
             cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
             
+//            cell.imageView.layer.borderWidth  =1;
+//            cell.imageView.layer.borderColor = [UIColor grayColor].CGColor;
+//            
             // Lets forget about that we were drawing
+            
+            
             UIGraphicsEndImageContext();
             
             
@@ -270,20 +278,18 @@
         
         
         
-       
-
     }];
     
     
     //cell.imageView.image = [UIImage imageNamed:@"profile.png"];
     
     
-
     
     
     
     return cell;
 }
+
 
 
 - (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
