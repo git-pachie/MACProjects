@@ -275,7 +275,7 @@
     }];
     
     
-    cell.imageView.image = [UIImage imageNamed:@"profile.png"];
+    //cell.imageView.image = [UIImage imageNamed:@"profile.png"];
     
     
 

@@ -8,7 +8,7 @@
 
 #import "CommonFunction.h"
 
-#define ProfileImageURL    @"http://www.riverwayauto.com:1980/FileUpload/ProfileImage"
+#define ProfileImageURL    @"http://www.riverwayauto.com:1980/PickupLinesProfile/profileimage.aspx?fFileName="
 
 @implementation CommonFunction
 
@@ -88,7 +88,7 @@
    
     
     
-    return [NSString stringWithFormat:@"%@/%@.jpg",ProfileImageURL,number];
+    return [NSString stringWithFormat:@"%@/%@",ProfileImageURL,number];
 }
 
 @end
