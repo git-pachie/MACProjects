@@ -7,19 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
-@interface CustomStaticTableViewController : UITableViewController
+@interface CustomStaticTableViewController : UITableViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSString *accountType;
 @property (nonatomic, strong) NSString *emailAddress;
 
-@property (weak, nonatomic) IBOutlet UILabel *lblAccountName;
-@property (weak, nonatomic) IBOutlet UILabel *lblEmail;
+@property (strong, nonatomic) IBOutlet UIImageView *profilepic;
 
-@property (weak, nonatomic) IBOutlet UIImageView *profilepic;
+
+@property BOOL newMedia;
+
 - (IBAction)takePhoto:(id)sender;
 - (IBAction)loadExistingPhoto:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *btntakephoto;
+@property (weak, nonatomic) IBOutlet UIButton *btnloadexisting;
 
 
 @end

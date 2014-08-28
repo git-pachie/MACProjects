@@ -12,4 +12,5 @@
 - (IBAction)uploadImage:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIImageView *myimage;
+
 @end

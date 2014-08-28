@@ -109,7 +109,7 @@ scaledToSize:(CGSize)newSize;
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     //UIImage * img = [UIImage imageNamed:imageName];
-    CGSize size123= CGSizeMake(200, 200);
+    CGSize size123= CGSizeMake(218, 230);
     img = [self imageWithImage:img scaledToSize:size123];
     
     NSData *imageData = [NSData dataWithData:UIImagePNGRepresentation(img)];
