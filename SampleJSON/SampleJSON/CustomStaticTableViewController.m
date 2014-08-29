@@ -13,7 +13,11 @@
 #import "CommonSendRequest.h"
 
 @interface CustomStaticTableViewController ()
+{
 
+dispatch_queue_t camerq;
+    
+}
 @end
 
 @implementation CustomStaticTableViewController
@@ -48,9 +52,19 @@
     
     
     //_profilepic.contentMode = UIViewContentModeBottom;
-    self.profilepic.image = [self loadImage];
     
-    [self ApplyCircleToImage:self.profilepic];
+    if (!camerq) {
+        camerq = dispatch_queue_create("cameraQUE",NULL);
+    }
+    
+    dispatch_async(camerq, ^{
+        
+        //self.profilepic.image =
+        [self loadImage];
+        [self ApplyCircleToImage:self.profilepic];
+        
+    });
+    
     
 }
 
@@ -230,8 +244,7 @@
         {
             
             
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                                 NSUserDomainMask, YES);
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
             NSString *documentsDirectory = [paths objectAtIndex:0];
             NSString* path = [documentsDirectory stringByAppendingPathComponent:
                               [CommonFunction ProfileImageFileName]];
@@ -301,37 +314,51 @@
 
 -(void)ApplyCircleToImage : (UIView *)image
 {
-    image.layer.cornerRadius = image.frame.size.height/2;// self.profileImageView.frame.size.width / 2
-    image.clipsToBounds = YES;
-    image.layer.borderWidth = 4;
-    image.layer.borderColor = [UIColor purpleColor].CGColor;
+    dispatch_async(camerq, ^{
     
+        image.layer.cornerRadius = image.frame.size.width/2;// self.profileImageView.frame.size.width / 2
+        image.clipsToBounds = YES;
+        image.layer.borderWidth = 4;
+        image.layer.borderColor = [UIColor purpleColor].CGColor;
+        
+        
+        
+        self.btntakephoto.layer.cornerRadius = 10;
+        self.btnloadexisting.alpha = 0.6;
+        
+        self.btnloadexisting.layer.cornerRadius= 10;
+        self.btntakephoto.alpha = 0.6;
+    });
     
-    self.btntakephoto.layer.cornerRadius = 10;
-    self.btnloadexisting.alpha = 0.6;
-    
-    self.btnloadexisting.layer.cornerRadius= 10;
-    self.btntakephoto.alpha = 0.6;
     
 }
 
-- (UIImage*)loadImage
+- (void)loadImage
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString* path = [documentsDirectory stringByAppendingPathComponent:
-                      [CommonFunction ProfileImageFileName]];
-    UIImage* image = [UIImage imageWithContentsOfFile:path];
+    
+   
+    
+    dispatch_async(camerq, ^{
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                             NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString* path = [documentsDirectory stringByAppendingPathComponent:
+                          [CommonFunction ProfileImageFileName]];
+        UIImage* image = [UIImage imageWithContentsOfFile:path];
         //_profilepic.contentMode = UIViewContentModeCenter;
+        
+        //_profilepic.contentMode = UIViewContentModeScaleAspectFill;
+        
+        self.profilepic.image = image;
+        
+        [CommonSendRequest  SendProfileToServer:image];
+        
+        
+        
+    });
     
-    //_profilepic.contentMode = UIViewContentModeScaleAspectFill;
     
-    
-    
-    [CommonSendRequest  SendProfileToServer:image];
-
-    return image;
     
     
 }

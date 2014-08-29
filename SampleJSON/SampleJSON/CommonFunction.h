@@ -11,13 +11,12 @@
 @interface CommonFunction : NSObject
 
 -(BOOL)CheckNSD:(NSData *)yourData;
--(void)ConnectionError;
 -(NSString *)GetJsonConnection:(NSString *)MethodToCall;
 - (NSDate *)mfDateFromDotNetJSONString:(NSString *)string;
 //-(void) SortObjects:(NSMutableArray *)ArraryToSort CountedOjbect:(NSCountedSet *) countedset;
 
 
--(UIRefreshControl *) CommonRefreshControl: (SEL)MethodToCall;
++(UIRefreshControl *)CommonRefreshControl:(SEL)MethodToCall Controller:(UITableViewController *)controller;
 +(NSString *)ProfieImageURLByPhone :(NSString *)phoneNumber;
 +(NSString *)ProfileImageFileName;
 

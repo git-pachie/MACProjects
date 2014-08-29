@@ -26,22 +26,12 @@
     }
 }
 
--(void)ConnectionError
-{
-//    UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
-//                                                message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-//    
-//    [mes show];
-
-}
 
 -(NSString *)GetJsonConnection:(NSString *)MethodToCall
 {
      NSString *result = nil;
     
     result = [NSString stringWithFormat:[CustomStringClass UrlJSonConnection],MethodToCall];
-    
-    //http://www.amanawaterpark.ph:1980/myjson/service1.svc/GetHiritMessage"
     
     return result;
 }
@@ -87,10 +77,6 @@
          number = [number substringFromIndex:[number length]-8];
     }
     
-    
-   
-    
-    
     return [NSString stringWithFormat:@"%@%@",[CustomStringClass UrlProfileImageConnection],number];
 }
 
@@ -99,6 +85,20 @@
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     return [NSString stringWithFormat:@"%@.png", delegate.PhoneNumber];
+}
+
++(UIRefreshControl *)CommonRefreshControl:(SEL)MethodToCall Controller:(UITableViewController *)controller
+{
+    
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    
+    [refresh addTarget:controller  action:MethodToCall forControlEvents:UIControlEventValueChanged];
+    
+    return  refresh;
+
+
 }
 
 @end

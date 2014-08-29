@@ -109,14 +109,14 @@
     customLoader = [[CustomLoader alloc]init];
     [customLoader InitializeLoader:self];
 
-    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
-    
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
-    
-    [refresh addTarget:self action:@selector(LoadTable)forControlEvents:UIControlEventValueChanged];
-    
+//    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+//    
+//    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+//    
+//    [refresh addTarget:self action:@selector(LoadTable)forControlEvents:UIControlEventValueChanged];
+//    
    
-    self.refreshControl = refresh;
+    //self.refreshControl = [CommonFunction CommonRefreshControl:@selector(LoadTable):self];
     
     self.tableView.sectionHeaderHeight = 28;
     
@@ -126,6 +126,8 @@
     
     
     dispatch_async(myQueue, ^{
+        
+        self.refreshControl = [CommonFunction CommonRefreshControl:@selector(LoadTable) Controller:self];
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
         
