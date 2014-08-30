@@ -93,6 +93,203 @@
     return true;
 }
 
+-(void)InsertDeviceToken: (NSString *) DeviceToken
+{
+    //bool result = false;
+    
+    CommonFunction *common = [[CommonFunction alloc]init];
+    
+    NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"InsertDeviceToken/%1@",DeviceToken]];
+    
+    NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    
+    NSString *postLenght = [NSString stringWithFormat:@"%lu", (unsigned long)[data length]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:post]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLenght forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:data];
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         if (error)
+         {
+             NSLog(@"error: %@",error);
+             
+             //result = false;
+         }
+         else
+         {
+             
+             NSString *theReply;
+             theReply = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding: NSASCIIStringEncoding];
+             NSLog(@"Reply: %@", theReply);
+             
+             theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+             
+             
+             if ( [theReply isEqualToString:@"1"]) {
+                 
+                 NSLog(@"Device token sent: %@", DeviceToken);
+                 //return true;
+                 
+             }
+             
+             
+         }
+     }];
+    
+    
+   
+}
+
+
+
+- (void)getJSONPickupLines:(void (^)(NSDictionary *jsonData))block {
+    
+    CommonFunction *common = [[CommonFunction alloc]init];
+    
+    //NSString *post = [common GetJsonConnection:@"GetHiritMessage2"];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    NSString *post = [common GetJsonConnection:@"GetHiritMessage2"];
+    
+    [request setURL:[NSURL URLWithString:post]];
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue currentQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               //NSLog(@"dataAsString %@", [NSString stringWithUTF8String:[data bytes]]);
+                               NSError *error1;
+                               NSMutableDictionary * innerJson = [NSJSONSerialization
+                                                                  JSONObjectWithData:data options:kNilOptions error:&error1
+                                                                  ];
+                               block(innerJson); // Call back the block passed into your method
+                           }];
+    
+}
+
+
+
+- (void)ConvertJsonToArrary:(NSDictionary *)dictionaryKo withBlock:(void (^)(NSMutableArray *jsonData1))block {
+    
+    NSMutableArray *myarray = [[NSMutableArray alloc]init];
+    
+    for (NSDictionary *dataDict in dictionaryKo) {
+        NSString *messageGUID = [dataDict objectForKey:@"MessageGUID"];
+        NSString *hiritMessage = [dataDict objectForKey:@"HiritMessage"];
+        NSString *createdByUserName = [dataDict objectForKey:@"CreatedByUserName"];
+        NSString *createdByDeviceID = [dataDict objectForKey:@"CreatedByDeviceID"];
+        NSString *createdDate = [dataDict objectForKey:@"CreatedDate"];
+        NSString *answer1 = [dataDict objectForKey:@"Answer1"];
+        NSString *dateCreatedSTR = [dataDict objectForKey:@"DateCreatedSTR"];
+        
+        
+        NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    messageGUID, @"MessageGUID",
+                                    hiritMessage, @"HiritMessage",
+                                    createdByUserName,@"CreatedByUserName",
+                                    createdByDeviceID,@"CreatedByDeviceID",
+                                    [CommonFunction mfDateFromDotNetJSONString:createdDate],@"DateCreated",
+                                    answer1, @"Answer1",
+                                    dateCreatedSTR,@"DateCreatedSTR",
+                                    nil];
+        [myarray addObject:dictionary];
+        
+    }
+    
+    block(myarray);
+    
+}
+
+
+//-(NSData *)GetPickupLines
+//{
+//    //bool result = false;
+//    
+//    
+//    
+//    CommonFunction *common = [[CommonFunction alloc]init];
+//    
+//    NSString *post = [common GetJsonConnection:@"GetHiritMessage2"];
+//    
+//    //NSString *x = [common GetJsonConnection:@"GetHiritMessage2"];
+//
+//    
+//    NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+//    
+//    NSString *postLenght = [NSString stringWithFormat:@"%lu", (unsigned long)[data length]];
+//    
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+//    [request setURL:[NSURL URLWithString:post]];
+//    [request setHTTPMethod:@"GET"];
+//    //[request setValue:postLenght forHTTPHeaderField:@"Content-Length"];
+//    [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+//    [request setHTTPBody:data];
+//    
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    //NSData *data2;
+//    
+//    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+//     {
+//         if (error)
+//         {
+//             NSLog(@"error: %@",error);
+//             
+//             //result = false;
+//         }
+//         else
+//         {
+//             
+//             
+//             NSString *theReply;
+//             theReply = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding: NSASCIIStringEncoding];
+//             NSLog(@"Reply: %@", theReply);
+//             
+//             theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+//             
+//             
+//             if ( [theReply isEqualToString:@"1"]) {
+//                 
+//                 //NSLog(@"Pickup line sent: %@", personNumber);
+//                 //return true;
+//                 
+//             }
+//             else{
+//                 
+//                 
+//                // NSLog(@"Error sending pickup lines: %@", personNumber);
+//                 //return false;
+//                 //[queue cancelAllOperations];
+//                 
+//                 dispatch_async(dispatch_get_main_queue(), ^(void){
+//                     
+//                     UIAlertView *alert2 = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error sending pickup lines" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+//                     
+//                     [alert2 show];
+//                     
+//                     
+//                 });
+//                 
+//                 
+//             }
+//             
+//             
+//             
+//             
+//         }
+//     }];
+//    
+//    
+//    return data;
+//}
+
+
 +(UIImage*)imageWithImage:(UIImage*)image
 scaledToSize:(CGSize)newSize;
 {

@@ -33,12 +33,12 @@
     // Define keys
     
     bool isConnectionOK;
-    NSString *MessageGUID ;
-    NSString *HiritMessage ;
-    NSString *CreatedByUserName ;
-    NSString *CreatedByDeviceID ;
-    NSDate *CreatedDate;
-    NSString *Answer1;
+//    NSString *MessageGUID ;
+//    NSString *HiritMessage ;
+//    NSString *CreatedByUserName ;
+//    NSString *CreatedByDeviceID ;
+//    NSDate *CreatedDate;
+//    NSString *Answer1;
     
     
     CustomLoader *customLoader;
@@ -107,6 +107,7 @@
 {
 
     customLoader = [[CustomLoader alloc]init];
+    
     [customLoader InitializeLoader:self];
 
 //    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
@@ -125,7 +126,7 @@
     }
     
     
-    dispatch_async(myQueue, ^{
+    //dispatch_async(myQueue, ^{
         
         self.refreshControl = [CommonFunction CommonRefreshControl:@selector(LoadTable) Controller:self];
         
@@ -143,7 +144,7 @@
 
         [self LoadTable];
         
-    });
+    //});
     
 
    
@@ -234,7 +235,7 @@
     }
     
 
-    if (isConnectionOK == true) {
+    //if (isConnectionOK == true) {
         
         NSDictionary *tmpDict = nil;
 
@@ -259,7 +260,7 @@
             cell.detailTextLabel.text =[NSString stringWithFormat:@"Created By %@",[tmpDict objectForKey:@"CreatedByUserName"]] ;
 
         
-    }
+   // }
     return cell;
     
 }
@@ -330,7 +331,7 @@
         messageGUID = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"MessageGUID"]];
         hiritMessage = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"HiritMessage"]];
         createdBy = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"CreatedBy"]];
-        answer1 = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"Answer"]];
+        answer1 = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"Answer1"]];
 
         dv.MessageGUID = messageGUID;
         dv.HiritMessage = hiritMessage;
@@ -347,30 +348,30 @@
     }
 }
 
-- (NSDate *)mfDateFromDotNetJSONString:(NSString *)string {
-    static NSRegularExpression *dateRegEx = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        dateRegEx = [[NSRegularExpression alloc] initWithPattern:@"^\\/date\\((-?\\d++)(?:([+-])(\\d{2})(\\d{2}))?\\)\\/$" options:NSRegularExpressionCaseInsensitive error:nil];
-    });
-    NSTextCheckingResult *regexResult = [dateRegEx firstMatchInString:string options:0 range:NSMakeRange(0, [string length])];
-    
-    if (regexResult) {
-        // milliseconds
-        NSTimeInterval seconds = [[string substringWithRange:[regexResult rangeAtIndex:1]] doubleValue] / 1000.0;
-        // timezone offset
-        if ([regexResult rangeAtIndex:2].location != NSNotFound) {
-            NSString *sign = [string substringWithRange:[regexResult rangeAtIndex:2]];
-            // hours
-            seconds += [[NSString stringWithFormat:@"%@%@", sign, [string substringWithRange:[regexResult rangeAtIndex:3]]] doubleValue] * 60.0 * 60.0;
-            // minutes
-            seconds += [[NSString stringWithFormat:@"%@%@", sign, [string substringWithRange:[regexResult rangeAtIndex:4]]] doubleValue] * 60.0;
-        }
-        
-        return [NSDate dateWithTimeIntervalSince1970:seconds];
-    }
-    return nil;
-}
+//- (NSDate *)mfDateFromDotNetJSONString:(NSString *)string {
+//    static NSRegularExpression *dateRegEx = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        dateRegEx = [[NSRegularExpression alloc] initWithPattern:@"^\\/date\\((-?\\d++)(?:([+-])(\\d{2})(\\d{2}))?\\)\\/$" options:NSRegularExpressionCaseInsensitive error:nil];
+//    });
+//    NSTextCheckingResult *regexResult = [dateRegEx firstMatchInString:string options:0 range:NSMakeRange(0, [string length])];
+//    
+//    if (regexResult) {
+//        // milliseconds
+//        NSTimeInterval seconds = [[string substringWithRange:[regexResult rangeAtIndex:1]] doubleValue] / 1000.0;
+//        // timezone offset
+//        if ([regexResult rangeAtIndex:2].location != NSNotFound) {
+//            NSString *sign = [string substringWithRange:[regexResult rangeAtIndex:2]];
+//            // hours
+//            seconds += [[NSString stringWithFormat:@"%@%@", sign, [string substringWithRange:[regexResult rangeAtIndex:3]]] doubleValue] * 60.0 * 60.0;
+//            // minutes
+//            seconds += [[NSString stringWithFormat:@"%@%@", sign, [string substringWithRange:[regexResult rangeAtIndex:4]]] doubleValue] * 60.0;
+//        }
+//        
+//        return [NSDate dateWithTimeIntervalSince1970:seconds];
+//    }
+//    return nil;
+//}
 
 - (IBAction)Join:(id)sender {
     UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Pickup Lines"
@@ -381,94 +382,132 @@
 
 -(void)LoadTable
 {
-    
-    dispatch_async(myQueue,^{
-        
-        MessageGUID = @"MessageGUID";
-        HiritMessage = @"HiritMessage";
-        CreatedByUserName = @"CreatedByUserName";
-        CreatedByDeviceID = @"CreatedByDeviceID";
-        CreatedDate=    [NSDate date];
-        Answer1 = @"Answer";
-        
-        
-        myObject = [[NSMutableArray alloc] init];
-        CommonFunction *common = [[CommonFunction alloc]init];
-        NSString *x = [common GetJsonConnection:@"GetHiritMessage2"];
-        NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
-        
-        if ([common CheckNSD:jsonSource] == false) {
-            
-            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
-                                                        message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-            
-            isConnectionOK = NO;
-            
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
-            
-            self.navigationItem.title = @"Network Error";
-            
-            dispatch_async(myQueue, ^{
-                [self HideLoading];
-            });
-
-            
-            [mes show];
-            
-            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
-            
-            return;
-        }
-        
-        isConnectionOK = YES;
-        
-        id jsonObjects = [NSJSONSerialization JSONObjectWithData:
-                          jsonSource options:NSJSONReadingMutableContainers error:nil];
-        
-        countedSet = [NSCountedSet set];
-        
-        for (NSDictionary *dataDict in jsonObjects) {
-            NSString *messageGUID = [dataDict objectForKey:@"MessageGUID"];
-            NSString *hiritMessage = [dataDict objectForKey:@"HiritMessage"];
-            NSString *createdByUserName = [dataDict objectForKey:@"CreatedByUserName"];
-            NSString *createdByDeviceID = [dataDict objectForKey:@"CreatedByDeviceID"];
-            NSString *createdDate = [dataDict objectForKey:@"CreatedDate"];
-            NSString *answer1 = [dataDict objectForKey:@"Answer1"];
-            NSString *dateCreatedSTR = [dataDict objectForKey:@"DateCreatedSTR"];
-            
-            
-            dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                          messageGUID, MessageGUID,
-                          hiritMessage, HiritMessage,
-                          createdByUserName,CreatedByUserName,
-                          createdByDeviceID,CreatedByDeviceID,
-                          [self mfDateFromDotNetJSONString:createdDate], @"DateCreated",
-                          answer1, Answer1,
-                          dateCreatedSTR,@"DateCreatedSTR",
-                          nil];
-            [myObject addObject:dictionary];
-            
-            [countedSet addObject:dateCreatedSTR];
-            
-        }
-        
-        
-        arrayGroup = [self SortObjects:arrayGroup CountedOjbect:countedSet];
-        
-        dispatch_async(myQueue, ^{
-            [self getJsonData];
-        });
-        
-        
-        dispatch_async(myQueue, ^{
-            [self HideLoading];
-        });
-        
-        
-        });
-    
+    myObject = [[NSMutableArray alloc] init];
 
     
+   // dispatch_async(dispatch_get_main_queue(), ^{
+        
+        CommonSendRequest *comreq = [[CommonSendRequest alloc]init];
+        [comreq getJSONPickupLines:^(NSDictionary *jsonData) {
+            
+            [comreq ConvertJsonToArrary:jsonData withBlock:^(NSMutableArray *jsonData1)
+             {
+                 [myObject addObjectsFromArray:jsonData1];
+                 
+                 NSLog(@"myObject %@ ",myObject);
+                 
+                 countedSet = [NSCountedSet set];
+                 
+                 for (NSDictionary *x in myObject) {
+                     [countedSet addObject:[x objectForKey:@"DateCreatedSTR"]];
+                     NSLog(@"%@",[x objectForKey:@"DateCreatedSTR"]);
+                 }
+                 
+                 arrayGroup = [self SortObjects:arrayGroup CountedOjbect:countedSet];
+                 [self performSelector:@selector(stopRefresh) withObject:nil];
+                 [self performSelector:@selector(releadreload) withObject:nil];
+                 
+                 
+                 
+                 
+                 //            dispatch_async(myQueue, ^{
+                 //                [self getJsonData];
+                 //            });
+                 //
+                 //
+//                 dispatch_async(myQueue, ^{
+//                     [self HideLoading];
+//                 });
+                 
+                 
+                 
+             }];
+            
+            //[self performSelector:@selector(Printo) withObject:nil afterDelay:0];
+            
+            
+            //CommonFunction *common = [[CommonFunction alloc]init];
+            
+            
+            //jsonSource = [comreq GetPickupLines];
+            
+            // NSString *x = [common GetJsonConnection:@"GetHiritMessage2"];
+            // NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
+            
+            //        if ([common CheckNSD:jsonSource] == false) {
+            //
+            //            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
+            //                                                        message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            //
+            //            isConnectionOK = NO;
+            //
+            //            [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
+            //
+            //            self.navigationItem.title = @"Network Error";
+            //
+            //            dispatch_async(myQueue, ^{
+            //                [self HideLoading];
+            //            });
+            //
+            //
+            //            [mes show];
+            //
+            //            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+            //
+            //            return;
+            //        }
+            //
+            //        isConnectionOK = YES;
+            //
+            //        id jsonObjects = [NSJSONSerialization JSONObjectWithData:
+            //                          jsonSource options:NSJSONReadingMutableContainers error:nil];
+            
+            
+            
+            //        for (NSDictionary *dataDict in jsonObjects) {
+            //            NSString *messageGUID = [dataDict objectForKey:@"MessageGUID"];
+            //            NSString *hiritMessage = [dataDict objectForKey:@"HiritMessage"];
+            //            NSString *createdByUserName = [dataDict objectForKey:@"CreatedByUserName"];
+            //            NSString *createdByDeviceID = [dataDict objectForKey:@"CreatedByDeviceID"];
+            //            NSString *createdDate = [dataDict objectForKey:@"CreatedDate"];
+            //            NSString *answer1 = [dataDict objectForKey:@"Answer1"];
+            //            NSString *dateCreatedSTR = [dataDict objectForKey:@"DateCreatedSTR"];
+            //
+            //
+            //            dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+            //                          messageGUID, @"MessageGUID",
+            //                          hiritMessage, @"HiritMessage",
+            //                          createdByUserName,@"CreatedByUserName",
+            //                          createdByDeviceID,@"CreatedByDeviceID",
+            //                          //[self mfDateFromDotNetJSONString:createdDate], @"DateCreated",
+            //                          [CommonFunction mfDateFromDotNetJSONString:createdDate],@"DateCreated",
+            //                          answer1, @"Answer1",
+            //                          dateCreatedSTR,@"DateCreatedSTR",
+            //                          nil];
+            //            [myObject addObject:dictionary];
+            //            
+            //            
+            //            
+            //        }
+            
+            
+            
+            
+            
+        } ];
+        
+        
+        
+  //  });
+    
+    
+    
+}
+
+-(void)releadreload
+{
+    [self.tableView reloadData];
+    [self HideLoading];
 }
 
 

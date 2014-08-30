@@ -19,6 +19,7 @@
 +(UIRefreshControl *)CommonRefreshControl:(SEL)MethodToCall Controller:(UITableViewController *)controller;
 +(NSString *)ProfieImageURLByPhone :(NSString *)phoneNumber;
 +(NSString *)ProfileImageFileName;
++(NSDate *)mfDateFromDotNetJSONString:(NSString *)string;
 
 
 @end
