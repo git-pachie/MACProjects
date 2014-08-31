@@ -11,6 +11,7 @@
 #import "CommonFunction.h"
 #import "AppDelegate.h"
 #import "CustomLoader.h"
+#import "CommonSendRequest.h"
 
 @interface MyPickupLineHeaderTableViewController ()
 {
@@ -19,6 +20,7 @@
     AppDelegate *del;
     CustomLoader *loader;
     dispatch_queue_t myQue;
+    CommonSendRequest *comReq;
 }
 
 @end
@@ -37,6 +39,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    comReq  = [[CommonSendRequest alloc]init];
     
     loader = [[CustomLoader alloc]init];
     [loader InitializeLoader:self];
@@ -65,28 +69,19 @@
     
     //mArray = [[NSMutableArray alloc]init];
     
-    if (!myQue) {
-        myQue = dispatch_queue_create("com.samplejson11", NULL);
-    }
-    
-//   
+//    if (!myQue) {
+//        myQue = dispatch_queue_create("com.samplejson11", NULL);
+//    }
 //    
+//        dispatch_async(myQue, ^{
+//            
+//
+//        [self LoadUserByMessage];
+//            
+//
+//    });
     
-    
-    
-        dispatch_async(myQue, ^{
-            
-            
-            
-    
-        [self LoadUserByMessage];
-            
-
-        
-
-    });
-    
-    
+    [self LoadUserByMessage];
     
 }
 
@@ -185,82 +180,19 @@
 {
     mArray = [[NSMutableArray alloc]init];
 
-    
-    dispatch_async(myQue,^{
-     
-        
-    //common = [[CommonFunction alloc]init];
-    NSString *x =  [common GetJsonConnection:[NSString stringWithFormat:@"GetDistincMessage/%1@",del.PhoneNumber]];
-    
-    NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
-    
-    if ([common CheckNSD:jsonSource] == false) {
-        
-        UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
-                                                    message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
-        
-        self.navigationItem.title = @"Network Error";
-        
-        [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
-
-        
-        [mes show];
-        
-        return;
-    }
-    
-    
-    
-    id jsonObjects = [NSJSONSerialization JSONObjectWithData:
-                      jsonSource options:NSJSONReadingMutableContainers error:nil];
-    
-    //countedSet = [NSCountedSet set];
-    
-    for (NSDictionary *dataDict in jsonObjects) {
-        NSString *phoneNumber = [dataDict objectForKey:@"PhoneNumber"];
-        NSString *email = [dataDict objectForKey:@"Email"];
-        NSString *userName = [dataDict objectForKey:@"UserName"];
-        
-        NSDictionary *dictionary = [[NSDictionary alloc]initWithObjectsAndKeys:
-                                     phoneNumber,@"PhoneNumber"
-                                    ,email,@"Email"
-                                    ,userName,@"UserName"
-                                    ,nil];
-        
-        [mArray addObject:dictionary];
-        
-        
-        
-        
-        
-        
-    }
-    
-       // sleep(1);
-        
-       // [loader.spinner stopAnimating];
-        
-        dispatch_async(myQue, ^{
-            [self HideLoading];
-
-        });
-        
         dispatch_async(dispatch_get_main_queue(),^{
-            
-        
-        [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:1.5];
-        
-        });
+            [comReq getUserMessage:del.PhoneNumber withBlock:^(NSMutableArray *array) {
+                mArray = array;
+                //NSLog(@"User message %@", array);
+                
+                [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:1.5];
+                [self HideLoading];
+                
+                
+            }];
+
     });
 
-    
-
-    
-    
-    
-    
     
 }
 
@@ -272,7 +204,7 @@
         sleep(2);
         
         //self.navigationItem.title = @"Home";
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
+        //[UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
         
         [loader.spinner stopAnimating];
         
@@ -283,7 +215,7 @@
             }
         }
         
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
     });
 }
 

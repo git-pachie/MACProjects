@@ -74,15 +74,17 @@
         myQue = dispatch_queue_create("com.samplejson22", NULL);
     }
     
+    loader.label.text = @"Loading...";
+    [self.view addSubview:loader.xview];
+    [self.view addSubview:loader.spinner];
+    [self.view addSubview:loader.label];
+    [loader.spinner startAnimating];
+
+    
     dispatch_async(myQue, ^{
         
         
-        loader.label.text = @"Loading...";
-        [self.view addSubview:loader.xview];
-        [self.view addSubview:loader.spinner];
-        [self.view addSubview:loader.label];
-        [loader.spinner startAnimating];
-    
+        
         
         [self LoadMessage];
 
@@ -100,7 +102,7 @@
 - (void)stopRefresh
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
         [self.refreshControl endRefreshing];
 
     });

@@ -9,7 +9,7 @@
 #import "PhoneBookTableViewController.h"
 #import "PhoneContactClass.h"
 #import "EntityPerson.h"
-#import "Venu.h"
+//#import "Venu.h"
 #import "CommonFunction.h"
 
 @interface PhoneBookTableViewController ()
@@ -17,7 +17,7 @@
     NSMutableArray *mArary;
     NSArray *mArarySearch;
     dispatch_queue_t myQ2;
-    Venu *venu;
+    //Venu *venu;
 }
 
 @end
@@ -37,7 +37,7 @@
 {
     [super viewDidLoad];
     
-    venu = [[Venu alloc]init];
+    //venu = [[Venu alloc]init];
     
     
     

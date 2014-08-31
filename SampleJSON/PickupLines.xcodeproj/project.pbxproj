@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C27B56019AB14DC00AB2DDF /* Settings2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C27B55F19AB14DC00AB2DDF /* Settings2ViewController.m */; };
 		0C6362CD199484F30023A387 /* SendPickupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6362CC199484F30023A387 /* SendPickupViewController.m */; };
 		0C6FE133197540E7003B0EF6 /* CustomStaticTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6FE132197540E7003B0EF6 /* CustomStaticTableViewController.m */; };
 		0C7C79B8199A7098001E6D29 /* EntityPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7C79B7199A7098001E6D29 /* EntityPerson.m */; };
@@ -23,7 +22,6 @@
 		0CD8EF8D199690EE00E88A04 /* CustomLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8EF8C199690EE00E88A04 /* CustomLoader.m */; };
 		0D4878E819A888CF00F342B9 /* CommonSendRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4878E719A888CF00F342B9 /* CommonSendRequest.m */; };
 		0D4878EA19A9CDD000F342B9 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4878E919A9CDD000F342B9 /* profile.png */; };
-		0D4878ED19AA563C00F342B9 /* Venu.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4878EC19AA563C00F342B9 /* Venu.m */; };
 		0D6FE46F19686E1A002E3880 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6FE46E19686E1A002E3880 /* Foundation.framework */; };
 		0D6FE47119686E1A002E3880 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6FE47019686E1A002E3880 /* CoreGraphics.framework */; };
 		0D6FE47319686E1A002E3880 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6FE47219686E1A002E3880 /* UIKit.framework */; };
@@ -64,8 +62,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0C27B55E19AB14DC00AB2DDF /* Settings2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings2ViewController.h; sourceTree = "<group>"; };
-		0C27B55F19AB14DC00AB2DDF /* Settings2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings2ViewController.m; sourceTree = "<group>"; };
 		0C6362CB199484F30023A387 /* SendPickupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendPickupViewController.h; sourceTree = "<group>"; };
 		0C6362CC199484F30023A387 /* SendPickupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendPickupViewController.m; sourceTree = "<group>"; };
 		0C6FE131197540E7003B0EF6 /* CustomStaticTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStaticTableViewController.h; sourceTree = "<group>"; };
@@ -92,8 +88,6 @@
 		0D4878E619A888CF00F342B9 /* CommonSendRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSendRequest.h; sourceTree = "<group>"; };
 		0D4878E719A888CF00F342B9 /* CommonSendRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSendRequest.m; sourceTree = "<group>"; };
 		0D4878E919A9CDD000F342B9 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
-		0D4878EB19AA563C00F342B9 /* Venu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venu.h; sourceTree = "<group>"; };
-		0D4878EC19AA563C00F342B9 /* Venu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venu.m; sourceTree = "<group>"; };
 		0D6FE46B19686E1A002E3880 /* PickupLines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickupLines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D6FE46E19686E1A002E3880 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0D6FE47019686E1A002E3880 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -167,8 +161,6 @@
 			children = (
 				0C6FE131197540E7003B0EF6 /* CustomStaticTableViewController.h */,
 				0C6FE132197540E7003B0EF6 /* CustomStaticTableViewController.m */,
-				0C27B55E19AB14DC00AB2DDF /* Settings2ViewController.h */,
-				0C27B55F19AB14DC00AB2DDF /* Settings2ViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -284,8 +276,6 @@
 				0CA596761973E1F80032D144 /* CommonFunction.m */,
 				0D4878E619A888CF00F342B9 /* CommonSendRequest.h */,
 				0D4878E719A888CF00F342B9 /* CommonSendRequest.m */,
-				0D4878EB19AA563C00F342B9 /* Venu.h */,
-				0D4878EC19AA563C00F342B9 /* Venu.m */,
 				0D7EDB3F19ACF89A009DBCCF /* CustomStringClass.h */,
 				0D7EDB4019ACF89A009DBCCF /* CustomStringClass.m */,
 			);
@@ -484,9 +474,7 @@
 				0D6FE4A719686E89002E3880 /* TestViewController.m in Sources */,
 				0DBE6FF41971A13B0024380E /* MessageDetailViewController.m in Sources */,
 				0D6FE48419686E1A002E3880 /* SampleJSON.xcdatamodeld in Sources */,
-				0C27B56019AB14DC00AB2DDF /* Settings2ViewController.m in Sources */,
 				0D7EDB4119ACF89A009DBCCF /* CustomStringClass.m in Sources */,
-				0D4878ED19AA563C00F342B9 /* Venu.m in Sources */,
 				0D6FE4AD196AE529002E3880 /* HomeTableViewController.m in Sources */,
 				0DA67A5319B1CF2800229FBC /* VerifyRegistrationViewController.m in Sources */,
 				0C8327341994CEC800C2CEF0 /* MyTableViewCell.m in Sources */,

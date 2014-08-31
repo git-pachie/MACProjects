@@ -148,9 +148,9 @@
 
 {
    // dispatch_async(dispatch_get_main_queue(), ^{
-        if (isConnectionOK==true) {
-            [self.tableView reloadData];
-        }
+//        if (isConnectionOK==true) {
+//            [self.tableView reloadData];
+//        }
         [self.refreshControl endRefreshing];
     //});
     
@@ -258,9 +258,15 @@
     
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 52;
+}
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
+    
+    
 
     view.tintColor = [UIColor purpleColor];
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
@@ -521,107 +527,7 @@
 }
 
 
-//-(void)getJsonData
-//{
-//    
-//    dispatch_async(myQueue,^{
-//    
-//        NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-//        
-//        DeviceGUID = uniqueIdentifier;
-//        
-//        CommonFunction *common = [[CommonFunction alloc]init];
-//        
-//        NSString *url =[common GetJsonConnection:[NSString stringWithFormat:@"GetUserByDeviceID/%@",DeviceGUID]];
-//        
-//        NSData *allCoursesData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-//        
-//        if ([common CheckNSD:allCoursesData] == false) {
-//            
-//            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
-//                                                        message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-//            
-//            [mes show];
-//            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
-//            
-//            self.navigationItem.title = @"Network Error";
-//            
-//            dispatch_async(myQueue, ^{
-//                [self HideLoading];
-//            });
-//
-//            
-//            return;
-//        }
-//        
-//        
-//        NSError *error;
-//        NSMutableDictionary *allHirit= [NSJSONSerialization JSONObjectWithData:allCoursesData options:NSJSONReadingMutableContainers error:&error];
-//        
-//        if (error) {
-//            NSLog(@"%@",[error localizedDescription]);
-//        }
-//        else {
-//            for (NSDictionary *dic in allHirit )
-//            {
-//                NSLog(@"Checking if device is already registered with device id %@", DeviceGUID);
-//                
-//                self.DeviceGUID = dic[@"DeviceGUID"];
-//                self.Email = dic[@"Email"];
-//                self.PhoneNumber = dic[@"PhoneNumber"];
-//                self.IsDeviceActivated = dic[@"isDeviceActivated"];
-//                
-//            }
-//            
-//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-//            
-//            if ([_IsDeviceActivated isEqualToString:@"NO"]) {
-//                DeviceActivationViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"acid"];
-//                [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-//                vc.deviceGUID = DeviceGUID;
-//                vc.emailAddress = self.Email;
-//                
-//                [self presentViewController:vc animated:YES completion:nil];
-//            }
-//            else if ([self.IsDeviceActivated isEqualToString:@"YES"])
-//            {
-//                
-//                AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//                delegate.DeviceGUID = DeviceGUID;
-//                delegate.isDeviceRegistered = @"YES";
-//                delegate.EmailAddress = _Email;
-//                delegate.PhoneNumber = _PhoneNumber;
-//                
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:1.5];
-//
-//                });
-//                
-//                
-//                return;
-//            }
-//            else
-//            {
-//                
-//                TestViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"register"];
-//                [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-//                vc.DeviceGUID = DeviceGUID;
-//                
-//                [self presentViewController:vc animated:YES completion:nil];
-//            }
-//            
-//            
-//        }
-//        
-//        
-//    
-//    
-//    });
-//
-//    
-//    
-//
-//}
+
 
 -(void)HideLoading
 {
@@ -687,6 +593,7 @@
     }
     
     
+    
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller
@@ -718,7 +625,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
         [dictArray addObject:dict];
     }
     NSArray *final = [dictArray sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES ]]];
-    NSLog(@"%@",final);
+    //NSLog(@"%@",final);
     
     [ArraryToSort removeAllObjects];
     
