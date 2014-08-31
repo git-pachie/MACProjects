@@ -37,7 +37,8 @@
 //                                                       nil] forState:UIControlStateHighlighted];
     //    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0], NSFontAttributeName, nil]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:20.0], NSFontAttributeName, nil]];
+    
     
     
 //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBarBackground"] forBarMetrics:UIBarMetricsDefault];
@@ -46,10 +47,14 @@
     
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
     
+    //UITabBar *tab =
+    
         //[barItem setImageInsets:UIEdgeInsetsMake(15, 7.5, 0, 7.5)]
 
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
     //self.DevinceToken = @"1111111111";
+    
+    
     return YES;
 }
 

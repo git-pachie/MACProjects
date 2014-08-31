@@ -35,6 +35,10 @@ dispatch_queue_t camerq;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [CustomStringClass ApplyRountedBorderToButton:self.btnloadexisting];
+    [CustomStringClass ApplyRountedBorderToButton:self.btntakephoto];
+    
     if (!camerq) {
         camerq = dispatch_queue_create("cameraQUE",NULL);
     }
@@ -165,8 +169,6 @@ dispatch_queue_t camerq;
         image.layer.cornerRadius = image.frame.size.width/2;// self.profileImageView.frame.size.width / 2
         image.clipsToBounds = YES;
         
-        [CustomStringClass ApplyRountedBorderToButton:self.btnloadexisting];
-        [CustomStringClass ApplyRountedBorderToButton:self.btntakephoto];
         
         
     });

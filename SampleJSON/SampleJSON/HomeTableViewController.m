@@ -70,30 +70,6 @@
 
 
 
--(void)viewDidAppear:(BOOL)animated
-{
-//    if (isConnectionOK == NO) {
-//        return;
-//    }
-//    
-//   // AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    
-//    if ([delegate.isDeviceRegistered isEqualToString:@"NO"])
-//    {
-//        
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-//        DeviceActivationViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"acid"];
-//        [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-//        vc.deviceGUID = DeviceGUID;
-//        vc.emailAddress = _Email;
-//        [self presentViewController:vc animated:YES completion:nil];
-//        
-//    }
-
-    
-}
-
-
 
 -(void)doneButtonPressed:(id)sender
 {
@@ -107,6 +83,10 @@
 - (void)viewDidLoad
 {
 
+       //[[[[self.tabBarController tabBar]items]objectAtIndex:1]setHidden:YES];
+//     [[[[self.tabBarController tabBar]items]objectAtIndex:2]setHidden:YES];
+//     [[[[self.tabBarController tabBar]items]objectAtIndex:3]setHidden:YES];
+//    
     delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     customLoader = [[CustomLoader alloc]init];
@@ -122,7 +102,8 @@
    
     //self.refreshControl = [CommonFunction CommonRefreshControl:@selector(LoadTable):self];
     
-    self.tableView.sectionHeaderHeight = 28;
+    self.tableView.sectionHeaderHeight = 52;
+    
     
     
     
@@ -270,6 +251,9 @@
 
         
    // }
+    
+    
+    
     return cell;
     
 }
@@ -281,6 +265,20 @@
     view.tintColor = [UIColor purpleColor];
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     [header.textLabel setTextColor:[UIColor whiteColor]];
+    
+    view.layer.cornerRadius = view.frame.size.height / 2;
+    view.layer.masksToBounds = YES;
+    
+    view.alpha  = 0.8;
+    view.layer.borderColor = [UIColor whiteColor].CGColor;
+    view.layer.borderWidth = 10;
+    
+    
+    [header.textLabel setTextAlignment:NSTextAlignmentCenter];
+    
+    
+    //button.alpha = 0.6;
+    
 
 }
 
