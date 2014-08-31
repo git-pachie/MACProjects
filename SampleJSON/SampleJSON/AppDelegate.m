@@ -37,9 +37,24 @@
 //                                                       nil] forState:UIControlStateHighlighted];
     //    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:20.0], NSFontAttributeName, nil]];
     
     
+    
+    
+//    
+//    [[UINavigationBar appearance] setTitleTextAttributes:
+//     [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:22.0], NSFontAttributeName, nil]];
+//    
+    
+    
+    
+    [[UINavigationBar appearance]setTintColor:[UIColor purpleColor]];
+    [UINavigationBar appearance].backgroundColor = [UIColor purpleColor];
+    [UINavigationBar appearance].layer.opacity = 5;//[UIColor purpleColor];
+    
+    
+    
+
     
 //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBarBackground"] forBarMetrics:UIBarMetricsDefault];
 //    
