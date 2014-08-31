@@ -165,6 +165,8 @@
 		0C27B55A19AB0FA800AB2DDF /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				0C6FE131197540E7003B0EF6 /* CustomStaticTableViewController.h */,
+				0C6FE132197540E7003B0EF6 /* CustomStaticTableViewController.m */,
 				0C27B55E19AB14DC00AB2DDF /* Settings2ViewController.h */,
 				0C27B55F19AB14DC00AB2DDF /* Settings2ViewController.m */,
 			);
@@ -234,8 +236,6 @@
 				0D6FE48519686E1A002E3880 /* Images.xcassets */,
 				0D6FE48219686E1A002E3880 /* SampleJSON.xcdatamodeld */,
 				0D6FE47719686E1A002E3880 /* Supporting Files */,
-				0C6FE131197540E7003B0EF6 /* CustomStaticTableViewController.h */,
-				0C6FE132197540E7003B0EF6 /* CustomStaticTableViewController.m */,
 			);
 			path = SampleJSON;
 			sourceTree = "<group>";
@@ -243,10 +243,11 @@
 		0D6FE47719686E1A002E3880 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0C27B55A19AB0FA800AB2DDF /* Settings */,
-				0C8327311994CE7700C2CEF0 /* CustomCell */,
 				0DA05E901975658F001D1A85 /* Storyboard */,
 				0DA05E91197565BA001D1A85 /* Home */,
+				0DCCF04F19B390DC000F00CB /* PickupLines */,
+				0C27B55A19AB0FA800AB2DDF /* Settings */,
+				0C8327311994CE7700C2CEF0 /* CustomCell */,
 				0DA05E8F19756571001D1A85 /* Common */,
 				0D6FE47819686E1A002E3880 /* PickupLines-Info.plist */,
 				0D6FE47919686E1A002E3880 /* InfoPlist.strings */,
@@ -277,17 +278,10 @@
 		0DA05E8F19756571001D1A85 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				0C7C79BD199A73C3001E6D29 /* PhoneBookTableViewController.h */,
-				0C7C79BE199A73C3001E6D29 /* PhoneBookTableViewController.m */,
-				0C7C79BF199A73C3001E6D29 /* PhoneContactClass.h */,
-				0C7C79C0199A73C3001E6D29 /* PhoneContactClass.m */,
-				0C7C79B6199A7098001E6D29 /* EntityPerson.h */,
-				0C7C79B7199A7098001E6D29 /* EntityPerson.m */,
+				0DCCF05019B391C2000F00CB /* PhoneBook */,
 				0CD8EF8E19969D8E00E88A04 /* Loader */,
 				0CA596751973E1F80032D144 /* CommonFunction.h */,
 				0CA596761973E1F80032D144 /* CommonFunction.m */,
-				0DA05E9219756640001D1A85 /* SystemEntity.h */,
-				0DA05E9319756640001D1A85 /* SystemEntity.m */,
 				0D4878E619A888CF00F342B9 /* CommonSendRequest.h */,
 				0D4878E719A888CF00F342B9 /* CommonSendRequest.m */,
 				0D4878EB19AA563C00F342B9 /* Venu.h */,
@@ -320,10 +314,6 @@
 				0DBE6FF31971A13B0024380E /* MessageDetailViewController.m */,
 				0C6362CB199484F30023A387 /* SendPickupViewController.h */,
 				0C6362CC199484F30023A387 /* SendPickupViewController.m */,
-				0C8327371994CF5F00C2CEF0 /* MyPickupLinesTableViewController.h */,
-				0C8327381994CF5F00C2CEF0 /* MyPickupLinesTableViewController.m */,
-				0C83273A1994D91900C2CEF0 /* MyPickupLineHeaderTableViewController.h */,
-				0C83273B1994D91900C2CEF0 /* MyPickupLineHeaderTableViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -346,6 +336,32 @@
 				0DA67A5219B1CF2800229FBC /* VerifyRegistrationViewController.m */,
 			);
 			name = Registration;
+			sourceTree = "<group>";
+		};
+		0DCCF04F19B390DC000F00CB /* PickupLines */ = {
+			isa = PBXGroup;
+			children = (
+				0C8327371994CF5F00C2CEF0 /* MyPickupLinesTableViewController.h */,
+				0C8327381994CF5F00C2CEF0 /* MyPickupLinesTableViewController.m */,
+				0C83273A1994D91900C2CEF0 /* MyPickupLineHeaderTableViewController.h */,
+				0C83273B1994D91900C2CEF0 /* MyPickupLineHeaderTableViewController.m */,
+			);
+			name = PickupLines;
+			sourceTree = "<group>";
+		};
+		0DCCF05019B391C2000F00CB /* PhoneBook */ = {
+			isa = PBXGroup;
+			children = (
+				0DA05E9219756640001D1A85 /* SystemEntity.h */,
+				0DA05E9319756640001D1A85 /* SystemEntity.m */,
+				0C7C79B6199A7098001E6D29 /* EntityPerson.h */,
+				0C7C79B7199A7098001E6D29 /* EntityPerson.m */,
+				0C7C79BD199A73C3001E6D29 /* PhoneBookTableViewController.h */,
+				0C7C79BE199A73C3001E6D29 /* PhoneBookTableViewController.m */,
+				0C7C79BF199A73C3001E6D29 /* PhoneContactClass.h */,
+				0C7C79C0199A73C3001E6D29 /* PhoneContactClass.m */,
+			);
+			name = PhoneBook;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

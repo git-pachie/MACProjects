@@ -55,6 +55,13 @@
     
 
     
+    loader.label.text = @"Loading...";
+    [self.view addSubview:loader.xview];
+    [self.view addSubview:loader.spinner];
+    [self.view addSubview:loader.label];
+    [loader.spinner startAnimating];
+
+    
     
     //mArray = [[NSMutableArray alloc]init];
     
@@ -71,12 +78,6 @@
             
             
             
-        loader.label.text = @"Loading...";
-        [self.view addSubview:loader.xview];
-        [self.view addSubview:loader.spinner];
-        [self.view addSubview:loader.label];
-        [loader.spinner startAnimating];
-        
     
         [self LoadUserByMessage];
             
