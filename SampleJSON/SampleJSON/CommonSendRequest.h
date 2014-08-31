@@ -13,7 +13,10 @@
 -(BOOL)SendPickupLines: (NSString *) deviceGUID : (NSString *) personNumber : (NSString *) messageGUID;
 
 +(void)SendProfileToServer: (UIImage *) img;
-- (void)getJSONPickupLines:(void (^)(NSDictionary *jsonData))block;
-- (void)ConvertJsonToArrary:(NSDictionary *)dictionaryKo withBlock:(void (^)(NSMutableArray *jsonData1))block;
--(void)InsertDeviceToken: (NSString *) DeviceToken;
+-(void)getJSONPickupLines:(void (^)(NSDictionary *jsonData))block;
+-(void)ConvertJsonToArrary:(NSDictionary *)dictionaryKo withBlock:(void (^)(NSMutableArray *jsonData1))block;
+-(void)InsertDeviceToken: (NSString *) DeviceToken withBlock:(void (^)(NSString *phoneNumber))block;
+-(void)checkDeviceActivation: (NSString *) deviceToken withBlock:(void (^)(NSString *returnValue))block;
+-(void)registerAccount: (NSString *) deviceToken PhoneNumber:(NSString *)phoneNumber withBlock:(void (^)(NSString *returnValue))block ;
+-(void)verifyAccount: (NSString *) deviceToken PhoneNumber:(NSString *)phoneNumber ActivationCode:(NSString *)activationCode withBlock:(void (^)(NSString *returnValue))block;
 @end

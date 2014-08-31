@@ -26,4 +26,11 @@
     return  @"http://www.riverwayauto.com:1980/myjson/service1.svc/UploadFile?fileName=";
 }
 
+
++(void)ApplyRountedBorderToButton :(UIButton *)button
+{
+    button.layer.cornerRadius = button.frame.size.height /2 ;// 10;
+    button.alpha = 0.6;
+
+}
 @end

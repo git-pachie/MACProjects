@@ -23,7 +23,7 @@
     [self.xview setBackgroundColor:[UIColor blackColor]];
     
     self.xview.layer.cornerRadius = 8;
-    self.xview.layer.masksToBounds = YES;
+    //self.xview.layer.masksToBounds = YES;
     self.xview.alpha = 0.8;
     self.xview.tag = 1;
     
@@ -42,14 +42,13 @@
     self.label.layer.shadowOpacity = 6;
     self.label.layer.shadowOffset = CGSizeZero;
     
-    self.label.layer.masksToBounds = NO;
+    //self.label.layer.masksToBounds = NO;
     
     self.label.tag = 1;
     
     self.spinner.tag = 1;
         
-        
-        
+            
     
    // });
 }
@@ -112,14 +111,14 @@
 {
     //dispatch_async(dispatch_get_main_queue(),^{
     
-    CGRect loadingSize = CGRectMake((table.view.bounds.size.width-120)/2, (table.view.bounds.size.height-170) / 2, 120, 100);
-    CGRect loadingSizeInd = CGRectMake((table.view.bounds.size.width-120)/2, (table.view.bounds.size.height-160) / 2-24, 120, 100);
-    CGRect loadingSizeLabel = CGRectMake((table.view.bounds.size.width - 65)/2-4, (table.view.bounds.size.height-120) / 2, 120, 100);
+    CGRect loadingSize = CGRectMake((table.view.bounds.size.width-120)/2, (table.view.bounds.size.height-170) / 2, 120, 120);
+    CGRect loadingSizeInd = CGRectMake((table.view.bounds.size.width-120)/2, (table.view.bounds.size.height-160) / 2-24, 120, 120);
+    CGRect loadingSizeLabel = CGRectMake((table.view.bounds.size.width - 65)/2-4, (table.view.bounds.size.height-120) / 2, 120, 120);
     
     self.xview = [[UIView alloc]initWithFrame:loadingSize];
     [self.xview setBackgroundColor:[UIColor grayColor]];
     
-    self.xview.layer.cornerRadius = 8;
+    self.xview.layer.cornerRadius = 10;
     self.xview.layer.masksToBounds = YES;
     self.xview.alpha = 0.7;
     self.xview.tag = 1;

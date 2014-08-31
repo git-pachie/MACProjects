@@ -93,8 +93,8 @@
     return true;
 }
 
--(void)InsertDeviceToken: (NSString *) DeviceToken
-{
+-(void)InsertDeviceToken: (NSString *) DeviceToken withBlock:(void (^)(NSString *phoneNumber))block {
+
     //bool result = false;
     
     CommonFunction *common = [[CommonFunction alloc]init];
@@ -139,7 +139,8 @@
                  
              }
              
-             
+             block(theReply);
+
          }
      }];
     
@@ -176,6 +177,8 @@
 
 
 
+
+
 - (void)ConvertJsonToArrary:(NSDictionary *)dictionaryKo withBlock:(void (^)(NSMutableArray *jsonData1))block {
     
     NSMutableArray *myarray = [[NSMutableArray alloc]init];
@@ -207,6 +210,190 @@
     
 }
 
+
+-(void)checkDeviceActivation: (NSString *) deviceToken withBlock:(void (^)(NSString *returnValue))block {
+    
+    CommonFunction *common = [[CommonFunction alloc]init];
+    
+    NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"CheckDeviceRegistration/%1@",deviceToken]];
+    
+    NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    
+    NSString *postLenght = [NSString stringWithFormat:@"%lu", (unsigned long)[data length]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:post]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLenght forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:data];
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         if (error)
+         {
+             NSLog(@"error: %@",error);
+             
+             //result = false;
+         }
+         else
+         {
+//             
+             NSString *theReply;
+             theReply = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding: NSASCIIStringEncoding];
+             NSLog(@"Reply: %@", theReply);
+             
+             theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+             
+
+             if ( [theReply isEqualToString:@"1"]) {
+                 
+                 NSLog(@"Device token check: %@", theReply);
+                 //return true;
+                 
+             }
+//
+//             NSError *error1;
+//             NSString * innerJson = [NSJSONSerialization
+//                                                JSONObjectWithData:data options:kNilOptions error:&error1
+//                                                ];
+
+             //innerJson = [innerJson stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+             
+             block(theReply);
+             
+             
+         }
+     }];
+    
+    
+
+}
+
+-(void)registerAccount: (NSString *) deviceToken PhoneNumber:(NSString *)phoneNumber withBlock:(void (^)(NSString *returnValue))block {
+    
+    CommonFunction *common = [[CommonFunction alloc]init];
+    
+    NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"RegisterAccount/%1@/%2@",deviceToken,phoneNumber]];
+    
+    NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    
+    NSString *postLenght = [NSString stringWithFormat:@"%lu", (unsigned long)[data length]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:post]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLenght forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:data];
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         if (error)
+         {
+             NSLog(@"error: %@",error);
+             
+             //result = false;
+         }
+         else
+         {
+             //
+             NSString *theReply;
+             theReply = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding: NSASCIIStringEncoding];
+             NSLog(@"Reply: %@", theReply);
+             
+             theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+             
+             
+             if ( [theReply isEqualToString:@"1"]) {
+                 
+                 NSLog(@"Device token check: %@", theReply);
+                 //return true;
+                 
+             }
+             //
+             //             NSError *error1;
+             //             NSString * innerJson = [NSJSONSerialization
+             //                                                JSONObjectWithData:data options:kNilOptions error:&error1
+             //                                                ];
+             
+             //innerJson = [innerJson stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+             
+             block(theReply);
+             
+             
+         }
+     }];
+    
+    
+    
+}
+
+-(void)verifyAccount: (NSString *) deviceToken PhoneNumber:(NSString *)phoneNumber ActivationCode:(NSString *)activationCode withBlock:(void (^)(NSString *returnValue))block {
+    
+    CommonFunction *common = [[CommonFunction alloc]init];
+    
+    NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"VerifyAccount/%1@/%2@/%3@",deviceToken,phoneNumber,activationCode]];
+    
+    NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    
+    NSString *postLenght = [NSString stringWithFormat:@"%lu", (unsigned long)[data length]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:post]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLenght forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:data];
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         if (error)
+         {
+             NSLog(@"error: %@",error);
+             
+             //result = false;
+         }
+         else
+         {
+             //
+             NSString *theReply;
+             theReply = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding: NSASCIIStringEncoding];
+             NSLog(@"Reply: %@", theReply);
+             
+             theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+             
+             
+             if ( [theReply isEqualToString:@"1"]) {
+                 
+                 NSLog(@"Account activation successfull: %@", theReply);
+                 //return true;
+                 
+             }
+             //
+             //             NSError *error1;
+             //             NSString * innerJson = [NSJSONSerialization
+             //                                                JSONObjectWithData:data options:kNilOptions error:&error1
+             //                                                ];
+             
+             //innerJson = [innerJson stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+             
+             
+             block(theReply);
+             
+             
+         }
+     }];
+    
+    
+    
+}
 
 //-(NSData *)GetPickupLines
 //{

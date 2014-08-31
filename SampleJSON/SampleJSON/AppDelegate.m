@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SystemEntity.h"
+#import "CommonSendRequest.h"
 
 @implementation AppDelegate
 
@@ -48,6 +49,7 @@
         //[barItem setImageInsets:UIEdgeInsetsMake(15, 7.5, 0, 7.5)]
 
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
+    //self.DevinceToken = @"1111111111";
     return YES;
 }
 
@@ -60,11 +62,23 @@
     strToken = [strToken stringByReplacingOccurrencesOfString:@"<" withString:@""];
     strToken = [strToken stringByReplacingOccurrencesOfString:@">" withString:@""];
     self.DevinceToken = strToken;
+    
+    CommonSendRequest *common = [[CommonSendRequest alloc]init];
+    //[common InsertDeviceToken:self.DevinceToken];
+    [common InsertDeviceToken:self.DevinceToken withBlock:^(NSString *phoneNumber) {
+        self.PhoneNumber = phoneNumber;
+    }];
+    
 }
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
     NSLog(@"Error in registration. Error: %@", error);
     self.DevinceToken = @"1111111111";
+    CommonSendRequest *common = [[CommonSendRequest alloc]init];
+    //[common InsertDeviceToken:self.DevinceToken];
+    [common InsertDeviceToken:self.DevinceToken withBlock:^(NSString *phoneNumber) {
+        self.PhoneNumber = phoneNumber;
+    }];
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo

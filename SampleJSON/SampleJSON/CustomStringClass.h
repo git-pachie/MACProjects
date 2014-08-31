@@ -13,5 +13,5 @@
 +(NSString *)UrlJSonConnection;
 +(NSString *)UrlProfileImageConnection;
 +(NSString *)UrlProfileUpload;
-
++(void)ApplyRountedBorderToButton :(UIButton *)button;
 @end

@@ -136,7 +136,7 @@
     NSDictionary *dic = [mArray objectAtIndex:indexPath.row];
     
     
-    NSDate *date =  [com mfDateFromDotNetJSONString:[dic objectForKey:@"DateCreated"]];
+    NSDate *date =  [CommonFunction mfDateFromDotNetJSONString:[dic objectForKey:@"DateCreated"]];
     
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

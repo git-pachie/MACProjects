@@ -48,6 +48,8 @@
 		0DA0ABF6198027F10061E723 /* cottage-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA0ABF5198027F10061E723 /* cottage-32.png */; };
 		0DA0ABF8198028A60061E723 /* automatic-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA0ABF7198028A60061E723 /* automatic-32.png */; };
 		0DA0ABFA1980292B0061E723 /* user_male3-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA0ABF91980292B0061E723 /* user_male3-32.png */; };
+		0DA67A4F19B1AF7B00229FBC /* Dev2ActivationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA67A4E19B1AF7B00229FBC /* Dev2ActivationViewController.m */; };
+		0DA67A5319B1CF2800229FBC /* VerifyRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA67A5219B1CF2800229FBC /* VerifyRegistrationViewController.m */; };
 		0DBE6FF41971A13B0024380E /* MessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBE6FF31971A13B0024380E /* MessageDetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +126,10 @@
 		0DA0ABF5198027F10061E723 /* cottage-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cottage-32.png"; sourceTree = "<group>"; };
 		0DA0ABF7198028A60061E723 /* automatic-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "automatic-32.png"; sourceTree = "<group>"; };
 		0DA0ABF91980292B0061E723 /* user_male3-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_male3-32.png"; sourceTree = "<group>"; };
+		0DA67A4D19B1AF7B00229FBC /* Dev2ActivationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dev2ActivationViewController.h; sourceTree = "<group>"; };
+		0DA67A4E19B1AF7B00229FBC /* Dev2ActivationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dev2ActivationViewController.m; sourceTree = "<group>"; };
+		0DA67A5119B1CF2800229FBC /* VerifyRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyRegistrationViewController.h; sourceTree = "<group>"; };
+		0DA67A5219B1CF2800229FBC /* VerifyRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyRegistrationViewController.m; sourceTree = "<group>"; };
 		0DBE6FF21971A13B0024380E /* MessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetailViewController.h; sourceTree = "<group>"; };
 		0DBE6FF31971A13B0024380E /* MessageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -303,6 +309,7 @@
 		0DA05E91197565BA001D1A85 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0DA67A5019B1CF0B00229FBC /* Registration */,
 				0D6FE4A519686E89002E3880 /* TestViewController.h */,
 				0D6FE4A619686E89002E3880 /* TestViewController.m */,
 				0D6FE4A91969B815002E3880 /* DeviceActivationViewController.m */,
@@ -328,6 +335,17 @@
 				0D6FE48019686E1A002E3880 /* AppDelegate.m */,
 			);
 			name = ApplicationDelegate;
+			sourceTree = "<group>";
+		};
+		0DA67A5019B1CF0B00229FBC /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				0DA67A4D19B1AF7B00229FBC /* Dev2ActivationViewController.h */,
+				0DA67A4E19B1AF7B00229FBC /* Dev2ActivationViewController.m */,
+				0DA67A5119B1CF2800229FBC /* VerifyRegistrationViewController.h */,
+				0DA67A5219B1CF2800229FBC /* VerifyRegistrationViewController.m */,
+			);
+			name = Registration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,6 +456,7 @@
 				0C8327391994CF5F00C2CEF0 /* MyPickupLinesTableViewController.m in Sources */,
 				0D4878E819A888CF00F342B9 /* CommonSendRequest.m in Sources */,
 				0D6FE48119686E1A002E3880 /* AppDelegate.m in Sources */,
+				0DA67A4F19B1AF7B00229FBC /* Dev2ActivationViewController.m in Sources */,
 				0D6FE47D19686E1A002E3880 /* main.m in Sources */,
 				0C6362CD199484F30023A387 /* SendPickupViewController.m in Sources */,
 				0C7C79B8199A7098001E6D29 /* EntityPerson.m in Sources */,
@@ -453,6 +472,7 @@
 				0D7EDB4119ACF89A009DBCCF /* CustomStringClass.m in Sources */,
 				0D4878ED19AA563C00F342B9 /* Venu.m in Sources */,
 				0D6FE4AD196AE529002E3880 /* HomeTableViewController.m in Sources */,
+				0DA67A5319B1CF2800229FBC /* VerifyRegistrationViewController.m in Sources */,
 				0C8327341994CEC800C2CEF0 /* MyTableViewCell.m in Sources */,
 				0D6FE4AA1969B815002E3880 /* DeviceActivationViewController.m in Sources */,
 				0DA05E9419756640001D1A85 /* SystemEntity.m in Sources */,
