@@ -222,6 +222,62 @@
 }
 
 
+- (void)getUserMessageByNumber: (NSString *)phoneNumber MyFriendPhoneNumber:(NSString *) myfriendPhoneNumber withBlock:(void (^)(NSMutableArray *array))block {
+    
+    CommonFunction *common = [[CommonFunction alloc]init];
+    
+    //NSString *post = [common GetJsonConnection:@"GetHiritMessage2"];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"GetMyMessageByNumber/%1@/%2@",phoneNumber,myfriendPhoneNumber]];
+    
+    [request setURL:[NSURL URLWithString:post]];
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue currentQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               //NSLog(@"dataAsString %@", [NSString stringWithUTF8String:[data bytes]]);
+                               NSError *error1;
+                               NSMutableDictionary * innerJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error1];
+                               
+                               NSLog(@"innerJson %@", innerJson);
+                               
+                               NSMutableArray *ax = [[NSMutableArray alloc]init];
+                               
+                               
+                               for (NSMutableDictionary *dataDict in innerJson) {
+                                   NSString *messageID = [dataDict objectForKey:@"MessageID"];
+                                   NSString *senderPhoneNumber = [dataDict objectForKey:@"SenderPhoneNumber"];
+                                   NSString *toPhoneNumber = [dataDict objectForKey:@"ToPhoneNumber"];
+                                   NSString *pickupLineGUID = [dataDict objectForKey:@"PickupLineGUID"];
+                                   NSString *pickupLineContent = [dataDict objectForKey:@"PickupLineContent"];
+                                   NSString *pickupLineAnswer = [dataDict objectForKey:@"PickupLineAnswer"];
+                                   NSString *isRead = [dataDict objectForKey:@"IsRead"];
+                                   NSString *dateCreated = [dataDict objectForKey:@"DateCreated"];
+                                   
+                                   NSDictionary *dictionary = [[NSDictionary alloc]initWithObjectsAndKeys:             messageID,@"MessageID"
+                                                               ,senderPhoneNumber,@"SenderPhoneNumber"
+                                                               ,toPhoneNumber,@"ToPhoneNumber"
+                                                               ,pickupLineGUID,@"PickupLineGUID"
+                                                               ,pickupLineContent,@"PickupLineContent"
+                                                               ,pickupLineAnswer,@"PickupLineAnswer"
+                                                               ,isRead,@"IsRead"
+                                                               ,dateCreated,@"DateCreated"
+                                                               ,nil];
+                                   
+                                   [ax addObject:dictionary];
+                               
+                               
+                               }
+                               
+                               block(ax); // Call back the block passed into your method
+                           }];
+    
+}
+
+
+
 
 
 

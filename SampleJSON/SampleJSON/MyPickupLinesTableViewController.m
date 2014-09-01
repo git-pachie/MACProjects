@@ -11,6 +11,7 @@
 #import "CommonFunction.h"
 #import "AppDelegate.h"
 #import "CustomLoader.h"
+#import "CommonSendRequest.h"
 
 
 @interface MyPickupLinesTableViewController ()
@@ -22,6 +23,7 @@
     
     CustomLoader *loader;
     dispatch_queue_t myQue;
+    CommonSendRequest *comReq;
 }
 
 
@@ -41,6 +43,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    comReq = [[CommonSendRequest alloc]init];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"View" bundle:nil] forCellReuseIdentifier:@"Cell"];
     com = [[CommonFunction alloc]init];
@@ -83,9 +87,7 @@
     
     dispatch_async(myQue, ^{
         
-        
-        
-        
+
         [self LoadMessage];
 
     });
@@ -187,92 +189,102 @@
 
 -(void)LoadMessage
 {
-    dispatch_async(myQue, ^{
+    mArray = [[NSMutableArray alloc]init];
+
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+    
+        [comReq getUserMessageByNumber:self.PhoneNumber MyFriendPhoneNumber:del.PhoneNumber withBlock:^(NSMutableArray *array) {
+            mArray = array;
+            NSLog(@"arrary %@",mArray);
+            
+            
+            [self HideLoading];
+            //[self.tableView reloadData];
+        }];
+    });
         
-        mArray = [[NSMutableArray alloc]init];
+//       // CommonFunction *common = [[CommonFunction alloc]init];
+//        NSString *x =  [com GetJsonConnection:[NSString stringWithFormat:@"GetMyMessageByNumber/%1@/%2@",self.PhoneNumber,del.PhoneNumber]];
+//        
+//        NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
+//        
+//        if ([com CheckNSD:jsonSource] == false) {
+//            
+//            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
+//                                                        message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+//            
+//            [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
+//            
+//            self.navigationItem.title = @"Network Error";
+//            
+//            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+//            
+//            [loader HideLoading:self];
+//            
+//            [mes show];
+//            
+//            return;
+//        }
+//        
+//        
+//        
+//        id jsonObjects = [NSJSONSerialization JSONObjectWithData:
+//                          jsonSource options:NSJSONReadingMutableContainers error:nil];
+//        
+//        //countedSet = [NSCountedSet set];
+//        
+//        for (NSDictionary *dataDict in jsonObjects) {
+//            NSString *messageID = [dataDict objectForKey:@"MessageID"];
+//            NSString *senderPhoneNumber = [dataDict objectForKey:@"SenderPhoneNumber"];
+//            NSString *toPhoneNumber = [dataDict objectForKey:@"ToPhoneNumber"];
+//            NSString *pickupLineGUID = [dataDict objectForKey:@"PickupLineGUID"];
+//            NSString *pickupLineContent = [dataDict objectForKey:@"PickupLineContent"];
+//            NSString *pickupLineAnswer = [dataDict objectForKey:@"PickupLineAnswer"];
+//            NSString *isRead = [dataDict objectForKey:@"IsRead"];
+//            NSString *dateCreated = [dataDict objectForKey:@"DateCreated"];
+//            
+//            NSDictionary *dictionary = [[NSDictionary alloc]initWithObjectsAndKeys:             messageID,@"MessageID"
+//                                        ,senderPhoneNumber,@"SenderPhoneNumber"
+//                                        ,toPhoneNumber,@"ToPhoneNumber"
+//                                        ,pickupLineGUID,@"PickupLineGUID"
+//                                        ,pickupLineContent,@"PickupLineContent"
+//                                        ,pickupLineAnswer,@"PickupLineAnswer"
+//                                        ,isRead,@"IsRead"
+//                                        ,dateCreated,@"DateCreated"
+//                                        ,nil];
+//            
+//            [mArray addObject:dictionary];
+//            
+//            //[countedSet addObject:dateCreatedSTR];
+//            
         
-       // CommonFunction *common = [[CommonFunction alloc]init];
-        NSString *x =  [com GetJsonConnection:[NSString stringWithFormat:@"GetMyMessageByNumber/%1@/%2@",self.PhoneNumber,del.PhoneNumber]];
-        
-        NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
-        
-        if ([com CheckNSD:jsonSource] == false) {
-            
-            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
-                                                        message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-            
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
-            
-            self.navigationItem.title = @"Network Error";
-            
-            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
-            
-            [loader HideLoading:self];
-            
-            [mes show];
-            
-            return;
-        }
-        
-        
-        
-        id jsonObjects = [NSJSONSerialization JSONObjectWithData:
-                          jsonSource options:NSJSONReadingMutableContainers error:nil];
-        
-        //countedSet = [NSCountedSet set];
-        
-        for (NSDictionary *dataDict in jsonObjects) {
-            NSString *messageID = [dataDict objectForKey:@"MessageID"];
-            NSString *senderPhoneNumber = [dataDict objectForKey:@"SenderPhoneNumber"];
-            NSString *toPhoneNumber = [dataDict objectForKey:@"ToPhoneNumber"];
-            NSString *pickupLineGUID = [dataDict objectForKey:@"PickupLineGUID"];
-            NSString *pickupLineContent = [dataDict objectForKey:@"PickupLineContent"];
-            NSString *pickupLineAnswer = [dataDict objectForKey:@"PickupLineAnswer"];
-            NSString *isRead = [dataDict objectForKey:@"IsRead"];
-            NSString *dateCreated = [dataDict objectForKey:@"DateCreated"];
-            
-            NSDictionary *dictionary = [[NSDictionary alloc]initWithObjectsAndKeys:             messageID,@"MessageID"
-                                        ,senderPhoneNumber,@"SenderPhoneNumber"
-                                        ,toPhoneNumber,@"ToPhoneNumber"
-                                        ,pickupLineGUID,@"PickupLineGUID"
-                                        ,pickupLineContent,@"PickupLineContent"
-                                        ,pickupLineAnswer,@"PickupLineAnswer"
-                                        ,isRead,@"IsRead"
-                                        ,dateCreated,@"DateCreated"
-                                        ,nil];
-            
-            [mArray addObject:dictionary];
-            
-            //[countedSet addObject:dateCreatedSTR];
             
             
-            
-            
-        }
+//        }
         
         //sleep(1);
         
-        dispatch_async(myQue, ^{
+       // dispatch_async(myQue, ^{
             //[loader HideLoading:self];
             
-            [self HideLoading];
+           // [self HideLoading];
 
-        });
+     //   });
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+      //  dispatch_async(dispatch_get_main_queue(), ^{
             //[loader HideLoading:self];
 
     
-    [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+   // [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
         
         
-        });
+    //    });
     
-    });
+//    });
     
    
-    [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+   // [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
     
 
     //[self.tableView reloadData];
@@ -286,7 +298,7 @@
     
     dispatch_async(dispatch_get_main_queue(),^{
         
-        sleep(2);
+        sleep(1);
         
         //self.navigationItem.title = @"Home";
         [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
@@ -299,6 +311,8 @@
                 [subview removeFromSuperview];
             }
         }
+        [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+        [self.tableView reloadData];
     });
 }
 
