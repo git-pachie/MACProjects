@@ -200,28 +200,33 @@
     [self downloadImageWithURL:[NSURL URLWithString:userImage] completionBlock:^(BOOL succeeded, UIImage *image) {
         if (succeeded) {
             
-            cell.imageView.image = image;
-            
-            
-            
-            // Begin a new image that will be the new image with the rounded corners
-            // (here with the size of an UIImageView)
-            UIGraphicsBeginImageContextWithOptions(cell.imageView.bounds.size, NO, [UIScreen mainScreen].scale);
-            
-            // Add a clip before drawing anything, in the shape of an rounded rect
-            
-            [[UIBezierPath bezierPathWithRoundedRect:cell.imageView.bounds
-                                        cornerRadius:cell.imageView.frame.size.width/2 ] addClip];
-            // Draw your image
-            [cell.imageView.image drawInRect:cell.imageView.bounds];
-            
-            // Get the image, here setting the UIImageView image
-            cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
-            
-            // Lets forget about that we were drawing
-            
-            
-            UIGraphicsEndImageContext();
+            if (image != nil) {
+                
+                cell.imageView.image = image;
+                
+                
+                
+                // Begin a new image that will be the new image with the rounded corners
+                // (here with the size of an UIImageView)
+                UIGraphicsBeginImageContextWithOptions(cell.imageView.bounds.size, NO, [UIScreen mainScreen].scale);
+                
+                // Add a clip before drawing anything, in the shape of an rounded rect
+                
+                [[UIBezierPath bezierPathWithRoundedRect:cell.imageView.bounds
+                                            cornerRadius:cell.imageView.frame.size.width/2 ] addClip];
+                // Draw your image
+                [cell.imageView.image drawInRect:cell.imageView.bounds];
+                
+                // Get the image, here setting the UIImageView image
+                cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+                
+                // Lets forget about that we were drawing
+                
+                
+                UIGraphicsEndImageContext();
+                
+
+            }
             
             
         }
