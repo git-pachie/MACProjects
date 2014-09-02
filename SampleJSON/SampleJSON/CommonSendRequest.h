@@ -22,4 +22,5 @@
 - (void)getUserMessageByNumber: (NSString *)phoneNumber MyFriendPhoneNumber:(NSString *) myfriendPhoneNumber withBlock:(void (^)(NSMutableArray *array))block;
 
 - (void)getUserMessage: (NSString *)phoneNumber withBlock:(void (^)(NSMutableArray *array))block;
+- (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock;
 @end

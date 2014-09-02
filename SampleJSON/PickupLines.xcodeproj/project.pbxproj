@@ -49,6 +49,8 @@
 		0DA67A4F19B1AF7B00229FBC /* Dev2ActivationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA67A4E19B1AF7B00229FBC /* Dev2ActivationViewController.m */; };
 		0DA67A5319B1CF2800229FBC /* VerifyRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA67A5219B1CF2800229FBC /* VerifyRegistrationViewController.m */; };
 		0DBE6FF41971A13B0024380E /* MessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBE6FF31971A13B0024380E /* MessageDetailViewController.m */; };
+		0DCCF05219B4BF78000F00CB /* PickupLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DCCF05119B4BF78000F00CB /* PickupLine.xib */; };
+		0DCCF05519B4C140000F00CB /* PickupLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCCF05419B4C140000F00CB /* PickupLineTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +128,9 @@
 		0DA67A5219B1CF2800229FBC /* VerifyRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyRegistrationViewController.m; sourceTree = "<group>"; };
 		0DBE6FF21971A13B0024380E /* MessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetailViewController.h; sourceTree = "<group>"; };
 		0DBE6FF31971A13B0024380E /* MessageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetailViewController.m; sourceTree = "<group>"; };
+		0DCCF05119B4BF78000F00CB /* PickupLine.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickupLine.xib; sourceTree = "<group>"; };
+		0DCCF05319B4C140000F00CB /* PickupLineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickupLineTableViewCell.h; sourceTree = "<group>"; };
+		0DCCF05419B4C140000F00CB /* PickupLineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupLineTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +176,9 @@
 				0C8327351994CEDB00C2CEF0 /* View.xib */,
 				0C8327321994CEC800C2CEF0 /* MyTableViewCell.h */,
 				0C8327331994CEC800C2CEF0 /* MyTableViewCell.m */,
+				0DCCF05119B4BF78000F00CB /* PickupLine.xib */,
+				0DCCF05319B4C140000F00CB /* PickupLineTableViewCell.h */,
+				0DCCF05419B4C140000F00CB /* PickupLineTableViewCell.m */,
 			);
 			name = CustomCell;
 			sourceTree = "<group>";
@@ -435,6 +443,7 @@
 				0C8327361994CEDB00C2CEF0 /* View.xib in Resources */,
 				0D4878EA19A9CDD000F342B9 /* profile.png in Resources */,
 				0D6FE47B19686E1A002E3880 /* InfoPlist.strings in Resources */,
+				0DCCF05219B4BF78000F00CB /* PickupLine.xib in Resources */,
 				0D6FE48619686E1A002E3880 /* Images.xcassets in Resources */,
 				0DA0ABFA1980292B0061E723 /* user_male3-32.png in Resources */,
 				0DA0ABF8198028A60061E723 /* automatic-32.png in Resources */,
@@ -464,6 +473,7 @@
 				0D6FE48119686E1A002E3880 /* AppDelegate.m in Sources */,
 				0DA67A4F19B1AF7B00229FBC /* Dev2ActivationViewController.m in Sources */,
 				0D6FE47D19686E1A002E3880 /* main.m in Sources */,
+				0DCCF05519B4C140000F00CB /* PickupLineTableViewCell.m in Sources */,
 				0C6362CD199484F30023A387 /* SendPickupViewController.m in Sources */,
 				0C7C79B8199A7098001E6D29 /* EntityPerson.m in Sources */,
 				0C7C79C2199A73C3001E6D29 /* PhoneContactClass.m in Sources */,

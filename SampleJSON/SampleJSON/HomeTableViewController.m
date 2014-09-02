@@ -15,6 +15,7 @@
 #import "CustomLoader.h"
 #import "PhoneBookTableViewController.h"
 #import "CommonSendRequest.h"
+#import "PickupLineTableViewCell.h"
 
 
 
@@ -25,25 +26,16 @@
     NSMutableArray *myObject;
     NSArray *myObjectSearch;
     NSMutableDictionary *mutDictionary;
-    // A dictionary object
+
     NSDictionary *dictionary;
     NSCountedSet *countedSet;
     NSMutableArray *arrayGroup;
     NSMutableArray *arrayGroupSearch;
-    // Define keys
     
     bool isConnectionOK;
-//    NSString *MessageGUID ;
-//    NSString *HiritMessage ;
-//    NSString *CreatedByUserName ;
-//    NSString *CreatedByDeviceID ;
-//    NSDate *CreatedDate;
-//    NSString *Answer1;
-    
-    
     CustomLoader *customLoader;
-    
     AppDelegate *delegate;
+    CommonSendRequest *comReq;
     
 }
 
@@ -83,10 +75,9 @@
 - (void)viewDidLoad
 {
 
-       //[[[[self.tabBarController tabBar]items]objectAtIndex:1]setHidden:YES];
-//     [[[[self.tabBarController tabBar]items]objectAtIndex:2]setHidden:YES];
-//     [[[[self.tabBarController tabBar]items]objectAtIndex:3]setHidden:YES];
-//    
+    [self.tableView registerNib:[UINib nibWithNibName:@"PickupLine" bundle:nil] forCellReuseIdentifier:@"Cell"];
+    
+    comReq = [[CommonSendRequest alloc]init];
     delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     customLoader = [[CustomLoader alloc]init];
@@ -212,16 +203,35 @@
 }
 
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return  70;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    PickupLineTableViewCell *cell = (PickupLineTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        //cell = [[PickupLineTableViewCell alloc] initWithStyle:uita reuseIdentifier:CellIdentifier];
+        //cell = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+        //cell = [[PickupLineTableViewCell alloc]init];
+        
+        //cell = (PickupLineTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:@"CellId"];
+        
+       //cell =  (PickupLineTableViewCell *)[[NSBundle mainBundle] loadNibNamed:@"PickupLine" owner:self options:nil];
+        
+        // The checkedTableViewCell property is just a temporary placeholder for loading the Nib.
+        //cell = checkedTableViewCell;
+        
+        // We don't need this anymore, so set to nil.
+        //self.checkedTableViewCell = nil;
+        //cell = [[PickupLineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PickupLine" owner:self options:nil];
+        cell = (PickupLineTableViewCell *) [nib objectAtIndex:0];
+
     }
     
 
@@ -246,10 +256,61 @@
             tmpDict =  [[myObject filteredArrayUsingPredicate:resultPredicate] objectAtIndex:indexPath.row ] ;
         }
         
-            cell.textLabel.text = [tmpDict objectForKey:@"HiritMessage"];
-            cell.detailTextLabel.text =[NSString stringWithFormat:@"Created By %@",[tmpDict objectForKey:@"CreatedByUserName"]] ;
-
+//            cell.textLabel.text = [tmpDict objectForKey:@"HiritMessage"];
+//            cell.detailTextLabel.text =[NSString stringWithFormat:@"Created By %@",[tmpDict objectForKey:@"CreatedByUserName"]] ;
+//
+            cell.lblPickupLine.text =[tmpDict objectForKey:@"HiritMessage"];
+            cell.lblSubmitted.text = [NSString stringWithFormat:@"Submitted by %@",[tmpDict objectForKey:@"CreatedByUserName"]] ;
+            cell.lblPoints.text = @"Points 100";
+    
+    
+    
+            cell.imgUserImage.image = [UIImage imageNamed:@"profile.png"];
+    
+    
+    // download the image asynchronously
+    
+    NSString *userImage = [CommonFunction ProfieImageURLByPhone:[tmpDict objectForKey:@"CreatedByPhonNumber"]];
+    
+    //NSLog(@"userimage %@",userImage);
+    
+    [comReq downloadImageWithURL:[NSURL URLWithString:userImage] completionBlock:^(BOOL succeeded, UIImage *image) {
+        if (succeeded) {
+            
+            cell.imgUserImage.image= image;
+            
+            
+            
+            // Begin a new image that will be the new image with the rounded corners
+            // (here with the size of an UIImageView)
+            UIGraphicsBeginImageContextWithOptions(cell.imgUserImage.bounds.size, NO, [UIScreen mainScreen].scale);
+            
+            // Add a clip before drawing anything, in the shape of an rounded rect
+            
+            [[UIBezierPath bezierPathWithRoundedRect:cell.imgUserImage.bounds
+                                        cornerRadius:cell.imgUserImage.frame.size.width/2 ] addClip];
+            // Draw your image
+            [cell.imgUserImage.image drawInRect:cell.imgUserImage.bounds];
+            
+            // Get the image, here setting the UIImageView image
+            cell.imgUserImage.image = UIGraphicsGetImageFromCurrentImageContext();
+            
+            //            cell.imageView.layer.borderWidth  =1;
+            //            cell.imageView.layer.borderColor = [UIColor grayColor].CGColor;
+            //
+            // Lets forget about that we were drawing
+            
+            
+            UIGraphicsEndImageContext();
+            
+            
+        }
         
+        
+        
+    }];
+    
+    
    // }
     
     
@@ -296,6 +357,8 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
+  
     if ([segue.identifier isEqualToString:@"MessageDetail"]) {
               
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
@@ -356,35 +419,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        [self performSegueWithIdentifier: @"MessageDetail" sender: self];
-    }
+    //if (tableView == self.searchDisplayController.searchResultsTableView) {
+        [self performSegueWithIdentifier: @"MessageDetail" sender: nil];
+    //}
+    
+    
+    
 }
 
-//- (NSDate *)mfDateFromDotNetJSONString:(NSString *)string {
-//    static NSRegularExpression *dateRegEx = nil;
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        dateRegEx = [[NSRegularExpression alloc] initWithPattern:@"^\\/date\\((-?\\d++)(?:([+-])(\\d{2})(\\d{2}))?\\)\\/$" options:NSRegularExpressionCaseInsensitive error:nil];
-//    });
-//    NSTextCheckingResult *regexResult = [dateRegEx firstMatchInString:string options:0 range:NSMakeRange(0, [string length])];
-//    
-//    if (regexResult) {
-//        // milliseconds
-//        NSTimeInterval seconds = [[string substringWithRange:[regexResult rangeAtIndex:1]] doubleValue] / 1000.0;
-//        // timezone offset
-//        if ([regexResult rangeAtIndex:2].location != NSNotFound) {
-//            NSString *sign = [string substringWithRange:[regexResult rangeAtIndex:2]];
-//            // hours
-//            seconds += [[NSString stringWithFormat:@"%@%@", sign, [string substringWithRange:[regexResult rangeAtIndex:3]]] doubleValue] * 60.0 * 60.0;
-//            // minutes
-//            seconds += [[NSString stringWithFormat:@"%@%@", sign, [string substringWithRange:[regexResult rangeAtIndex:4]]] doubleValue] * 60.0;
-//        }
-//        
-//        return [NSDate dateWithTimeIntervalSince1970:seconds];
-//    }
-//    return nil;
-//}
 
 - (IBAction)Join:(id)sender {
     UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Pickup Lines"

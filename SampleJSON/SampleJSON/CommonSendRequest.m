@@ -255,6 +255,7 @@
                                    NSString *pickupLineAnswer = [dataDict objectForKey:@"PickupLineAnswer"];
                                    NSString *isRead = [dataDict objectForKey:@"IsRead"];
                                    NSString *dateCreated = [dataDict objectForKey:@"DateCreated"];
+                                   //NSString *createdByPhonNumber = [dataDict objectForKey:@"CreatedByPhonNumber"];
                                    
                                    NSDictionary *dictionary = [[NSDictionary alloc]initWithObjectsAndKeys:             messageID,@"MessageID"
                                                                ,senderPhoneNumber,@"SenderPhoneNumber"
@@ -264,6 +265,7 @@
                                                                ,pickupLineAnswer,@"PickupLineAnswer"
                                                                ,isRead,@"IsRead"
                                                                ,dateCreated,@"DateCreated"
+                                                              // ,createdByPhonNumber,@"CreatedByPhonNumber"
                                                                ,nil];
                                    
                                    [ax addObject:dictionary];
@@ -293,6 +295,7 @@
         NSString *createdDate = [dataDict objectForKey:@"CreatedDate"];
         NSString *answer1 = [dataDict objectForKey:@"Answer1"];
         NSString *dateCreatedSTR = [dataDict objectForKey:@"DateCreatedSTR"];
+        NSString *createdByPhonNumber = [dataDict objectForKey:@"CreatedByPhonNumber"];
         
         
         NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -303,6 +306,7 @@
                                     [CommonFunction mfDateFromDotNetJSONString:createdDate],@"DateCreated",
                                     answer1, @"Answer1",
                                     dateCreatedSTR,@"DateCreatedSTR",
+                                    createdByPhonNumber,@"CreatedByPhonNumber",
                                     nil];
         [myarray addObject:dictionary];
         
@@ -497,87 +501,27 @@
     
 }
 
-//-(NSData *)GetPickupLines
-//{
-//    //bool result = false;
-//    
-//    
-//    
-//    CommonFunction *common = [[CommonFunction alloc]init];
-//    
-//    NSString *post = [common GetJsonConnection:@"GetHiritMessage2"];
-//    
-//    //NSString *x = [common GetJsonConnection:@"GetHiritMessage2"];
-//
-//    
-//    NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-//    
-//    NSString *postLenght = [NSString stringWithFormat:@"%lu", (unsigned long)[data length]];
-//    
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-//    [request setURL:[NSURL URLWithString:post]];
-//    [request setHTTPMethod:@"GET"];
-//    //[request setValue:postLenght forHTTPHeaderField:@"Content-Length"];
-//    [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-//    [request setHTTPBody:data];
-//    
-//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-//    //NSData *data2;
-//    
-//    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-//     {
-//         if (error)
-//         {
-//             NSLog(@"error: %@",error);
-//             
-//             //result = false;
-//         }
-//         else
-//         {
-//             
-//             
-//             NSString *theReply;
-//             theReply = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding: NSASCIIStringEncoding];
-//             NSLog(@"Reply: %@", theReply);
-//             
-//             theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-//             
-//             
-//             if ( [theReply isEqualToString:@"1"]) {
-//                 
-//                 //NSLog(@"Pickup line sent: %@", personNumber);
-//                 //return true;
-//                 
-//             }
-//             else{
-//                 
-//                 
-//                // NSLog(@"Error sending pickup lines: %@", personNumber);
-//                 //return false;
-//                 //[queue cancelAllOperations];
-//                 
-//                 dispatch_async(dispatch_get_main_queue(), ^(void){
-//                     
-//                     UIAlertView *alert2 = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error sending pickup lines" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-//                     
-//                     [alert2 show];
-//                     
-//                     
-//                 });
-//                 
-//                 
-//             }
-//             
-//             
-//             
-//             
-//         }
-//     }];
-//    
-//    
-//    return data;
-//}
 
+- (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
+{
+    
+    
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if ( !error )
+                               {
+                                   UIImage *image = [[UIImage alloc] initWithData:data];
+                                   completionBlock(YES,image);
+                               } else{
+                                   completionBlock(NO,nil);
+                               }
+                           }];
+    
+    
+}
 
 +(UIImage*)imageWithImage:(UIImage*)image
 scaledToSize:(CGSize)newSize;
