@@ -314,7 +314,7 @@
    // }
     
     
-    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
     
 }
