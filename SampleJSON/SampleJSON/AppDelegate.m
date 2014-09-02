@@ -16,6 +16,34 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+
+-(UIImage *)defaultImageKo
+{
+    UIImage *img = [UIImage imageNamed:@"profile.png"];
+    UIImageView *imgview = [[UIImageView alloc]initWithImage:img];
+    
+    
+    // Begin a new image that will be the new image with the rounded corners
+    // (here with the size of an UIImageView)
+    UIGraphicsBeginImageContextWithOptions(imgview.bounds.size, NO, [UIScreen mainScreen].scale);
+    
+    // Add a clip before drawing anything, in the shape of an rounded rect
+    
+    [[UIBezierPath bezierPathWithRoundedRect:imgview.bounds
+                                cornerRadius:imgview.frame.size.width/2 ] addClip];
+    // Draw your image
+    [imgview.image drawInRect:imgview.bounds];
+    
+    // Get the image, here setting the UIImageView image
+    imgview.image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    
+    UIGraphicsEndImageContext();
+    
+    
+    return imgview.image;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

@@ -11,12 +11,14 @@
 #import "EntityPerson.h"
 //#import "Venu.h"
 #import "CommonFunction.h"
+#import "AppDelegate.h"
 
 @interface PhoneBookTableViewController ()
 {
     NSMutableArray *mArary;
     NSArray *mArarySearch;
     dispatch_queue_t myQ2;
+    AppDelegate *delegate;
     //Venu *venu;
 }
 
@@ -36,6 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     //venu = [[Venu alloc]init];
     
@@ -185,31 +188,7 @@
     
     cell.detailTextLabel.text = person.Number;
     
-    //NSDictionary *item = (NSDictionary *)[self.content objectAtIndex:indexPath.row];
-    //NSString *imagepath = [[NSBundle mainBundle] pathForResource:[item objectForKey:@"profile.png"] ofType:@"png"];
-    //UIImage *theImage = [UIImage imageWithContentsOfFile:imagepath];
-    
-    
-    
-    //cell.imageView.image = [UIImage imageNamed:@"profile.png"];
-    
-//    [cell.imageView setimage  setImageWithURL:[NSURL URLWithString:@"http://www.domain.com/path/to/image.jpg"]
-//                   placeholderImage:[UIImage imageNamed:@"placeholder.png"]
-//                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {... completion code here ...}];
-//
-    
-    
-//
-    //venu = ((Venu * )mArary [indexPath.row]);
-    
-   
-       // cell.imageView.image = venue.image;
-   
-//    if (!cell.imageView.image) {
-//        cell.imageView.image = venu.image;
-//    }
-    
-    cell.imageView.image = [UIImage imageNamed:@"profile.png"];
+    cell.imageView.image = delegate.defaultImageKo;// [UIImage imageNamed:@"profile.png"];
     
     
     // download the image asynchronously
@@ -220,32 +199,6 @@
     
     [self downloadImageWithURL:[NSURL URLWithString:userImage] completionBlock:^(BOOL succeeded, UIImage *image) {
         if (succeeded) {
-            // change the image in the cell
-            //ImageToProcess.clipsToBounds = YES;
-            //cell.imageView.layer.borderWidth = 1;
-            //cell.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-            
-            //cell.imageView.image.size =  cell.imageView.frame.size - 4;
-            //venu.image = image;
-            
-            //UIImage *yourImage = [UIImage imageWithData:image];
-            //UIImageView *imageViewToPutInCell = [[UIImageView alloc] initWithImage:image];
-            //imageViewToPutInCell.frame = CGRectMake(0, 0, 5, 5);
-            
-            //cell.imageView.image = image;
-            
-            //[cell.imageView  setImage:imageViewToPutInCell.image];
-            //cell.imageView.frame = imageViewToPutInCell.frame;
-            //cell.imageView.layer.cornerRadius = 10;//cell.imageView.frame.size.width/2;// self.profileImageView.frame.size.width / 2
-            //cell.imageView.clipsToBounds = YES;
-            
-            
-            // Get your image somehow
-            //UIImage *image = [UIImage imageNamed:@"image.jpg"];
-            
-                        // cache the image for use later (when scrolling up)
-            //venue.image = image;
-            //NSLog(@"image ok");
             
             cell.imageView.image = image;
             
@@ -265,9 +218,6 @@
             // Get the image, here setting the UIImageView image
             cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
             
-//            cell.imageView.layer.borderWidth  =1;
-//            cell.imageView.layer.borderColor = [UIColor grayColor].CGColor;
-//            
             // Lets forget about that we were drawing
             
             

@@ -24,7 +24,10 @@
 
 
 
+
+
 - (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory; 
+- (NSURL *)applicationDocumentsDirectory;
+-(UIImage *)defaultImageKo;
 
 @end
