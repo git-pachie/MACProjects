@@ -216,19 +216,7 @@
     if (cell == nil)
     {
         //cell = [[PickupLineTableViewCell alloc] initWithStyle:uita reuseIdentifier:CellIdentifier];
-        //cell = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-        //cell = [[PickupLineTableViewCell alloc]init];
         
-        //cell = (PickupLineTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:@"CellId"];
-        
-       //cell =  (PickupLineTableViewCell *)[[NSBundle mainBundle] loadNibNamed:@"PickupLine" owner:self options:nil];
-        
-        // The checkedTableViewCell property is just a temporary placeholder for loading the Nib.
-        //cell = checkedTableViewCell;
-        
-        // We don't need this anymore, so set to nil.
-        //self.checkedTableViewCell = nil;
-        //cell = [[PickupLineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PickupLine" owner:self options:nil];
         cell = (PickupLineTableViewCell *) [nib objectAtIndex:0];
 
@@ -259,8 +247,16 @@
 //            cell.textLabel.text = [tmpDict objectForKey:@"HiritMessage"];
 //            cell.detailTextLabel.text =[NSString stringWithFormat:@"Created By %@",[tmpDict objectForKey:@"CreatedByUserName"]] ;
 //
+    
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd MMM yyyy"];
+    NSString *xdate = [dateFormatter stringFromDate:[tmpDict objectForKey:@"DateCreated"]];
+    
+    
+    
             cell.lblPickupLine.text =[tmpDict objectForKey:@"HiritMessage"];
-            cell.lblSubmitted.text = [NSString stringWithFormat:@"Submitted by %@",[tmpDict objectForKey:@"CreatedByUserName"]] ;
+            cell.lblSubmitted.text = [NSString stringWithFormat:@"By %@ - %@",[tmpDict objectForKey:@"CreatedByUserName"], xdate] ;
             cell.lblPoints.text = @"Points 100";
     
     
