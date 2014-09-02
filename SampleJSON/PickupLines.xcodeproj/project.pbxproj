@@ -19,6 +19,8 @@
 		0C8327391994CF5F00C2CEF0 /* MyPickupLinesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8327381994CF5F00C2CEF0 /* MyPickupLinesTableViewController.m */; };
 		0C83273C1994D91900C2CEF0 /* MyPickupLineHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C83273B1994D91900C2CEF0 /* MyPickupLineHeaderTableViewController.m */; };
 		0CA596771973E1F80032D144 /* CommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA596761973E1F80032D144 /* CommonFunction.m */; };
+		0CCCE20419B59DDD0085C4F1 /* UserInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CCCE20319B59DDD0085C4F1 /* UserInfo.xib */; };
+		0CCCE20719B5A0990085C4F1 /* UseInformationUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCCE20619B5A0990085C4F1 /* UseInformationUIView.m */; };
 		0CD8EF8D199690EE00E88A04 /* CustomLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8EF8C199690EE00E88A04 /* CustomLoader.m */; };
 		0D4878E819A888CF00F342B9 /* CommonSendRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4878E719A888CF00F342B9 /* CommonSendRequest.m */; };
 		0D4878EA19A9CDD000F342B9 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4878E919A9CDD000F342B9 /* profile.png */; };
@@ -85,6 +87,9 @@
 		0C83273B1994D91900C2CEF0 /* MyPickupLineHeaderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPickupLineHeaderTableViewController.m; sourceTree = "<group>"; };
 		0CA596751973E1F80032D144 /* CommonFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFunction.h; sourceTree = "<group>"; };
 		0CA596761973E1F80032D144 /* CommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunction.m; sourceTree = "<group>"; };
+		0CCCE20319B59DDD0085C4F1 /* UserInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfo.xib; sourceTree = "<group>"; };
+		0CCCE20519B5A0990085C4F1 /* UseInformationUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseInformationUIView.h; sourceTree = "<group>"; };
+		0CCCE20619B5A0990085C4F1 /* UseInformationUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseInformationUIView.m; sourceTree = "<group>"; };
 		0CD8EF8B199690EE00E88A04 /* CustomLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLoader.h; sourceTree = "<group>"; };
 		0CD8EF8C199690EE00E88A04 /* CustomLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLoader.m; sourceTree = "<group>"; };
 		0D4878E619A888CF00F342B9 /* CommonSendRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSendRequest.h; sourceTree = "<group>"; };
@@ -179,6 +184,9 @@
 				0DCCF05119B4BF78000F00CB /* PickupLine.xib */,
 				0DCCF05319B4C140000F00CB /* PickupLineTableViewCell.h */,
 				0DCCF05419B4C140000F00CB /* PickupLineTableViewCell.m */,
+				0CCCE20319B59DDD0085C4F1 /* UserInfo.xib */,
+				0CCCE20519B5A0990085C4F1 /* UseInformationUIView.h */,
+				0CCCE20619B5A0990085C4F1 /* UseInformationUIView.m */,
 			);
 			name = CustomCell;
 			sourceTree = "<group>";
@@ -442,6 +450,7 @@
 			files = (
 				0C8327361994CEDB00C2CEF0 /* View.xib in Resources */,
 				0D4878EA19A9CDD000F342B9 /* profile.png in Resources */,
+				0CCCE20419B59DDD0085C4F1 /* UserInfo.xib in Resources */,
 				0D6FE47B19686E1A002E3880 /* InfoPlist.strings in Resources */,
 				0DCCF05219B4BF78000F00CB /* PickupLine.xib in Resources */,
 				0D6FE48619686E1A002E3880 /* Images.xcassets in Resources */,
@@ -488,6 +497,7 @@
 				0D6FE4AD196AE529002E3880 /* HomeTableViewController.m in Sources */,
 				0DA67A5319B1CF2800229FBC /* VerifyRegistrationViewController.m in Sources */,
 				0C8327341994CEC800C2CEF0 /* MyTableViewCell.m in Sources */,
+				0CCCE20719B5A0990085C4F1 /* UseInformationUIView.m in Sources */,
 				0D6FE4AA1969B815002E3880 /* DeviceActivationViewController.m in Sources */,
 				0DA05E9419756640001D1A85 /* SystemEntity.m in Sources */,
 			);

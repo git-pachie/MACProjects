@@ -74,6 +74,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+
     delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     comreq = [[CommonSendRequest alloc]init];
     customLoader = [[CustomLoader alloc]init];
@@ -94,7 +96,12 @@
     
     //textView.textContainer.lineBreakMode = NSLineBreakByCharWrapping
     
+    UseInformationUIView *customView = [UseInformationUIView customView];
+    customView.imgProfileImage.image = delegate.defaultImageKo;
+    customView.lblJoinedDate.text = @"June 30, 2014";
+    [self roundImage:self.createdByPhoneNumber UserImage:customView.imgProfileImage];
     
+    [self.xContainerHeader addSubview:customView];
 }
 
 
@@ -177,6 +184,27 @@
     }
 }
 
+
+-(void)roundImage:(NSString *)phoneNumber UserImage:(UIImageView*)imageview
+{
+    
+NSString *userImage = [CommonFunction ProfieImageURLByPhone:phoneNumber];
+
+//NSLog(@"userimage %@",userImage);
+    
+    [comreq downloadImageWithURL:[NSURL URLWithString:userImage] completionBlock:^(BOOL succeeded, UIImage *image) {
+        if (succeeded) {
+            
+            imageview.image = image;
+            
+            [CommonFunction applyRoundBorderToImage:imageview];
+            
+        }
+    }];
+
+
+    
+}
 
 - (IBAction)Send:(UIBarButtonItem *)sender {
     

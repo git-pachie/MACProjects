@@ -102,4 +102,28 @@
     return nil;
 }
 
++(void)applyRoundBorderToImage :(UIImageView *)imview
+{
+    UIGraphicsBeginImageContextWithOptions(imview.bounds.size, NO, [UIScreen mainScreen].scale);
+    
+    // Add a clip before drawing anything, in the shape of an rounded rect
+    
+    [[UIBezierPath bezierPathWithRoundedRect:imview.bounds
+                                cornerRadius:imview.frame.size.width/2 ] addClip];
+    // Draw your image
+    [imview.image drawInRect:imview.bounds];
+    
+    // Get the image, here setting the UIImageView image
+    imview.image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    //            cell.imageView.layer.borderWidth  =1;
+    //            cell.imageView.layer.borderColor = [UIColor grayColor].CGColor;
+    //
+    // Lets forget about that we were drawing
+    
+    
+    UIGraphicsEndImageContext();
+
+}
+
 @end

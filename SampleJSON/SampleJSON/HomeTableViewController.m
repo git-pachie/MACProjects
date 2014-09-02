@@ -279,25 +279,27 @@
             
             // Begin a new image that will be the new image with the rounded corners
             // (here with the size of an UIImageView)
-            UIGraphicsBeginImageContextWithOptions(cell.imgUserImage.bounds.size, NO, [UIScreen mainScreen].scale);
+//            UIGraphicsBeginImageContextWithOptions(cell.imgUserImage.bounds.size, NO, [UIScreen mainScreen].scale);
+//            
+//            // Add a clip before drawing anything, in the shape of an rounded rect
+//            
+//            [[UIBezierPath bezierPathWithRoundedRect:cell.imgUserImage.bounds
+//                                        cornerRadius:cell.imgUserImage.frame.size.width/2 ] addClip];
+//            // Draw your image
+//            [cell.imgUserImage.image drawInRect:cell.imgUserImage.bounds];
+//            
+//            // Get the image, here setting the UIImageView image
+//            cell.imgUserImage.image = UIGraphicsGetImageFromCurrentImageContext();
+//            
+//            //            cell.imageView.layer.borderWidth  =1;
+//            //            cell.imageView.layer.borderColor = [UIColor grayColor].CGColor;
+//            //
+//            // Lets forget about that we were drawing
+//            
+//            
+//            UIGraphicsEndImageContext();
             
-            // Add a clip before drawing anything, in the shape of an rounded rect
-            
-            [[UIBezierPath bezierPathWithRoundedRect:cell.imgUserImage.bounds
-                                        cornerRadius:cell.imgUserImage.frame.size.width/2 ] addClip];
-            // Draw your image
-            [cell.imgUserImage.image drawInRect:cell.imgUserImage.bounds];
-            
-            // Get the image, here setting the UIImageView image
-            cell.imgUserImage.image = UIGraphicsGetImageFromCurrentImageContext();
-            
-            //            cell.imageView.layer.borderWidth  =1;
-            //            cell.imageView.layer.borderColor = [UIColor grayColor].CGColor;
-            //
-            // Lets forget about that we were drawing
-            
-            
-            UIGraphicsEndImageContext();
+            [CommonFunction applyRoundBorderToImage:cell.imgUserImage];
             
             
         }
@@ -409,6 +411,7 @@
         dv.HiritMessage = hiritMessage;
         dv.CreatedBy = createdBy;
         dv.Answer = answer1;
+        dv.createdByPhoneNumber = [tmpDict objectForKey:@"CreatedByPhonNumber"];
     }
     
 }

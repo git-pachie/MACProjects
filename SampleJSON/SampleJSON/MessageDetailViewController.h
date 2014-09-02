@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "PhoneBookTableViewController.h"
 #import "Dev2ActivationViewController.h"
 #import "VerifyRegistrationViewController.h"
+#import "UseInformationUIView.h"
+
 
 @protocol SendMessageDelegate <NSObject>
 
@@ -19,11 +22,16 @@
 
 @interface MessageDetailViewController : UIViewController <ModalViewControllerDelegate, RegistrationDelegate, VerificaitionDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *xContainerHeader;
+
+
 @property (nonatomic, strong) NSString *MessageGUID;
 @property (nonatomic, strong) NSString *HiritMessage;
 @property (nonatomic, strong) NSString *CreatedBy;
 @property (nonatomic, strong) NSString *Answer;
 @property  (nonatomic, strong)NSString *phoneNumber;
+@property  (nonatomic, strong)NSString *createdByPhoneNumber;
+
 
 @property (nonatomic, strong) id<SendMessageDelegate> sendMessageDelegate;
 

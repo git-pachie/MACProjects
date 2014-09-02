@@ -20,6 +20,7 @@
 +(NSString *)ProfieImageURLByPhone :(NSString *)phoneNumber;
 +(NSString *)ProfileImageFileName;
 +(NSDate *)mfDateFromDotNetJSONString:(NSString *)string;
++(void)applyRoundBorderToImage :(UIImageView *)imview;
 
 
 @end
