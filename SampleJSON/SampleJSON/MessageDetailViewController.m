@@ -96,12 +96,20 @@
     
     //textView.textContainer.lineBreakMode = NSLineBreakByCharWrapping
     
-    UseInformationUIView *customView = [UseInformationUIView customView];
-    customView.imgProfileImage.image = delegate.defaultImageKo;
-    customView.lblJoinedDate.text = @"June 30, 2014";
-    [self roundImage:self.createdByPhoneNumber UserImage:customView.imgProfileImage];
+    //UseInformationUIView *customView = [UseInformationUIView customView];
+    //customView.imgProfileImage.image = delegate.defaultImageKo;
+    //customView.lblJoinedDate.text = @"June 30, 2014";
+    //[self roundImage:self.createdByPhoneNumber UserImage:customView.imgProfileImage];
     
+    MessageButtonDetailUIView *customView = [MessageButtonDetailUIView customView];
+    [customView prepareButton:@"Kasi hindi kita matiis"
+                      Answer2:@"Kasi ginigising mo ang natutulog kong katawan"
+                      Answer3:@"Ang panghe mo kasi" ];
+                            
+ 
     [self.xContainerHeader addSubview:customView];
+    
+    //[self.xContainerHeader addSubview:customView];
 }
 
 

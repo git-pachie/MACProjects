@@ -12,6 +12,7 @@
 #import "Dev2ActivationViewController.h"
 #import "VerifyRegistrationViewController.h"
 #import "UseInformationUIView.h"
+#import "MessageButtonDetailUIView.h"
 
 
 @protocol SendMessageDelegate <NSObject>

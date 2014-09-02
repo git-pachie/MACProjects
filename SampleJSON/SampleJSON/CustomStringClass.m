@@ -31,6 +31,7 @@
 {
     button.layer.cornerRadius = button.frame.size.height /2 ;// 10;
     button.alpha = 0.6;
+    button.backgroundColor = [UIColor purpleColor];
 
 }
 @end
