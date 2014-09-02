@@ -261,7 +261,7 @@
     
     
     
-    cell.imgUserImage.image = delegate.defaultImageKo;// [UIImage imageNamed:@"profile.png"];
+    cell.imgUserImage.image =  [UIImage imageNamed:@"noprofile.png"];
     
     
     // download the image asynchronously

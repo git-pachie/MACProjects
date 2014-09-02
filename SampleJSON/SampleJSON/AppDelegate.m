@@ -19,7 +19,7 @@
 
 -(UIImage *)defaultImageKo
 {
-    UIImage *img = [UIImage imageNamed:@"profile.png"];
+    UIImage *img = [UIImage imageNamed:@"noprofile.png"];
     UIImageView *imgview = [[UIImageView alloc]initWithImage:img];
     
     

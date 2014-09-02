@@ -9,16 +9,23 @@
 #import <UIKit/UIKit.h>
 
 @interface MessageButtonDetailUIView : UIView
-- (IBAction)btnTest:(id)sender;
+
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell11;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell22;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell33;
 
 
-@property (weak, nonatomic) IBOutlet UILabel *lbl1;
-@property (weak, nonatomic) IBOutlet UILabel *lbl2;
-@property (weak, nonatomic) IBOutlet UILabel *lbl3;
+@property (weak, nonatomic) IBOutlet UIButton *btn1;
+@property (weak, nonatomic) IBOutlet UIButton *btn2;
+@property (weak, nonatomic) IBOutlet UIButton *btn3;
+
+
+
+- (IBAction)btnaction1:(id)sender;
+- (IBAction)btnaction2:(id)sender;
+- (IBAction)btnaction3:(id)sender;
+
 
 
 @property (nonatomic, assign) NSInteger selectedButton;

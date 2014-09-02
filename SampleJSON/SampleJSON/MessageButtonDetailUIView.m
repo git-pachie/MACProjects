@@ -53,13 +53,16 @@
     buttonArray = [[NSMutableArray alloc]init];
     
     self.cell11.tag = 1;
-    self.lbl1.text = answer1;
+    self.btn1.titleLabel.text = answer1;
+    self.btn1.tag = 1;
     
     self.cell22.tag = 2;
-    self.lbl2.text = answer2;
+    self.btn2.titleLabel.text = answer2;
+    self.btn2.tag = 2;
     
     self.cell33.tag = 3;
-    self.lbl3.text = answer3;
+    self.btn3.titleLabel.text = answer3;
+    self.btn3.tag = 3;
     
     [buttonArray addObject:self.cell11];
     [buttonArray addObject:self.cell22];
@@ -72,12 +75,15 @@
 {
     //NSMutableArray *buttonArray = [[NSMutableArray alloc]init];
     
+    [self removeCheck:buttonArray];
+    
+    self.btn1.titleLabel.text = @"archie";
+    self.btn2.titleLabel.text = @"archie2";
+    self.btn3.titleLabel.text = @"archie3";
+    
     for (UITableViewCell *cell in buttonArrary) {
         
-        
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        
-        
+            
         if (cell.tag == currentButtonTag) {
             
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -91,8 +97,28 @@
     
 }
 
+-(void)removeCheck : (NSArray *)buttonArrary
+{
+    for (UITableViewCell *cell in buttonArrary) {
+        
+        
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+    }
+}
 
-- (IBAction)btnTest:(id)sender {
+
+
+
+- (IBAction)btnaction1:(id)sender {
     [self applyToggleButton:buttonArray :1];
+}
+
+- (IBAction)btnaction2:(id)sender {
+    [self applyToggleButton:buttonArray :2];
+}
+
+- (IBAction)btnaction3:(id)sender {
+    [self applyToggleButton:buttonArray :3];
 }
 @end

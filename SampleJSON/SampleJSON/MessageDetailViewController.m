@@ -7,7 +7,7 @@
 //
 
 #import "MessageDetailViewController.h"
-#import "SendPickupViewController.h"
+//#import "SendPickupViewController.h"
 #import "CommonFunction.h"
 #import "AppDelegate.h"
 #import "CustomLoader.h"
@@ -101,13 +101,13 @@
     //customView.lblJoinedDate.text = @"June 30, 2014";
     //[self roundImage:self.createdByPhoneNumber UserImage:customView.imgProfileImage];
     
-    MessageButtonDetailUIView *customView = [MessageButtonDetailUIView customView];
-    [customView prepareButton:@"Kasi hindi kita matiis"
-                      Answer2:@"Kasi ginigising mo ang natutulog kong katawan"
-                      Answer3:@"Ang panghe mo kasi" ];
-                            
- 
-    [self.xContainerHeader addSubview:customView];
+//    MessageButtonDetailUIView *customView = [MessageButtonDetailUIView customView];
+//    [customView prepareButton:@"Kasi hindi kita matiis"
+//                      Answer2:@"Kasi ginigising mo ang natutulog kong katawan"
+//                      Answer3:@"Ang panghe mo kasi" ];
+//                            
+// 
+//    [self.xContainerHeader addSubview:customView];
     
     //[self.xContainerHeader addSubview:customView];
 }

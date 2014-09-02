@@ -11,8 +11,8 @@
 #import "PhoneBookTableViewController.h"
 #import "Dev2ActivationViewController.h"
 #import "VerifyRegistrationViewController.h"
-#import "UseInformationUIView.h"
-#import "MessageButtonDetailUIView.h"
+//#import "UseInformationUIView.h"
+//#import "MessageButtonDetailUIView.h"
 
 
 @protocol SendMessageDelegate <NSObject>
@@ -23,7 +23,7 @@
 
 @interface MessageDetailViewController : UIViewController <ModalViewControllerDelegate, RegistrationDelegate, VerificaitionDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView *xContainerHeader;
+//@property (weak, nonatomic) IBOutlet UIView *xContainerHeader;
 
 
 @property (nonatomic, strong) NSString *MessageGUID;
