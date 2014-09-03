@@ -7,7 +7,7 @@
 //
 
 #import "CommonSendRequest.h"
-#import "EntityPerson.h"
+//#import "EntityPerson.h"
 #import "CommonFunction.h"
 #import "CustomLoader.h"
 #import "AppDelegate.h"

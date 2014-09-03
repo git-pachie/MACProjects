@@ -22,9 +22,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtNumber;
 @property (weak, nonatomic) IBOutlet UIButton *btnsubmit;
 @property (weak, nonatomic) IBOutlet UIButton *btncancel;
-@property (weak, nonatomic) IBOutlet UIView *viewSubmitRegistration;
 
-- (IBAction)submit:(id)sender;
+
+- (IBAction)submit2:(id)sender;
+
 - (IBAction)cancel:(id)sender;
 
 

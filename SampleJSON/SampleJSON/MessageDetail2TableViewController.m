@@ -10,11 +10,13 @@
 #import "UseInformationUIView.h"
 #import "CommonSendRequest.h"
 #import "CommonFunction.h"
+#import "AppDelegate.h"
 
 @interface MessageDetail2TableViewController ()
 
 {
     CommonSendRequest *comreq;
+    AppDelegate *delegate;
 }
 
 @end
@@ -33,7 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     comreq = [[CommonSendRequest alloc]init];
     
     UseInformationUIView *customView = [UseInformationUIView customView];
@@ -146,6 +148,41 @@
     }
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showphonebook"]) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            PhoneBookTableViewController *dv = segue.destinationViewController;
+            
+            dv.Xdelexgate = self ;
+            
+        });
+        
+    }
+    else if ([segue.identifier isEqual:@"register2"]) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            Dev2ActivationViewController *dvc = [segue destinationViewController];
+            dvc.deviceToken = delegate.DevinceToken;
+            dvc.xCallBackDelegate = self;
+        });
+        
+    }
+    else if([segue.identifier isEqual:@"activate2"])
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+        VerifyRegistrationViewController *dvc = [segue destinationViewController];
+        dvc.deviceToken = delegate.DevinceToken;
+        dvc.phoneNumber = self.phoneNumber;
+        dvc.xVerficationDelegate = self;
+        
+        });
+        
+    }
+}
 
 
 -(void)roundImage:(NSString *)phoneNumber UserImage:(UIImageView*)imageview
@@ -228,4 +265,106 @@
     
 }
 
+-(void)dochecking: (NSString *)returnValue
+{
+    //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    
+    if ([returnValue isEqual:@"1"]) {
+        //NSLog(@"Ok registered");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self performSegueWithIdentifier:@"showphonebook" sender:nil];
+        });
+        
+    }
+    else if([returnValue isEqual:@"0"])
+    {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self performSegueWithIdentifier:@"register2" sender:nil];
+        });
+        
+    }
+    else
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.phoneNumber = returnValue;
+            [self performSegueWithIdentifier:@"activate2" sender:nil];
+        });
+        
+    }
+    
+    
+    
+    
+}
+
+#pragma delegates
+-(void)GetSelectedPerson:(EntityPerson *)selectedPerson
+{
+    //self.labelSelectedContact.text = selectedPerson.Name;
+    
+    
+    [self SendDelegate:selectedPerson];
+    
+    //[self.navigationController popToRootViewControllerAnimated:YES];
+    
+    
+}
+
+-(void)resendCallback
+{
+    [self performSegueWithIdentifier:@"register2" sender:nil];
+}
+-(void)SendDelegate:(EntityPerson*)selectedPerson
+{
+    
+    [self.sendMessageDelegate sendMessageToSelectedPerson:selectedPerson MessageGUID:self.MessageGUID];
+    
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+}
+
+
+
+-(void)cancleDelegate
+{
+    // [self performSegueWithIdentifier:@"register2" sender:nil];
+}
+
+-(void)callbackmethod:(NSString *)returnvalue
+{
+    //[self dochecking:@"2"];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    //[self performSelectorInBackground:@selector(dochecking:) withObject:returnvalue];
+    //[self performSegueWithIdentifier:@"activate2" sender:nil];
+    self.phoneNumber = returnvalue;
+    [self performSegueWithIdentifier:@"activate2" sender:nil];
+    
+}
+
+
+
+- (IBAction)topsend:(id)sender {
+    
+    
+    [comreq checkDeviceActivation:delegate.DevinceToken withBlock:^(NSString *returnValue)
+     {
+         
+         [self performSelector:@selector(dochecking:) withObject:returnValue];
+         
+     }];
+    
+}
+
+
+-(void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:    (NSInteger)buttonIndex
+{
+    if(buttonIndex==0)
+    {
+        //Code that will run after you press ok button
+        //[self.navigationController popViewControllerAnimated:YES ];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
 @end

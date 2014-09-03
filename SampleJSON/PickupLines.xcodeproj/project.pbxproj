@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C6FE133197540E7003B0EF6 /* CustomStaticTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6FE132197540E7003B0EF6 /* CustomStaticTableViewController.m */; };
-		0C7C79B8199A7098001E6D29 /* EntityPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7C79B7199A7098001E6D29 /* EntityPerson.m */; };
+		0C74749D19B6D88300992B6C /* EntityPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C74749C19B6D88300992B6C /* EntityPerson.m */; };
 		0C7C79BA199A7235001E6D29 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7C79B9199A7235001E6D29 /* AddressBookUI.framework */; };
 		0C7C79BC199A7265001E6D29 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7C79BB199A7265001E6D29 /* AddressBook.framework */; };
 		0C7C79C1199A73C3001E6D29 /* PhoneBookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7C79BE199A73C3001E6D29 /* PhoneBookTableViewController.m */; };
@@ -44,13 +44,11 @@
 		0D6FE4AA1969B815002E3880 /* DeviceActivationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6FE4A91969B815002E3880 /* DeviceActivationViewController.m */; };
 		0D6FE4AD196AE529002E3880 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6FE4AC196AE529002E3880 /* HomeTableViewController.m */; };
 		0D7EDB4119ACF89A009DBCCF /* CustomStringClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7EDB4019ACF89A009DBCCF /* CustomStringClass.m */; };
-		0DA05E9419756640001D1A85 /* SystemEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA05E9319756640001D1A85 /* SystemEntity.m */; };
 		0DA0ABF6198027F10061E723 /* cottage-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA0ABF5198027F10061E723 /* cottage-32.png */; };
 		0DA0ABF8198028A60061E723 /* automatic-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA0ABF7198028A60061E723 /* automatic-32.png */; };
 		0DA0ABFA1980292B0061E723 /* user_male3-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA0ABF91980292B0061E723 /* user_male3-32.png */; };
 		0DA67A4F19B1AF7B00229FBC /* Dev2ActivationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA67A4E19B1AF7B00229FBC /* Dev2ActivationViewController.m */; };
 		0DA67A5319B1CF2800229FBC /* VerifyRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA67A5219B1CF2800229FBC /* VerifyRegistrationViewController.m */; };
-		0DBE6FF41971A13B0024380E /* MessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBE6FF31971A13B0024380E /* MessageDetailViewController.m */; };
 		0DCCF05219B4BF78000F00CB /* PickupLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DCCF05119B4BF78000F00CB /* PickupLine.xib */; };
 		0DCCF05519B4C140000F00CB /* PickupLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCCF05419B4C140000F00CB /* PickupLineTableViewCell.m */; };
 		0DCCF05819B60F8E000F00CB /* MessageDetail2TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCCF05719B60F8E000F00CB /* MessageDetail2TableViewController.m */; };
@@ -70,8 +68,8 @@
 /* Begin PBXFileReference section */
 		0C6FE131197540E7003B0EF6 /* CustomStaticTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStaticTableViewController.h; sourceTree = "<group>"; };
 		0C6FE132197540E7003B0EF6 /* CustomStaticTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStaticTableViewController.m; sourceTree = "<group>"; };
-		0C7C79B6199A7098001E6D29 /* EntityPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityPerson.h; sourceTree = "<group>"; };
-		0C7C79B7199A7098001E6D29 /* EntityPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityPerson.m; sourceTree = "<group>"; };
+		0C74749B19B6D88300992B6C /* EntityPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityPerson.h; path = "untitled folder/EntityPerson.h"; sourceTree = SOURCE_ROOT; };
+		0C74749C19B6D88300992B6C /* EntityPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EntityPerson.m; path = "untitled folder/EntityPerson.m"; sourceTree = SOURCE_ROOT; };
 		0C7C79B9199A7235001E6D29 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		0C7C79BB199A7265001E6D29 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		0C7C79BD199A73C3001E6D29 /* PhoneBookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhoneBookTableViewController.h; path = ../../TestPhoneBook/PhoneBookTableViewController.h; sourceTree = "<group>"; };
@@ -124,8 +122,6 @@
 		0D6FE4AC196AE529002E3880 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
 		0D7EDB3F19ACF89A009DBCCF /* CustomStringClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStringClass.h; sourceTree = "<group>"; };
 		0D7EDB4019ACF89A009DBCCF /* CustomStringClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStringClass.m; sourceTree = "<group>"; };
-		0DA05E9219756640001D1A85 /* SystemEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemEntity.h; sourceTree = "<group>"; };
-		0DA05E9319756640001D1A85 /* SystemEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemEntity.m; sourceTree = "<group>"; };
 		0DA0ABF5198027F10061E723 /* cottage-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cottage-32.png"; sourceTree = "<group>"; };
 		0DA0ABF7198028A60061E723 /* automatic-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "automatic-32.png"; sourceTree = "<group>"; };
 		0DA0ABF91980292B0061E723 /* user_male3-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_male3-32.png"; sourceTree = "<group>"; };
@@ -133,8 +129,6 @@
 		0DA67A4E19B1AF7B00229FBC /* Dev2ActivationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dev2ActivationViewController.m; sourceTree = "<group>"; };
 		0DA67A5119B1CF2800229FBC /* VerifyRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyRegistrationViewController.h; sourceTree = "<group>"; };
 		0DA67A5219B1CF2800229FBC /* VerifyRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyRegistrationViewController.m; sourceTree = "<group>"; };
-		0DBE6FF21971A13B0024380E /* MessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetailViewController.h; sourceTree = "<group>"; };
-		0DBE6FF31971A13B0024380E /* MessageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetailViewController.m; sourceTree = "<group>"; };
 		0DCCF05119B4BF78000F00CB /* PickupLine.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickupLine.xib; sourceTree = "<group>"; };
 		0DCCF05319B4C140000F00CB /* PickupLineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickupLineTableViewCell.h; sourceTree = "<group>"; };
 		0DCCF05419B4C140000F00CB /* PickupLineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupLineTableViewCell.m; sourceTree = "<group>"; };
@@ -326,8 +320,6 @@
 				0D6FE4A81969B815002E3880 /* DeviceActivationViewController.h */,
 				0D6FE4AB196AE529002E3880 /* HomeTableViewController.h */,
 				0D6FE4AC196AE529002E3880 /* HomeTableViewController.m */,
-				0DBE6FF21971A13B0024380E /* MessageDetailViewController.h */,
-				0DBE6FF31971A13B0024380E /* MessageDetailViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -366,10 +358,8 @@
 		0DCCF05019B391C2000F00CB /* PhoneBook */ = {
 			isa = PBXGroup;
 			children = (
-				0DA05E9219756640001D1A85 /* SystemEntity.h */,
-				0DA05E9319756640001D1A85 /* SystemEntity.m */,
-				0C7C79B6199A7098001E6D29 /* EntityPerson.h */,
-				0C7C79B7199A7098001E6D29 /* EntityPerson.m */,
+				0C74749B19B6D88300992B6C /* EntityPerson.h */,
+				0C74749C19B6D88300992B6C /* EntityPerson.m */,
 				0C7C79BD199A73C3001E6D29 /* PhoneBookTableViewController.h */,
 				0C7C79BE199A73C3001E6D29 /* PhoneBookTableViewController.m */,
 				0C7C79BF199A73C3001E6D29 /* PhoneContactClass.h */,
@@ -493,15 +483,14 @@
 				0D6FE47D19686E1A002E3880 /* main.m in Sources */,
 				0DCCF05519B4C140000F00CB /* PickupLineTableViewCell.m in Sources */,
 				0DCCF05819B60F8E000F00CB /* MessageDetail2TableViewController.m in Sources */,
-				0C7C79B8199A7098001E6D29 /* EntityPerson.m in Sources */,
 				0C7C79C2199A73C3001E6D29 /* PhoneContactClass.m in Sources */,
 				0C6FE133197540E7003B0EF6 /* CustomStaticTableViewController.m in Sources */,
 				0CD8EF8D199690EE00E88A04 /* CustomLoader.m in Sources */,
 				0C7C79C1199A73C3001E6D29 /* PhoneBookTableViewController.m in Sources */,
 				0CA596771973E1F80032D144 /* CommonFunction.m in Sources */,
+				0C74749D19B6D88300992B6C /* EntityPerson.m in Sources */,
 				0CCCE20C19B5B0420085C4F1 /* MessageButtonDetailUIView.m in Sources */,
 				0D6FE4A719686E89002E3880 /* TestViewController.m in Sources */,
-				0DBE6FF41971A13B0024380E /* MessageDetailViewController.m in Sources */,
 				0D6FE48419686E1A002E3880 /* SampleJSON.xcdatamodeld in Sources */,
 				0D7EDB4119ACF89A009DBCCF /* CustomStringClass.m in Sources */,
 				0D6FE4AD196AE529002E3880 /* HomeTableViewController.m in Sources */,
@@ -509,7 +498,6 @@
 				0C8327341994CEC800C2CEF0 /* MyTableViewCell.m in Sources */,
 				0CCCE20719B5A0990085C4F1 /* UseInformationUIView.m in Sources */,
 				0D6FE4AA1969B815002E3880 /* DeviceActivationViewController.m in Sources */,
-				0DA05E9419756640001D1A85 /* SystemEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

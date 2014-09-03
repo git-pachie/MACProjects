@@ -22,7 +22,10 @@
 
 @implementation Dev2ActivationViewController
 
-
+-(void)resendCallback
+{
+    
+}
 
 -(void)cancleDelegate
 {
@@ -71,17 +74,9 @@
 }
 */
 
-- (IBAction)submit:(id)sender {
-    
-    //[self dismissViewControllerAnimated:YES completion:nil];
-    //[self.xCallBackDelegate callbackmethod:@"89786"];
-    
-    //[self.xCallBackDelegate callbackmethod:@"2"];
-    //[self dismissViewControllerAnimated:YES completion:nil];
-    
-    //[self performSegueWithIdentifier:@"activate2" sender:nil];
 
-    
+
+- (IBAction)submit2:(id)sender {
     [comReq registerAccount:self.deviceToken PhoneNumber:self.txtNumber.text withBlock:^(NSString *returnValue) {
         if ([returnValue isEqual:@"1"]) {
             
@@ -97,30 +92,7 @@
             [alert show];
         }
     }];
-    
-
 }
-
-//-(void)callMe
-//{
-//    [self performSegueWithIdentifier:@"activate2" sender:nil];
-//}
-
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//    if ([segue.identifier isEqualToString:@"activate2"]) {
-//        
-//            VerifyRegistrationViewController *dvc = [segue destinationViewController];
-//            dvc.deviceToken = self.deviceToken;
-//            dvc.phoneNumber = self.PhoneNumber;
-//            dvc.xVerficationDelegate = self;
-//       
-//        
-//    }
-//        
-//    });
-//}
 
 - (IBAction)cancel:(id)sender {
     

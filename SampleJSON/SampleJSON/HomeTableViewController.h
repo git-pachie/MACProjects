@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MessageDetailViewController.h"
-
+//mport "MessageDetailViewController.h"
+#import "MessageDetail2TableViewController.h"
 
 
 @interface HomeTableViewController : UITableViewController <SendMessageDelegate>

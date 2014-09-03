@@ -17,31 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdX-Bu-SPg">
-                                <rect key="frame" x="20" y="49" width="280" height="122"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="25k-lf-uST">
-                                        <rect key="frame" x="0.0" y="7" width="280" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dli-dr-WfO">
-                                        <rect key="frame" x="0.0" y="68" width="280" height="46"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="Submit my registration">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="submit:" destination="gLD-dE-w3b" eventType="touchUpInside" id="yUi-RU-Raa"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="register2" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DC1-qx-FfY">
                                 <rect key="frame" x="20" y="179" width="280" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -54,6 +29,24 @@
                                     <action selector="cancel:" destination="gLD-dE-w3b" eventType="touchUpInside" id="KEg-cB-DVj"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dli-dr-WfO">
+                                <rect key="frame" x="20" y="123" width="280" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Submit my registration">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submit2:" destination="gLD-dE-w3b" eventType="touchUpInside" id="vzg-lT-EiX"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="25k-lf-uST">
+                                <rect key="frame" x="20" y="85" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -62,13 +55,12 @@
                         <outlet property="btncancel" destination="DC1-qx-FfY" id="Oye-10-dN2"/>
                         <outlet property="btnsubmit" destination="Dli-dr-WfO" id="Be9-80-79b"/>
                         <outlet property="txtNumber" destination="25k-lf-uST" id="FiC-Pe-rVa"/>
-                        <outlet property="viewSubmitRegistration" destination="cdX-Bu-SPg" id="afe-7D-YwU"/>
                         <segue destination="3Bb-4c-sKF" kind="modal" identifier="activate2" id="igX-lH-YnD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z5B-VI-7Ua" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4338" y="-621"/>
+            <point key="canvasLocation" x="4232" y="-1222"/>
         </scene>
         <!--Verify Registration View Controller-->
         <scene sceneID="PaY-SU-bzK">
@@ -83,7 +75,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f3b-jS-9PU">
-                                <rect key="frame" x="20" y="71" width="280" height="30"/>
+                                <rect key="frame" x="20" y="81" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
@@ -97,7 +89,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="submit:" destination="gLD-dE-w3b" eventType="touchUpInside" id="W6A-US-SL2"/>
                                     <action selector="verify:" destination="3Bb-4c-sKF" eventType="touchUpInside" id="rQm-KG-PQ8"/>
                                 </connections>
                             </button>
@@ -129,6 +120,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="RAK-Df-z2T"/>
                     <connections>
                         <outlet property="btnCancel" destination="Yob-H4-95d" id="nBO-hk-Woa"/>
                         <outlet property="btnVerifyButton" destination="3Ub-Bl-IRP" id="bJ4-Tw-4FB"/>
@@ -138,7 +130,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ar-Z2-bkd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4708" y="-760"/>
+            <point key="canvasLocation" x="4753" y="-791"/>
         </scene>
         <!--Message Detail2 Table View Controller - Pickup Line Details-->
         <scene sceneID="9PN-yd-8B8">
@@ -256,7 +248,13 @@
                             <outlet property="delegate" destination="VRc-jb-ZNq" id="Wda-tm-CKd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Pickup Line Details" id="gA0-31-BK9"/>
+                    <navigationItem key="navigationItem" title="Pickup Line Details" id="gA0-31-BK9">
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="J3F-PG-2n5">
+                            <connections>
+                                <action selector="topsend:" destination="VRc-jb-ZNq" id="tfZ-fM-vYj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="answer1" destination="avE-cM-zvh" id="fH2-jW-ioJ"/>
                         <outlet property="answer2" destination="vm5-1I-7HU" id="s1C-NG-g5N"/>
@@ -266,11 +264,14 @@
                         <outlet property="cellanswer2" destination="b5Y-zL-jVX" id="6Bz-vm-EaM"/>
                         <outlet property="cellanswer3" destination="9qI-hJ-R4r" id="Hey-A8-Uiv"/>
                         <outlet property="lblhiritMessage" destination="ktN-xq-AkD" id="dRD-FL-GS1"/>
+                        <segue destination="gLD-dE-w3b" kind="modal" identifier="register2" id="cnI-1n-vnb"/>
+                        <segue destination="3Bb-4c-sKF" kind="modal" identifier="activate2" id="zIT-Xg-86Y"/>
+                        <segue destination="ziP-Tr-cpj" kind="push" identifier="showphonebook" id="68Y-4W-Gxy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w0Y-pD-c7Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3998" y="-1213"/>
+            <point key="canvasLocation" x="3690" y="-522"/>
         </scene>
         <!--Phone Book Table View Controller-->
         <scene sceneID="hWd-i2-r0C">
@@ -362,7 +363,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="e2e-51-pIn" kind="push" identifier="MessageDetail" id="pli-lw-tc5"/>
+                                    <segue destination="VRc-jb-ZNq" kind="push" identifier="MessageDetail" id="Llx-5U-oKd"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -395,67 +396,6 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3158" y="-383"/>
-        </scene>
-        <!--Message Detail View Controller - Pickup Line-->
-        <scene sceneID="LkX-HZ-Tg3">
-            <objects>
-                <viewController id="e2e-51-pIn" customClass="MessageDetailViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="elU-hn-OzQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="izk-Ph-BcM"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Irl-vc-Wi3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="G3g-eR-6sK">
-                                <rect key="frame" x="20" y="77" width="280" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment>
-                                        <string key="content">Label asdfa sdasdf asdfa sdfa sdfasdfasdf asd fasd fasd fasdasd asdf asd fasdf adfasdf a asd asdasdasd asd asdasd as das dfas dfas </string>
-                                        <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9e9-an-WbD">
-                                <rect key="frame" x="20" y="325" width="280" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Send to someone">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="VRc-jb-ZNq" kind="push" identifier="MessageDetail2" id="50y-Pa-frk"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Pickup Line" id="ZfS-g8-dtj">
-                        <barButtonItem key="rightBarButtonItem" title="Send" id="0SI-bc-fVW">
-                            <connections>
-                                <action selector="Send:" destination="e2e-51-pIn" id="kCm-d5-jGg"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="btnsendtosomeone" destination="9e9-an-WbD" id="gWl-4n-wqa"/>
-                        <outlet property="lblhiritMessage" destination="G3g-eR-6sK" id="XL9-QZ-HF6"/>
-                        <segue destination="gLD-dE-w3b" kind="modal" identifier="register2" id="JVq-eU-cxR"/>
-                        <segue destination="3Bb-4c-sKF" kind="modal" identifier="activate2" id="H4x-dd-sHl"/>
-                        <segue destination="ziP-Tr-cpj" kind="push" identifier="showphonebook" id="Ji2-Vw-3k9"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ktP-AP-E3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3765" y="-383"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="uaN-gY-ySC">
@@ -733,6 +673,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="H4x-dd-sHl"/>
+        <segue reference="igX-lH-YnD"/>
     </inferredMetricsTieBreakers>
 </document>

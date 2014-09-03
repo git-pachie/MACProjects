@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "SystemEntity.h"
+//#import "SystemEntity.h"
 #import "CommonSendRequest.h"
 
 @implementation AppDelegate

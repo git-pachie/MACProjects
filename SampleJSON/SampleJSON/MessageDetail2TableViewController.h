@@ -7,8 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+//#import "EntityPerson.h"
+#import "Dev2ActivationViewController.h"
+#import "VerifyRegistrationViewController.h"
+#import "PhoneBookTableViewController.h"
 
-@interface MessageDetail2TableViewController : UITableViewController
+@protocol SendMessageDelegate <NSObject>
+
+-(void)sendMessageToSelectedPerson: (EntityPerson *) selectedPerson MessageGUID:(NSString *) messageGUID;
+
+@end
+
+@interface MessageDetail2TableViewController : UITableViewController <ModalViewControllerDelegate, RegistrationDelegate, VerificaitionDelegate>
+
 
 @property (nonatomic, strong) NSString *MessageGUID;
 @property (nonatomic, strong) NSString *HiritMessage;
@@ -23,11 +34,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *answer1;
 @property (weak, nonatomic) IBOutlet UILabel *answer2;
 @property (weak, nonatomic) IBOutlet UILabel *answer3;
+- (IBAction)topsend:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *cellanswer1;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cellanswer2;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cellanswer3;
 
+
+@property (nonatomic, strong) id<SendMessageDelegate> sendMessageDelegate;
 
 
 

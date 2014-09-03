@@ -9,7 +9,8 @@
 #import "HomeTableViewController.h"
 #import "TestViewController.h"
 #import "DeviceActivationViewController.h"
-#import "MessageDetailViewController.h"
+//#import "MessageDetailViewController.h"
+#import "MessageDetail2TableViewController.h"
 #import "CommonFunction.h"
 #import "AppDelegate.h"
 #import "CustomLoader.h"
@@ -361,7 +362,7 @@
               
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         
-        MessageDetailViewController *dv = segue.destinationViewController;
+        MessageDetail2TableViewController *dv = segue.destinationViewController;
         
         NSString *messageGUID = @"";
         NSString *hiritMessage = @"";
