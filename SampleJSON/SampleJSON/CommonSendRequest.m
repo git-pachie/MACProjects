@@ -19,13 +19,13 @@
 
 
 
--(BOOL)SendPickupLines: (NSString *) deviceGUID : (NSString *) personNumber : (NSString *) messageGUID
+-(BOOL)SendPickupLines: (NSString *) deviceGUID : (NSString *) personNumber : (NSString *) messageGUID selectedAnswer:(NSString *)selectedAnswer
 {
     //bool result = false;
     
     CommonFunction *common = [[CommonFunction alloc]init];
 
-    NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"SendPickupLine/%1@/%2@/%3@",deviceGUID,personNumber,messageGUID]];
+    NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"SendPickupLine/%1@/%2@/%3@/%4@",deviceGUID,personNumber,messageGUID,selectedAnswer]];
     
     NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     

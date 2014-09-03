@@ -14,7 +14,7 @@
 
 @protocol SendMessageDelegate <NSObject>
 
--(void)sendMessageToSelectedPerson: (EntityPerson *) selectedPerson MessageGUID:(NSString *) messageGUID;
+-(void)sendMessageToSelectedPerson: (EntityPerson *) selectedPerson MessageGUID:(NSString *) messageGUID selectedAnswer:(NSString *)selectedAnswer;
 
 @end
 

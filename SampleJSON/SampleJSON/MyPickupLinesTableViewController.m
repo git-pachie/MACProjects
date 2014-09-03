@@ -153,7 +153,7 @@
     
     cell.labelSentReceivedDate.text = convertedDate;// [dic objectForKey:@"DateCreated"];
     cell.lablePickupLineHeader.text = [dic objectForKey:@"PickupLineContent"];
-    cell.labelPickupLineAnswer.text = [dic objectForKey:@"PickupLineAnswer"];
+    cell.labelPickupLineAnswer.text =[NSString stringWithFormat:@"%@",[dic objectForKey:@"PickupLineAnswer"]] ;
     
     cell.labelCreatedby.text =[NSString stringWithFormat:@"Created By: %@",[dic objectForKey:@"SenderPhoneNumber"]];
     
@@ -196,9 +196,10 @@
     
         [comReq getUserMessageByNumber:self.PhoneNumber MyFriendPhoneNumber:del.PhoneNumber withBlock:^(NSMutableArray *array) {
             mArray = array;
-            NSLog(@"arrary %@",mArray);
+            //NSLog(@"arrary %@",mArray);
             
-            
+            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+            //[self.tableView reloadData];
             [self HideLoading];
             //[self.tableView reloadData];
         }];
@@ -311,7 +312,7 @@
                 [subview removeFromSuperview];
             }
         }
-        [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+        
         [self.tableView reloadData];
     });
 }

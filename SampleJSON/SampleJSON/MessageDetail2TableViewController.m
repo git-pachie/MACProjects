@@ -17,6 +17,7 @@
 {
     CommonSendRequest *comreq;
     AppDelegate *delegate;
+    NSString *selectedAns;
 }
 
 @end
@@ -60,6 +61,7 @@
     self.answer2.text = @"Wala lang";
     self.answer3.text = @"Ang panghe mo kasi";
     
+    selectedAns = 0;
     
 //    view.layer.cornerRadius = view.frame.size.height / 2;
 //    view.layer.masksToBounds = YES;
@@ -129,22 +131,30 @@
     self.cellanswer1.accessoryType = UITableViewCellAccessoryNone;
     self.cellanswer2.accessoryType = UITableViewCellAccessoryNone;
     self.cellanswer3.accessoryType = UITableViewCellAccessoryNone;
-    
+    self.cellanswer1.alpha = 0.4;
+    self.cellanswer2.alpha = 0.4;
+    self.cellanswer3.alpha = 0.4;
     
     
     
     
     if (theCellClicked == self.cellanswer1) {
         //Do stuff
+        selectedAns = @"1";
         self.cellanswer1.accessoryType = UITableViewCellAccessoryCheckmark;
+        self.cellanswer1.alpha = 0.6;
     }
     else if (theCellClicked == self.cellanswer2)
     {
+        selectedAns = @"2";
         self.cellanswer2.accessoryType = UITableViewCellAccessoryCheckmark;
+        self.cellanswer2.alpha = 0.6;
     }
     else if (theCellClicked == self.cellanswer3)
     {
+        selectedAns = @"3";
         self.cellanswer3.accessoryType = UITableViewCellAccessoryCheckmark;
+        self.cellanswer3.alpha = 0.6;
     }
 }
 
@@ -213,6 +223,8 @@
     cell.backgroundColor = [UIColor purpleColor];
     cell.alpha = 0.4;
     answer.textColor = [UIColor whiteColor];
+    
+    cell.selectionStyle = UITableViewStylePlain;
 
 }
 
@@ -269,6 +281,9 @@
 {
     //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     
+    
+    
+    
     if ([returnValue isEqual:@"1"]) {
         //NSLog(@"Ok registered");
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -299,6 +314,11 @@
 }
 
 #pragma delegates
+-(void)resendCallback
+{
+    [self performSegueWithIdentifier:@"register2" sender:nil];
+}
+
 -(void)GetSelectedPerson:(EntityPerson *)selectedPerson
 {
     //self.labelSelectedContact.text = selectedPerson.Name;
@@ -311,14 +331,11 @@
     
 }
 
--(void)resendCallback
-{
-    [self performSegueWithIdentifier:@"register2" sender:nil];
-}
+
 -(void)SendDelegate:(EntityPerson*)selectedPerson
 {
     
-    [self.sendMessageDelegate sendMessageToSelectedPerson:selectedPerson MessageGUID:self.MessageGUID];
+    [self.sendMessageDelegate sendMessageToSelectedPerson:selectedPerson MessageGUID:self.MessageGUID selectedAnswer:selectedAns];
     
     
     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -347,24 +364,51 @@
 
 - (IBAction)topsend:(id)sender {
     
+    if (selectedAns == 0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No selected response" message:@"Please select your response in order to continue" delegate:self cancelButtonTitle:@"Close" otherButtonTitles: nil];
+        
+        [alert show];
+        //return;
+        
+    }
+    else
+    {
+        [comreq checkDeviceActivation:delegate.DevinceToken withBlock:^(NSString *returnValue)
+         {
+             
+             [self performSelector:@selector(dochecking:) withObject:returnValue];
+             
+         }];
+
+    }
     
-    [comreq checkDeviceActivation:delegate.DevinceToken withBlock:^(NSString *returnValue)
-     {
-         
-         [self performSelector:@selector(dochecking:) withObject:returnValue];
-         
-     }];
     
 }
 
 
 -(void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:    (NSInteger)buttonIndex
 {
-    if(buttonIndex==0)
+    
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if([title isEqualToString:@"Close"])
     {
-        //Code that will run after you press ok button
-        //[self.navigationController popViewControllerAnimated:YES ];
+        //[self dismissViewControllerAnimated:YES completion:nil];
+        //NSLog(@"Error button clicked");
+        return;
+    }
+    else
+    {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
+//    if(buttonIndex==0)
+//    {
+//        //Code that will run after you press ok button
+//        //[self.navigationController popViewControllerAnimated:YES ];
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+//    }
 }
+
+
+
 @end

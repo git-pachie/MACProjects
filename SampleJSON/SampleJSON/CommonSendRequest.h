@@ -10,7 +10,7 @@
 
 @interface CommonSendRequest : UITableViewController
 
--(BOOL)SendPickupLines: (NSString *) deviceGUID : (NSString *) personNumber : (NSString *) messageGUID;
+-(BOOL)SendPickupLines: (NSString *) deviceGUID : (NSString *) personNumber : (NSString *) messageGUID selectedAnswer:(NSString *)selectedAnswer;
 
 +(void)SendProfileToServer: (UIImage *) img;
 -(void)getJSONPickupLines:(void (^)(NSDictionary *jsonData))block;

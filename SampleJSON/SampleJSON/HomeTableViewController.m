@@ -7,8 +7,8 @@
 //
 
 #import "HomeTableViewController.h"
-#import "TestViewController.h"
-#import "DeviceActivationViewController.h"
+//#import "TestViewController.h"
+//#import "DeviceActivationViewController.h"
 //#import "MessageDetailViewController.h"
 #import "MessageDetail2TableViewController.h"
 #import "CommonFunction.h"
@@ -685,7 +685,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
 }
 
 
--(void)sendMessageToSelectedPerson:(EntityPerson *)selectedPerson MessageGUID:(NSString *)messageGUID
+-(void)sendMessageToSelectedPerson:(EntityPerson *)selectedPerson MessageGUID:(NSString *)messageGUID selectedAnswer:(NSString *)selectedAnswer
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
@@ -703,7 +703,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
     }
     
     CommonSendRequest *sendRequest = [[CommonSendRequest alloc]init];
-    [sendRequest SendPickupLines:delegate.DevinceToken :selectedPerson.Number :messageGUID ];
+    [sendRequest SendPickupLines:delegate.DevinceToken :selectedPerson.Number :messageGUID selectedAnswer:selectedAnswer ];
 
 }
 

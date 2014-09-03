@@ -40,8 +40,6 @@
 		0D6FE49819686E1A002E3880 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D6FE49619686E1A002E3880 /* InfoPlist.strings */; };
 		0D6FE49A19686E1A002E3880 /* SampleJSONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6FE49919686E1A002E3880 /* SampleJSONTests.m */; };
 		0D6FE4A419686E34002E3880 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D6FE4A319686E34002E3880 /* Storyboard.storyboard */; };
-		0D6FE4A719686E89002E3880 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6FE4A619686E89002E3880 /* TestViewController.m */; };
-		0D6FE4AA1969B815002E3880 /* DeviceActivationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6FE4A91969B815002E3880 /* DeviceActivationViewController.m */; };
 		0D6FE4AD196AE529002E3880 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6FE4AC196AE529002E3880 /* HomeTableViewController.m */; };
 		0D7EDB4119ACF89A009DBCCF /* CustomStringClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7EDB4019ACF89A009DBCCF /* CustomStringClass.m */; };
 		0DA0ABF6198027F10061E723 /* cottage-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA0ABF5198027F10061E723 /* cottage-32.png */; };
@@ -114,10 +112,6 @@
 		0D6FE49719686E1A002E3880 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0D6FE49919686E1A002E3880 /* SampleJSONTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleJSONTests.m; sourceTree = "<group>"; };
 		0D6FE4A319686E34002E3880 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		0D6FE4A519686E89002E3880 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		0D6FE4A619686E89002E3880 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
-		0D6FE4A81969B815002E3880 /* DeviceActivationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceActivationViewController.h; sourceTree = "<group>"; };
-		0D6FE4A91969B815002E3880 /* DeviceActivationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceActivationViewController.m; sourceTree = "<group>"; };
 		0D6FE4AB196AE529002E3880 /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
 		0D6FE4AC196AE529002E3880 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
 		0D7EDB3F19ACF89A009DBCCF /* CustomStringClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStringClass.h; sourceTree = "<group>"; };
@@ -314,10 +308,6 @@
 				0DA67A5019B1CF0B00229FBC /* Registration */,
 				0DCCF05619B60F8E000F00CB /* MessageDetail2TableViewController.h */,
 				0DCCF05719B60F8E000F00CB /* MessageDetail2TableViewController.m */,
-				0D6FE4A519686E89002E3880 /* TestViewController.h */,
-				0D6FE4A619686E89002E3880 /* TestViewController.m */,
-				0D6FE4A91969B815002E3880 /* DeviceActivationViewController.m */,
-				0D6FE4A81969B815002E3880 /* DeviceActivationViewController.h */,
 				0D6FE4AB196AE529002E3880 /* HomeTableViewController.h */,
 				0D6FE4AC196AE529002E3880 /* HomeTableViewController.m */,
 			);
@@ -490,14 +480,12 @@
 				0CA596771973E1F80032D144 /* CommonFunction.m in Sources */,
 				0C74749D19B6D88300992B6C /* EntityPerson.m in Sources */,
 				0CCCE20C19B5B0420085C4F1 /* MessageButtonDetailUIView.m in Sources */,
-				0D6FE4A719686E89002E3880 /* TestViewController.m in Sources */,
 				0D6FE48419686E1A002E3880 /* SampleJSON.xcdatamodeld in Sources */,
 				0D7EDB4119ACF89A009DBCCF /* CustomStringClass.m in Sources */,
 				0D6FE4AD196AE529002E3880 /* HomeTableViewController.m in Sources */,
 				0DA67A5319B1CF2800229FBC /* VerifyRegistrationViewController.m in Sources */,
 				0C8327341994CEC800C2CEF0 /* MyTableViewCell.m in Sources */,
 				0CCCE20719B5A0990085C4F1 /* UseInformationUIView.m in Sources */,
-				0D6FE4AA1969B815002E3880 /* DeviceActivationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

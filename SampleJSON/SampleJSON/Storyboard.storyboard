@@ -132,7 +132,7 @@
             </objects>
             <point key="canvasLocation" x="4753" y="-791"/>
         </scene>
-        <!--Message Detail2 Table View Controller - Pickup Line Details-->
+        <!--Message Detail2 Table View Controller - Details-->
         <scene sceneID="9PN-yd-8B8">
             <objects>
                 <tableViewController id="VRc-jb-ZNq" customClass="MessageDetail2TableViewController" sceneMemberID="viewController">
@@ -248,7 +248,7 @@
                             <outlet property="delegate" destination="VRc-jb-ZNq" id="Wda-tm-CKd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Pickup Line Details" id="gA0-31-BK9">
+                    <navigationItem key="navigationItem" title="Details" id="gA0-31-BK9">
                         <barButtonItem key="rightBarButtonItem" title="Send" id="J3F-PG-2n5">
                             <connections>
                                 <action selector="topsend:" destination="VRc-jb-ZNq" id="tfZ-fM-vYj"/>
@@ -673,6 +673,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="igX-lH-YnD"/>
+        <segue reference="zIT-Xg-86Y"/>
     </inferredMetricsTieBreakers>
 </document>
