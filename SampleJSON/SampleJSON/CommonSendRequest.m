@@ -294,6 +294,8 @@
         NSString *createdByDeviceID = [dataDict objectForKey:@"CreatedByDeviceID"];
         NSString *createdDate = [dataDict objectForKey:@"CreatedDate"];
         NSString *answer1 = [dataDict objectForKey:@"Answer1"];
+        NSString *answer2 = [dataDict objectForKey:@"Answer2"];
+        NSString *answer3 = [dataDict objectForKey:@"Answer3"];
         NSString *dateCreatedSTR = [dataDict objectForKey:@"DateCreatedSTR"];
         NSString *createdByPhonNumber = [dataDict objectForKey:@"CreatedByPhonNumber"];
         
@@ -305,6 +307,8 @@
                                     createdByDeviceID,@"CreatedByDeviceID",
                                     [CommonFunction mfDateFromDotNetJSONString:createdDate],@"DateCreated",
                                     answer1, @"Answer1",
+                                    answer2, @"Answer2",
+                                    answer3, @"Answer3",
                                     dateCreatedSTR,@"DateCreatedSTR",
                                     createdByPhonNumber,@"CreatedByPhonNumber",
                                     nil];

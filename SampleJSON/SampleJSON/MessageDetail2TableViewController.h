@@ -25,6 +25,8 @@
 @property (nonatomic, strong) NSString *HiritMessage;
 @property (nonatomic, strong) NSString *CreatedBy;
 @property (nonatomic, strong) NSString *Answer;
+@property (nonatomic, strong) NSString *Answer22;
+@property (nonatomic, strong) NSString *Answer33;
 @property (nonatomic, strong) NSString *phoneNumber;
 @property (nonatomic, strong) NSString *createdByPhoneNumber;
 

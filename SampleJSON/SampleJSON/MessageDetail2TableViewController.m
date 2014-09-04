@@ -41,15 +41,15 @@
     
     UseInformationUIView *customView = [UseInformationUIView customView];
     
-    self.createdByPhoneNumber =  @"00000000"; //change
-    self.HiritMessage = @"Alam mo para kang ihi 12345678 hindi mapakali";
-    self.Answer = @"Hindi kasi kita matiis eh he he he 12345 ewan ko ba";
+    //self.createdByPhoneNumber =  @"00000000"; //change
+    //self.HiritMessage = @"Alam mo para kang ihi 12345678 hindi mapakali";
+    //self.Answer = @"Hindi kasi kita matiis eh he he he 12345 ewan ko ba";
     
     [self roundImage:self.createdByPhoneNumber UserImage:customView.imgProfileImage];
     
     [self.cellUserProfile addSubview:customView];
     
-    [self setStyleForPickupLines:self.lblhiritMessage :self.HiritMessage :self.Answer ];
+    [self setStyleForPickupLines:self.lblhiritMessage :self.HiritMessage :@""];
 
     
     
@@ -57,10 +57,10 @@
     self.cellanswer2.accessoryType = UITableViewCellAccessoryNone;
     self.cellanswer3.accessoryType = UITableViewCellAccessoryNone;
     
-    self.answer1.text = @"Hindi kasi kita matiis";
-    self.answer2.text = @"Wala lang";
-    self.answer3.text = @"Ang panghe mo kasi";
-    
+    self.answer1.text = self.Answer;
+    self.answer2.text = self.Answer22;
+    self.answer3.text = self.Answer33;
+//
     selectedAns = 0;
     
 //    view.layer.cornerRadius = view.frame.size.height / 2;
@@ -225,6 +225,8 @@
     answer.textColor = [UIColor whiteColor];
     
     cell.selectionStyle = UITableViewStylePlain;
+    answer.numberOfLines = 0;
+    [answer setLineBreakMode:NSLineBreakByWordWrapping];
 
 }
 
@@ -254,7 +256,7 @@
     
     
     
-    UIFont *myboldFont = [UIFont fontWithName:@"TrebuchetMS-Bold" size:21];
+    UIFont *myboldFont = [UIFont fontWithName:@"TrebuchetMS-Bold" size:19];
     
     NSMutableAttributedString
     *attributedText2 =  [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%1@\n\n", headerText]

@@ -368,6 +368,8 @@
         NSString *hiritMessage = @"";
         NSString *createdBy = @"";
         NSString *answer1 = @"";
+        NSString *answer2 = @"";
+        NSString *answer3 = @"";
         
         
         dv.sendMessageDelegate = self;
@@ -407,11 +409,16 @@
         hiritMessage = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"HiritMessage"]];
         createdBy = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"CreatedBy"]];
         answer1 = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"Answer1"]];
+        answer2 = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"Answer2"]];
+        answer3 = [NSString stringWithFormat:@"%@",[tmpDict objectForKey:@"Answer3"]];
+
 
         dv.MessageGUID = messageGUID;
         dv.HiritMessage = hiritMessage;
         dv.CreatedBy = createdBy;
         dv.Answer = answer1;
+        dv.Answer22 = answer2;
+        dv.Answer33 = answer3;
         dv.createdByPhoneNumber = [tmpDict objectForKey:@"CreatedByPhonNumber"];
     }
     
