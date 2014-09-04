@@ -9,10 +9,13 @@
 #import "VerifyRegistrationViewController.h"
 #import "CommonSendRequest.h"
 #import "CustomStringClass.h"
+#import "AppDelegate.h"
 
 @interface VerifyRegistrationViewController ()
 {
     CommonSendRequest *comReq;
+    AppDelegate *del;
+    
 }
 
 @end
@@ -31,6 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    del = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     comReq = [[CommonSendRequest alloc]init];
     [CustomStringClass ApplyRountedBorderToButton:self.btncancel];
     [CustomStringClass ApplyRountedBorderToButton:self.btnVerifyButton];
@@ -60,7 +64,9 @@
             
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Congratulation your account is activated." delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
             
-            NSLog(@"before alert show");
+                del.PhoneNumber = self.phoneNumber;
+                
+            NSLog(@"Account activation successfull");
             [alert show];
             });
         }

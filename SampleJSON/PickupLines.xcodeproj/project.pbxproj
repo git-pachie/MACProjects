@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C6FE133197540E7003B0EF6 /* CustomStaticTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6FE132197540E7003B0EF6 /* CustomStaticTableViewController.m */; };
 		0C74749D19B6D88300992B6C /* EntityPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C74749C19B6D88300992B6C /* EntityPerson.m */; };
+		0C74749F19B8642D00992B6C /* noprofile.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C74749E19B8642C00992B6C /* noprofile.png */; };
 		0C7C79BA199A7235001E6D29 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7C79B9199A7235001E6D29 /* AddressBookUI.framework */; };
 		0C7C79BC199A7265001E6D29 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7C79BB199A7265001E6D29 /* AddressBook.framework */; };
 		0C7C79C1199A73C3001E6D29 /* PhoneBookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7C79BE199A73C3001E6D29 /* PhoneBookTableViewController.m */; };
@@ -50,7 +51,7 @@
 		0DCCF05219B4BF78000F00CB /* PickupLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DCCF05119B4BF78000F00CB /* PickupLine.xib */; };
 		0DCCF05519B4C140000F00CB /* PickupLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCCF05419B4C140000F00CB /* PickupLineTableViewCell.m */; };
 		0DCCF05819B60F8E000F00CB /* MessageDetail2TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCCF05719B60F8E000F00CB /* MessageDetail2TableViewController.m */; };
-		0DCCF05C19B63848000F00CB /* noprofile.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DCCF05B19B63848000F00CB /* noprofile.png */; };
+		0DCCF05C19B63848000F00CB /* noprofile3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DCCF05B19B63848000F00CB /* noprofile3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		0C6FE132197540E7003B0EF6 /* CustomStaticTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStaticTableViewController.m; sourceTree = "<group>"; };
 		0C74749B19B6D88300992B6C /* EntityPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityPerson.h; path = "untitled folder/EntityPerson.h"; sourceTree = SOURCE_ROOT; };
 		0C74749C19B6D88300992B6C /* EntityPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EntityPerson.m; path = "untitled folder/EntityPerson.m"; sourceTree = SOURCE_ROOT; };
+		0C74749E19B8642C00992B6C /* noprofile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noprofile.png; path = ../../../../../../Volumes/AirPlayShare/noprofile.png; sourceTree = "<group>"; };
 		0C7C79B9199A7235001E6D29 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		0C7C79BB199A7265001E6D29 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		0C7C79BD199A73C3001E6D29 /* PhoneBookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhoneBookTableViewController.h; path = ../../TestPhoneBook/PhoneBookTableViewController.h; sourceTree = "<group>"; };
@@ -128,7 +130,7 @@
 		0DCCF05419B4C140000F00CB /* PickupLineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupLineTableViewCell.m; sourceTree = "<group>"; };
 		0DCCF05619B60F8E000F00CB /* MessageDetail2TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetail2TableViewController.h; sourceTree = "<group>"; };
 		0DCCF05719B60F8E000F00CB /* MessageDetail2TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetail2TableViewController.m; sourceTree = "<group>"; };
-		0DCCF05B19B63848000F00CB /* noprofile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noprofile.png; sourceTree = "<group>"; };
+		0DCCF05B19B63848000F00CB /* noprofile3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noprofile3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,7 +234,8 @@
 		0D6FE47619686E1A002E3880 /* SampleJSON */ = {
 			isa = PBXGroup;
 			children = (
-				0DCCF05B19B63848000F00CB /* noprofile.png */,
+				0C74749E19B8642C00992B6C /* noprofile.png */,
+				0DCCF05B19B63848000F00CB /* noprofile3.png */,
 				0DA0ABF91980292B0061E723 /* user_male3-32.png */,
 				0DA0ABF7198028A60061E723 /* automatic-32.png */,
 				0DA0ABF5198027F10061E723 /* cottage-32.png */,
@@ -436,7 +439,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DCCF05C19B63848000F00CB /* noprofile.png in Resources */,
+				0DCCF05C19B63848000F00CB /* noprofile3.png in Resources */,
 				0C8327361994CEDB00C2CEF0 /* View.xib in Resources */,
 				0CCCE20419B59DDD0085C4F1 /* UserInfo.xib in Resources */,
 				0CCCE20919B5AE720085C4F1 /* MessageDetailButton.xib in Resources */,
@@ -445,6 +448,7 @@
 				0D6FE48619686E1A002E3880 /* Images.xcassets in Resources */,
 				0DA0ABFA1980292B0061E723 /* user_male3-32.png in Resources */,
 				0DA0ABF8198028A60061E723 /* automatic-32.png in Resources */,
+				0C74749F19B8642D00992B6C /* noprofile.png in Resources */,
 				0DA0ABF6198027F10061E723 /* cottage-32.png in Resources */,
 				0D6FE4A419686E34002E3880 /* Storyboard.storyboard in Resources */,
 			);
