@@ -273,11 +273,11 @@
             </objects>
             <point key="canvasLocation" x="3690" y="-522"/>
         </scene>
-        <!--Phone Book Table View Controller-->
+        <!--Phone Book Table View Controller - Contacts-->
         <scene sceneID="hWd-i2-r0C">
             <objects>
                 <tableViewController storyboardIdentifier="ModalContact" id="ziP-Tr-cpj" customClass="PhoneBookTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rn6-uN-fjD">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rn6-uN-fjD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -290,28 +290,12 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="3aM-Mf-dxX" detailTextLabel="DRY-sv-7of" rowHeight="57" style="IBUITableViewCellStyleSubtitle" id="BMh-bz-A5M">
-                                <rect key="frame" x="0.0" y="130" width="320" height="57"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="80" id="BMh-bz-A5M">
+                                <rect key="frame" x="0.0" y="130" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BMh-bz-A5M" id="BPF-T8-ZMd">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3aM-Mf-dxX">
-                                            <rect key="frame" x="15" y="10" width="34" height="22"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DRY-sv-7of">
-                                            <rect key="frame" x="15" y="32" width="43" height="15"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -320,7 +304,7 @@
                             <outlet property="delegate" destination="ziP-Tr-cpj" id="iBa-08-7Ao"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="7KL-1E-EfZ"/>
+                    <navigationItem key="navigationItem" title="Contacts" id="7KL-1E-EfZ"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="GjX-bW-2br" id="AoC-K8-0at"/>
                     </connections>
@@ -624,42 +608,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2lv-4R-TiX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3478" y="1136"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="BGm-tS-ZRk">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="ezm-bA-fOE" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="NAX-DF-P3l"/>
-                        <viewControllerLayoutGuide type="bottom" id="neQ-dd-d9g"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="6at-wQ-vnk">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3GR-iV-vdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Vhh-Cy-gPO">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="OGf-D3-jxF" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cLJ-Hi-VLO"/>
-                        <viewControllerLayoutGuide type="bottom" id="5v4-RJ-zse"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="QBS-yP-7c2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="D4j-2I-upF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

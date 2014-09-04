@@ -120,7 +120,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"indexpath %ld",(long)indexPath.row);
+    //NSLog(@"indexpath %ld",(long)indexPath.row);
     
     UITableViewCell *theCellClicked = [self.tableView cellForRowAtIndexPath:indexPath];
     

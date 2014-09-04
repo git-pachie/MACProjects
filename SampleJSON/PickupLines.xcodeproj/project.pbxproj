@@ -52,6 +52,8 @@
 		0DCCF05519B4C140000F00CB /* PickupLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCCF05419B4C140000F00CB /* PickupLineTableViewCell.m */; };
 		0DCCF05819B60F8E000F00CB /* MessageDetail2TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCCF05719B60F8E000F00CB /* MessageDetail2TableViewController.m */; };
 		0DCCF05C19B63848000F00CB /* noprofile3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DCCF05B19B63848000F00CB /* noprofile3.png */; };
+		0DCCF05E19B8B943000F00CB /* CellUserInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DCCF05D19B8B943000F00CB /* CellUserInfo.xib */; };
+		0DCCF06119B8BADE000F00CB /* CellUserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCCF06019B8BADE000F00CB /* CellUserInfoTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +133,9 @@
 		0DCCF05619B60F8E000F00CB /* MessageDetail2TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetail2TableViewController.h; sourceTree = "<group>"; };
 		0DCCF05719B60F8E000F00CB /* MessageDetail2TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetail2TableViewController.m; sourceTree = "<group>"; };
 		0DCCF05B19B63848000F00CB /* noprofile3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noprofile3.png; sourceTree = "<group>"; };
+		0DCCF05D19B8B943000F00CB /* CellUserInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellUserInfo.xib; sourceTree = "<group>"; };
+		0DCCF05F19B8BADE000F00CB /* CellUserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellUserInfoTableViewCell.h; sourceTree = "<group>"; };
+		0DCCF06019B8BADE000F00CB /* CellUserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellUserInfoTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +190,9 @@
 				0CCCE20819B5AE720085C4F1 /* MessageDetailButton.xib */,
 				0CCCE20A19B5B0420085C4F1 /* MessageButtonDetailUIView.h */,
 				0CCCE20B19B5B0420085C4F1 /* MessageButtonDetailUIView.m */,
+				0DCCF05D19B8B943000F00CB /* CellUserInfo.xib */,
+				0DCCF05F19B8BADE000F00CB /* CellUserInfoTableViewCell.h */,
+				0DCCF06019B8BADE000F00CB /* CellUserInfoTableViewCell.m */,
 			);
 			name = CustomCell;
 			sourceTree = "<group>";
@@ -446,6 +454,7 @@
 				0D6FE47B19686E1A002E3880 /* InfoPlist.strings in Resources */,
 				0DCCF05219B4BF78000F00CB /* PickupLine.xib in Resources */,
 				0D6FE48619686E1A002E3880 /* Images.xcassets in Resources */,
+				0DCCF05E19B8B943000F00CB /* CellUserInfo.xib in Resources */,
 				0DA0ABFA1980292B0061E723 /* user_male3-32.png in Resources */,
 				0DA0ABF8198028A60061E723 /* automatic-32.png in Resources */,
 				0C74749F19B8642D00992B6C /* noprofile.png in Resources */,
@@ -487,6 +496,7 @@
 				0D6FE48419686E1A002E3880 /* SampleJSON.xcdatamodeld in Sources */,
 				0D7EDB4119ACF89A009DBCCF /* CustomStringClass.m in Sources */,
 				0D6FE4AD196AE529002E3880 /* HomeTableViewController.m in Sources */,
+				0DCCF06119B8BADE000F00CB /* CellUserInfoTableViewCell.m in Sources */,
 				0DA67A5319B1CF2800229FBC /* VerifyRegistrationViewController.m in Sources */,
 				0C8327341994CEC800C2CEF0 /* MyTableViewCell.m in Sources */,
 				0CCCE20719B5A0990085C4F1 /* UseInformationUIView.m in Sources */,

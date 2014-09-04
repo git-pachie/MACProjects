@@ -466,10 +466,10 @@
                  }
                  
                  arrayGroup = [self SortObjects:arrayGroup CountedOjbect:countedSet];
+                 [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
                  
                  [self performSelector:@selector(releadreload) withObject:nil];
                  
-                 [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
                  
                  
                  
@@ -572,7 +572,10 @@
 {
     
    // [self.tableView reloadData];
-    [self HideLoading];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self HideLoading];
+    });
+    
 }
 
 

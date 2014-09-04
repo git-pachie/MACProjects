@@ -12,6 +12,8 @@
 //#import "Venu.h"
 #import "CommonFunction.h"
 #import "AppDelegate.h"
+//#import "UseInformationUIView.h"
+#import "CellUserInfoTableViewCell.h"
 
 @interface PhoneBookTableViewController ()
 {
@@ -38,7 +40,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"CellUserInfo" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
     //venu = [[Venu alloc]init];
     
@@ -164,11 +169,15 @@
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 //    
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    CellUserInfoTableViewCell *cell = (CellUserInfoTableViewCell  *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+     
     
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CellUserInfo" owner:self options:nil];
+        cell = (CellUserInfoTableViewCell *) [nib objectAtIndex:0];
     }
 
     
@@ -184,12 +193,19 @@
     
     
     
-    cell.textLabel.text = person.Name;
+//    cell.textLabel.text = person.Name;
+//    
+//    cell.detailTextLabel.text = person.Number;
+//    
+//    cell.imageView.image = [UIImage imageNamed:@"noprofile.png"];
+//
     
-    cell.detailTextLabel.text = person.Number;
-    
-    cell.imageView.image = [UIImage imageNamed:@"noprofile.png"];
-    
+    cell.lblPhoneName.text = [NSString stringWithFormat:@"Alias: %@",@"BoyPickup"];
+    cell.lblAlias.text = person.Name;
+    cell.lblJoinDate.text = @"June 30, 2014";
+    cell.lblNumber.text = person.Number;
+    cell.imgUserImage.image = [UIImage imageNamed:@"noprofile.png"];
+    cell.imgUserImage.alpha = 0.5;
     
     // download the image asynchronously
     
@@ -203,28 +219,30 @@
             if (image != nil) {
                 
                 if (image != nil) {
-                    cell.imageView.image = image;
+                    //cell.imageView.image = image;
                     
-                    
+                    cell.imgUserImage.image = image;
                     
                     // Begin a new image that will be the new image with the rounded corners
                     // (here with the size of an UIImageView)
-                    UIGraphicsBeginImageContextWithOptions(cell.imageView.bounds.size, NO, [UIScreen mainScreen].scale);
+                    UIGraphicsBeginImageContextWithOptions(cell.imgUserImage.bounds.size, NO, [UIScreen mainScreen].scale);
                     
                     // Add a clip before drawing anything, in the shape of an rounded rect
                     
-                    [[UIBezierPath bezierPathWithRoundedRect:cell.imageView.bounds
-                                                cornerRadius:cell.imageView.frame.size.width/2 ] addClip];
+                    [[UIBezierPath bezierPathWithRoundedRect:cell.imgUserImage.bounds
+                                                cornerRadius:cell.imgUserImage.frame.size.width/2 ] addClip];
                     // Draw your image
-                    [cell.imageView.image drawInRect:cell.imageView.bounds];
+                    [cell.imgUserImage.image drawInRect:cell.imgUserImage.bounds];
                     
                     // Get the image, here setting the UIImageView image
-                    cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+                    cell.imgUserImage.image = UIGraphicsGetImageFromCurrentImageContext();
                     
                     // Lets forget about that we were drawing
                     
                     
                     UIGraphicsEndImageContext();
+                    
+                    cell.imgUserImage.alpha = 0.8;
                 }
                 
                 
@@ -246,8 +264,12 @@
     
     
     
+    
+    
+    
     return cell;
 }
+
 
 
 
@@ -322,7 +344,10 @@
 }
 
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return  50;
+}
 
 /*
 // Override to support conditional editing of the table view.
