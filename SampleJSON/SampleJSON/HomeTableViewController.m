@@ -274,38 +274,19 @@
     [comReq downloadImageWithURL:[NSURL URLWithString:userImage] completionBlock:^(BOOL succeeded, UIImage *image) {
         if (succeeded) {
             
-            cell.imgUserImage.image= image;
+            if (image != nil) {
+                
+                cell.imgUserImage.image= image;
+                [CommonFunction applyRoundBorderToImage:cell.imgUserImage];
+
             
-            
-            
-            // Begin a new image that will be the new image with the rounded corners
-            // (here with the size of an UIImageView)
-//            UIGraphicsBeginImageContextWithOptions(cell.imgUserImage.bounds.size, NO, [UIScreen mainScreen].scale);
-//            
-//            // Add a clip before drawing anything, in the shape of an rounded rect
-//            
-//            [[UIBezierPath bezierPathWithRoundedRect:cell.imgUserImage.bounds
-//                                        cornerRadius:cell.imgUserImage.frame.size.width/2 ] addClip];
-//            // Draw your image
-//            [cell.imgUserImage.image drawInRect:cell.imgUserImage.bounds];
-//            
-//            // Get the image, here setting the UIImageView image
-//            cell.imgUserImage.image = UIGraphicsGetImageFromCurrentImageContext();
-//            
-//            //            cell.imageView.layer.borderWidth  =1;
-//            //            cell.imageView.layer.borderColor = [UIColor grayColor].CGColor;
-//            //
-//            // Lets forget about that we were drawing
-//            
-//            
-//            UIGraphicsEndImageContext();
-            
-            [CommonFunction applyRoundBorderToImage:cell.imgUserImage];
-            
-            
+            }
+            else
+            {
+                cell.imageView.alpha = 0.4;
+            }
+        
         }
-        
-        
         
     }];
     
@@ -450,110 +431,44 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
         CommonSendRequest *comreq = [[CommonSendRequest alloc]init];
-        [comreq getJSONPickupLines:^(NSDictionary *jsonData) {
+        [comreq getJSONPickupLines:^(NSDictionary *jsonData, NSError *er) {
             
-            [comreq ConvertJsonToArrary:jsonData withBlock:^(NSMutableArray *jsonData1)
-             {
-                 [myObject addObjectsFromArray:jsonData1];
-                 
-                 NSLog(@"myObject %@ ",myObject);
-                 
-                 countedSet = [NSCountedSet set];
-                 
-                 for (NSDictionary *x in myObject) {
-                     [countedSet addObject:[x objectForKey:@"DateCreatedSTR"]];
-                     NSLog(@"%@",[x objectForKey:@"DateCreatedSTR"]);
-                 }
-                 
-                 arrayGroup = [self SortObjects:arrayGroup CountedOjbect:countedSet];
-                 [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
-                 
-                 [self performSelector:@selector(releadreload) withObject:nil];
-                 
-                 
-                 
-                 
-                 
-                 //            dispatch_async(myQueue, ^{
-                 //                [self getJsonData];
-                 //            });
-                 //
-                 //
-//                 dispatch_async(myQueue, ^{
-//                     [self HideLoading];
-//                 });
-                 
-                 
-                 
-             }];
-            
-            //[self performSelector:@selector(Printo) withObject:nil afterDelay:0];
-            
-            
-            //CommonFunction *common = [[CommonFunction alloc]init];
-            
-            
-            //jsonSource = [comreq GetPickupLines];
-            
-            // NSString *x = [common GetJsonConnection:@"GetHiritMessage2"];
-            // NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:x]];
-            
-            //        if ([common CheckNSD:jsonSource] == false) {
-            //
-            //            UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"Connection Error"
-            //                                                        message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-            //
-            //            isConnectionOK = NO;
-            //
-            //            [UIApplication sharedApplication].networkActivityIndicatorVisible = false ;
-            //
-            //            self.navigationItem.title = @"Network Error";
-            //
-            //            dispatch_async(myQueue, ^{
-            //                [self HideLoading];
-            //            });
-            //
-            //
-            //            [mes show];
-            //
-            //            [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
-            //
-            //            return;
-            //        }
-            //
-            //        isConnectionOK = YES;
-            //
-            //        id jsonObjects = [NSJSONSerialization JSONObjectWithData:
-            //                          jsonSource options:NSJSONReadingMutableContainers error:nil];
-            
-            
-            
-            //        for (NSDictionary *dataDict in jsonObjects) {
-            //            NSString *messageGUID = [dataDict objectForKey:@"MessageGUID"];
-            //            NSString *hiritMessage = [dataDict objectForKey:@"HiritMessage"];
-            //            NSString *createdByUserName = [dataDict objectForKey:@"CreatedByUserName"];
-            //            NSString *createdByDeviceID = [dataDict objectForKey:@"CreatedByDeviceID"];
-            //            NSString *createdDate = [dataDict objectForKey:@"CreatedDate"];
-            //            NSString *answer1 = [dataDict objectForKey:@"Answer1"];
-            //            NSString *dateCreatedSTR = [dataDict objectForKey:@"DateCreatedSTR"];
-            //
-            //
-            //            dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-            //                          messageGUID, @"MessageGUID",
-            //                          hiritMessage, @"HiritMessage",
-            //                          createdByUserName,@"CreatedByUserName",
-            //                          createdByDeviceID,@"CreatedByDeviceID",
-            //                          //[self mfDateFromDotNetJSONString:createdDate], @"DateCreated",
-            //                          [CommonFunction mfDateFromDotNetJSONString:createdDate],@"DateCreated",
-            //                          answer1, @"Answer1",
-            //                          dateCreatedSTR,@"DateCreatedSTR",
-            //                          nil];
-            //            [myObject addObject:dictionary];
-            //            
-            //            
-            //            
-            //        }
-            
+            if (er == nil) {
+                
+                [comreq ConvertJsonToArrary:jsonData withBlock:^(NSMutableArray *jsonData1)
+                 {
+                     [myObject addObjectsFromArray:jsonData1];
+                     
+                     NSLog(@"myObject %@ ",myObject);
+                     
+                     countedSet = [NSCountedSet set];
+                     
+                     for (NSDictionary *x in myObject) {
+                         [countedSet addObject:[x objectForKey:@"DateCreatedSTR"]];
+                         NSLog(@"%@",[x objectForKey:@"DateCreatedSTR"]);
+                     }
+                     
+                     arrayGroup = [self SortObjects:arrayGroup CountedOjbect:countedSet];
+                     [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+                     
+                     [self performSelector:@selector(releadreload) withObject:nil];
+                     
+                     
+                     
+                     
+                 }];
+            }
+            else
+            {
+                [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+                
+                [self performSelector:@selector(releadreload) withObject:nil];
+                
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Network Error" message:@"Unable to connect to Pickup Line server" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
+                
+                [alert show];
+                
+            }
             
             
             

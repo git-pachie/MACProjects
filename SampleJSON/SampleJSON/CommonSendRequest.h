@@ -13,7 +13,9 @@
 -(BOOL)SendPickupLines: (NSString *) deviceGUID : (NSString *) personNumber : (NSString *) messageGUID selectedAnswer:(NSString *)selectedAnswer;
 
 +(void)SendProfileToServer: (UIImage *) img;
--(void)getJSONPickupLines:(void (^)(NSDictionary *jsonData))block;
+//-(void)getJSONPickupLines:(void (^)(NSDictionary *jsonData))block;
+- (void)getJSONPickupLines :(void (^)(NSDictionary *jsonData, NSError *er))block;
+
 -(void)ConvertJsonToArrary:(NSDictionary *)dictionaryKo withBlock:(void (^)(NSMutableArray *jsonData1))block;
 -(void)InsertDeviceToken: (NSString *) DeviceToken withBlock:(void (^)(NSString *phoneNumber))block;
 -(void)checkDeviceActivation: (NSString *) deviceToken withBlock:(void (^)(NSString *returnValue))block;

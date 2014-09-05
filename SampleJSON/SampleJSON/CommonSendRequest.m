@@ -150,7 +150,7 @@
 
 
 
-- (void)getJSONPickupLines:(void (^)(NSDictionary *jsonData))block {
+- (void)getJSONPickupLines :(void (^)(NSDictionary *jsonData, NSError *er))block {
     
     CommonFunction *common = [[CommonFunction alloc]init];
     
@@ -170,7 +170,7 @@
                                NSMutableDictionary * innerJson = [NSJSONSerialization
                                                                   JSONObjectWithData:data options:kNilOptions error:&error1
                                                                   ];
-                               block(innerJson); // Call back the block passed into your method
+                               block(innerJson,error); // Call back the block passed into your method
                            }];
     
 }
