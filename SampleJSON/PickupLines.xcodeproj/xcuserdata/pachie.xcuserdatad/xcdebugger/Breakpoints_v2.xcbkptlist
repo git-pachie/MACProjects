@@ -169,13 +169,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SampleJSON/HomeTableViewController.m"
-            timestampString = "431597225.63051"
+            filePath = "SampleJSON/CommonSendRequest.m"
+            timestampString = "431608257.536172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "389"
+            endingLineNumber = "389"
+            landmarkName = "-registerAccount:PhoneNumber:DesiredAlias:withBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

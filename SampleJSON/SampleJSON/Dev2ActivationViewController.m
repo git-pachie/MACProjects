@@ -77,7 +77,10 @@
 
 
 - (IBAction)submit2:(id)sender {
-    [comReq registerAccount:self.deviceToken PhoneNumber:self.txtNumber.text withBlock:^(NSString *returnValue) {
+    
+    
+    
+    [comReq registerAccount:self.deviceToken PhoneNumber:self.txtNumber.text DesiredAlias:self.txtDesiredUserName.text withBlock:^(NSString *returnValue) {
         if ([returnValue isEqual:@"1"]) {
             
             //[self performSelector:@selector(callMe) withObject:nil afterDelay:10 ];
@@ -85,6 +88,12 @@
             [self dismissViewControllerAnimated:YES completion:^{
                 [self.xCallBackDelegate callbackmethod:self.txtNumber.text];
             }];
+        }
+        else if ([returnValue isEqual:@"2"]) {
+            
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alias already taken" message:@"Your pickup line desired Alias is not available" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];//, nil
+            [alert show];
+            
         }
         else
         {

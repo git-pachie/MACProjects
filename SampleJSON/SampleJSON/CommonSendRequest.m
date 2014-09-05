@@ -382,11 +382,11 @@
 
 }
 
--(void)registerAccount: (NSString *) deviceToken PhoneNumber:(NSString *)phoneNumber withBlock:(void (^)(NSString *returnValue))block {
+-(void)registerAccount: (NSString *) deviceToken PhoneNumber:(NSString *)phoneNumber DesiredAlias:(NSString *)alias withBlock:(void (^)(NSString *returnValue))block {
     
     CommonFunction *common = [[CommonFunction alloc]init];
     
-    NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"RegisterAccount/%1@/%2@",deviceToken,phoneNumber]];
+    NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"RegisterAccount/%1@/%2@/%3@",deviceToken,phoneNumber,alias]];
     
     NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     

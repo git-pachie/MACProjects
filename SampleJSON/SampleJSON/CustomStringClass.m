@@ -14,16 +14,16 @@
 
 +(NSString *)UrlJSonConnection
 {
-    return @"http://www.greetify.net/Service1.svc/%@";
+    return @"http://www.greetify.net:1980/myjson/Service1.svc/%@";
 }
 +(NSString *)UrlProfileImageConnection
 {
-    return @"http://www.greetify.net/PickupLinesProfile/profileimage.aspx?fFileName=";
+    return @"http://www.greetify.net:1980/PickupLinesProfile/profileimage.aspx?fFileName=";
 }
 
 +(NSString *)UrlProfileUpload
 {
-    return  @"http://www.greetify.net/Service1.svc/myjson/service1.svc/UploadFile?fileName=";
+    return  @"http://www.greetify.net:1980/myjson/service1.svc/UploadFile?fileName=";
 }
 
 
