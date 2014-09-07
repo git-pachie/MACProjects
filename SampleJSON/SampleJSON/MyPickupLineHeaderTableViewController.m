@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "CustomLoader.h"
 #import "CommonSendRequest.h"
+#import "CellUserInfoTableViewCell.h"
 
 @interface MyPickupLineHeaderTableViewController ()
 {
@@ -39,6 +40,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+        [self.tableView registerNib:[UINib nibWithNibName:@"CellUserInfo" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
     comReq  = [[CommonSendRequest alloc]init];
     
@@ -122,7 +125,7 @@
 /**/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"    forIndexPath:indexPath];
+    CellUserInfoTableViewCell *cell = (CellUserInfoTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell"    forIndexPath:indexPath];
     
     // Configure the cell...
     
@@ -130,24 +133,111 @@
     
     
     if ([[dic objectForKey:@"UserName"] isEqualToString:@""]) {
-        cell.textLabel.text = [dic objectForKey:@"PhoneNumber"];
+        cell.lblPhoneName.text = @"Messages: 90 - October 05, 1981" ;
+        cell.lblJoinDate.text = @"";
+        cell.lblAlias.text = [dic objectForKey:@"PhoneNumber"];
+        cell.lblNumber.text =@"";
     }
     else
     {
-        cell.textLabel.text = [dic objectForKey:@"UserName"];
+        cell.lblPhoneName.text = @"Messages: 90 - October 05, 1981" ;
+        cell.lblNumber.text = @"";
+        cell.lblJoinDate.text = @"";
+        cell.lblAlias.text =[dic objectForKey:@"UserName"];
+        cell.imgUserImage.alpha = 0.5;
+        
+        //cell.textLabel.text = [dic objectForKey:@"UserName"];
     }
     
 
-    cell.detailTextLabel.text = [dic objectForKey:@"Email"];
+    //cell.detailTextLabel.text = [dic objectForKey:@"Email"];
     
+    cell.imgUserImage.image =[UIImage imageNamed:@"noprofile.png"];
+    
+    NSString *userImage = [CommonFunction ProfieImageURLByPhone:[dic objectForKey:@"PhoneNumber"]];
+    
+    NSLog(@"userimage %@",userImage);
+    
+    [self downloadImageWithURL:[NSURL URLWithString:userImage] completionBlock:^(BOOL succeeded, UIImage *image) {
+        if (succeeded) {
+            
+            if (image != nil) {
+                
+                if (image != nil) {
+                    //cell.imageView.image = image;
+                    
+                    cell.imgUserImage.image = image;
+                    
+                    // Begin a new image that will be the new image with the rounded corners
+                    // (here with the size of an UIImageView)
+                    UIGraphicsBeginImageContextWithOptions(cell.imgUserImage.bounds.size, NO, [UIScreen mainScreen].scale);
+                    
+                    // Add a clip before drawing anything, in the shape of an rounded rect
+                    
+                    [[UIBezierPath bezierPathWithRoundedRect:cell.imgUserImage.bounds
+                                                cornerRadius:cell.imgUserImage.frame.size.width/2 ] addClip];
+                    // Draw your image
+                    [cell.imgUserImage.image drawInRect:cell.imgUserImage.bounds];
+                    
+                    // Get the image, here setting the UIImageView image
+                    cell.imgUserImage.image = UIGraphicsGetImageFromCurrentImageContext();
+                    
+                    // Lets forget about that we were drawing
+                    
+                    
+                    UIGraphicsEndImageContext();
+                    
+                    cell.imgUserImage.alpha = 0.8;
+                }
+                
+            
+                
+                
+            }
+            
+            
+        }
+        
+        
+        
+    }];
+    
+
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
+}
+
+- (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
+{
+    
+    
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if ( !error )
+                               {
+                                   UIImage *image = [[UIImage alloc] initWithData:data];
+                                   completionBlock(YES,image);
+                               } else{
+                                   completionBlock(NO,nil);
+                               }
+                           }];
+    
+    
 }
 
 
 
 
 #pragma mark - Navigation
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"pickupLineDetails" sender:nil];
+}
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

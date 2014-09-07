@@ -93,57 +93,142 @@
     return true;
 }
 
--(void)InsertDeviceToken: (NSString *) DeviceToken withBlock:(void (^)(NSString *phoneNumber))block {
+-(void)InsertDeviceToken: (NSString *) DeviceToken withBlock:(void (^)(NSString *phoneNumber, NSError *error ))block {
 
     //bool result = false;
     
+    
     CommonFunction *common = [[CommonFunction alloc]init];
+    
+    //NSString *post = [common GetJsonConnection:@"GetHiritMessage2"];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     
     NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"InsertDeviceToken/%1@",DeviceToken]];
     
-    NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    
-    NSString *postLenght = [NSString stringWithFormat:@"%lu", (unsigned long)[data length]];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:post]];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:postLenght forHTTPHeaderField:@"Content-Length"];
-    [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:data];
     
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-     {
-         if (error)
-         {
-             NSLog(@"error: %@",error);
-             
-             //result = false;
-         }
-         else
-         {
-             
-             NSString *theReply;
-             theReply = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding: NSASCIIStringEncoding];
-             NSLog(@"Reply: %@", theReply);
-             
-             theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-             
-             
-             if ( [theReply isEqualToString:@"1"]) {
-                 
-                 NSLog(@"Device token sent: %@", DeviceToken);
-                 //return true;
-                 
-             }
-             
-             block(theReply);
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue currentQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               
+                               
+                               //NSLog(@"dataAsString %@", [NSString stringWithUTF8String:[data bytes]]);
+                               
+                               
+                               if (error == nil) {
+                                   NSError *error1;
+                                   NSString * innerJson = [NSJSONSerialization
+                                                           JSONObjectWithData:data options:kNilOptions error:&error1
+                                                           ];
+                                   
+                                   innerJson = [innerJson stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+                                   
+                                   block(innerJson,error);
+                               }
+                               else
+                               {
+                                   NSError *error1 = [[NSError alloc]initWithDomain:@"Network error" code:1 userInfo:nil];
+                                   
+                                    block(nil,error1);
+                               }
+                                // Call back the block passed into your method
+                           }];
 
-         }
-     }];
     
+    
+    
+    
+//    CommonFunction *common = [[CommonFunction alloc]init];
+//    
+//    NSString *post = [common GetJsonConnection:[NSString stringWithFormat:@"InsertDeviceToken/%1@",DeviceToken]];
+//    
+//    //NSData *data = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+//    
+//    //NSString *postLenght = [NSString stringWithFormat:@"%lu", (unsigned long)[data length]];
+//    
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+//    [request setURL:[NSURL URLWithString:post]];
+//    [request setHTTPMethod:@"POST"];
+//    //[request setValue:postLenght forHTTPHeaderField:@"Content-Length"];
+//    [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+//    //[request setHTTPBody:data];
+//    
+//   // NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    
+//    
+//    
+//    [request setURL:[NSURL URLWithString:post]];
+//    
+//    [NSURLConnection sendAsynchronousRequest:request
+//                                       queue:[NSOperationQueue currentQueue]
+//                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+//                               //NSLog(@"dataAsString %@", [NSString stringWithUTF8String:[data bytes]]);
+//                               NSError *error1;
+//                               
+//                               
+//                               
+//                               
+//                                            NSString *theReply;
+//                                           // theReply = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding: NSASCIIStringEncoding];
+//                               
+//                               
+//                               theReply = [NSJSONSerialization
+//                                                       JSONObjectWithData:data options:kNilOptions error:&error1
+//                                                       ];
+//                               
+//                                            NSLog(@"Reply: %@", theReply);
+//                               
+//                                            theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+//                               
+//                               
+//                                            if ( [theReply isEqualToString:@"1"]) {
+//                                                
+//                                                NSLog(@"Device token sent: %@", DeviceToken);
+//                                                //return true;
+//                                                
+//                                            }
+//                               
+//                               
+//                               block(theReply); // Call back the block passed into your method
+//                           }];
+//    
+    
+    
+    
+//    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+//     {
+//         if (error)
+//         {
+//            // NSLog(@"error: %@",error);
+//             
+//             //result = false;
+//             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection error" message:@"Unable to connect to pickup line server" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
+//             
+//             [alert show];
+//         }
+//         else
+//         {
+//             
+//             NSString *theReply;
+//             theReply = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding: NSASCIIStringEncoding];
+//             NSLog(@"Reply: %@", theReply);
+//             
+//             theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+//             
+//             
+//             if ( [theReply isEqualToString:@"1"]) {
+//                 
+//                 NSLog(@"Device token sent: %@", DeviceToken);
+//                 //return true;
+//                 
+//             }
+//             
+//             block(theReply);
+//
+//         }
+//     }];
+//    
     
    
 }
@@ -166,11 +251,25 @@
                                        queue:[NSOperationQueue currentQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                //NSLog(@"dataAsString %@", [NSString stringWithUTF8String:[data bytes]]);
-                               NSError *error1;
-                               NSMutableDictionary * innerJson = [NSJSONSerialization
-                                                                  JSONObjectWithData:data options:kNilOptions error:&error1
-                                                                  ];
-                               block(innerJson,error); // Call back the block passed into your method
+                               
+                               if (error == nil) {
+                                   NSError *error1;
+                                   NSMutableDictionary * innerJson = [NSJSONSerialization
+                                                                      JSONObjectWithData:data options:kNilOptions error:&error1
+                                                                      ];
+                                   block(innerJson,error);
+                               }
+                               else
+                               {
+                                   NSError *error1 = [[NSError alloc]initWithDomain:@"test" code:1 userInfo:nil];
+                                   
+//                                   NSError *error1;
+//                                   NSMutableDictionary * innerJson = [NSJSONSerialization
+//                                                                      JSONObjectWithData:data options:kNilOptions error:&error1
+//                                                                      ];
+                                   block(nil,error1);
+                               }
+                               // Call back the block passed into your method
                            }];
     
 }

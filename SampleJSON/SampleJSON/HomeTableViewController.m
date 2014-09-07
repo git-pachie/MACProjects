@@ -439,13 +439,13 @@
                  {
                      [myObject addObjectsFromArray:jsonData1];
                      
-                     NSLog(@"myObject %@ ",myObject);
+                    // NSLog(@"myObject %@ ",myObject);
                      
                      countedSet = [NSCountedSet set];
                      
                      for (NSDictionary *x in myObject) {
                          [countedSet addObject:[x objectForKey:@"DateCreatedSTR"]];
-                         NSLog(@"%@",[x objectForKey:@"DateCreatedSTR"]);
+                         //NSLog(@"%@",[x objectForKey:@"DateCreatedSTR"]);
                      }
                      
                      arrayGroup = [self SortObjects:arrayGroup CountedOjbect:countedSet];

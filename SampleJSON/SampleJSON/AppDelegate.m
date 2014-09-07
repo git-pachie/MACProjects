@@ -113,19 +113,47 @@
     
     CommonSendRequest *common = [[CommonSendRequest alloc]init];
     //[common InsertDeviceToken:self.DevinceToken];
-    [common InsertDeviceToken:self.DevinceToken withBlock:^(NSString *phoneNumber) {
-        self.PhoneNumber = phoneNumber;
+    [common InsertDeviceToken:self.DevinceToken withBlock:^(NSString *phoneNumber,NSError *error) {
+        //self.PhoneNumber = phoneNumber;
+        
+        if (error == nil) {
+            self.PhoneNumber = phoneNumber;
+        }
+        else
+        {
+//            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Unable to connect to pickup line server" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];//, nil
+//            
+//            
+//            [alert show];
+        }
     }];
     
 }
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
+//    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Unable to connect to pickup line server" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];//, nil
+//    
+//    
+//    [alert show];
+//    return;
+
     NSLog(@"Error in registration. Error: %@", error);
     self.DevinceToken = @"1111111111";
     CommonSendRequest *common = [[CommonSendRequest alloc]init];
     //[common InsertDeviceToken:self.DevinceToken];
-    [common InsertDeviceToken:self.DevinceToken withBlock:^(NSString *phoneNumber) {
-        self.PhoneNumber = phoneNumber;
+    [common InsertDeviceToken:self.DevinceToken withBlock:^(NSString *phoneNumber, NSError *error) {
+        
+        if (error == nil) {
+            self.PhoneNumber = phoneNumber;
+        }
+        else
+        {
+//            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Unable to connect to pickup line server" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];//, nil
+//            
+//            
+//            [alert show];
+        }
+        
     }];
 }
 
