@@ -25,5 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btntakephoto;
 @property (weak, nonatomic) IBOutlet UIButton *btnloadexisting;
 
+@property (weak, nonatomic) IBOutlet UITableViewCell *cellImageHolder;
+@property (weak, nonatomic) IBOutlet UITableViewCell *cellButtonHolder;
 
 @end
