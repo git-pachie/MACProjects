@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="EntMessageHeader" isAbstract="YES" syncable="YES">
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profileLastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="relMessages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EntMessages" inverseName="relMessage" inverseEntity="EntMessages" syncable="YES"/>
+    </entity>
     <entity name="EntMessages" representedClassName="EntMessages" syncable="YES">
         <attribute name="dateCreated" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="deletedBy" optional="YES" attributeType="String" syncable="YES"/>
@@ -13,8 +19,10 @@
         <attribute name="readDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="senderPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="toPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relMessage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="EntMessageHeader" inverseName="relMessages" inverseEntity="EntMessageHeader" syncable="YES"/>
     </entity>
     <elements>
-        <element name="EntMessages" positionX="-63" positionY="-18" width="128" height="225"/>
+        <element name="EntMessages" positionX="-63" positionY="-18" width="128" height="238"/>
+        <element name="EntMessageHeader" positionX="214" positionY="41" width="128" height="103"/>
     </elements>
 </model>

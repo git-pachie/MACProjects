@@ -24,15 +24,19 @@
     [self.window makeKeyAndVisible];
     
     
-    [self GetLastMessage];
+    //[self GetLastMessage];
     
-    return true ;
+    //[self isMessageAlreadyExist:@"1665bf34-cc2a-4eb5-8787-c2c5a7f5c38f"];
+    
+    //return true ;
     
     
     
     //NSArray *mArray = [[NSArray alloc]init];
     
-    [self getUserMessageByNumber:@"85713568" MyFriendPhoneNumber:@"88888888" withBlock:^(NSMutableArray *array) {
+    NSString *lastMessage = [self GetLastMessage];
+    
+    [self getUserMessageByNumber:@"85713568" MyFriendPhoneNumber:@"88888888" LastMessageID:lastMessage  withBlock:^(NSMutableArray *array) {
         //mArray = array];
         
         
@@ -63,28 +67,31 @@
             NSString * toPhoneNumber= [dic objectForKey:@"ToPhoneNumber"];
             
             
-            
-            [newMessage setValue:dateCreated forKey:@"dateCreated"];
-            [newMessage setValue:deletedBy forKey:@"deletedBy"];
-            [newMessage setValue:deletedDate forKey:@"deletedDate"];
-            [newMessage setValue:isDeleted1 forKey:@"isDeleted1"];
-            [newMessage setValue:isRead forKey:@"isRead"];
-            [newMessage setValue:messageID forKey:@"messageID"];
-            [newMessage setValue:pickupLineAnswer forKey:@"pickupLineAnswer"];
-            [newMessage setValue:pickupLineContent forKey:@"pickupLineContent"];
-            [newMessage setValue:pickupLineGUID forKey:@"pickupLineGUID"];
-            [newMessage setValue:readDate forKey:@"readDate"];
-            [newMessage setValue:senderPhoneNumber forKey:@"senderPhoneNumber"];
-            [newMessage setValue:toPhoneNumber forKey:@"toPhoneNumber"];
-            
-            //[newMessage setValue:self.versionTextField.text forKey:@"version"];
-            //[newDevice setValue:self.companyTextField.text forKey:@"company"];
-            
-            NSError *error = nil;
-            // Save the object to persistent store
-            if (![context save:&error]) {
-                NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+            if ([self isMessageAlreadyExist:messageID] == NO) {
+                [newMessage setValue:dateCreated forKey:@"dateCreated"];
+                [newMessage setValue:deletedBy forKey:@"deletedBy"];
+                [newMessage setValue:deletedDate forKey:@"deletedDate"];
+                [newMessage setValue:isDeleted1 forKey:@"isDeleted1"];
+                [newMessage setValue:isRead forKey:@"isRead"];
+                [newMessage setValue:messageID forKey:@"messageID"];
+                [newMessage setValue:pickupLineAnswer forKey:@"pickupLineAnswer"];
+                [newMessage setValue:pickupLineContent forKey:@"pickupLineContent"];
+                [newMessage setValue:pickupLineGUID forKey:@"pickupLineGUID"];
+                [newMessage setValue:readDate forKey:@"readDate"];
+                [newMessage setValue:senderPhoneNumber forKey:@"senderPhoneNumber"];
+                [newMessage setValue:toPhoneNumber forKey:@"toPhoneNumber"];
+                
+                //[newMessage setValue:self.versionTextField.text forKey:@"version"];
+                //[newDevice setValue:self.companyTextField.text forKey:@"company"];
+                
+                NSError *error = nil;
+                // Save the object to persistent store
+                if (![context save:&error]) {
+                    NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+                }
             }
+            
+            
            // NSLog(@"test object %@",[dic objectForKey:@"PickupLineAnswer"]);
         }
         
@@ -224,7 +231,7 @@
 
 
 #pragma mark - custom
-- (void)getUserMessageByNumber: (NSString *)phoneNumber MyFriendPhoneNumber:(NSString *) myfriendPhoneNumber withBlock:(void (^)(NSMutableArray *array))block {
+- (void)getUserMessageByNumber: (NSString *)phoneNumber MyFriendPhoneNumber:(NSString *) myfriendPhoneNumber LastMessageID :(NSString *) lastMessageID withBlock:(void (^)(NSMutableArray *array))block {
     
     //CommonFunction *common = [[CommonFunction alloc]init];
     
@@ -232,7 +239,7 @@
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     
-    NSString *post = @"http://www.greetify.net:1980/myjson/Service1.svc/GetMyMessageByNumber/85713568/88888888";
+    NSString *post =[NSString stringWithFormat:@"http://192.168.3.100/WcfService2/Service1.svc/GetMyMessageByNumberLast/%@/%@/%@",phoneNumber,myfriendPhoneNumber,lastMessageID];
     
     [request setURL:[NSURL URLWithString:post]];
     
@@ -243,7 +250,7 @@
                                NSError *error1;
                                NSMutableDictionary * innerJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error1];
                                
-                               NSLog(@"innerJson %@", innerJson);
+                               //NSLog(@"innerJson %@", innerJson);
                                
                                NSMutableArray *ax = [[NSMutableArray alloc]init];
                                
@@ -336,6 +343,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"EntMessages"inManagedObjectContext:context];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
     [request setEntity:entity];
 
    
@@ -345,15 +353,61 @@
     
     NSArray *results = [context executeFetchRequest:request error:NULL];
     //entity *latestEntity = [results objectAtIndex:0];
-    ent  = [results objectAtIndex:0];
-    return   ent.messageID ;
+    if ([results count] == 0) {
+        return @"-1";
+    }
+    else
+    {
+        ent  = [results objectAtIndex:0];
+        return   ent.messageID ;
+    }
+    
 }
 
 -(BOOL)isMessageAlreadyExist:(NSString * )messageGUID
 {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    NSEntityDescription *entity =    [NSEntityDescription entityForName:@"EntMessages"   inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entity];
+    
+    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(messageID = %@)", messageGUID];
+    [request setPredicate:pred];
+    
+    //NSManagedObject *matches = nil;
+    NSError *error;
+    NSArray *objects = [context executeFetchRequest:request error:&error];
+    
+    if ([objects count] == 0) {
+        return  false;
+    } else {
+        return  true;
+    }
+    
     return  false;
 }
 
+
+-(NSFetchedResultsController *)SyncMessageCorData:(NSArray *)messageArrary
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+
+    
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"EntMessages"];
+    //request.predicate = [NSPredicate predicateWithFormat:@"parent = %@", self];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"dateCreated" ascending:NO]];
+//    return [[NSFetchedResultsController alloc] initWithFetchRequest:request
+//                                               managedObjectContext:context
+//                                                 sectionNameKeyPath:nil
+//                                                          cacheName:nil];
+//    
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
+    
+    return controller;
+    
+}
 
 
 
