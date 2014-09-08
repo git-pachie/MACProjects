@@ -22,6 +22,8 @@
 		0C47CC7019BD4DDF006A5487 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C47CC5419BD4DDF006A5487 /* CoreData.framework */; };
 		0C47CC7819BD4DDF006A5487 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C47CC7619BD4DDF006A5487 /* InfoPlist.strings */; };
 		0C47CC7A19BD4DDF006A5487 /* TestCorData2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C47CC7919BD4DDF006A5487 /* TestCorData2Tests.m */; };
+		0C47CC8419BD5329006A5487 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C47CC8319BD5329006A5487 /* Storyboard.storyboard */; };
+		0C47CC8719BD5DD9006A5487 /* EntMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C47CC8619BD5DD9006A5487 /* EntMessages.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,9 @@
 		0C47CC7519BD4DDF006A5487 /* TestCorData2Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestCorData2Tests-Info.plist"; sourceTree = "<group>"; };
 		0C47CC7719BD4DDF006A5487 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C47CC7919BD4DDF006A5487 /* TestCorData2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCorData2Tests.m; sourceTree = "<group>"; };
+		0C47CC8319BD5329006A5487 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		0C47CC8519BD5DD9006A5487 /* EntMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntMessages.h; sourceTree = "<group>"; };
+		0C47CC8619BD5DD9006A5487 /* EntMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntMessages.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +89,7 @@
 		0C47CC4219BD4DDF006A5487 = {
 			isa = PBXGroup;
 			children = (
+				0C47CC8319BD5329006A5487 /* Storyboard.storyboard */,
 				0C47CC5619BD4DDF006A5487 /* TestCorData2 */,
 				0C47CC7319BD4DDF006A5487 /* TestCorData2Tests */,
 				0C47CC4D19BD4DDF006A5487 /* Frameworks */,
@@ -119,6 +125,8 @@
 				0C47CC6019BD4DDF006A5487 /* com_pachie_projectAppDelegate.m */,
 				0C47CC6519BD4DDF006A5487 /* Images.xcassets */,
 				0C47CC6219BD4DDF006A5487 /* TestCorData2.xcdatamodeld */,
+				0C47CC8519BD5DD9006A5487 /* EntMessages.h */,
+				0C47CC8619BD5DD9006A5487 /* EntMessages.m */,
 				0C47CC5719BD4DDF006A5487 /* Supporting Files */,
 			);
 			path = TestCorData2;
@@ -231,6 +239,7 @@
 			files = (
 				0C47CC5B19BD4DDF006A5487 /* InfoPlist.strings in Resources */,
 				0C47CC6619BD4DDF006A5487 /* Images.xcassets in Resources */,
+				0C47CC8419BD5329006A5487 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +261,7 @@
 				0C47CC6419BD4DDF006A5487 /* TestCorData2.xcdatamodeld in Sources */,
 				0C47CC6119BD4DDF006A5487 /* com_pachie_projectAppDelegate.m in Sources */,
 				0C47CC5D19BD4DDF006A5487 /* main.m in Sources */,
+				0C47CC8719BD5DD9006A5487 /* EntMessages.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 #import "com_pachie_projectAppDelegate.h"
+#import "EntMessages.h"
 
 @implementation com_pachie_projectAppDelegate
 
@@ -14,12 +15,86 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    
+    [self GetLastMessage];
+    
+    return true ;
+    
+    
+    
+    //NSArray *mArray = [[NSArray alloc]init];
+    
+    [self getUserMessageByNumber:@"85713568" MyFriendPhoneNumber:@"88888888" withBlock:^(NSMutableArray *array) {
+        //mArray = array];
+        
+        
+                NSManagedObjectContext *context = [self managedObjectContext];
+        
+                // Create a new managed object
+        
+        
+
+        
+        for (NSDictionary *dic in array) {
+            
+             NSManagedObject *newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"EntMessages" inManagedObjectContext:context];
+            
+            NSDate * dateCreated =[self mfDateFromDotNetJSONString:[dic objectForKey:@"DateCreated"]];
+            NSString * deletedBy= [dic objectForKey:@"DeletedBy"];
+            NSDate * deletedDate= [self mfDateFromDotNetJSONString:[dic objectForKey:@"DeletedDate"]];
+            
+            NSNumber * isDeleted1=[self ConvertStringToYesNoNumber:[dic objectForKey:@"IsDeleted"]] ;
+            
+            NSNumber * isRead= [self ConvertStringToYesNoNumber:[dic objectForKey:@"IsRead"]];
+            NSString * messageID= [dic objectForKey:@"MessageID"];
+            NSString * pickupLineAnswer=[NSString stringWithFormat:@"%@",[dic objectForKey:@"PickupLineAnswer"]] ;
+            NSString * pickupLineContent= [dic objectForKey:@"PickupLineContent"];
+            NSString * pickupLineGUID = [dic objectForKey:@"PickupLineGUID"];
+            NSDate * readDate= [self mfDateFromDotNetJSONString:[dic objectForKey:@"ReadDate"]];
+            NSString * senderPhoneNumber= [dic objectForKey:@"SenderPhoneNumber"];
+            NSString * toPhoneNumber= [dic objectForKey:@"ToPhoneNumber"];
+            
+            
+            
+            [newMessage setValue:dateCreated forKey:@"dateCreated"];
+            [newMessage setValue:deletedBy forKey:@"deletedBy"];
+            [newMessage setValue:deletedDate forKey:@"deletedDate"];
+            [newMessage setValue:isDeleted1 forKey:@"isDeleted1"];
+            [newMessage setValue:isRead forKey:@"isRead"];
+            [newMessage setValue:messageID forKey:@"messageID"];
+            [newMessage setValue:pickupLineAnswer forKey:@"pickupLineAnswer"];
+            [newMessage setValue:pickupLineContent forKey:@"pickupLineContent"];
+            [newMessage setValue:pickupLineGUID forKey:@"pickupLineGUID"];
+            [newMessage setValue:readDate forKey:@"readDate"];
+            [newMessage setValue:senderPhoneNumber forKey:@"senderPhoneNumber"];
+            [newMessage setValue:toPhoneNumber forKey:@"toPhoneNumber"];
+            
+            //[newMessage setValue:self.versionTextField.text forKey:@"version"];
+            //[newDevice setValue:self.companyTextField.text forKey:@"company"];
+            
+            NSError *error = nil;
+            // Save the object to persistent store
+            if (![context save:&error]) {
+                NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+            }
+           // NSLog(@"test object %@",[dic objectForKey:@"PickupLineAnswer"]);
+        }
+        
+        
+        
+        
+        
+        
+    }];
+    
     return YES;
 }
 
@@ -145,5 +220,141 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+
+
+#pragma mark - custom
+- (void)getUserMessageByNumber: (NSString *)phoneNumber MyFriendPhoneNumber:(NSString *) myfriendPhoneNumber withBlock:(void (^)(NSMutableArray *array))block {
+    
+    //CommonFunction *common = [[CommonFunction alloc]init];
+    
+    //NSString *post = [common GetJsonConnection:@"GetHiritMessage2"];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    NSString *post = @"http://www.greetify.net:1980/myjson/Service1.svc/GetMyMessageByNumber/85713568/88888888";
+    
+    [request setURL:[NSURL URLWithString:post]];
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue currentQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               //NSLog(@"dataAsString %@", [NSString stringWithUTF8String:[data bytes]]);
+                               NSError *error1;
+                               NSMutableDictionary * innerJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error1];
+                               
+                               NSLog(@"innerJson %@", innerJson);
+                               
+                               NSMutableArray *ax = [[NSMutableArray alloc]init];
+                               
+                               
+                               for (NSMutableDictionary *dataDict in innerJson) {
+                                   NSString *messageID = [dataDict objectForKey:@"MessageID"];
+                                   NSString *senderPhoneNumber = [dataDict objectForKey:@"SenderPhoneNumber"];
+                                   NSString *toPhoneNumber = [dataDict objectForKey:@"ToPhoneNumber"];
+                                   NSString *pickupLineGUID = [dataDict objectForKey:@"PickupLineGUID"];
+                                   NSString *pickupLineContent = [dataDict objectForKey:@"PickupLineContent"];
+                                   NSString *pickupLineAnswer = [dataDict objectForKey:@"PickupLineAnswer"];
+                                   NSString *isRead = [dataDict objectForKey:@"IsRead"];
+                                   NSString *dateCreated = [dataDict objectForKey:@"DateCreated"];
+                                   //NSString *createdByPhonNumber = [dataDict objectForKey:@"CreatedByPhonNumber"];
+                                   
+                                   NSDictionary *dictionary = [[NSDictionary alloc]initWithObjectsAndKeys:             messageID,@"MessageID"
+                                                               ,senderPhoneNumber,@"SenderPhoneNumber"
+                                                               ,toPhoneNumber,@"ToPhoneNumber"
+                                                               ,pickupLineGUID,@"PickupLineGUID"
+                                                               ,pickupLineContent,@"PickupLineContent"
+                                                               ,pickupLineAnswer,@"PickupLineAnswer"
+                                                               ,isRead,@"IsRead"
+                                                               ,dateCreated,@"DateCreated"
+                                                               // ,createdByPhonNumber,@"CreatedByPhonNumber"
+                                                               ,nil];
+                                   
+                                   [ax addObject:dictionary];
+                                   
+                                   
+                               }
+                               
+                               block(ax); // Call back the block passed into your method
+                           }];
+    
+}
+
+- (NSDate *)mfDateFromDotNetJSONString:(NSString *)string {
+    
+    if (string == nil) {
+        return nil;
+    }
+    
+    static NSRegularExpression *dateRegEx = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dateRegEx = [[NSRegularExpression alloc] initWithPattern:@"^\\/date\\((-?\\d++)(?:([+-])(\\d{2})(\\d{2}))?\\)\\/$" options:NSRegularExpressionCaseInsensitive error:nil];
+    });
+    NSTextCheckingResult *regexResult = [dateRegEx firstMatchInString:string options:0 range:NSMakeRange(0, [string length])];
+    
+    if (regexResult) {
+        // milliseconds
+        NSTimeInterval seconds = [[string substringWithRange:[regexResult rangeAtIndex:1]] doubleValue] / 1000.0;
+        // timezone offset
+        if ([regexResult rangeAtIndex:2].location != NSNotFound) {
+            NSString *sign = [string substringWithRange:[regexResult rangeAtIndex:2]];
+            // hours
+            seconds += [[NSString stringWithFormat:@"%@%@", sign, [string substringWithRange:[regexResult rangeAtIndex:3]]] doubleValue] * 60.0 * 60.0;
+            // minutes
+            seconds += [[NSString stringWithFormat:@"%@%@", sign, [string substringWithRange:[regexResult rangeAtIndex:4]]] doubleValue] * 60.0;
+        }
+        
+        return [NSDate dateWithTimeIntervalSince1970:seconds];
+    }
+    return nil;
+}
+
+-(NSNumber *)ConvertStringToYesNoNumber:(NSString *)string
+{
+    NSNumber  *aNum = [NSNumber numberWithInteger: [string integerValue]];
+    //NSLog(@"%@",aNum);//NSString to NSNumber
+    //NSInteger number=[string intValue];
+    
+    return aNum;
+    
+//    if ([string  isEqual:@"NO"]) {
+//        return 1;
+//    }
+//    else
+//    {
+//        return 0;
+//    }
+}
+
+-(NSString *)GetLastMessage
+{
+    EntMessages *ent ;//= [[EntMessages alloc]init];
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"EntMessages"inManagedObjectContext:context];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entity];
+
+   
+    // Results should be in descending order of timeStamp.
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"dateCreated" ascending:NO];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    NSArray *results = [context executeFetchRequest:request error:NULL];
+    //entity *latestEntity = [results objectAtIndex:0];
+    ent  = [results objectAtIndex:0];
+    return   ent.messageID ;
+}
+
+-(BOOL)isMessageAlreadyExist:(NSString * )messageGUID
+{
+    return  false;
+}
+
+
+
 
 @end
