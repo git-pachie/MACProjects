@@ -38,3 +38,11 @@ SampleJSON/SampleJSON/noprofile.png
 SampleJSON/SampleJSON/CommonSendRequest.m
 
 SampleJSON/PickupLines.xcodeproj/project.pbxproj
+
+SampleJSON/PickupLines.xcodeproj/xcshareddata/xcschemes/SampleJSON.xcscheme
+
+*.xcuserstate
+
+*.xcscheme
+
+*.xcuserstate
