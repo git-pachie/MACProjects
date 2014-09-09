@@ -143,13 +143,19 @@
     NSDate *date =  [CommonFunction mfDateFromDotNetJSONString:[dic objectForKey:@"DateCreated"]];
     
     
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+//    [dateFormatter setLocale:locale];
+//    [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm a"];
+    
+    
+//
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    [dateFormatter setLocale:locale];
-    [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm a"];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+   // NSString *myDateString = [dateFormatter stringFromDate:date];
     
-    
-    NSString *convertedDate = [dateFormatter stringFromDate:date];
+    NSString *convertedDate =[NSString stringWithFormat:@"%@",date];// [dateFormatter stringFromDate:date];
     
     cell.labelSentReceivedDate.text = convertedDate;// [dic objectForKey:@"DateCreated"];
     cell.lablePickupLineHeader.text = [dic objectForKey:@"PickupLineContent"];

@@ -129,15 +129,20 @@
              theReply = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding: NSASCIIStringEncoding];
              NSLog(@"Reply: %@", theReply);
              
-             theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-             
-             
-             if ( [theReply isEqualToString:@"1"]) {
+             if (![theReply isEqualToString:@""]) {
+                 theReply = [theReply stringByReplacingOccurrencesOfString:@"\"" withString:@""];
                  
-                 NSLog(@"Device token sent: %@", DeviceToken);
-                 //return true;
                  
+                 if ( [theReply isEqualToString:@"1"]) {
+                     
+                     NSLog(@"Device token sent: %@", DeviceToken);
+                     //return true;
+                     
+                 }
              }
+             
+             
+             
              
              block(theReply);
 

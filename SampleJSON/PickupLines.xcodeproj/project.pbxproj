@@ -17,6 +17,7 @@
 		0C8327361994CEDB00C2CEF0 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C8327351994CEDB00C2CEF0 /* View.xib */; };
 		0C8327391994CF5F00C2CEF0 /* MyPickupLinesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8327381994CF5F00C2CEF0 /* MyPickupLinesTableViewController.m */; };
 		0C83273C1994D91900C2CEF0 /* MyPickupLineHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C83273B1994D91900C2CEF0 /* MyPickupLineHeaderTableViewController.m */; };
+		0C83404419BF7F0600A9FD37 /* noprofile.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C83404319BF7F0600A9FD37 /* noprofile.png */; };
 		0CA596771973E1F80032D144 /* CommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA596761973E1F80032D144 /* CommonFunction.m */; };
 		0CCCE20419B59DDD0085C4F1 /* UserInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CCCE20319B59DDD0085C4F1 /* UserInfo.xib */; };
 		0CCCE20719B5A0990085C4F1 /* UseInformationUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCCE20619B5A0990085C4F1 /* UseInformationUIView.m */; };
@@ -50,7 +51,6 @@
 		0DCCF05219B4BF78000F00CB /* PickupLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DCCF05119B4BF78000F00CB /* PickupLine.xib */; };
 		0DCCF05519B4C140000F00CB /* PickupLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCCF05419B4C140000F00CB /* PickupLineTableViewCell.m */; };
 		0DCCF05819B60F8E000F00CB /* MessageDetail2TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCCF05719B60F8E000F00CB /* MessageDetail2TableViewController.m */; };
-		0DCCF05C19B63848000F00CB /* noprofile.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DCCF05B19B63848000F00CB /* noprofile.png */; };
 		0DCCF05E19B8B943000F00CB /* CellUserInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DCCF05D19B8B943000F00CB /* CellUserInfo.xib */; };
 		0DCCF06119B8BADE000F00CB /* CellUserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCCF06019B8BADE000F00CB /* CellUserInfoTableViewCell.m */; };
 /* End PBXBuildFile section */
@@ -83,6 +83,7 @@
 		0C8327381994CF5F00C2CEF0 /* MyPickupLinesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPickupLinesTableViewController.m; sourceTree = "<group>"; };
 		0C83273A1994D91900C2CEF0 /* MyPickupLineHeaderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPickupLineHeaderTableViewController.h; sourceTree = "<group>"; };
 		0C83273B1994D91900C2CEF0 /* MyPickupLineHeaderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPickupLineHeaderTableViewController.m; sourceTree = "<group>"; };
+		0C83404319BF7F0600A9FD37 /* noprofile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noprofile.png; sourceTree = "<group>"; };
 		0CA596751973E1F80032D144 /* CommonFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFunction.h; sourceTree = "<group>"; };
 		0CA596761973E1F80032D144 /* CommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunction.m; sourceTree = "<group>"; };
 		0CCCE20319B59DDD0085C4F1 /* UserInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfo.xib; sourceTree = "<group>"; };
@@ -130,7 +131,6 @@
 		0DCCF05419B4C140000F00CB /* PickupLineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupLineTableViewCell.m; sourceTree = "<group>"; };
 		0DCCF05619B60F8E000F00CB /* MessageDetail2TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetail2TableViewController.h; sourceTree = "<group>"; };
 		0DCCF05719B60F8E000F00CB /* MessageDetail2TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetail2TableViewController.m; sourceTree = "<group>"; };
-		0DCCF05B19B63848000F00CB /* noprofile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noprofile.png; sourceTree = "<group>"; };
 		0DCCF05D19B8B943000F00CB /* CellUserInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellUserInfo.xib; sourceTree = "<group>"; };
 		0DCCF05F19B8BADE000F00CB /* CellUserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellUserInfoTableViewCell.h; sourceTree = "<group>"; };
 		0DCCF06019B8BADE000F00CB /* CellUserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellUserInfoTableViewCell.m; sourceTree = "<group>"; };
@@ -240,7 +240,7 @@
 		0D6FE47619686E1A002E3880 /* SampleJSON */ = {
 			isa = PBXGroup;
 			children = (
-				0DCCF05B19B63848000F00CB /* noprofile.png */,
+				0C83404319BF7F0600A9FD37 /* noprofile.png */,
 				0DA0ABF91980292B0061E723 /* user_male3-32.png */,
 				0DA0ABF7198028A60061E723 /* automatic-32.png */,
 				0DA0ABF5198027F10061E723 /* cottage-32.png */,
@@ -444,9 +444,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DCCF05C19B63848000F00CB /* noprofile.png in Resources */,
 				0C8327361994CEDB00C2CEF0 /* View.xib in Resources */,
 				0CCCE20419B59DDD0085C4F1 /* UserInfo.xib in Resources */,
+				0C83404419BF7F0600A9FD37 /* noprofile.png in Resources */,
 				0CCCE20919B5AE720085C4F1 /* MessageDetailButton.xib in Resources */,
 				0D6FE47B19686E1A002E3880 /* InfoPlist.strings in Resources */,
 				0DCCF05219B4BF78000F00CB /* PickupLine.xib in Resources */,

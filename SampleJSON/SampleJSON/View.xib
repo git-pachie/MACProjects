@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="350" height="133"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hindi kaba napapagod, kanina kapa kasi tumatakbo sa isip ko eh." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="332" translatesAutoresizingMaskIntoConstraints="NO" id="rpE-gs-Y2D">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Hindi kaba napapagod, kanina kapa kasi tumatakbo sa isip ko eh." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="332" translatesAutoresizingMaskIntoConstraints="NO" id="rpE-gs-Y2D">
                         <rect key="frame" x="10" y="14" width="332" height="53"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -28,7 +28,7 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sent Jun 25, 2014, 12:00 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmP-Wm-yfR">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Sent Jun 25, 2014, 12:00 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmP-Wm-yfR">
                         <rect key="frame" x="169" y="0.0" width="173" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -51,6 +51,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="rpE-gs-Y2D" secondAttribute="trailing" constant="8" id="02M-FH-q9Z"/>
+                    <constraint firstAttribute="trailing" secondItem="vmP-Wm-yfR" secondAttribute="trailing" constant="8" id="sU7-r2-Pk3"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="labelCreatedby" destination="f51-Um-qNH" id="mFf-hi-X5h"/>

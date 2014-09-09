@@ -24,6 +24,8 @@
     [self.window makeKeyAndVisible];
     
     
+    NSLog(@"Date : %@",[self mfDateFromDotNetJSONString:@"/Date(1410281273993+0800)/"]);
+    
     //[self GetLastMessage];
     
     //[self isMessageAlreadyExist:@"1665bf34-cc2a-4eb5-8787-c2c5a7f5c38f"];
@@ -40,67 +42,11 @@
         //mArray = array];
         
         
-                NSManagedObjectContext *context = [self managedObjectContext];
+        [self SyncArrayToCoreData:array];
         
-                // Create a new managed object
-        
-        
-
-        
-        for (NSDictionary *dic in array) {
-            
-             NSManagedObject *newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"EntMessages" inManagedObjectContext:context];
-            
-            NSDate * dateCreated =[self mfDateFromDotNetJSONString:[dic objectForKey:@"DateCreated"]];
-            NSString * deletedBy= [dic objectForKey:@"DeletedBy"];
-            NSDate * deletedDate= [self mfDateFromDotNetJSONString:[dic objectForKey:@"DeletedDate"]];
-            
-            NSNumber * isDeleted1=[self ConvertStringToYesNoNumber:[dic objectForKey:@"IsDeleted"]] ;
-            
-            NSNumber * isRead= [self ConvertStringToYesNoNumber:[dic objectForKey:@"IsRead"]];
-            NSString * messageID= [dic objectForKey:@"MessageID"];
-            NSString * pickupLineAnswer=[NSString stringWithFormat:@"%@",[dic objectForKey:@"PickupLineAnswer"]] ;
-            NSString * pickupLineContent= [dic objectForKey:@"PickupLineContent"];
-            NSString * pickupLineGUID = [dic objectForKey:@"PickupLineGUID"];
-            NSDate * readDate= [self mfDateFromDotNetJSONString:[dic objectForKey:@"ReadDate"]];
-            NSString * senderPhoneNumber= [dic objectForKey:@"SenderPhoneNumber"];
-            NSString * toPhoneNumber= [dic objectForKey:@"ToPhoneNumber"];
-            
-            
-            if ([self isMessageAlreadyExist:messageID] == NO) {
-                [newMessage setValue:dateCreated forKey:@"dateCreated"];
-                [newMessage setValue:deletedBy forKey:@"deletedBy"];
-                [newMessage setValue:deletedDate forKey:@"deletedDate"];
-                [newMessage setValue:isDeleted1 forKey:@"isDeleted1"];
-                [newMessage setValue:isRead forKey:@"isRead"];
-                [newMessage setValue:messageID forKey:@"messageID"];
-                [newMessage setValue:pickupLineAnswer forKey:@"pickupLineAnswer"];
-                [newMessage setValue:pickupLineContent forKey:@"pickupLineContent"];
-                [newMessage setValue:pickupLineGUID forKey:@"pickupLineGUID"];
-                [newMessage setValue:readDate forKey:@"readDate"];
-                [newMessage setValue:senderPhoneNumber forKey:@"senderPhoneNumber"];
-                [newMessage setValue:toPhoneNumber forKey:@"toPhoneNumber"];
-                
-                //[newMessage setValue:self.versionTextField.text forKey:@"version"];
-                //[newDevice setValue:self.companyTextField.text forKey:@"company"];
-                
-                NSError *error = nil;
-                // Save the object to persistent store
-                if (![context save:&error]) {
-                    NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
-                }
-            }
-            
-            
            // NSLog(@"test object %@",[dic objectForKey:@"PickupLineAnswer"]);
-        }
-        
-        
-        
-        
-        
-        
     }];
+     
     
     return YES;
 }
@@ -336,7 +282,7 @@
 
 -(NSString *)GetLastMessage
 {
-    EntMessages *ent ;//= [[EntMessages alloc]init];
+    //EntMessages *ent ;//= [[EntMessages alloc]init];
     
     NSManagedObjectContext *context = [self managedObjectContext];
     
@@ -353,13 +299,20 @@
     
     NSArray *results = [context executeFetchRequest:request error:NULL];
     //entity *latestEntity = [results objectAtIndex:0];
+    
+    //NSDictionary *dic = [results objectAtIndex:0];
+    
     if ([results count] == 0) {
         return @"-1";
     }
     else
     {
-        ent  = [results objectAtIndex:0];
-        return   ent.messageID ;
+        
+        NSManagedObject *mno = [results objectAtIndex:0];
+        return [mno valueForKey:@"messageID"];
+        //return [dic objectForKey:@"messageID"];
+        //ent  = [results objectAtIndex:0];
+        //return   ent.messageID ;
     }
     
 }
@@ -368,9 +321,11 @@
 {
     NSManagedObjectContext *context = [self managedObjectContext];
     
-    NSEntityDescription *entity =    [NSEntityDescription entityForName:@"EntMessages"   inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entity];
+    //NSEntityDescription *entity =    [NSEntityDescription entityForName:@"EntMessages"   inManagedObjectContext:context];
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    [request setEntity:entity];
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"EntMessages"];
     
     NSPredicate *pred =[NSPredicate predicateWithFormat:@"(messageID = %@)", messageGUID];
     [request setPredicate:pred];
@@ -409,6 +364,92 @@
     
 }
 
+-(void)SyncArrayToCoreData:(NSMutableArray *)mArrary
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    // Create a new managed object
+    
+    for (NSDictionary *dic in mArrary) {
+        
+        NSManagedObject *newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"EntMessages" inManagedObjectContext:context];
+        
+        //NSDate *pek = [self ayosDate:[self mfDateFromDotNetJSONString:[dic objectForKey:@"DateCreated"]] ];
+        
+        NSDate * dateCreated =[self mfDateFromDotNetJSONString:[dic objectForKey:@"DateCreated"]];
+        NSString * deletedBy= [dic objectForKey:@"DeletedBy"];
+        NSDate * deletedDate= [self mfDateFromDotNetJSONString:[dic objectForKey:@"DeletedDate"]];
+        
+        NSNumber * isDeleted1=[self ConvertStringToYesNoNumber:[dic objectForKey:@"IsDeleted"]] ;
+        
+        NSNumber * isRead= [self ConvertStringToYesNoNumber:[dic objectForKey:@"IsRead"]];
+        NSString * messageID= [dic objectForKey:@"MessageID"];
+        NSString * pickupLineAnswer=[NSString stringWithFormat:@"%@",[dic objectForKey:@"PickupLineAnswer"]] ;
+        NSString * pickupLineContent= [dic objectForKey:@"PickupLineContent"];
+        NSString * pickupLineGUID = [dic objectForKey:@"PickupLineGUID"];
+        NSDate * readDate= [self mfDateFromDotNetJSONString:[dic objectForKey:@"ReadDate"]];
+        NSString * senderPhoneNumber= [dic objectForKey:@"SenderPhoneNumber"];
+        NSString * toPhoneNumber= [dic objectForKey:@"ToPhoneNumber"];
+        
+        
+        if ([self isMessageAlreadyExist:messageID] == NO) {
+            [newMessage setValue:dateCreated forKey:@"dateCreated"];
+            [newMessage setValue:deletedBy forKey:@"deletedBy"];
+            [newMessage setValue:deletedDate forKey:@"deletedDate"];
+            [newMessage setValue:isDeleted1 forKey:@"isDeleted1"];
+            [newMessage setValue:isRead forKey:@"isRead"];
+            [newMessage setValue:messageID forKey:@"messageID"];
+            [newMessage setValue:pickupLineAnswer forKey:@"pickupLineAnswer"];
+            [newMessage setValue:pickupLineContent forKey:@"pickupLineContent"];
+            [newMessage setValue:pickupLineGUID forKey:@"pickupLineGUID"];
+            [newMessage setValue:readDate forKey:@"readDate"];
+            [newMessage setValue:senderPhoneNumber forKey:@"senderPhoneNumber"];
+            [newMessage setValue:toPhoneNumber forKey:@"toPhoneNumber"];
+            
+            //[newMessage setValue:self.versionTextField.text forKey:@"version"];
+            //[newDevice setValue:self.companyTextField.text forKey:@"company"];
+            
+            NSError *error = nil;
+            // Save the object to persistent store
+            if (![context save:&error]) {
+                NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+            }
+        }
+    }
 
+}
+
+- (NSDate*)dateWithJSONString:(NSString*)dateStr
+{
+    // Convert string to date object
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+    NSDate *date = [dateFormat dateFromString:dateStr];
+    
+    // This is for check the output
+    // Convert date object to desired output format
+    [dateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"]; // Here you can change your require output date format EX. @"EEE, MMM d YYYY"
+    dateStr = [dateFormat stringFromDate:date];
+    NSLog(@"Date -- %@",dateStr);
+    
+    return date;
+}
+
+
+-(NSDate *)ayosDate:(NSDate *)date
+{
+    NSDate* sourceDate = date;//[NSDate date];
+    
+    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
+    
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
+    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+    
+    NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate];
+    
+    return destinationDate;
+}
 
 @end
