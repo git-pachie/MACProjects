@@ -78,34 +78,68 @@
 
 - (IBAction)submit2:(id)sender {
     
+    if ([self.txtNumber.text isEqualToString:@""] || [self.txtDesiredUserName.text  isEqual: @""] ) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Invalid input" message:@"Phone number and unique alias is required." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];//, nil
+        [alert show];
+        return;
+    }
     
     
-    [comReq registerAccount:self.deviceToken PhoneNumber:self.txtNumber.text DesiredAlias:self.txtDesiredUserName.text withBlock:^(NSString *returnValue) {
-        if ([returnValue isEqual:@"1"]) {
-            
-            //[self performSelector:@selector(callMe) withObject:nil afterDelay:10 ];
-            //[self performSegueWithIdentifier:@"activate2" sender:nil];
-            [self dismissViewControllerAnimated:YES completion:^{
-                [self.xCallBackDelegate callbackmethod:self.txtNumber.text];
-            }];
-        }
-        else if ([returnValue isEqual:@"2"]) {
-            
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alias already taken" message:@"Your pickup line desired Alias is not available" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];//, nil
-            [alert show];
-            
-        }
-        else
-        {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error registration" message:@"Error registering your account" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];//, nil
-            [alert show];
-        }
-    }];
+           [comReq registerAccount:self.deviceToken PhoneNumber:self.txtNumber.text DesiredAlias:self.txtDesiredUserName.text withBlock:^(NSString *returnValue) {
+            if ([returnValue isEqual:@"1"]) {
+                
+                //[self performSelector:@selector(callMe) withObject:nil afterDelay:10 ];
+                //[self performSegueWithIdentifier:@"activate2" sender:nil];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    [self.xCallBackDelegate callbackmethod:self.txtNumber.text];
+                }];
+            }
+            else if ([returnValue isEqual:@"2"])
+            {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alias already taken" message:@"Alias name not available" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];//, nil
+                    [alert show];
+                    
+                });
+            }
+            else
+            {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error registration" message:@"Error registering your account" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];//, nil
+                [alert show];
+                return;
+            }
+        }];
+    
+    
+    
+    
 }
 
 - (IBAction)cancel:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if([title isEqualToString:@"Ok"])
+    {
+        NSLog(@"Button 1 was selected.");
+    }
+    else if([title isEqualToString:@"Button 2"])
+    {
+        NSLog(@"Button 2 was selected.");
+    }
+    else if([title isEqualToString:@"Button 3"])
+    {
+        NSLog(@"Button 3 was selected.");
+    }
 }
 
 @end

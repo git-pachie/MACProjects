@@ -202,4 +202,17 @@ dispatch_queue_t camerq;
     
     
 }
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (cell == self.cellImageHolder || cell == self.cellButtonHolder) {
+        cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    else
+    {
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    }
+    
+}
 @end
