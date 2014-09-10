@@ -32,9 +32,8 @@
 {
     [super viewDidLoad];
     
-//    [self.tableView registerNib:[UINib nibWithNibName:@"View" bundle:nil] forCellReuseIdentifier:@"Cell"];
-//
-    
+    [self.tableView registerNib:[UINib nibWithNibName:@"View" bundle:nil] forCellReuseIdentifier:@"Cell"];
+
     
     
     mArray = [[NSMutableArray alloc]init];
@@ -62,10 +61,72 @@
     
 //    mArray = [[NSMutableArray alloc]init];
 //
-    NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"SGD",@"countrycode",
-                         @"Singapore",@"CountryName",nil];
+    NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:
+                         @"SGD",@"CountryCode",
+                         @"Singapore",@"CountryName",
+                         @"iRemit Singapore",@"RemittanceName",
+                         @"123.56",@"Rate",
+                         @"July 26, 2014 03:00 PM",@"AsOfDate",
+                         @"85713568",@"Contact",
+                         @"2nd flr, Lucky Plaza Singapore 750359",@"Address",
+                         @"archieangeles@gmail.com",@"EmailAddress",
+                         @"logo1.png",@"logo",nil];
     
     [mArray addObject:dic];
+    
+    dic = [[NSDictionary alloc]initWithObjectsAndKeys:
+           @"SGD",@"CountryCode",
+           @"Singapore",@"CountryName",
+           @"PNB Singapore",@"RemittanceName",
+           @"153.56",@"Rate",
+           @"July 26, 2014 03:00 PM",@"AsOfDate",
+           @"85713568",@"Contact",
+           @"2nd flr, Lucky Plaza Singapore 750359",@"Address",
+           @"archieangeles@gmail.com",@"EmailAddress",
+           @"logo1.png",@"logo",nil];
+
+    [mArray addObject:dic];
+
+    
+    dic = [[NSDictionary alloc]initWithObjectsAndKeys:
+           @"SGD",@"CountryCode",
+           @"Singapore",@"CountryName",
+           @"Metro Remittance Singapore",@"RemittanceName",
+           @"153.56",@"Rate",
+           @"July 26, 2014 03:00 PM",@"AsOfDate",
+           @"85713568",@"Contact",
+           @"2nd flr, Lucky Plaza Singapore 750359",@"Address",
+           @"archieangeles@gmail.com",@"EmailAddress",
+           @"logo1.png",@"logo",nil];
+
+    [mArray addObject:dic];
+    
+    dic = [[NSDictionary alloc]initWithObjectsAndKeys:
+           @"DUB",@"CountryCode",
+           @"Dhubai",@"CountryName",
+           @"Metro Remittance Dhubai",@"RemittanceName",
+           @"153.56",@"Rate",
+           @"July 26, 2014 03:00 PM",@"AsOfDate",
+           @"85713568",@"Contact",
+           @"2nd flr, Lucky Plaza Singapore 750359",@"Address",
+           @"archieangeles@gmail.com",@"EmailAddress",
+           @"logo1.png",@"logo",nil];
+    [mArray addObject:dic];
+    
+    dic = [[NSDictionary alloc]initWithObjectsAndKeys:
+           @"MYR",@"CountryCode",
+           @"Malaysia",@"CountryName",
+           @"Metro Remittance Malaysia",@"RemittanceName",
+           @"153.56",@"Rate",
+           @"July 26, 2014 03:00 PM",@"AsOfDate",
+           @"85713568",@"Contact",
+           @"2nd flr, Lucky Plaza Singapore 750359",@"Address",
+           @"archieangeles@gmail.com",@"EmailAddress",
+           @"logo1.png",@"logo",nil];
+    
+    [mArray addObject:dic];
+
+
 //
 //    dic = [[NSDictionary alloc]initWithObjectsAndKeys:
 //                         @"MYR",@"Country",
@@ -103,24 +164,111 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
-    return 1;
+    
+  NSSet *uniqueStates = [NSSet setWithArray:[mArray valueForKey:@"CountryName"]];
+//    
+    return [uniqueStates count];
+    
+    
+    
+//    NSArray *states = [mArray valueForKey:@"CountryName"];
+//    NSOrderedSet *orderedSet = [NSOrderedSet orderedSetWithArray:states];
+//    NSSet *uniqueStates = [orderedSet set];
+//    
+//    return [uniqueStates count];
+//
+//    return [uniqueStates count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return [mArray count];
+    //return  [[[mArray objectAtIndex:section]valueForKey:@"CountryName"] count];
+    //NSSet *uniqueStates = [NSSet setWithArray:[mArray objectAtIndex:section] valueForKey:@"CountryName"] ;
+
+    //return [[mArray objectAtIndex:section]count];
+    
+    //NSString *nameFilter = [NSString stringWithFormat:@"%@*", [mArray objectAtIndex:section]];
+//    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"(DateCreatedSTR LIKE [cd]%@)", nameFilter];
+//    return [[myObject filteredArrayUsingPredicate:resultPredicate] count] ;
+//    
+
+   // NSArray *sections = [mArray valueForKey:@"CountryName"];
+   // NSOrderedSet *orderedSet = [NSOrderedSet orderedSetWithArray:sections];
+    //NSSet *uniqueStates = [orderedSet set];
+    
+   // NSArray *ar = [orderedSet objectAtIndex:section];
+    
+    //return [ar count];
+    
+    //return [[mArray objectAtIndex:section] count];
+
+    NSSet *unique = [NSSet setWithArray:[mArray valueForKey:@"CountryName"]];
+    
+    NSString *arUnique = [[unique allObjects] objectAtIndex:section];
+    
+    
+    NSArray *ar = [mArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"CountryName like [cd] %@",arUnique]];
+    
+    return [ar count];
+    
+}
+
+-(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSSet *unique = [NSSet setWithArray:[mArray valueForKey:@"CountryName"]];
+    
+    NSString *arUnique = [[unique allObjects] objectAtIndex:section];
+    
+    return arUnique;
+
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 113;
 }
 
 /**/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell2" forIndexPath:indexPath];
+    CustomTableViewCell *cell = (CustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
     
-    // Configure the cell...
-    cell.detailTextLabel.text = [[mArray objectAtIndex:indexPath.row] objectForKey:@"CountryName"];
+    if (cell == nil)
+    {
+        //cell = [[PickupLineTableViewCell alloc] initWithStyle:uita reuseIdentifier:CellIdentifier];
+        
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"View" owner:self options:nil];
+        cell = (CustomTableViewCell *) [nib objectAtIndex:0];
+        
+    }
+
+    
+    NSSet *unique = [NSSet setWithArray:[mArray valueForKey:@"CountryName"]];
+    
+    NSString *arUnique = [[unique allObjects] objectAtIndex:indexPath.section];
+    
+    NSArray *ar = [mArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"CountryName like [cd] %@",arUnique]];
+    
+    
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"CountryName" ascending:YES];
+    
+    NSArray * sortedArray=[ar sortedArrayUsingDescriptors:@[sort]];
+    
+//    NSArray *sortedArray = [ar sortedArrayUsingComparator:^NSComparisonResult(NSString *p1, NSString *p2){
+//        
+//        return [p1 compare:p2];
+//        
+//    }];
+    
+    //NSArray * sortedArray = [ar sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    
+    
+    NSDictionary *dic = [sortedArray objectAtIndex:indexPath.row ];
+    
+    cell.lblRemmitanceName.text = [dic objectForKey:@"RemittanceName"];
+    cell.lblRate.text = [dic objectForKey:@"Rate"];
     
     
     
