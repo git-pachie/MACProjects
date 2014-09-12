@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Country" syncable="YES">
         <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryFlag" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="countryName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Remittance" representedClassName="Remittance" syncable="YES">
@@ -18,7 +19,7 @@
         <attribute name="remmittanceGUID" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Country" positionX="-54" positionY="-9" width="128" height="73"/>
+        <element name="Country" positionX="-54" positionY="-9" width="128" height="90"/>
         <element name="Remittance" positionX="-272" positionY="-153" width="128" height="210"/>
     </elements>
 </model>

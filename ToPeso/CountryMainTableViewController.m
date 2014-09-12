@@ -104,6 +104,14 @@
     
     cell.textLabel.text = [o valueForKey:@"countryName"];
     
+    //cell.imageView.image = [UIImage imageNamed:[o valueForKey:@"countryFlag"]];
+    
+    UIImageView *imgv = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[o valueForKey:@"countryFlag"]]];
+    
+    [cell.imageView setImage:[self imageRound:imgv].image];
+    
+    [self imageRound:cell.imageView];
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     
@@ -135,6 +143,35 @@
     [self performSegueWithIdentifier:@"showDetails" sender:self];
 }
 
-
+-(UIImageView *)imageRound:(UIImageView *)imview;
+{
+    
+    imview.layer.cornerRadius = 10;
+    imview.layer.masksToBounds = YES;
+    return imview;
+    
+    
+//    UIGraphicsBeginImageContextWithOptions(imview.bounds.size, NO, [UIScreen mainScreen].scale);
+//    
+//    // Add a clip before drawing anything, in the shape of an rounded rect
+//    
+//    [[UIBezierPath bezierPathWithRoundedRect:imview.bounds
+//                                cornerRadius:10.0 ] addClip];
+//    // Draw your image
+//    [imview.image drawInRect:imview.bounds];
+//    
+//    // Get the image, here setting the UIImageView image
+//    imview.image = UIGraphicsGetImageFromCurrentImageContext();
+//    
+//    //            cell.imageView.layer.borderWidth  =1;
+//    //            cell.imageView.layer.borderColor = [UIColor grayColor].CGColor;
+//    //
+//    // Lets forget about that we were drawing
+//    
+//    
+//    UIGraphicsEndImageContext();
+//    
+//    return imview;
+}
 
 @end

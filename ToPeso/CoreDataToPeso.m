@@ -81,28 +81,35 @@
     
     [newCountry setValue:@"SG"  forKey:@"countryCode"];
     [newCountry setValue:@"Singapore"  forKey:@"countryName"];
+    [newCountry setValue:@"Singapore.png"  forKey:@"countryFlag"];
     
     newCountry = [NSEntityDescription insertNewObjectForEntityForName:@"Country" inManagedObjectContext:context];
     
     
     [newCountry setValue:@"MY"  forKey:@"countryCode"];
     [newCountry setValue:@"Malaysia"  forKey:@"countryName"];
+    [newCountry setValue:@"Malaysia.png"  forKey:@"countryFlag"];
+
     
     
     newCountry = [NSEntityDescription insertNewObjectForEntityForName:@"Country" inManagedObjectContext:context];
     
     [newCountry setValue:@"HK"  forKey:@"countryCode"];
     [newCountry setValue:@"HongKong"  forKey:@"countryName"];
+    [newCountry setValue:@"Hong Kong.png"  forKey:@"countryFlag"];
     
     newCountry = [NSEntityDescription insertNewObjectForEntityForName:@"Country" inManagedObjectContext:context];
     
     [newCountry setValue:@"DB"  forKey:@"countryCode"];
     [newCountry setValue:@"Dubai"  forKey:@"countryName"];
+    [newCountry setValue:@"Dubai.png"  forKey:@"countryFlag"];
     
     
     newCountry = [NSEntityDescription insertNewObjectForEntityForName:@"Country" inManagedObjectContext:context];
     [newCountry setValue:@"SA"  forKey:@"countryCode"];
     [newCountry setValue:@"Saudi Arabia"  forKey:@"countryName"];
+    [newCountry setValue:@"Saudi Arabia.png"  forKey:@"countryFlag"];
+    
     
     
     
