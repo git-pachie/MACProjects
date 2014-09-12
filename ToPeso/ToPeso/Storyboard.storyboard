@@ -30,7 +30,6 @@
                             <outlet property="delegate" destination="lve-Yq-4sp" id="Ama-dc-Kg3"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Home" id="hGf-zn-avi"/>
                     <navigationItem key="navigationItem" title="Agents" id="nlc-WD-36z"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iir-lI-Ps3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -96,7 +95,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfy-Nw-IwK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2485" y="-64"/>
+            <point key="canvasLocation" x="2691" y="32"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="UeZ-J4-LNh">
@@ -116,11 +115,11 @@
             </objects>
             <point key="canvasLocation" x="761" y="32"/>
         </scene>
-        <!--Navigation Controller - Country-->
+        <!--Navigation Controller - Home-->
         <scene sceneID="Zqb-TI-st2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uNM-Y0-bhc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Country" id="8pA-Jj-ZwT"/>
+                    <tabBarItem key="tabBarItem" title="Home" id="8pA-Jj-ZwT"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="4W5-oU-QoP"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pP5-XF-m0G">
