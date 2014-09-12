@@ -270,7 +270,7 @@
     cell.lblRemmitanceName.text = [dic objectForKey:@"RemittanceName"];
     cell.lblRate.text = [dic objectForKey:@"Rate"];
     
-    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }

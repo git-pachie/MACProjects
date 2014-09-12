@@ -7,6 +7,7 @@
 //
 
 #import "com_pachie_topesoAppDelegate.h"
+#import "CoreDataToPeso.h"
 
 @implementation com_pachie_topesoAppDelegate
 
@@ -20,6 +21,10 @@
 //    // Override point for customization after application launch.
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [self.window makeKeyAndVisible];
+    
+    CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
+    [core insertTempData];
+    
     return YES;
 }
 
@@ -145,5 +150,8 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+
+
 
 @end

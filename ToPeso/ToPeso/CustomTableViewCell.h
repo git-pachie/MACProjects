@@ -10,11 +10,8 @@
 
 @interface CustomTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *lblRemmitanceName;
-@property (weak, nonatomic) IBOutlet UILabel *lblRemittanceAddress;
 @property (weak, nonatomic) IBOutlet UIImageView *imgRemittanceImage;
 @property (weak, nonatomic) IBOutlet UILabel *lblRate;
-@property (weak, nonatomic) IBOutlet UILabel *lblAsOfDate;
-@property (weak, nonatomic) IBOutlet UILabel *lblRemittancePhone;
-@property (weak, nonatomic) IBOutlet UILabel *lblRemittanceEmail;
+
 
 @end

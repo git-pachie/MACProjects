@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CB5131819C2EAB7006D1653 /* RemittanceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */; };
+		0CB5131B19C2F7C3006D1653 /* Remittance.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5131A19C2F7C3006D1653 /* Remittance.m */; };
+		0CC5FE1619C2B33B00323A7C /* CoreDataToPeso.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC5FE1519C2B33B00323A7C /* CoreDataToPeso.m */; };
 		0CD49B9819ADDFFB0078920D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CD49B9719ADDFFB0078920D /* Foundation.framework */; };
 		0CD49B9A19ADDFFB0078920D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CD49B9919ADDFFB0078920D /* CoreGraphics.framework */; };
 		0CD49B9C19ADDFFB0078920D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CD49B9B19ADDFFB0078920D /* UIKit.framework */; };
@@ -27,6 +30,7 @@
 		0CD49BD319ADE3FD0078920D /* CountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD49BD219ADE3FD0078920D /* CountryTableViewController.m */; };
 		0CD49BD619ADE5230078920D /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD49BD519ADE5230078920D /* CustomTableViewCell.m */; };
 		0CD49BD919ADEB650078920D /* DetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD49BD819ADEB650078920D /* DetailsTableViewController.m */; };
+		0CF7AD1219C2D43C0059EB6C /* CountryMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7AD1119C2D43C0059EB6C /* CountryMainTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0CB5131619C2EAB7006D1653 /* RemittanceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemittanceTableViewController.h; sourceTree = "<group>"; };
+		0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemittanceTableViewController.m; sourceTree = "<group>"; };
+		0CB5131919C2F7C3006D1653 /* Remittance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Remittance.h; sourceTree = "<group>"; };
+		0CB5131A19C2F7C3006D1653 /* Remittance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Remittance.m; sourceTree = "<group>"; };
+		0CC5FE1419C2B33B00323A7C /* CoreDataToPeso.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataToPeso.h; sourceTree = "<group>"; };
+		0CC5FE1519C2B33B00323A7C /* CoreDataToPeso.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataToPeso.m; sourceTree = "<group>"; };
 		0CD49B9419ADDFFB0078920D /* ToPeso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToPeso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CD49B9719ADDFFB0078920D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0CD49B9919ADDFFB0078920D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -66,6 +76,8 @@
 		0CD49BD519ADE5230078920D /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		0CD49BD719ADEB650078920D /* DetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsTableViewController.h; sourceTree = "<group>"; };
 		0CD49BD819ADEB650078920D /* DetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsTableViewController.m; sourceTree = "<group>"; };
+		0CF7AD1019C2D43C0059EB6C /* CountryMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryMainTableViewController.h; sourceTree = "<group>"; };
+		0CF7AD1119C2D43C0059EB6C /* CountryMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryMainTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,9 +106,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0CC5FE1719C2B34500323A7C /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				0CC5FE1419C2B33B00323A7C /* CoreDataToPeso.h */,
+				0CC5FE1519C2B33B00323A7C /* CoreDataToPeso.m */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
 		0CD49B8B19ADDFFB0078920D = {
 			isa = PBXGroup;
 			children = (
+				0CB5131619C2EAB7006D1653 /* RemittanceTableViewController.h */,
+				0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */,
+				0CF7AD1019C2D43C0059EB6C /* CountryMainTableViewController.h */,
+				0CF7AD1119C2D43C0059EB6C /* CountryMainTableViewController.m */,
+				0CC5FE1719C2B34500323A7C /* Database */,
 				0CD49BD719ADEB650078920D /* DetailsTableViewController.h */,
 				0CD49BD819ADEB650078920D /* DetailsTableViewController.m */,
 				0CD49BD119ADE3FD0078920D /* CountryTableViewController.h */,
@@ -137,6 +163,8 @@
 				0CD49BA919ADDFFB0078920D /* com_pachie_topesoAppDelegate.m */,
 				0CD49BAE19ADDFFB0078920D /* Images.xcassets */,
 				0CD49BAB19ADDFFB0078920D /* ToPeso.xcdatamodeld */,
+				0CB5131919C2F7C3006D1653 /* Remittance.h */,
+				0CB5131A19C2F7C3006D1653 /* Remittance.m */,
 				0CD49BA019ADDFFB0078920D /* Supporting Files */,
 				0CD49BCF19ADE2D70078920D /* Storyboard.storyboard */,
 			);
@@ -281,10 +309,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CD49BAA19ADDFFB0078920D /* com_pachie_topesoAppDelegate.m in Sources */,
+				0CC5FE1619C2B33B00323A7C /* CoreDataToPeso.m in Sources */,
 				0CD49BA619ADDFFB0078920D /* main.m in Sources */,
+				0CB5131819C2EAB7006D1653 /* RemittanceTableViewController.m in Sources */,
 				0CD49BD319ADE3FD0078920D /* CountryTableViewController.m in Sources */,
 				0CD49BD619ADE5230078920D /* CustomTableViewCell.m in Sources */,
 				0CD49BD919ADEB650078920D /* DetailsTableViewController.m in Sources */,
+				0CB5131B19C2F7C3006D1653 /* Remittance.m in Sources */,
+				0CF7AD1219C2D43C0059EB6C /* CountryMainTableViewController.m in Sources */,
 				0CD49BAD19ADDFFB0078920D /* ToPeso.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,6 +514,7 @@
 				0CD49BC819ADDFFB0078920D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0CD49BC919ADDFFB0078920D /* Build configuration list for PBXNativeTarget "ToPesoTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +523,7 @@
 				0CD49BCB19ADDFFB0078920D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

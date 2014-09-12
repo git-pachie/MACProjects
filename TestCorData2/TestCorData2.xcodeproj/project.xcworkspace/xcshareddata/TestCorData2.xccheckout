@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>61A7EDA4-7F3C-4FA1-BAFE-6026317DB1F4</string>
+	<string>4D6BDB8B-198C-4C7F-96CC-7D4588F28D0E</string>
 	<key>IDESourceControlProjectName</key>
 	<string>TestCorData2</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>148D470F-7230-4674-9142-CACA65595984</key>
+		<key>DE3EB1E8-D0ED-4278-A933-CD7C4F725CF5</key>
 		<string>https://github.com/git-pachie/MACProjects.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>TestCorData2/TestCorData2.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>148D470F-7230-4674-9142-CACA65595984</key>
+		<key>DE3EB1E8-D0ED-4278-A933-CD7C4F725CF5</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>148D470F-7230-4674-9142-CACA65595984</string>
+	<string>DE3EB1E8-D0ED-4278-A933-CD7C4F725CF5</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>148D470F-7230-4674-9142-CACA65595984</string>
+			<string>DE3EB1E8-D0ED-4278-A933-CD7C4F725CF5</string>
 			<key>IDESourceControlWCCName</key>
 			<string>MACProjects</string>
 		</dict>
