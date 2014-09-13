@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C2961C619C3FFD000CFAB85 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2961C519C3FFD000CFAB85 /* default.png */; };
+		0C2961CA19C42CA300CFAB85 /* AgentDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2961C919C42CA300CFAB85 /* AgentDetailsTableViewController.m */; };
+		0C2961CD19C4358600CFAB85 /* Remittance.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2961CC19C4358600CFAB85 /* Remittance.m */; };
+		0C2961CF19C45B3600CFAB85 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2961CE19C45B3600CFAB85 /* Social.framework */; };
 		0CB5131819C2EAB7006D1653 /* RemittanceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */; };
-		0CB5131B19C2F7C3006D1653 /* Remittance.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5131A19C2F7C3006D1653 /* Remittance.m */; };
 		0CB5131F19C36F40006D1653 /* Malaysia.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB5131D19C36F40006D1653 /* Malaysia.png */; };
 		0CB5132019C36F40006D1653 /* Singapore.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB5131E19C36F40006D1653 /* Singapore.png */; };
 		0CB5132219C37057006D1653 /* Hong Kong.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB5132119C37057006D1653 /* Hong Kong.png */; };
@@ -48,10 +51,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C2961C519C3FFD000CFAB85 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		0C2961C819C42CA300CFAB85 /* AgentDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgentDetailsTableViewController.h; sourceTree = "<group>"; };
+		0C2961C919C42CA300CFAB85 /* AgentDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgentDetailsTableViewController.m; sourceTree = "<group>"; };
+		0C2961CB19C4358600CFAB85 /* Remittance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Remittance.h; sourceTree = "<group>"; };
+		0C2961CC19C4358600CFAB85 /* Remittance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Remittance.m; sourceTree = "<group>"; };
+		0C2961CE19C45B3600CFAB85 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		0CB5131619C2EAB7006D1653 /* RemittanceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemittanceTableViewController.h; sourceTree = "<group>"; };
 		0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemittanceTableViewController.m; sourceTree = "<group>"; };
-		0CB5131919C2F7C3006D1653 /* Remittance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Remittance.h; sourceTree = "<group>"; };
-		0CB5131A19C2F7C3006D1653 /* Remittance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Remittance.m; sourceTree = "<group>"; };
 		0CB5131D19C36F40006D1653 /* Malaysia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Malaysia.png; sourceTree = "<group>"; };
 		0CB5131E19C36F40006D1653 /* Singapore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Singapore.png; sourceTree = "<group>"; };
 		0CB5132119C37057006D1653 /* Hong Kong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hong Kong.png"; sourceTree = "<group>"; };
@@ -93,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C2961CF19C45B3600CFAB85 /* Social.framework in Frameworks */,
 				0CD49B9A19ADDFFB0078920D /* CoreGraphics.framework in Frameworks */,
 				0CD49B9E19ADDFFB0078920D /* CoreData.framework in Frameworks */,
 				0CD49B9C19ADDFFB0078920D /* UIKit.framework in Frameworks */,
@@ -114,9 +122,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C2961C719C42C7900CFAB85 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0CD49BD719ADEB650078920D /* DetailsTableViewController.h */,
+				0CD49BD819ADEB650078920D /* DetailsTableViewController.m */,
+				0CD49BD119ADE3FD0078920D /* CountryTableViewController.h */,
+				0CD49BD219ADE3FD0078920D /* CountryTableViewController.m */,
+				0CB5131619C2EAB7006D1653 /* RemittanceTableViewController.h */,
+				0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */,
+				0CF7AD1019C2D43C0059EB6C /* CountryMainTableViewController.h */,
+				0CF7AD1119C2D43C0059EB6C /* CountryMainTableViewController.m */,
+				0C2961C819C42CA300CFAB85 /* AgentDetailsTableViewController.h */,
+				0C2961C919C42CA300CFAB85 /* AgentDetailsTableViewController.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
 		0CB5131C19C36F40006D1653 /* flags */ = {
 			isa = PBXGroup;
 			children = (
+				0C2961C519C3FFD000CFAB85 /* default.png */,
 				0CB5132319C37118006D1653 /* Saudi Arabia.png */,
 				0CB5132119C37057006D1653 /* Hong Kong.png */,
 				0CB5131D19C36F40006D1653 /* Malaysia.png */,
@@ -137,16 +163,9 @@
 		0CD49B8B19ADDFFB0078920D = {
 			isa = PBXGroup;
 			children = (
+				0C2961C719C42C7900CFAB85 /* Home */,
 				0CB5131C19C36F40006D1653 /* flags */,
-				0CB5131619C2EAB7006D1653 /* RemittanceTableViewController.h */,
-				0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */,
-				0CF7AD1019C2D43C0059EB6C /* CountryMainTableViewController.h */,
-				0CF7AD1119C2D43C0059EB6C /* CountryMainTableViewController.m */,
 				0CC5FE1719C2B34500323A7C /* Database */,
-				0CD49BD719ADEB650078920D /* DetailsTableViewController.h */,
-				0CD49BD819ADEB650078920D /* DetailsTableViewController.m */,
-				0CD49BD119ADE3FD0078920D /* CountryTableViewController.h */,
-				0CD49BD219ADE3FD0078920D /* CountryTableViewController.m */,
 				0CD49B9F19ADDFFB0078920D /* ToPeso */,
 				0CD49BBC19ADDFFB0078920D /* ToPesoTests */,
 				0CD49B9619ADDFFB0078920D /* Frameworks */,
@@ -166,6 +185,7 @@
 		0CD49B9619ADDFFB0078920D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C2961CE19C45B3600CFAB85 /* Social.framework */,
 				0CD49B9719ADDFFB0078920D /* Foundation.framework */,
 				0CD49B9919ADDFFB0078920D /* CoreGraphics.framework */,
 				0CD49B9B19ADDFFB0078920D /* UIKit.framework */,
@@ -182,9 +202,9 @@
 				0CD49BA819ADDFFB0078920D /* com_pachie_topesoAppDelegate.h */,
 				0CD49BA919ADDFFB0078920D /* com_pachie_topesoAppDelegate.m */,
 				0CD49BAE19ADDFFB0078920D /* Images.xcassets */,
+				0C2961CB19C4358600CFAB85 /* Remittance.h */,
+				0C2961CC19C4358600CFAB85 /* Remittance.m */,
 				0CD49BAB19ADDFFB0078920D /* ToPeso.xcdatamodeld */,
-				0CB5131919C2F7C3006D1653 /* Remittance.h */,
-				0CB5131A19C2F7C3006D1653 /* Remittance.m */,
 				0CD49BA019ADDFFB0078920D /* Supporting Files */,
 				0CD49BCF19ADE2D70078920D /* Storyboard.storyboard */,
 			);
@@ -312,6 +332,7 @@
 				0CD49BD019ADE2D70078920D /* Storyboard.storyboard in Resources */,
 				0CB5132019C36F40006D1653 /* Singapore.png in Resources */,
 				0CD49BCE19ADE0300078920D /* View.xib in Resources */,
+				0C2961C619C3FFD000CFAB85 /* default.png in Resources */,
 				0CD49BAF19ADDFFB0078920D /* Images.xcassets in Resources */,
 				0CB5131F19C36F40006D1653 /* Malaysia.png in Resources */,
 			);
@@ -334,12 +355,13 @@
 			files = (
 				0CD49BAA19ADDFFB0078920D /* com_pachie_topesoAppDelegate.m in Sources */,
 				0CC5FE1619C2B33B00323A7C /* CoreDataToPeso.m in Sources */,
+				0C2961CA19C42CA300CFAB85 /* AgentDetailsTableViewController.m in Sources */,
 				0CD49BA619ADDFFB0078920D /* main.m in Sources */,
 				0CB5131819C2EAB7006D1653 /* RemittanceTableViewController.m in Sources */,
 				0CD49BD319ADE3FD0078920D /* CountryTableViewController.m in Sources */,
+				0C2961CD19C4358600CFAB85 /* Remittance.m in Sources */,
 				0CD49BD619ADE5230078920D /* CustomTableViewCell.m in Sources */,
 				0CD49BD919ADEB650078920D /* DetailsTableViewController.m in Sources */,
-				0CB5131B19C2F7C3006D1653 /* Remittance.m in Sources */,
 				0CF7AD1219C2D43C0059EB6C /* CountryMainTableViewController.m in Sources */,
 				0CD49BAD19ADDFFB0078920D /* ToPeso.xcdatamodeld in Sources */,
 			);
@@ -461,6 +483,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToPeso/ToPeso-Prefix.pch";
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -474,6 +497,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToPeso/ToPeso-Prefix.pch";
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

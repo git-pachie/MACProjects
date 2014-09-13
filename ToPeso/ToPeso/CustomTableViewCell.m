@@ -7,6 +7,7 @@
 //
 
 #import "CustomTableViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @implementation CustomTableViewCell
@@ -22,7 +23,14 @@
 
 - (void)awakeFromNib
 {
-    // Initialization code
+//    // Initialization code
+//    self.imageView.image = [UIImage imageNamed:@"default.png"];
+//    self.imageView.layer.cornerRadius = 10;
+//    self.imageView.layer.borderWidth= 1;
+//    self.imageView.clipsToBounds = YES;
+    
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblRemmitanceName;
 @property (weak, nonatomic) IBOutlet UIImageView *imgRemittanceImage;
 @property (weak, nonatomic) IBOutlet UILabel *lblRate;
+@property (weak, nonatomic) IBOutlet UILabel *lbltime;
 
 
 @end

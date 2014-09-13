@@ -10,6 +10,7 @@
 #import "com_pachie_topesoAppDelegate.h"
 #import "CustomTableViewCell.h"
 #import "Remittance.h"
+#import "AgentDetailsTableViewController.h"
 
 @interface RemittanceTableViewController ()
 
@@ -127,7 +128,28 @@
     
     NSString *str = [numberformatter stringFromNumber:rem.rate];
     
-    cell.lblRate.text =[NSString stringWithFormat:@"%@ as of June 24, 2014 08:00 AM",str];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    NSDateFormatter *timeFormat = [[NSDateFormatter alloc]init];
+    
+    [dateFormat setDateFormat:@"dd MMM yyyy"];
+    [timeFormat setDateFormat:@"hh:mm a"];
+    
+    NSString *strDate = [dateFormat stringFromDate:rem.asofDate];
+    NSString *strTime = [timeFormat stringFromDate:rem.asofDate];
+    
+    cell.lblRate.text =[NSString stringWithFormat:@"%@ as of %@",str,strDate];
+    cell.lbltime.text = strTime;
+    
+    
+
+   
+    
+//    cell.imageView.image = [UIImage imageNamed:@"default.png"];
+    cell.imgRemittanceImage.layer.cornerRadius = 10;
+    cell.imgRemittanceImage.clipsToBounds = YES;
+    cell.imgRemittanceImage.layer.borderWidth = .4;
+    cell.imgRemittanceImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -135,9 +157,30 @@
                             
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"agentDetails" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqual:@"agentDetails"]) {
+        
+        NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
+        
+        AgentDetailsTableViewController *agent = (AgentDetailsTableViewController *)segue.destinationViewController;
+        
+        Remittance *rem = [self.fetched objectAtIndexPath:indexpath];
+        
+        rem  = [self.fetched objectAtIndexPath:indexpath];
+        
+        agent.remitanceAgent = rem;
+        
+    }
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 54;
+    return 56;
 }
 
 #pragma mark -fetched controller
