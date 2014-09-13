@@ -37,6 +37,15 @@
 		0CD49BD319ADE3FD0078920D /* CountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD49BD219ADE3FD0078920D /* CountryTableViewController.m */; };
 		0CD49BD619ADE5230078920D /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD49BD519ADE5230078920D /* CustomTableViewCell.m */; };
 		0CD49BD919ADEB650078920D /* DetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD49BD819ADEB650078920D /* DetailsTableViewController.m */; };
+		0CF2FF6919C49F190071BDC6 /* Launch_R4.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2FF6519C49F190071BDC6 /* Launch_R4.png */; };
+		0CF2FF6A19C49F190071BDC6 /* ToPiso_80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2FF6619C49F190071BDC6 /* ToPiso_80x80.png */; };
+		0CF2FF6B19C49F190071BDC6 /* ToPiso_120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2FF6719C49F190071BDC6 /* ToPiso_120x120.png */; };
+		0CF2FF6C19C49F190071BDC6 /* ToPiso_5858.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2FF6819C49F190071BDC6 /* ToPiso_5858.png */; };
+		0CF2FF6E19C4A28E0071BDC6 /* Launch__64x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2FF6D19C4A28E0071BDC6 /* Launch__64x960.png */; };
+		0CF2FF7019C4AA8A0071BDC6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF2FF6F19C4AA8A0071BDC6 /* MessageUI.framework */; };
+		0CF2FF7B19C4BE210071BDC6 /* facebook2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2FF7819C4BE210071BDC6 /* facebook2.png */; };
+		0CF2FF7C19C4BE210071BDC6 /* imessage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2FF7919C4BE210071BDC6 /* imessage2.png */; };
+		0CF2FF7D19C4BE210071BDC6 /* twitter_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2FF7A19C4BE210071BDC6 /* twitter_2.png */; };
 		0CF7AD1219C2D43C0059EB6C /* CountryMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7AD1119C2D43C0059EB6C /* CountryMainTableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +100,15 @@
 		0CD49BD519ADE5230078920D /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		0CD49BD719ADEB650078920D /* DetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsTableViewController.h; sourceTree = "<group>"; };
 		0CD49BD819ADEB650078920D /* DetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsTableViewController.m; sourceTree = "<group>"; };
+		0CF2FF6519C49F190071BDC6 /* Launch_R4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launch_R4.png; sourceTree = "<group>"; };
+		0CF2FF6619C49F190071BDC6 /* ToPiso_80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToPiso_80x80.png; sourceTree = "<group>"; };
+		0CF2FF6719C49F190071BDC6 /* ToPiso_120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToPiso_120x120.png; sourceTree = "<group>"; };
+		0CF2FF6819C49F190071BDC6 /* ToPiso_5858.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToPiso_5858.png; sourceTree = "<group>"; };
+		0CF2FF6D19C4A28E0071BDC6 /* Launch__64x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launch__64x960.png; sourceTree = "<group>"; };
+		0CF2FF6F19C4AA8A0071BDC6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		0CF2FF7819C4BE210071BDC6 /* facebook2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook2.png; sourceTree = "<group>"; };
+		0CF2FF7919C4BE210071BDC6 /* imessage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imessage2.png; sourceTree = "<group>"; };
+		0CF2FF7A19C4BE210071BDC6 /* twitter_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_2.png; sourceTree = "<group>"; };
 		0CF7AD1019C2D43C0059EB6C /* CountryMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryMainTableViewController.h; sourceTree = "<group>"; };
 		0CF7AD1119C2D43C0059EB6C /* CountryMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryMainTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CF2FF7019C4AA8A0071BDC6 /* MessageUI.framework in Frameworks */,
 				0C2961CF19C45B3600CFAB85 /* Social.framework in Frameworks */,
 				0CD49B9A19ADDFFB0078920D /* CoreGraphics.framework in Frameworks */,
 				0CD49B9E19ADDFFB0078920D /* CoreData.framework in Frameworks */,
@@ -142,6 +161,8 @@
 		0CB5131C19C36F40006D1653 /* flags */ = {
 			isa = PBXGroup;
 			children = (
+				0CF2FF7119C4B1C90071BDC6 /* Social */,
+				0CF2FF5619C47AEC0071BDC6 /* AppIcons */,
 				0C2961C519C3FFD000CFAB85 /* default.png */,
 				0CB5132319C37118006D1653 /* Saudi Arabia.png */,
 				0CB5132119C37057006D1653 /* Hong Kong.png */,
@@ -185,6 +206,7 @@
 		0CD49B9619ADDFFB0078920D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0CF2FF6F19C4AA8A0071BDC6 /* MessageUI.framework */,
 				0C2961CE19C45B3600CFAB85 /* Social.framework */,
 				0CD49B9719ADDFFB0078920D /* Foundation.framework */,
 				0CD49B9919ADDFFB0078920D /* CoreGraphics.framework */,
@@ -250,6 +272,28 @@
 			name = CustomCell;
 			sourceTree = "<group>";
 		};
+		0CF2FF5619C47AEC0071BDC6 /* AppIcons */ = {
+			isa = PBXGroup;
+			children = (
+				0CF2FF6D19C4A28E0071BDC6 /* Launch__64x960.png */,
+				0CF2FF6519C49F190071BDC6 /* Launch_R4.png */,
+				0CF2FF6619C49F190071BDC6 /* ToPiso_80x80.png */,
+				0CF2FF6719C49F190071BDC6 /* ToPiso_120x120.png */,
+				0CF2FF6819C49F190071BDC6 /* ToPiso_5858.png */,
+			);
+			name = AppIcons;
+			sourceTree = "<group>";
+		};
+		0CF2FF7119C4B1C90071BDC6 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				0CF2FF7819C4BE210071BDC6 /* facebook2.png */,
+				0CF2FF7919C4BE210071BDC6 /* imessage2.png */,
+				0CF2FF7A19C4BE210071BDC6 /* twitter_2.png */,
+			);
+			name = Social;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -298,6 +342,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Private;
 				TargetAttributes = {
+					0CD49B9319ADDFFB0078920D = {
+						DevelopmentTeam = R3F22UC8DK;
+					};
 					0CD49BB319ADDFFB0078920D = {
 						TestTargetID = 0CD49B9319ADDFFB0078920D;
 					};
@@ -326,6 +373,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CF2FF7C19C4BE210071BDC6 /* imessage2.png in Resources */,
+				0CF2FF7B19C4BE210071BDC6 /* facebook2.png in Resources */,
 				0CD49BA419ADDFFB0078920D /* InfoPlist.strings in Resources */,
 				0CB5132419C37118006D1653 /* Saudi Arabia.png in Resources */,
 				0CB5132219C37057006D1653 /* Hong Kong.png in Resources */,
@@ -333,8 +382,14 @@
 				0CB5132019C36F40006D1653 /* Singapore.png in Resources */,
 				0CD49BCE19ADE0300078920D /* View.xib in Resources */,
 				0C2961C619C3FFD000CFAB85 /* default.png in Resources */,
+				0CF2FF6B19C49F190071BDC6 /* ToPiso_120x120.png in Resources */,
+				0CF2FF6A19C49F190071BDC6 /* ToPiso_80x80.png in Resources */,
+				0CF2FF7D19C4BE210071BDC6 /* twitter_2.png in Resources */,
+				0CF2FF6919C49F190071BDC6 /* Launch_R4.png in Resources */,
 				0CD49BAF19ADDFFB0078920D /* Images.xcassets in Resources */,
+				0CF2FF6E19C4A28E0071BDC6 /* Launch__64x960.png in Resources */,
 				0CB5131F19C36F40006D1653 /* Malaysia.png in Resources */,
+				0CF2FF6C19C49F190071BDC6 /* ToPiso_5858.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,10 +535,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Archie Angeles (A4JFXR598D)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToPeso/ToPeso-Prefix.pch";
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -494,10 +550,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Archie Angeles (A4JFXR598D)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToPeso/ToPeso-Prefix.pch";
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

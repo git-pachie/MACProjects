@@ -9,6 +9,7 @@
 #import "AgentDetailsTableViewController.h"
 #import <Social/Social.h>
 
+
 @interface AgentDetailsTableViewController ()
 
 @end
@@ -50,6 +51,10 @@
     
     
     
+    [self.btnFB setFrame:CGRectMake(0, 0, 50, 50)];
+    [self.btnTweeter setFrame:CGRectMake(0, 0, 50, 50)];
+    
+    
     
 }
 
@@ -88,7 +93,25 @@
     {
         SLComposeViewController *facebook = [SLComposeViewController
                                                composeViewControllerForServiceType:SLServiceTypeFacebook];
-        [facebook setInitialText:@"Great fun to learn iOS programming at appcoda.com!"];
+        
+        
+        [facebook setInitialText:[NSString stringWithFormat:@"%@ %@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso.",self.remitanceAgent.currencyKey,@"123.25",self.remitanceAgent.countryCode,self.remitanceAgent.remittanceName]];
+        
+        [facebook addImage:[UIImage imageNamed:@"ToPiso_120x120.png"]];
+        [facebook addURL:[NSURL URLWithString:@"http://www.toIpiso.com"]];
+        
+        
+        UIImageView *imgv = [[UIImageView alloc]init];
+        imgv.image = [UIImage imageNamed:@"ToPiso_120x120.png"];
+        imgv.layer.cornerRadius = 10;
+        imgv.clipsToBounds = YES;
+        imgv.layer.borderWidth = 1;
+        [imgv.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+        
+        
+        [facebook addImage:imgv.image];
+        [facebook addURL:[NSURL URLWithString:@"http://www.toPiso.com"]];
+        
         [self presentViewController:facebook animated:YES completion:nil];
     }
     else
@@ -107,8 +130,19 @@
     {
         SLComposeViewController *tweeter = [SLComposeViewController
                                              composeViewControllerForServiceType:SLServiceTypeTwitter];
-        [tweeter setInitialText:@"Great fun to learn iOS programming at appcoda.com!"];
-        [self presentViewController:tweeter animated:YES completion:nil];
+        [tweeter setInitialText:[NSString stringWithFormat:@"%@ %@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso. \n",self.remitanceAgent.currencyKey,@"123.25",self.remitanceAgent.countryCode,self.remitanceAgent.remittanceName]];
+        
+        UIImageView *imgv = [[UIImageView alloc]init];
+        imgv.image = [UIImage imageNamed:@"ToPiso_120x120.png"];
+        imgv.layer.cornerRadius = 10;
+        imgv.clipsToBounds = YES;
+        imgv.layer.borderWidth = 0.4;
+        [imgv.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+        
+        
+        [tweeter addImage:imgv.image];
+        [tweeter addURL:[NSURL URLWithString:@"http://www.toPiso.com"]];
+        
     }
     else
     {
@@ -119,6 +153,66 @@
 }
 - (IBAction)acFlicker:(id)sender {
     
-   
+    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+	if([MFMessageComposeViewController canSendText])
+	{
+		controller.body = @"SGD-PHP rate is 25.60 for Kabayan Remittance in Singapore as of July 25, 2014";
+		controller.recipients = [NSArray arrayWithObjects:@"85713568", nil];
+		controller.messageComposeDelegate = self;
+		//[self presentModalViewController:controller animated:YES];
+        
+        
+        
+        
+        [self presentViewController:controller animated:YES completion:nil];
+	}
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+	switch (result) {
+		case MessageComposeResultCancelled:
+        {
+            
+			NSLog(@"Cancelled");
+			break;
+            case MessageComposeResultFailed:
+		
+            NSLog(@"Message failed");
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"toPiso" message:@"Unknown Error"
+                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alert show];
+                
+            });
+            
+            break;
+            
+            
+        }
+        case MessageComposeResultSent:
+        {
+            NSLog(@"Message sent");
+            break;
+		}
+		default:
+        {
+			break;
+        }
+	}
+    
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:    (NSInteger)buttonIndex
+{
+    if(buttonIndex==0)
+    {
+        //Code that will run after you press ok button
+        //[self.navigationController popViewControllerAnimated:YES ];
+        //[self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 @end

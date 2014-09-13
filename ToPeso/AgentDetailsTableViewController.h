@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Remittance.h"
-@interface AgentDetailsTableViewController : UITableViewController
+#import <MessageUI/MessageUI.h>
+@interface AgentDetailsTableViewController : UITableViewController <MFMessageComposeViewControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *imgAgentPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *lblAgentName;
 @property (weak, nonatomic) IBOutlet UILabel *lblAgentAddress;
