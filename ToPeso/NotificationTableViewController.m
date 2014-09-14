@@ -1,18 +1,18 @@
 //
-//  DetailsTableViewController.m
+//  NotificationTableViewController.m
 //  ToPeso
 //
-//  Created by pachie on 27/8/14.
+//  Created by pachie on 15/9/14.
 //  Copyright (c) 2014 Private. All rights reserved.
 //
 
-#import "DetailsTableViewController.h"
+#import "NotificationTableViewController.h"
 
-@interface DetailsTableViewController ()
+@interface NotificationTableViewController ()
 
 @end
 
-@implementation DetailsTableViewController
+@implementation NotificationTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

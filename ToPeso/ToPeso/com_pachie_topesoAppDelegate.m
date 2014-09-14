@@ -22,8 +22,8 @@
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [self.window makeKeyAndVisible];
     
-    CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
-    [core insertTempData];
+//    CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
+//    [core insertTempData];
     
     return YES;
 }

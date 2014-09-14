@@ -128,9 +128,9 @@
         
         RemittanceTableViewController *rem = (RemittanceTableViewController *)segue.destinationViewController;
         
-        NSManagedObject *m = [[self fectched]objectAtIndexPath:indexPath];
+        Country *m = [[self fectched]objectAtIndexPath:indexPath];
         
-        rem.countryCode = [m valueForKey:@"countryCode"];
+        rem.country = m;//[m valueForKey:@"countryCode"];
         
         
     }

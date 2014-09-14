@@ -8,9 +8,17 @@
 
 #import "AgentDetailsTableViewController.h"
 #import <Social/Social.h>
-
+#import "CoreDataToPeso.h"
+#import "com_pachie_topesoAppDelegate.h"
+#import "EntNotification.h"
 
 @interface AgentDetailsTableViewController ()
+
+{
+    com_pachie_topesoAppDelegate * delegate;
+    CoreDataToPeso *core;
+    EntNotification *notifcation;
+}
 
 @end
 
@@ -28,6 +36,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    core = [[CoreDataToPeso alloc]init];
     
     self.lblAgentName.text = self.remitanceAgent.remittanceName;
     self.lblAgentAddress.text = self.remitanceAgent.address;
@@ -53,8 +65,19 @@
     
     [self.btnFB setFrame:CGRectMake(0, 0, 50, 50)];
     [self.btnTweeter setFrame:CGRectMake(0, 0, 50, 50)];
+    [self.btnEmail setFrame:CGRectMake(0,0,50,50)];
+    [self.btnSMS setFrame:CGRectMake(0,0,50,50)];
+   
+    notifcation = [[EntNotification alloc]init];
     
-    
+    notifcation.countryCode =  self.remitanceAgent.countryCode;
+    notifcation.remittanceGUID = self.remitanceAgent.remmittanceGUID;
+    notifcation.currencyKey = self.remitanceAgent.currencyKey;
+    notifcation.lastUpdated= [NSDate date];
+    notifcation.countryName = self.country.countryName;
+    notifcation.agentName = self.remitanceAgent.remittanceName;
+
+    self.swNotification.on = [core isNotificationExist:notifcation];
     
 }
 
@@ -75,7 +98,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return 3;
+    return 4;
 }
 
 
@@ -95,22 +118,24 @@
                                                composeViewControllerForServiceType:SLServiceTypeFacebook];
         
         
-        [facebook setInitialText:[NSString stringWithFormat:@"%@ %@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso.",self.remitanceAgent.currencyKey,@"123.25",self.remitanceAgent.countryCode,self.remitanceAgent.remittanceName]];
-        
-        [facebook addImage:[UIImage imageNamed:@"ToPiso_120x120.png"]];
-        [facebook addURL:[NSURL URLWithString:@"http://www.toIpiso.com"]];
-        
-        
-        UIImageView *imgv = [[UIImageView alloc]init];
-        imgv.image = [UIImage imageNamed:@"ToPiso_120x120.png"];
-        imgv.layer.cornerRadius = 10;
-        imgv.clipsToBounds = YES;
-        imgv.layer.borderWidth = 1;
-        [imgv.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-        
-        
-        [facebook addImage:imgv.image];
-        [facebook addURL:[NSURL URLWithString:@"http://www.toPiso.com"]];
+//        [facebook setInitialText:[NSString stringWithFormat:@"%@ %@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso.",self.remitanceAgent.currencyKey,@"123.25",self.remitanceAgent.countryCode,self.remitanceAgent.remittanceName]];
+//        
+//        [facebook addImage:[UIImage imageNamed:@"ToPiso_120x120.png"]];
+//        [facebook addURL:[NSURL URLWithString:@"http://www.toIpiso.com"]];
+//        
+//        
+//        UIImageView *imgv = [[UIImageView alloc]init];
+//        imgv.image = [UIImage imageNamed:@"ToPiso_120x120.png"];
+//        imgv.layer.cornerRadius = 10;
+//        imgv.clipsToBounds = YES;
+//        imgv.layer.borderWidth = 1;
+//        [imgv.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+//        
+//        
+//        [facebook addImage:imgv.image];
+//        [facebook addURL:[NSURL URLWithString:@"http://www.toPiso.com"]];
+
+        [self prepareSocialMessage:facebook];
         
         [self presentViewController:facebook animated:YES completion:nil];
     }
@@ -130,19 +155,28 @@
     {
         SLComposeViewController *tweeter = [SLComposeViewController
                                              composeViewControllerForServiceType:SLServiceTypeTwitter];
-        [tweeter setInitialText:[NSString stringWithFormat:@"%@ %@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso. \n",self.remitanceAgent.currencyKey,@"123.25",self.remitanceAgent.countryCode,self.remitanceAgent.remittanceName]];
         
-        UIImageView *imgv = [[UIImageView alloc]init];
-        imgv.image = [UIImage imageNamed:@"ToPiso_120x120.png"];
-        imgv.layer.cornerRadius = 10;
-        imgv.clipsToBounds = YES;
-        imgv.layer.borderWidth = 0.4;
-        [imgv.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+//        NSNumberFormatter *numFormat = [[NSNumberFormatter alloc]init];
+//        [numFormat setNumberStyle:NSNumberFormatterDecimalStyle];
+//        
+//        NSString *strNumber = [numFormat stringFromNumber:self.remitanceAgent.rate];
+//        
+//        [tweeter setInitialText:[NSString stringWithFormat:@"%@ %@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso. \n",self.remitanceAgent.currencyKey,strNumber,self.remitanceAgent.countryCode,self.remitanceAgent.remittanceName]];
+//        
+//        UIImageView *imgv = [[UIImageView alloc]init];
+//        imgv.image = [UIImage imageNamed:@"ToPiso_120x120.png"];
+//        imgv.layer.cornerRadius = 10;
+//        imgv.clipsToBounds = YES;
+//        imgv.layer.borderWidth = 0.4;
+//        [imgv.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+//        
+//        
+//        [tweeter addImage:imgv.image];
+//        [tweeter addURL:[NSURL URLWithString:@"http://www.toPiso.com"]];
         
+        [self prepareSocialMessage:tweeter];
         
-        [tweeter addImage:imgv.image];
-        [tweeter addURL:[NSURL URLWithString:@"http://www.toPiso.com"]];
-        
+        [self presentViewController:tweeter animated:YES completion:nil];
     }
     else
     {
@@ -151,17 +185,73 @@
     }
     
 }
+
+- (IBAction)acEmail:(id)sender {
+    // Email Subject
+    NSString *emailTitle = @"toPiso iOS application";
+    // Email Content
+    NSString *messageBody =[NSString stringWithFormat:@"<h4>%@</h4>",[self generateSMSBody]] ; // Change the message body to HTML
+    // To address
+    //NSArray *toRecipents = [NSArray arrayWithObject:@"support@appcoda.com"];
+    
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:YES];
+    //[mc setToRecipients:toRecipents];
+    
+    // Present mail view controller on screen
+    [self presentViewController:mc animated:YES completion:NULL];
+}
+
+- (IBAction)swNotification:(id)sender {
+    
+    
+    
+    
+    if (self.swNotification.on) {
+        [core insertUpdateNotification:notifcation EnableDisable:YES];
+    }
+    else
+    {
+        [core insertUpdateNotification:notifcation EnableDisable:NO];
+    }
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+
 - (IBAction)acFlicker:(id)sender {
     
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
 	if([MFMessageComposeViewController canSendText])
 	{
-		controller.body = @"SGD-PHP rate is 25.60 for Kabayan Remittance in Singapore as of July 25, 2014";
-		controller.recipients = [NSArray arrayWithObjects:@"85713568", nil];
+		controller.body = [self generateSMSBody];
+		//controller.recipients = [NSArray arrayWithObjects:@"85713568", nil];
 		controller.messageComposeDelegate = self;
 		//[self presentModalViewController:controller animated:YES];
-        
-        
         
         
         [self presentViewController:controller animated:YES completion:nil];
@@ -170,40 +260,24 @@
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
-	switch (result) {
-		case MessageComposeResultCancelled:
-        {
-            
-			NSLog(@"Cancelled");
-			break;
-            case MessageComposeResultFailed:
-		
-            NSLog(@"Message failed");
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"toPiso" message:@"Unknown Error"
-                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-                [alert show];
-                
-            });
-            
-            break;
-            
-            
-        }
+    switch (result) {
         case MessageComposeResultSent:
-        {
-            NSLog(@"Message sent");
+            NSLog(@"SENT");
+            //[self dismissViewControllerAnimated:YES completion:nil];
             break;
-		}
-		default:
-        {
-			break;
-        }
-	}
+        case MessageComposeResultFailed:
+            NSLog(@"FAILED");
+            //[self dismissViewControllerAnimated:YES completion:nil];
+            break;
+        case MessageComposeResultCancelled:
+            NSLog(@"CANCELLED");
+            
+            break;
+    }
     
-	[self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    
+    
 }
 
 -(void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:    (NSInteger)buttonIndex
@@ -214,5 +288,43 @@
         //[self.navigationController popViewControllerAnimated:YES ];
         //[self.navigationController popToRootViewControllerAnimated:YES];
     }
+}
+
+-(void)prepareSocialMessage:(SLComposeViewController*)controller
+{
+    
+    NSNumberFormatter *numFormat = [[NSNumberFormatter alloc]init];
+    [numFormat setNumberStyle:NSNumberFormatterDecimalStyle];
+    
+    NSString *strNumber = [numFormat stringFromNumber:self.remitanceAgent.rate];
+    
+    
+    [controller setInitialText:[NSString stringWithFormat:@"%@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso.",self.remitanceAgent.currencyKey,strNumber,self.remitanceAgent.remittanceName]];
+    
+    [controller addImage:[UIImage imageNamed:@"ToPiso_120x120.png"]];
+    [controller addURL:[NSURL URLWithString:@"http://www.toIpiso.com"]];
+    
+    
+    UIImageView *imgv = [[UIImageView alloc]init];
+    imgv.image = [UIImage imageNamed:@"ToPiso_120x120.png"];
+    imgv.layer.cornerRadius = 10;
+    imgv.clipsToBounds = YES;
+    imgv.layer.borderWidth = 1;
+    [imgv.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    
+    
+    [controller addImage:imgv.image];
+    [controller addURL:[NSURL URLWithString:@"http://www.toPiso.com"]];
+}
+-(NSString *)generateSMSBody
+{
+    NSNumberFormatter *numFormat = [[NSNumberFormatter alloc]init];
+    [numFormat setNumberStyle:NSNumberFormatterDecimalStyle];
+    
+    NSString *strNumber = [numFormat stringFromNumber:self.remitanceAgent.rate];
+    
+    
+    return [NSString stringWithFormat:@"%@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso.",self.remitanceAgent.currencyKey,strNumber,self.remitanceAgent.remittanceName];
+
 }
 @end

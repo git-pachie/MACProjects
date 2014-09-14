@@ -175,6 +175,7 @@
         rem  = [self.fetched objectAtIndexPath:indexpath];
         
         agent.remitanceAgent = rem;
+        agent.country = self.country;
         
     }
 }
@@ -232,7 +233,7 @@
     
     [request setSortDescriptors:[NSArray arrayWithObjects:sort1,sort2, nil]];
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"countryCode = %@",self.countryCode];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"countryCode = %@",self.country.countryCode];
     
     
     [request setPredicate:pred];

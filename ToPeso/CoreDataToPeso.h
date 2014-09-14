@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Notification.h"
+#import "EntNotification.h"
 
 
 @interface CoreDataToPeso : NSObject
@@ -18,6 +20,10 @@
 
 -(void)insertTempData;
 -(NSFetchedResultsController *)getCountry;
+
+-(BOOL)isNotificationExist :(EntNotification *)mynotification;
+
+-(void)insertUpdateNotification :(EntNotification *) mynotification EnableDisable:(BOOL)isEnabled;
 //-//(NSFetchedResultsController *)
 
 

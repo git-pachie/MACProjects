@@ -8,11 +8,15 @@
 
 #import "CoreDataToPeso.h"
 #import "com_pachie_topesoAppDelegate.h"
+#import "Notification.h"
+#import "EntNotification.h"
 
 @implementation CoreDataToPeso
 {
     com_pachie_topesoAppDelegate *delegate;
 }
+
+
 
 -(NSFetchedResultsController *)getCountry
 {
@@ -42,6 +46,8 @@
     return _fetchedController;
     
 }
+
+
 
 -(void)insertTempData
 {
@@ -82,6 +88,7 @@
     [newCountry setValue:@"SG"  forKey:@"countryCode"];
     [newCountry setValue:@"Singapore"  forKey:@"countryName"];
     [newCountry setValue:@"Singapore.png"  forKey:@"countryFlag"];
+    [newCountry setValue:[NSDate date]  forKey:@"lastModified"];
     
     newCountry = [NSEntityDescription insertNewObjectForEntityForName:@"Country" inManagedObjectContext:context];
     
@@ -89,6 +96,8 @@
     [newCountry setValue:@"MY"  forKey:@"countryCode"];
     [newCountry setValue:@"Malaysia"  forKey:@"countryName"];
     [newCountry setValue:@"Malaysia.png"  forKey:@"countryFlag"];
+    [newCountry setValue:[NSDate date]  forKey:@"lastModified"];
+    
 
     
     
@@ -97,18 +106,24 @@
     [newCountry setValue:@"HK"  forKey:@"countryCode"];
     [newCountry setValue:@"HongKong"  forKey:@"countryName"];
     [newCountry setValue:@"Hong Kong.png"  forKey:@"countryFlag"];
+    [newCountry setValue:[NSDate date]  forKey:@"lastModified"];
+    
     
     newCountry = [NSEntityDescription insertNewObjectForEntityForName:@"Country" inManagedObjectContext:context];
     
     [newCountry setValue:@"DB"  forKey:@"countryCode"];
     [newCountry setValue:@"Dubai"  forKey:@"countryName"];
     [newCountry setValue:@"Dubai.png"  forKey:@"countryFlag"];
+    [newCountry setValue:[NSDate date]  forKey:@"lastModified"];
+    
     
     
     newCountry = [NSEntityDescription insertNewObjectForEntityForName:@"Country" inManagedObjectContext:context];
     [newCountry setValue:@"SA"  forKey:@"countryCode"];
     [newCountry setValue:@"Saudi Arabia"  forKey:@"countryName"];
     [newCountry setValue:@"Saudi Arabia.png"  forKey:@"countryFlag"];
+    [newCountry setValue:[NSDate date]  forKey:@"lastModified"];
+    
     
     
     
@@ -252,5 +267,94 @@
     }
 }
 
+
+-(void)insertUpdateNotification :(EntNotification *) mynotification EnableDisable:(BOOL)isEnabled
+{
+    delegate = (com_pachie_topesoAppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    
+    NSError *error;
+    
+    if (isEnabled) {
+        
+        //check if notification already exist
+        if ([self isNotificationExist:mynotification]) {
+            return;
+        }
+        
+        NSEntityDescription *entity = [NSEntityDescription insertNewObjectForEntityForName:@"Notification" inManagedObjectContext:context];
+        
+        [entity setValue:mynotification.countryCode forKey:@"countryCode"];
+        [entity setValue:mynotification.remittanceGUID forKey:@"remittanceGUID"];
+        [entity setValue:mynotification.currencyKey forKey:@"currencyKey"];
+        [entity setValue:mynotification.lastUpdated forKey:@"lastUpdated"];
+        [entity setValue:mynotification.countryName forKey:@"countryName"];
+        [entity setValue:mynotification.agentName forKey:@"agentName"];
+        
+        if (![context save:&error]) {
+            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+        }
+    }
+    else
+    {
+        
+        
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc]init];
+        
+        [request setEntity:[NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context]];
+        
+        [request setPredicate:[NSPredicate predicateWithFormat:@"remittanceGUID ==%@",mynotification.remittanceGUID]];
+        
+        [request setIncludesPropertyValues:NO];
+        
+        NSArray *array = [context executeFetchRequest:request error:&error];
+        
+        for (NSManagedObject * mno in array)
+        {
+            [context deleteObject:mno];
+        }
+        
+        if (![context save:&error]) {
+            NSLog(@"Error deleting notification %@",error);
+        }
+        
+    }
+    
+}
+
+-(BOOL)isNotificationExist :(EntNotification *)entNotification
+{
+    
+    NSError *error;
+    delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    
+    [request setEntity:entity];
+    
+    [request setPredicate:[NSPredicate predicateWithFormat:@"remittanceGUID ==%@",entNotification.remittanceGUID]];
+    
+    
+    
+    if([[context executeFetchRequest:request error:&error] count]==0 )
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+    
+    
+    
+    //return false;
+    
+}
 
 @end
