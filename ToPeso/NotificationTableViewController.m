@@ -7,9 +7,15 @@
 //
 
 #import "NotificationTableViewController.h"
+#import "com_pachie_topesoAppDelegate.h"
+#import "Notification.h"
+
 
 @interface NotificationTableViewController ()
-
+{
+    com_pachie_topesoAppDelegate *delegate;
+    
+}
 @end
 
 @implementation NotificationTableViewController
@@ -27,12 +33,22 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSError *error;
+    if (![[self fetched] performFetch:&error]) {
+        // Update to handle the error appropriately.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -44,28 +60,43 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    id sections = [[self fetched] sections];
+    
+    return  [sections count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetched sections] objectAtIndex:section];
+    
+    return [sectionInfo numberOfObjects];
+    
 }
 
-/*
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetched sections]objectAtIndex:section];
+    
+    return [sectionInfo name];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    
+    
+    Notification1 *noti = [self.fetched objectAtIndexPath:indexPath];
+    
+    cell.textLabel.text =  noti.agentName;
     
     // Configure the cell...
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -115,5 +146,37 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(NSFetchedResultsController *)fetched
+{
+    if (_fetched) {
+        return _fetched;
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:delegate.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+    //[fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"countryCode"
+                                                                   ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor1, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [delegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if (fetchedObjects == nil) {
+        NSLog(@"Error %@", error);
+    }
+    
+    _fetched = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:@"countryCode" cacheName:nil];
+    
+    _fetched.delegate = self;
+    
+    return _fetched;
+    
+}
 
 @end

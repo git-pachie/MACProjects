@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface MyNotification : NSManagedObject
+@interface Notification1 : NSManagedObject
 
 @property (nonatomic, retain) NSString * agentName;
 @property (nonatomic, retain) NSString * countryCode;

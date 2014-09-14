@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NotificationTableViewController : UITableViewController
+
+@interface NotificationTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+
+@property (nonatomic, strong)NSFetchedResultsController *fetched;
+
 
 @end

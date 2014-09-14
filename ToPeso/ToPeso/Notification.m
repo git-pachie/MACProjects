@@ -9,7 +9,7 @@
 #import "Notification.h"
 
 
-@implementation MyNotification
+@implementation Notification1
 
 @dynamic agentName;
 @dynamic countryCode;
