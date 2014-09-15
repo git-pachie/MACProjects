@@ -12,6 +12,8 @@
 @interface NotificationTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong)NSFetchedResultsController *fetched;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnEdit;
 
+- (IBAction)acEdit:(id)sender;
 
 @end
