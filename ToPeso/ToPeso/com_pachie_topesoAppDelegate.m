@@ -8,6 +8,7 @@
 
 #import "com_pachie_topesoAppDelegate.h"
 #import "CoreDataToPeso.h"
+#import "SendAndRequest.h"
 
 @implementation com_pachie_topesoAppDelegate
 
@@ -23,8 +24,14 @@
 //    [self.window makeKeyAndVisible];
     
     //CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
-   // [core insertTempData];
+    //[core insertTempData];
+    SendAndRequest *send = [[SendAndRequest alloc]init];
     
+    [send getLastesCountry:^(NSMutableArray *array) {
+        NSLog(@"%@",array);
+    }];
+    
+     
     return YES;
 }
 

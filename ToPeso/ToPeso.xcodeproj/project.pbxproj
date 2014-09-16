@@ -51,6 +51,7 @@
 		0CF2FF7B19C4BE210071BDC6 /* facebook2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2FF7819C4BE210071BDC6 /* facebook2.png */; };
 		0CF2FF7C19C4BE210071BDC6 /* imessage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2FF7919C4BE210071BDC6 /* imessage2.png */; };
 		0CF2FF7D19C4BE210071BDC6 /* twitter_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2FF7A19C4BE210071BDC6 /* twitter_2.png */; };
+		0CF3E94319C8493000C4844A /* SendAndRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF3E94219C8493000C4844A /* SendAndRequest.m */; };
 		0CF7AD1219C2D43C0059EB6C /* CountryMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7AD1119C2D43C0059EB6C /* CountryMainTableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,8 @@
 		0CF2FF7819C4BE210071BDC6 /* facebook2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook2.png; sourceTree = "<group>"; };
 		0CF2FF7919C4BE210071BDC6 /* imessage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imessage2.png; sourceTree = "<group>"; };
 		0CF2FF7A19C4BE210071BDC6 /* twitter_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_2.png; sourceTree = "<group>"; };
+		0CF3E94119C8493000C4844A /* SendAndRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendAndRequest.h; sourceTree = "<group>"; };
+		0CF3E94219C8493000C4844A /* SendAndRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendAndRequest.m; sourceTree = "<group>"; };
 		0CF7AD1019C2D43C0059EB6C /* CountryMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryMainTableViewController.h; sourceTree = "<group>"; };
 		0CF7AD1119C2D43C0059EB6C /* CountryMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryMainTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -203,6 +206,7 @@
 		0CD49B8B19ADDFFB0078920D = {
 			isa = PBXGroup;
 			children = (
+				0CF3E94019C8490200C4844A /* SendRequestJSON */,
 				0CC70C2819C6087400D0E2E1 /* Notification */,
 				0C2961C719C42C7900CFAB85 /* Home */,
 				0CB5131C19C36F40006D1653 /* flags */,
@@ -321,6 +325,15 @@
 				0CF2FF7A19C4BE210071BDC6 /* twitter_2.png */,
 			);
 			name = Social;
+			sourceTree = "<group>";
+		};
+		0CF3E94019C8490200C4844A /* SendRequestJSON */ = {
+			isa = PBXGroup;
+			children = (
+				0CF3E94119C8493000C4844A /* SendAndRequest.h */,
+				0CF3E94219C8493000C4844A /* SendAndRequest.m */,
+			);
+			name = SendRequestJSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,6 +464,7 @@
 				0CC01EC519C5F56200F3A2B5 /* EntNotification.m in Sources */,
 				0C2961CA19C42CA300CFAB85 /* AgentDetailsTableViewController.m in Sources */,
 				0CD49BA619ADDFFB0078920D /* main.m in Sources */,
+				0CF3E94319C8493000C4844A /* SendAndRequest.m in Sources */,
 				0CB5131819C2EAB7006D1653 /* RemittanceTableViewController.m in Sources */,
 				0CC70C2B19C6089300D0E2E1 /* NotificationTableViewController.m in Sources */,
 				0CD49BD619ADE5230078920D /* CustomTableViewCell.m in Sources */,

@@ -10,6 +10,7 @@
 #import "com_pachie_topesoAppDelegate.h"
 #import "Notification.h"
 #import "EntNotification.h"
+#import "Country.h"
 
 @implementation CoreDataToPeso
 {
@@ -83,12 +84,12 @@
     [context save:&saveError];
     
     
-    NSManagedObject *newCountry = [NSEntityDescription insertNewObjectForEntityForName:@"Country" inManagedObjectContext:context];
+     Country *newCountry = [NSEntityDescription insertNewObjectForEntityForName:@"Country" inManagedObjectContext:context];
     
-    [newCountry setValue:@"SG"  forKey:@"countryCode"];
-    [newCountry setValue:@"Singapore"  forKey:@"countryName"];
-    [newCountry setValue:@"Singapore.png"  forKey:@"countryFlag"];
-    [newCountry setValue:[NSDate date]  forKey:@"lastModified"];
+    [newCountry setCountryCode:@"SG"];
+    [newCountry setCountryName:@"Singapore"];
+    [newCountry setCountryFlag:@"Singapore.png"];
+    [newCountry setLastModified:[NSDate date]];
     
     newCountry = [NSEntityDescription insertNewObjectForEntityForName:@"Country" inManagedObjectContext:context];
     
@@ -354,6 +355,12 @@
     
     
     //return false;
+    
+}
+
+
+-(void)syncCoreData
+{
     
 }
 
