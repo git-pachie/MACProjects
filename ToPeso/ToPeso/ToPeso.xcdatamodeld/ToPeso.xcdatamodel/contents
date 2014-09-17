@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13D65" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Country" representedClassName="Country" syncable="YES">
         <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="countryFlag" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="countryName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isDeleted1" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastModified" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <entity name="Notification" representedClassName="MyNotification" syncable="YES">
@@ -28,8 +29,8 @@
         <attribute name="remmittanceGUID" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Country" positionX="-54" positionY="-9" width="128" height="103"/>
-        <element name="Remittance" positionX="-272" positionY="-153" width="128" height="210"/>
+        <element name="Country" positionX="-54" positionY="-9" width="128" height="120"/>
         <element name="Notification" positionX="-162" positionY="-54" width="128" height="133"/>
+        <element name="Remittance" positionX="-272" positionY="-153" width="128" height="210"/>
     </elements>
 </model>

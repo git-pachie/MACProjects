@@ -23,15 +23,23 @@
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [self.window makeKeyAndVisible];
     
-    //CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
-    //[core insertTempData];
-    SendAndRequest *send = [[SendAndRequest alloc]init];
+//    CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
+//    //[core insertTempData];
+//    SendAndRequest *send = [[SendAndRequest alloc]init];
+//    
+//    [send getLastesCountry:^(NSArray *array) {
+//        //NSLog(@"%@",array);
+//        
+//        for (NSArray *dic in array) {
+//            NSLog(@"%@",dic);
+//            
+//        }
+//        
+//        [core syncCoreData:array];
+//        
+//    }];
+//    
     
-    [send getLastesCountry:^(NSMutableArray *array) {
-        NSLog(@"%@",array);
-    }];
-    
-     
     return YES;
 }
 

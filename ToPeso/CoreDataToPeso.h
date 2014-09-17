@@ -26,5 +26,7 @@
 -(void)insertUpdateNotification :(EntNotification *) mynotification EnableDisable:(BOOL)isEnabled;
 //-//(NSFetchedResultsController *)
 
+-(void)syncCoreData :(NSArray *)arrayCountr;
+-(NSString *)getLastUpdatedCountry;
 
 @end

@@ -10,6 +10,6 @@
 
 @interface SendAndRequest : NSObject
 
-- (void)getLastesCountry :(void (^)(NSMutableArray *array))block;
+- (void)getLastesCountry :(NSString *)lastModified withBlock:(void (^)(NSArray *array ))block;
 
 @end

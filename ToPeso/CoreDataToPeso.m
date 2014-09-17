@@ -11,6 +11,7 @@
 #import "Notification.h"
 #import "EntNotification.h"
 #import "Country.h"
+#import "CommonFunction.h"
 
 @implementation CoreDataToPeso
 {
@@ -359,9 +360,109 @@
 }
 
 
--(void)syncCoreData
+-(void)syncCoreData :(NSArray *)arrayCountr 
 {
+     NSError *error;
+    
+    delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+    
+    for (NSDictionary *dic in arrayCountr) {
+        
+        
+        NSFetchRequest *fetch1 = [[NSFetchRequest alloc]initWithEntityName:@"Country"];
+        //NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"countryCode" ascending:YES];
+        
+        [fetch1 setPredicate:[NSPredicate predicateWithFormat:@"countryCode == [cd]%@",[dic objectForKey:@"countryCode"]]];
+        
+        NSArray *arraryobject = [context executeFetchRequest:fetch1 error:&error];
+        
+        NSDateFormatter *format  = [[NSDateFormatter alloc]init];
+        
+        [format setDateStyle:NSDateFormatterFullStyle];
+        
+        if ([arraryobject count] == 0) {
+            //new
+            
+            Country *newCountry = [NSEntityDescription insertNewObjectForEntityForName:@"Country" inManagedObjectContext:context];
+            
+            [newCountry setCountryName:[dic objectForKey:@"countryName"]];
+            [newCountry setCountryCode:[dic objectForKey:@"countryCode"]];
+            [newCountry setCountryFlag:[dic objectForKey:@"countryFlag"]];
+            [newCountry setIsDeleted1:[dic objectForKey:@"isDeleted"]];
+            
+            NSDate *lastmodified = [CommonFunction mfDateFromDotNetJSONString:[dic objectForKey:@"lastModified"]];
+            
+        
+            
+            [newCountry setLastModified:lastmodified];
+
+        }
+        else
+        {
+            //update
+            
+            
+            Country *newCountry = [arraryobject objectAtIndex:0];
+            [newCountry setCountryName:[dic objectForKey:@"countryName"]];
+            [newCountry setCountryCode:[dic objectForKey:@"countryCode"]];
+            [newCountry setCountryFlag:[dic objectForKey:@"countryFlag"]];
+            [newCountry setIsDeleted1:[dic objectForKey:@"isDeleted"]];
+            
+            
+            NSDate *lastmodified = [CommonFunction mfDateFromDotNetJSONString:[dic objectForKey:@"lastModified"]];
+            [newCountry setLastModified:lastmodified];
+            
+        }
+        
+        
+        if (![context save:&error]) {
+            NSLog(@"Error in country : %@", error);
+        }
+        
+    }
     
 }
+
+-(NSString *)getLastUpdatedCountry
+{
+    NSError *error;
+    
+    delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+
+    NSFetchRequest *fetch1 = [[NSFetchRequest alloc]initWithEntityName:@"Country"];
+    
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"lastModified" ascending:NO];
+    
+    [fetch1 setSortDescriptors:[NSArray arrayWithObjects:sort, nil]];
+   
+    
+    NSArray *arraryobject = [context executeFetchRequest:fetch1 error:&error];
+    
+    
+    if ([arraryobject count]==0) {
+        return @"-1";
+    }
+    else
+    {
+        Country *country = [arraryobject objectAtIndex:0];
+        
+        NSDateFormatter *format = [[NSDateFormatter alloc]init];
+        [format setDateFormat:@"yyyyMMddhhmmssa"];
+        
+        NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+        
+        [format setTimeZone:gmt];
+        
+        return [format stringFromDate:country.lastModified];// country.lastModified
+        
+    }
+    
+}
+
+
 
 @end

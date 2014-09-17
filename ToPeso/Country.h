@@ -16,5 +16,6 @@
 @property (nonatomic, retain) NSString * countryFlag;
 @property (nonatomic, retain) NSString * countryName;
 @property (nonatomic, retain) NSDate * lastModified;
+@property (nonatomic, retain) NSString * isDeleted1;
 
 @end

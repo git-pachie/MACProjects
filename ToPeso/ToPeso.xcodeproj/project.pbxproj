@@ -7,18 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C249D7119C98664009FAFBD /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C249D7019C98664009FAFBD /* Country.m */; };
 		0C2961C619C3FFD000CFAB85 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2961C519C3FFD000CFAB85 /* default.png */; };
 		0C2961CA19C42CA300CFAB85 /* AgentDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2961C919C42CA300CFAB85 /* AgentDetailsTableViewController.m */; };
 		0C2961CF19C45B3600CFAB85 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2961CE19C45B3600CFAB85 /* Social.framework */; };
+		0C31839A19C87EBC00ED08B8 /* CommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C31839919C87EBC00ED08B8 /* CommonFunction.m */; };
 		0CB5131819C2EAB7006D1653 /* RemittanceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */; };
 		0CB5131F19C36F40006D1653 /* Malaysia.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB5131D19C36F40006D1653 /* Malaysia.png */; };
 		0CB5132019C36F40006D1653 /* Singapore.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB5131E19C36F40006D1653 /* Singapore.png */; };
-		0CB5132219C37057006D1653 /* Hong Kong.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB5132119C37057006D1653 /* Hong Kong.png */; };
-		0CB5132419C37118006D1653 /* Saudi Arabia.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB5132319C37118006D1653 /* Saudi Arabia.png */; };
+		0CB5132219C37057006D1653 /* Hong-Kong.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB5132119C37057006D1653 /* Hong-Kong.png */; };
+		0CB5132419C37118006D1653 /* Saudi-Arabia.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB5132319C37118006D1653 /* Saudi-Arabia.png */; };
 		0CC01EA319C4D36400F3A2B5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC01EA219C4D36400F3A2B5 /* GameKit.framework */; };
 		0CC01EA519C4D36D00F3A2B5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC01EA419C4D36D00F3A2B5 /* StoreKit.framework */; };
 		0CC01EAA19C57BC500F3A2B5 /* email.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CC01EA919C57BC500F3A2B5 /* email.png */; };
-		0CC01EBC19C5E9BC00F3A2B5 /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC01EBB19C5E9BC00F3A2B5 /* Country.m */; };
 		0CC01EBF19C5EA1200F3A2B5 /* Remittance.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC01EBE19C5EA1200F3A2B5 /* Remittance.m */; };
 		0CC01EC519C5F56200F3A2B5 /* EntNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC01EC419C5F56200F3A2B5 /* EntNotification.m */; };
 		0CC5FE1619C2B33B00323A7C /* CoreDataToPeso.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC5FE1519C2B33B00323A7C /* CoreDataToPeso.m */; };
@@ -66,21 +67,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C249D6F19C98664009FAFBD /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
+		0C249D7019C98664009FAFBD /* Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
 		0C2961C519C3FFD000CFAB85 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		0C2961C819C42CA300CFAB85 /* AgentDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgentDetailsTableViewController.h; sourceTree = "<group>"; };
 		0C2961C919C42CA300CFAB85 /* AgentDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgentDetailsTableViewController.m; sourceTree = "<group>"; };
 		0C2961CE19C45B3600CFAB85 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		0C31839819C87EBC00ED08B8 /* CommonFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFunction.h; sourceTree = "<group>"; };
+		0C31839919C87EBC00ED08B8 /* CommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunction.m; sourceTree = "<group>"; };
 		0CB5131619C2EAB7006D1653 /* RemittanceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemittanceTableViewController.h; sourceTree = "<group>"; };
 		0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemittanceTableViewController.m; sourceTree = "<group>"; };
 		0CB5131D19C36F40006D1653 /* Malaysia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Malaysia.png; sourceTree = "<group>"; };
 		0CB5131E19C36F40006D1653 /* Singapore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Singapore.png; sourceTree = "<group>"; };
-		0CB5132119C37057006D1653 /* Hong Kong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hong Kong.png"; sourceTree = "<group>"; };
-		0CB5132319C37118006D1653 /* Saudi Arabia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Saudi Arabia.png"; sourceTree = "<group>"; };
+		0CB5132119C37057006D1653 /* Hong-Kong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hong-Kong.png"; sourceTree = "<group>"; };
+		0CB5132319C37118006D1653 /* Saudi-Arabia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Saudi-Arabia.png"; sourceTree = "<group>"; };
 		0CC01EA219C4D36400F3A2B5 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		0CC01EA419C4D36D00F3A2B5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0CC01EA919C57BC500F3A2B5 /* email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email.png; sourceTree = "<group>"; };
-		0CC01EBA19C5E9BC00F3A2B5 /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
-		0CC01EBB19C5E9BC00F3A2B5 /* Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
 		0CC01EBD19C5EA1200F3A2B5 /* Remittance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Remittance.h; sourceTree = "<group>"; };
 		0CC01EBE19C5EA1200F3A2B5 /* Remittance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Remittance.m; sourceTree = "<group>"; };
 		0CC01EC319C5F56200F3A2B5 /* EntNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntNotification.h; sourceTree = "<group>"; };
@@ -171,14 +174,23 @@
 			name = Home;
 			sourceTree = "<group>";
 		};
+		0C31839B19C87EC200ED08B8 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0C31839819C87EBC00ED08B8 /* CommonFunction.h */,
+				0C31839919C87EBC00ED08B8 /* CommonFunction.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		0CB5131C19C36F40006D1653 /* flags */ = {
 			isa = PBXGroup;
 			children = (
 				0CF2FF7119C4B1C90071BDC6 /* Social */,
 				0CF2FF5619C47AEC0071BDC6 /* AppIcons */,
 				0C2961C519C3FFD000CFAB85 /* default.png */,
-				0CB5132319C37118006D1653 /* Saudi Arabia.png */,
-				0CB5132119C37057006D1653 /* Hong Kong.png */,
+				0CB5132319C37118006D1653 /* Saudi-Arabia.png */,
+				0CB5132119C37057006D1653 /* Hong-Kong.png */,
 				0CB5131D19C36F40006D1653 /* Malaysia.png */,
 				0CB5131E19C36F40006D1653 /* Singapore.png */,
 			);
@@ -206,6 +218,7 @@
 		0CD49B8B19ADDFFB0078920D = {
 			isa = PBXGroup;
 			children = (
+				0C31839B19C87EC200ED08B8 /* Common */,
 				0CF3E94019C8490200C4844A /* SendRequestJSON */,
 				0CC70C2819C6087400D0E2E1 /* Notification */,
 				0C2961C719C42C7900CFAB85 /* Home */,
@@ -253,10 +266,10 @@
 				0CC01EBD19C5EA1200F3A2B5 /* Remittance.h */,
 				0CC01EBE19C5EA1200F3A2B5 /* Remittance.m */,
 				0CD49BAB19ADDFFB0078920D /* ToPeso.xcdatamodeld */,
+				0C249D6F19C98664009FAFBD /* Country.h */,
+				0C249D7019C98664009FAFBD /* Country.m */,
 				0CC70C2519C6032500D0E2E1 /* Notification.h */,
 				0CC70C2619C6032500D0E2E1 /* Notification.m */,
-				0CC01EBA19C5E9BC00F3A2B5 /* Country.h */,
-				0CC01EBB19C5E9BC00F3A2B5 /* Country.m */,
 				0CD49BA019ADDFFB0078920D /* Supporting Files */,
 				0CD49BCF19ADE2D70078920D /* Storyboard.storyboard */,
 				0CC01EC319C5F56200F3A2B5 /* EntNotification.h */,
@@ -426,8 +439,8 @@
 				0CF2FF7C19C4BE210071BDC6 /* imessage2.png in Resources */,
 				0CF2FF7B19C4BE210071BDC6 /* facebook2.png in Resources */,
 				0CD49BA419ADDFFB0078920D /* InfoPlist.strings in Resources */,
-				0CB5132419C37118006D1653 /* Saudi Arabia.png in Resources */,
-				0CB5132219C37057006D1653 /* Hong Kong.png in Resources */,
+				0CB5132419C37118006D1653 /* Saudi-Arabia.png in Resources */,
+				0CB5132219C37057006D1653 /* Hong-Kong.png in Resources */,
 				0CD49BD019ADE2D70078920D /* Storyboard.storyboard in Resources */,
 				0CB5132019C36F40006D1653 /* Singapore.png in Resources */,
 				0CD49BCE19ADE0300078920D /* View.xib in Resources */,
@@ -463,16 +476,17 @@
 				0CC5FE1619C2B33B00323A7C /* CoreDataToPeso.m in Sources */,
 				0CC01EC519C5F56200F3A2B5 /* EntNotification.m in Sources */,
 				0C2961CA19C42CA300CFAB85 /* AgentDetailsTableViewController.m in Sources */,
+				0C249D7119C98664009FAFBD /* Country.m in Sources */,
 				0CD49BA619ADDFFB0078920D /* main.m in Sources */,
 				0CF3E94319C8493000C4844A /* SendAndRequest.m in Sources */,
 				0CB5131819C2EAB7006D1653 /* RemittanceTableViewController.m in Sources */,
 				0CC70C2B19C6089300D0E2E1 /* NotificationTableViewController.m in Sources */,
 				0CD49BD619ADE5230078920D /* CustomTableViewCell.m in Sources */,
 				0CC70C2719C6032500D0E2E1 /* Notification.m in Sources */,
-				0CC01EBC19C5E9BC00F3A2B5 /* Country.m in Sources */,
 				0CC01EBF19C5EA1200F3A2B5 /* Remittance.m in Sources */,
 				0CF7AD1219C2D43C0059EB6C /* CountryMainTableViewController.m in Sources */,
 				0CD49BAD19ADDFFB0078920D /* ToPeso.xcdatamodeld in Sources */,
+				0C31839A19C87EBC00ED08B8 /* CommonFunction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

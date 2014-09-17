@@ -7,12 +7,18 @@
 //
 
 #import "SendAndRequest.h"
+#import "CommonFunction.h"
 
 
 @implementation SendAndRequest
 
+-(NSString*)getToPisoURL
+{
+    return @"http://192.168.3.100/ToPisoWCF/Service1.svc/";
+}
 
-- (void)getLastesCountry :(void (^)(NSMutableArray *array))block
+
+- (void)getLastesCountry :(NSString *)lastModified withBlock:(void (^)(NSArray *array ))block
 {
     
     //CommonFunction *common = [[CommonFunction alloc]init];
@@ -23,7 +29,7 @@
     
     //NSString *post = [NSString stringWithFormat:@"%@/GetLaterCountry/20130916061301PM",toPisoURL];
     
-    NSString *post = @"http://192.168.3.100/ToPisoWCF/Service1.svc/GetLaterCountry/20130916061301PM";
+    NSString *post =[NSString stringWithFormat:@"%@GetLaterCountry/%@",self.getToPisoURL,lastModified];
     
     [request setURL:[NSURL URLWithString:post]];
     
@@ -33,21 +39,26 @@
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                //NSLog(@"dataAsString %@", [NSString stringWithUTF8String:[data bytes]]);
                                NSError *error1;
-                               NSMutableDictionary * innerJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error1];
+                               NSArray * innerJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error1];
                                
-                               NSLog(@"innerJson %@", innerJson);
+                               //NSLog(@"innerJson %@", innerJson);
                                
                                NSMutableArray *ax = [[NSMutableArray alloc]init];
                                
-                               for (NSMutableDictionary *dataDict in innerJson) {
-                                   NSString *phoneNumber = [dataDict objectForKey:@"PhoneNumber"];
-                                   NSString *email = [dataDict objectForKey:@"Email"];
-                                   NSString *userName = [dataDict objectForKey:@"UserName"];
+                               for (NSDictionary *dataDict in innerJson) {
+                                   NSString *countryCode = [dataDict objectForKey:@"countryCode"];
+                                   NSString *countryFlag = [dataDict objectForKey:@"countryFlag"];
+                                   NSString *countryName = [dataDict objectForKey:@"countryName"];
+                                   NSString *lastModified = [dataDict objectForKey:@"lastModified"];
+                                   NSString *isDeleted = [dataDict objectForKey:@"isDeleted"];
+                                   
                                    
                                    NSDictionary *dictionary = [[NSDictionary alloc]initWithObjectsAndKeys:
-                                                               phoneNumber,@"PhoneNumber"
-                                                               ,email,@"Email"
-                                                               ,userName,@"UserName"
+                                                               countryCode,@"countryCode"
+                                                               ,countryFlag,@"countryFlag"
+                                                               ,countryName,@"countryName"
+                                                               ,lastModified,@"lastModified"
+                                                               ,isDeleted,@"isDeleted"
                                                                ,nil];
                                    
                                    [ax addObject:dictionary];

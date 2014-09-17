@@ -9,6 +9,8 @@
 #import "CountryMainTableViewController.h"
 #import "com_pachie_topesoAppDelegate.h"
 #import "RemittanceTableViewController.h"
+#import "CoreDataToPeso.h"
+#import "SendAndRequest.h"
 
 @interface CountryMainTableViewController ()
 {
@@ -34,12 +36,35 @@
     
     del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
     
-    NSError *error;
-    if (![[self fectched] performFetch:&error]) {
-        // Update to handle the error appropriately.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        exit(-1);  // Fail
-    }
+    CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
+    //[core insertTempData];
+    SendAndRequest *send = [[SendAndRequest alloc]init];
+    
+    NSString *lastModified = [core getLastUpdatedCountry];
+    
+    [send getLastesCountry:lastModified withBlock:^(NSArray *array)
+    {
+       
+        
+//        for (NSArray *dic in array) {
+//            NSLog(@"%@",dic);
+//            
+//        }
+        
+        [core syncCoreData:array];
+        
+        NSError *error;
+        if (![[self fectched] performFetch:&error]) {
+            // Update to handle the error appropriately.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            exit(-1);  // Fail
+        }
+        
+        [self.tableView reloadData];
+        
+    }];
+    
+   
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,7 +108,10 @@
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"countryName" ascending:YES];
         
         [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
-        
+    
+    
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"isDeleted1 ==[cd]%@",@"NO"]];
+    
         [fetchRequest setFetchBatchSize:20];
         
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:del.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
