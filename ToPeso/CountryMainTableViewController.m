@@ -15,6 +15,7 @@
 @interface CountryMainTableViewController ()
 {
     com_pachie_topesoAppDelegate *del;
+    UIRefreshControl *refreshControl;
 }
 
 @end
@@ -30,9 +31,8 @@
     return self;
 }
 
-- (void)viewDidLoad
+-(void)refreshTable
 {
-    [super viewDidLoad];
     
     del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
     
@@ -42,28 +42,81 @@
     
     NSString *lastModified = [core getLastUpdatedCountry];
     
-    [send getLastesCountry:lastModified withBlock:^(NSArray *array)
-    {
-       
-        
-//        for (NSArray *dic in array) {
-//            NSLog(@"%@",dic);
-//            
-//        }
-        
-        [core syncCoreData:array];
-        
-        NSError *error;
-        if (![[self fectched] performFetch:&error]) {
-            // Update to handle the error appropriately.
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            exit(-1);  // Fail
-        }
-        
-        [self.tableView reloadData];
-        
-    }];
     
+    
+    [send getLastesCountry:lastModified withBlock:^(NSArray *array, NSError *connectionError)
+     {
+         
+         
+         if (connectionError!=nil) {
+             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Unable to connect to fetched latest updates" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
+             
+             [alert show];
+         }
+         else
+         {
+             //image
+             
+             for (NSDictionary *dic in array) {
+                 NSString *strImg = [dic objectForKey:@"countryFlag"];
+                 NSString *strURL = [NSString stringWithFormat:@"%@%@",[SendAndRequest UrlImageConnection],strImg];
+                 
+                 [send downloadImageWithURL:[NSURL URLWithString:strURL] completionBlock:^(BOOL succeeded, UIImage *image) {
+                     
+                     //UIImage *im = image;
+                     
+                     if (image != nil)
+                     {
+                         
+                         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+                         NSString *documentsDirectory = [paths objectAtIndex:0];
+                         NSString *path = [documentsDirectory stringByAppendingPathComponent:strImg];
+                         NSData *data = UIImagePNGRepresentation(image);
+                         [data writeToFile:path atomically:YES];
+                         
+                     }
+                     
+                 }];
+             }
+             
+             
+             
+             
+             [core syncCoreData:array];
+             
+             NSError *error;
+             if (![[self fectched] performFetch:&error]) {
+                 // Update to handle the error appropriately.
+                 NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                 exit(-1);  // Fail
+             }
+             
+             [refreshControl endRefreshing];
+             [self.tableView reloadData];
+         }
+         
+         
+         
+     }];
+    
+    
+    
+    
+    
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    refreshControl = [[UIRefreshControl alloc]init];
+    
+    [self.tableView addSubview:refreshControl];
+    
+    [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    
+    
+    [self refreshTable];
    
 }
 
@@ -110,7 +163,7 @@
         [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     
     
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"isDeleted1 ==[cd]%@",@"NO"]];
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"isDeleted1 ==[cd]%@",@"NO"]];
     
         [fetchRequest setFetchBatchSize:20];
         
@@ -134,13 +187,26 @@
     
     //cell.imageView.image = [UIImage imageNamed:[o valueForKey:@"countryFlag"]];
     
-    UIImageView *imgv = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[o valueForKey:@"countryFlag"]]];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString* path = [documentsDirectory stringByAppendingPathComponent:
+                      [o valueForKey:@"countryFlag"]];
+    UIImage* image = [UIImage imageWithContentsOfFile:path];
+    
+    
+    UIImageView *imgv =  [[UIImageView alloc]initWithImage:image];
+    
+    if (imgv.image == nil) {
+        imgv.image = [UIImage imageNamed:@"default.png"];
+    }
     
     [cell.imageView setImage:[self imageRound:imgv].image];
     
     [self imageRound:cell.imageView];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     
     
     return cell;
@@ -176,6 +242,10 @@
     
     imview.layer.cornerRadius = 10;
     imview.layer.masksToBounds = YES;
+    
+    imview.frame = CGRectMake(0,0,32,32);
+    
+    //[imview.layer setFrame:CGRectMake(0,0,20,20)];
     return imview;
     
     

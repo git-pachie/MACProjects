@@ -123,9 +123,9 @@ dispatch_queue_t camerq;
             
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
             NSString *documentsDirectory = [paths objectAtIndex:0];
-            NSString* path = [documentsDirectory stringByAppendingPathComponent:
+            NSString *path = [documentsDirectory stringByAppendingPathComponent:
                               [CommonFunction ProfileImageFileName]];
-            NSData* data = UIImagePNGRepresentation(image);
+            NSData *data = UIImagePNGRepresentation(image);
             [data writeToFile:path atomically:YES];
         }
         

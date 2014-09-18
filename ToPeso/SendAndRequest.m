@@ -14,11 +14,16 @@
 
 -(NSString*)getToPisoURL
 {
-    return @"http://192.168.3.100/ToPisoWCF/Service1.svc/";
+    return @"http://www.greetify.net:1980/ToPisoWCF/Service1.svc/";
 }
 
 
-- (void)getLastesCountry :(NSString *)lastModified withBlock:(void (^)(NSArray *array ))block
++(NSString *)UrlImageConnection
+{
+    return @"http://www.greetify.net:1980/PickupLinesProfile2/countryimage.aspx?fFilename=";
+}
+
+- (void)getLastesCountry :(NSString *)lastModified withBlock:(void (^)(NSArray *array, NSError *er ))block
 {
     
     //CommonFunction *common = [[CommonFunction alloc]init];
@@ -39,37 +44,60 @@
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                //NSLog(@"dataAsString %@", [NSString stringWithUTF8String:[data bytes]]);
                                NSError *error1;
-                               NSArray * innerJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error1];
-                               
-                               //NSLog(@"innerJson %@", innerJson);
-                               
                                NSMutableArray *ax = [[NSMutableArray alloc]init];
                                
-                               for (NSDictionary *dataDict in innerJson) {
-                                   NSString *countryCode = [dataDict objectForKey:@"countryCode"];
-                                   NSString *countryFlag = [dataDict objectForKey:@"countryFlag"];
-                                   NSString *countryName = [dataDict objectForKey:@"countryName"];
-                                   NSString *lastModified = [dataDict objectForKey:@"lastModified"];
-                                   NSString *isDeleted = [dataDict objectForKey:@"isDeleted"];
+                               if (error ==nil) {
+                                   NSArray * innerJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error1];
+                                   
+                                   //NSLog(@"innerJson %@", innerJson);
                                    
                                    
-                                   NSDictionary *dictionary = [[NSDictionary alloc]initWithObjectsAndKeys:
-                                                               countryCode,@"countryCode"
-                                                               ,countryFlag,@"countryFlag"
-                                                               ,countryName,@"countryName"
-                                                               ,lastModified,@"lastModified"
-                                                               ,isDeleted,@"isDeleted"
-                                                               ,nil];
                                    
-                                   [ax addObject:dictionary];
-                                   
+                                   for (NSDictionary *dataDict in innerJson) {
+                                       NSString *countryCode = [dataDict objectForKey:@"countryCode"];
+                                       NSString *countryFlag = [dataDict objectForKey:@"countryFlag"];
+                                       NSString *countryName = [dataDict objectForKey:@"countryName"];
+                                       NSString *lastModified = [dataDict objectForKey:@"lastModified"];
+                                       NSString *isDeleted = [dataDict objectForKey:@"isDeleted"];
+                                       
+                                       
+                                       NSDictionary *dictionary = [[NSDictionary alloc]initWithObjectsAndKeys:
+                                                                   countryCode,@"countryCode"
+                                                                   ,countryFlag,@"countryFlag"
+                                                                   ,countryName,@"countryName"
+                                                                   ,lastModified,@"lastModified"
+                                                                   ,isDeleted,@"isDeleted"
+                                                                   ,nil];
+                                       
+                                       [ax addObject:dictionary];
+                                       
+                                   }
                                }
                                
                                
-                               
-                               block(ax); // Call back the block passed into your method
+                               block(ax,error); // Call back the block passed into your method
                            }];
     
 }
 
+
+
+- (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
+{
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if ( !error )
+                               {
+                                   UIImage *image = [[UIImage alloc] initWithData:data];
+                                   completionBlock(YES,image);
+                               } else{
+                                   completionBlock(NO,nil);
+                               }
+                           }];
+    
+    
+}
 @end

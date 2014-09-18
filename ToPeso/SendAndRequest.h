@@ -10,6 +10,10 @@
 
 @interface SendAndRequest : NSObject
 
-- (void)getLastesCountry :(NSString *)lastModified withBlock:(void (^)(NSArray *array ))block;
+- (void)getLastesCountry :(NSString *)lastModified withBlock:(void (^)(NSArray *array, NSError *er ))block;
+
+- (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock;
+
++(NSString *)UrlImageConnection;
 
 @end

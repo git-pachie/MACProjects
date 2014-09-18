@@ -13,10 +13,6 @@
 		0C2961CF19C45B3600CFAB85 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2961CE19C45B3600CFAB85 /* Social.framework */; };
 		0C31839A19C87EBC00ED08B8 /* CommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C31839919C87EBC00ED08B8 /* CommonFunction.m */; };
 		0CB5131819C2EAB7006D1653 /* RemittanceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */; };
-		0CB5131F19C36F40006D1653 /* Malaysia.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB5131D19C36F40006D1653 /* Malaysia.png */; };
-		0CB5132019C36F40006D1653 /* Singapore.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB5131E19C36F40006D1653 /* Singapore.png */; };
-		0CB5132219C37057006D1653 /* Hong-Kong.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB5132119C37057006D1653 /* Hong-Kong.png */; };
-		0CB5132419C37118006D1653 /* Saudi-Arabia.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB5132319C37118006D1653 /* Saudi-Arabia.png */; };
 		0CC01EA319C4D36400F3A2B5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC01EA219C4D36400F3A2B5 /* GameKit.framework */; };
 		0CC01EA519C4D36D00F3A2B5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC01EA419C4D36D00F3A2B5 /* StoreKit.framework */; };
 		0CC01EAA19C57BC500F3A2B5 /* email.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CC01EA919C57BC500F3A2B5 /* email.png */; };
@@ -77,10 +73,6 @@
 		0C31839919C87EBC00ED08B8 /* CommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunction.m; sourceTree = "<group>"; };
 		0CB5131619C2EAB7006D1653 /* RemittanceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemittanceTableViewController.h; sourceTree = "<group>"; };
 		0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemittanceTableViewController.m; sourceTree = "<group>"; };
-		0CB5131D19C36F40006D1653 /* Malaysia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Malaysia.png; sourceTree = "<group>"; };
-		0CB5131E19C36F40006D1653 /* Singapore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Singapore.png; sourceTree = "<group>"; };
-		0CB5132119C37057006D1653 /* Hong-Kong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hong-Kong.png"; sourceTree = "<group>"; };
-		0CB5132319C37118006D1653 /* Saudi-Arabia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Saudi-Arabia.png"; sourceTree = "<group>"; };
 		0CC01EA219C4D36400F3A2B5 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		0CC01EA419C4D36D00F3A2B5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0CC01EA919C57BC500F3A2B5 /* email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email.png; sourceTree = "<group>"; };
@@ -189,10 +181,6 @@
 				0CF2FF7119C4B1C90071BDC6 /* Social */,
 				0CF2FF5619C47AEC0071BDC6 /* AppIcons */,
 				0C2961C519C3FFD000CFAB85 /* default.png */,
-				0CB5132319C37118006D1653 /* Saudi-Arabia.png */,
-				0CB5132119C37057006D1653 /* Hong-Kong.png */,
-				0CB5131D19C36F40006D1653 /* Malaysia.png */,
-				0CB5131E19C36F40006D1653 /* Singapore.png */,
 			);
 			path = flags;
 			sourceTree = "<group>";
@@ -439,10 +427,7 @@
 				0CF2FF7C19C4BE210071BDC6 /* imessage2.png in Resources */,
 				0CF2FF7B19C4BE210071BDC6 /* facebook2.png in Resources */,
 				0CD49BA419ADDFFB0078920D /* InfoPlist.strings in Resources */,
-				0CB5132419C37118006D1653 /* Saudi-Arabia.png in Resources */,
-				0CB5132219C37057006D1653 /* Hong-Kong.png in Resources */,
 				0CD49BD019ADE2D70078920D /* Storyboard.storyboard in Resources */,
-				0CB5132019C36F40006D1653 /* Singapore.png in Resources */,
 				0CD49BCE19ADE0300078920D /* View.xib in Resources */,
 				0C2961C619C3FFD000CFAB85 /* default.png in Resources */,
 				0CF2FF6B19C49F190071BDC6 /* ToPiso_120x120.png in Resources */,
@@ -452,7 +437,6 @@
 				0CD49BAF19ADDFFB0078920D /* Images.xcassets in Resources */,
 				0CC01EAA19C57BC500F3A2B5 /* email.png in Resources */,
 				0CF2FF6E19C4A28E0071BDC6 /* Launch__64x960.png in Resources */,
-				0CB5131F19C36F40006D1653 /* Malaysia.png in Resources */,
 				0CF2FF6C19C49F190071BDC6 /* ToPiso_5858.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -610,7 +594,7 @@
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1d333f28-e4f2-4133-9baa-a78b14ff02b4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -627,7 +611,7 @@
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1d333f28-e4f2-4133-9baa-a78b14ff02b4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
