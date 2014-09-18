@@ -51,27 +51,34 @@
                                    
                                    //NSLog(@"innerJson %@", innerJson);
                                    
-                                   
-                                   
-                                   for (NSDictionary *dataDict in innerJson) {
-                                       NSString *countryCode = [dataDict objectForKey:@"countryCode"];
-                                       NSString *countryFlag = [dataDict objectForKey:@"countryFlag"];
-                                       NSString *countryName = [dataDict objectForKey:@"countryName"];
-                                       NSString *lastModified = [dataDict objectForKey:@"lastModified"];
-                                       NSString *isDeleted = [dataDict objectForKey:@"isDeleted"];
-                                       
-                                       
-                                       NSDictionary *dictionary = [[NSDictionary alloc]initWithObjectsAndKeys:
-                                                                   countryCode,@"countryCode"
-                                                                   ,countryFlag,@"countryFlag"
-                                                                   ,countryName,@"countryName"
-                                                                   ,lastModified,@"lastModified"
-                                                                   ,isDeleted,@"isDeleted"
-                                                                   ,nil];
-                                       
-                                       [ax addObject:dictionary];
+                                   if (error1 != nil) {
+                                       error = error1;
                                        
                                    }
+                                   else
+                                   {
+                                       for (NSDictionary *dataDict in innerJson) {
+                                           NSString *countryCode = [dataDict objectForKey:@"countryCode"];
+                                           NSString *countryFlag = [dataDict objectForKey:@"countryFlag"];
+                                           NSString *countryName = [dataDict objectForKey:@"countryName"];
+                                           NSString *lastModified = [dataDict objectForKey:@"lastModified"];
+                                           NSString *isDeleted = [dataDict objectForKey:@"isDeleted"];
+                                           
+                                           
+                                           NSDictionary *dictionary = [[NSDictionary alloc]initWithObjectsAndKeys:
+                                                                       countryCode,@"countryCode"
+                                                                       ,countryFlag,@"countryFlag"
+                                                                       ,countryName,@"countryName"
+                                                                       ,lastModified,@"lastModified"
+                                                                       ,isDeleted,@"isDeleted"
+                                                                       ,nil];
+                                           
+                                           [ax addObject:dictionary];
+                                           
+                                       }
+                                   }
+                                   
+                                   
                                }
                                
                                

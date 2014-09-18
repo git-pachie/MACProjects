@@ -12,6 +12,8 @@
 		0C2961CA19C42CA300CFAB85 /* AgentDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2961C919C42CA300CFAB85 /* AgentDetailsTableViewController.m */; };
 		0C2961CF19C45B3600CFAB85 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2961CE19C45B3600CFAB85 /* Social.framework */; };
 		0C31839A19C87EBC00ED08B8 /* CommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C31839919C87EBC00ED08B8 /* CommonFunction.m */; };
+		0CA9FBC319CAAC8A006A9A98 /* countryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CA9FBC219CAAC8A006A9A98 /* countryCell.xib */; };
+		0CA9FBC619CAAD4A006A9A98 /* countryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA9FBC519CAAD4A006A9A98 /* countryTableViewCell.m */; };
 		0CB5131819C2EAB7006D1653 /* RemittanceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */; };
 		0CC01EA319C4D36400F3A2B5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC01EA219C4D36400F3A2B5 /* GameKit.framework */; };
 		0CC01EA519C4D36D00F3A2B5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC01EA419C4D36D00F3A2B5 /* StoreKit.framework */; };
@@ -71,6 +73,9 @@
 		0C2961CE19C45B3600CFAB85 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		0C31839819C87EBC00ED08B8 /* CommonFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFunction.h; sourceTree = "<group>"; };
 		0C31839919C87EBC00ED08B8 /* CommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunction.m; sourceTree = "<group>"; };
+		0CA9FBC219CAAC8A006A9A98 /* countryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = countryCell.xib; sourceTree = "<group>"; };
+		0CA9FBC419CAAD4A006A9A98 /* countryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = countryTableViewCell.h; sourceTree = "<group>"; };
+		0CA9FBC519CAAD4A006A9A98 /* countryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countryTableViewCell.m; sourceTree = "<group>"; };
 		0CB5131619C2EAB7006D1653 /* RemittanceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemittanceTableViewController.h; sourceTree = "<group>"; };
 		0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemittanceTableViewController.m; sourceTree = "<group>"; };
 		0CC01EA219C4D36400F3A2B5 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -301,6 +306,9 @@
 				0CD49BCD19ADE0300078920D /* View.xib */,
 				0CD49BD419ADE5230078920D /* CustomTableViewCell.h */,
 				0CD49BD519ADE5230078920D /* CustomTableViewCell.m */,
+				0CA9FBC219CAAC8A006A9A98 /* countryCell.xib */,
+				0CA9FBC419CAAD4A006A9A98 /* countryTableViewCell.h */,
+				0CA9FBC519CAAD4A006A9A98 /* countryTableViewCell.m */,
 			);
 			name = CustomCell;
 			sourceTree = "<group>";
@@ -427,6 +435,7 @@
 				0CF2FF7C19C4BE210071BDC6 /* imessage2.png in Resources */,
 				0CF2FF7B19C4BE210071BDC6 /* facebook2.png in Resources */,
 				0CD49BA419ADDFFB0078920D /* InfoPlist.strings in Resources */,
+				0CA9FBC319CAAC8A006A9A98 /* countryCell.xib in Resources */,
 				0CD49BD019ADE2D70078920D /* Storyboard.storyboard in Resources */,
 				0CD49BCE19ADE0300078920D /* View.xib in Resources */,
 				0C2961C619C3FFD000CFAB85 /* default.png in Resources */,
@@ -464,6 +473,7 @@
 				0CD49BA619ADDFFB0078920D /* main.m in Sources */,
 				0CF3E94319C8493000C4844A /* SendAndRequest.m in Sources */,
 				0CB5131819C2EAB7006D1653 /* RemittanceTableViewController.m in Sources */,
+				0CA9FBC619CAAD4A006A9A98 /* countryTableViewCell.m in Sources */,
 				0CC70C2B19C6089300D0E2E1 /* NotificationTableViewController.m in Sources */,
 				0CD49BD619ADE5230078920D /* CustomTableViewCell.m in Sources */,
 				0CC70C2719C6032500D0E2E1 /* Notification.m in Sources */,

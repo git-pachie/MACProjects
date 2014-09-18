@@ -11,6 +11,7 @@
 #import "RemittanceTableViewController.h"
 #import "CoreDataToPeso.h"
 #import "SendAndRequest.h"
+#import "countryTableViewCell.h"
 
 @interface CountryMainTableViewController ()
 {
@@ -52,6 +53,7 @@
              UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Unable to connect to fetched latest updates" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
              
              [alert show];
+             
          }
          else
          {
@@ -84,16 +86,18 @@
              
              [core syncCoreData:array];
              
-             NSError *error;
-             if (![[self fectched] performFetch:&error]) {
-                 // Update to handle the error appropriately.
-                 NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-                 exit(-1);  // Fail
-             }
              
-             [refreshControl endRefreshing];
-             [self.tableView reloadData];
          }
+         
+         NSError *error;
+         if (![[self fectched] performFetch:&error]) {
+             // Update to handle the error appropriately.
+             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+             exit(-1);  // Fail
+         }
+         
+         [refreshControl endRefreshing];
+         [self.tableView reloadData];
          
          
          
@@ -108,6 +112,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"countryCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
     refreshControl = [[UIRefreshControl alloc]init];
     
@@ -179,11 +185,21 @@
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    countryTableViewCell *cell = (countryTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    if (cell == nil)
+    {
+        //cell = [[PickupLineTableViewCell alloc] initWithStyle:uita reuseIdentifier:CellIdentifier];
+        
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"countryCell" owner:self options:nil];
+        cell = (countryTableViewCell *) [nib objectAtIndex:0];
+        
+    }
+
     
     NSManagedObject *o = [self.fectched objectAtIndexPath:indexPath];
     
-    cell.textLabel.text = [o valueForKey:@"countryName"];
+    cell.lblCountryName.text = [o valueForKey:@"countryName"];
     
     //cell.imageView.image = [UIImage imageNamed:[o valueForKey:@"countryFlag"]];
     
@@ -201,10 +217,12 @@
         imgv.image = [UIImage imageNamed:@"default.png"];
     }
     
-    [cell.imageView setImage:[self imageRound:imgv].image];
+//    [cell.imgProfile setImage:[self imageRound:imgv].image];
+//    
+//    [self imageRound:cell.imgProfile];
     
-    [self imageRound:cell.imageView];
-    
+    cell.imgProfile.image = imgv.image;
+    [self imageRound:cell.imgProfile];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     
@@ -240,36 +258,36 @@
 -(UIImageView *)imageRound:(UIImageView *)imview;
 {
     
-    imview.layer.cornerRadius = 10;
-    imview.layer.masksToBounds = YES;
+    //imview.layer.cornerRadius = 10;
+    //imview.layer.masksToBounds = YES;
     
-    imview.frame = CGRectMake(0,0,32,32);
+    //imview.frame = CGRectMake(0,0,32,32);
     
     //[imview.layer setFrame:CGRectMake(0,0,20,20)];
+    //return imview;
+    
+    
+    UIGraphicsBeginImageContextWithOptions(imview.bounds.size, NO, [UIScreen mainScreen].scale);
+    
+    // Add a clip before drawing anything, in the shape of an rounded rect
+    
+    [[UIBezierPath bezierPathWithRoundedRect:imview.bounds
+                                cornerRadius:10.0 ] addClip];
+    // Draw your image
+    [imview.image drawInRect:imview.bounds];
+    
+    // Get the image, here setting the UIImageView image
+    imview.image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    //            cell.imageView.layer.borderWidth  =1;
+    //            cell.imageView.layer.borderColor = [UIColor grayColor].CGColor;
+    //
+    // Lets forget about that we were drawing
+    
+    
+    UIGraphicsEndImageContext();
+    
     return imview;
-    
-    
-//    UIGraphicsBeginImageContextWithOptions(imview.bounds.size, NO, [UIScreen mainScreen].scale);
-//    
-//    // Add a clip before drawing anything, in the shape of an rounded rect
-//    
-//    [[UIBezierPath bezierPathWithRoundedRect:imview.bounds
-//                                cornerRadius:10.0 ] addClip];
-//    // Draw your image
-//    [imview.image drawInRect:imview.bounds];
-//    
-//    // Get the image, here setting the UIImageView image
-//    imview.image = UIGraphicsGetImageFromCurrentImageContext();
-//    
-//    //            cell.imageView.layer.borderWidth  =1;
-//    //            cell.imageView.layer.borderColor = [UIColor grayColor].CGColor;
-//    //
-//    // Lets forget about that we were drawing
-//    
-//    
-//    UIGraphicsEndImageContext();
-//    
-//    return imview;
 }
 
 @end
