@@ -226,10 +226,22 @@
     [timeFormat setDateFormat:@"hh:mm a"];
     
     NSString *strDate = [dateFormat stringFromDate:rem.asofDate];
-    NSString *strTime = [timeFormat stringFromDate:rem.asofDate];
+    //NSString *strTime = [timeFormat stringFromDate:rem.asofDate];
     
     cell.lblRate.text =[NSString stringWithFormat:@"%@ as of %@",str,strDate];
-    cell.lbltime.text = strTime;
+    
+
+    NSDateFormatter *format = [[NSDateFormatter alloc]init];
+    [format setDateFormat:@"hh:mm a"];
+    
+    NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    
+    [format setTimeZone:gmt];
+    
+    
+    
+    
+    cell.lbltime.text = [format stringFromDate:rem.asofDate];
     
     
 

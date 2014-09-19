@@ -53,6 +53,13 @@
     
     NSDateFormatter *dateFormate = [[NSDateFormatter alloc]init];
     [dateFormate setDateFormat:@"dd MMMM yyyy hh:mm a"];
+    NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    
+    [dateFormate setTimeZone:gmt];
+    
+    
+    
+    
     self.lblAsOfDate.text =[NSString stringWithFormat:@"As of date %@",[dateFormate stringFromDate:self.remitanceAgent.asofDate]];
     
     self.imgAgentPhoto.image = [UIImage imageNamed:@"default.png"];
