@@ -50,6 +50,9 @@
 //    }
     
     
+    
+
+    
     refreshControl = [[UIRefreshControl alloc]init];
     
     [self.tableView addSubview:refreshControl];
@@ -58,6 +61,7 @@
     
     
     [self refreshTable];
+
     
     
 }
@@ -127,9 +131,9 @@
              exit(-1);  // Fail
          }
          
-         [refreshControl endRefreshing];
-         [self.tableView reloadData];
          
+         
+         [self performSelector:@selector(Done) withObject:nil afterDelay:1];
          
          
      }];
@@ -138,6 +142,13 @@
     
     
     
+}
+
+-(void)Done
+{
+    [refreshControl endRefreshing];
+    [self.tableView reloadData];
+
 }
 
 - (void)didReceiveMemoryWarning
