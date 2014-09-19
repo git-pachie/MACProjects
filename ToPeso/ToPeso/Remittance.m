@@ -2,7 +2,7 @@
 //  Remittance.m
 //  ToPeso
 //
-//  Created by pachie on 14/9/14.
+//  Created by pachie on 19/9/14.
 //  Copyright (c) 2014 Private. All rights reserved.
 //
 
@@ -22,5 +22,6 @@
 @dynamic rate;
 @dynamic remittanceName;
 @dynamic remmittanceGUID;
+@dynamic isDeleted1;
 
 @end

@@ -23,5 +23,6 @@
 @property (nonatomic, retain) NSNumber * rate;
 @property (nonatomic, retain) NSString * remittanceName;
 @property (nonatomic, retain) NSString * remmittanceGUID;
+@property (nonatomic, retain) NSString * isDeleted1;
 
 @end

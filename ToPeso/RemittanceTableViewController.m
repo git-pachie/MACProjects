@@ -11,11 +11,14 @@
 #import "CustomTableViewCell.h"
 #import "Remittance.h"
 #import "AgentDetailsTableViewController.h"
+#import "CoreDataToPeso.h"
+#import "SendAndRequest.h"
 
 @interface RemittanceTableViewController ()
 
 {
     com_pachie_topesoAppDelegate *del;
+    UIRefreshControl *refreshControl;
 }
 
 @end
@@ -37,14 +40,102 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"View" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
+//    del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+//    
+//    NSError *error;
+//    if (![[self fetched] performFetch:&error]) {
+//        // Update to handle the error appropriately.
+//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//        exit(-1);  // Fail
+//    }
+    
+    
+    refreshControl = [[UIRefreshControl alloc]init];
+    
+    [self.tableView addSubview:refreshControl];
+    
+    [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    
+    
+    [self refreshTable];
+    
+    
+}
+
+-(void)refreshTable
+{
+    
     del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
     
-    NSError *error;
-    if (![[self fetched] performFetch:&error]) {
-        // Update to handle the error appropriately.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        exit(-1);  // Fail
-    }
+    CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
+    //[core insertTempData];
+    SendAndRequest *send = [[SendAndRequest alloc]init];
+    
+    NSString *lastModified = [core getLastUpdatedAgent];
+    
+    
+    
+    [send getLastesAgent:lastModified withBlock:^(NSArray *array, NSError *connectionError)
+     {
+         
+         
+         if (connectionError!=nil) {
+             
+             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Unable to connect to fetched latest updates" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
+             
+             [alert show];
+             
+         }
+         else
+         {
+             //image
+             
+             for (NSDictionary *dic in array) {
+//                 NSString *strImg = [dic objectForKey:@"countryFlag"];
+//                 NSString *strURL = [NSString stringWithFormat:@"%@%@",[SendAndRequest UrlImageConnection],strImg];
+//                 
+//                 [send downloadImageWithURL:[NSURL URLWithString:strURL] completionBlock:^(BOOL succeeded, UIImage *image) {
+//                     
+//                     //UIImage *im = image;
+//                     
+//                     if (image != nil)
+//                     {
+//                         
+//                         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+//                         NSString *documentsDirectory = [paths objectAtIndex:0];
+//                         NSString *path = [documentsDirectory stringByAppendingPathComponent:strImg];
+//                         NSData *data = UIImagePNGRepresentation(image);
+//                         [data writeToFile:path atomically:YES];
+//                         
+//                     }
+//                     
+//                 }];
+             }
+             
+             
+             
+             
+             [core syncCoreDataAgent:array];
+             
+             
+         }
+         
+         NSError *error;
+         if (![self.fetched performFetch:&error]) {
+             // Update to handle the error appropriately.
+             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+             exit(-1);  // Fail
+         }
+         
+         [refreshControl endRefreshing];
+         [self.tableView reloadData];
+         
+         
+         
+     }];
+    
+    
+    
     
     
 }

@@ -12,6 +12,7 @@
 #import "EntNotification.h"
 #import "Country.h"
 #import "CommonFunction.h"
+#import "Remittance.h"
 
 @implementation CoreDataToPeso
 {
@@ -428,6 +429,93 @@
     
 }
 
+-(void)syncCoreDataAgent :(NSArray *)arrayAgent
+{
+    NSError *error;
+    
+    delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+    
+    for (NSDictionary *dic in arrayAgent) {
+        
+        
+        NSFetchRequest *fetch1 = [[NSFetchRequest alloc]initWithEntityName:@"Remittance"];
+        //NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"countryCode" ascending:YES];
+        
+        [fetch1 setPredicate:[NSPredicate predicateWithFormat:@"remmittanceGUID == [cd]%@",[dic objectForKey:@"remmittanceGUID"]]];
+        
+        NSArray *arraryobject = [context executeFetchRequest:fetch1 error:&error];
+        
+        NSDateFormatter *format  = [[NSDateFormatter alloc]init];
+        
+        [format setDateStyle:NSDateFormatterFullStyle];
+        
+        if ([arraryobject count] == 0) {
+            //new
+            
+            Remittance *newRem = [NSEntityDescription insertNewObjectForEntityForName:@"Remittance" inManagedObjectContext:context];
+            
+            [newRem setAddress:[dic objectForKey:@"address"]];
+            [newRem setContact:[dic objectForKey:@"contact"]];
+            [newRem setCountryCode:[dic objectForKey:@"countryCode"]];
+            [newRem setCurrencyKey:[dic objectForKey:@"currencyKey"]];
+            [newRem setEmailAddress:[dic objectForKey:@"emailAddress"]];
+            [newRem setLogo:[dic objectForKey:@"logo"]];
+            [newRem setRemittanceName:[dic objectForKey:@"remittanceName"]];
+            [newRem setRemmittanceGUID:[dic objectForKey:@"remmittanceGUID"]];
+            [newRem setIsDeleted1:[dic objectForKey:@"isDeleted"]];
+            
+            NSDate *asofDate = [CommonFunction mfDateFromDotNetJSONString:[dic objectForKey:@"asofDate"]];
+            [newRem setAsofDate:asofDate];
+            
+            NSDate *lastupdated = [CommonFunction mfDateFromDotNetJSONString:[dic objectForKey:@"lastupdated"]];
+            
+            [newRem setLastupdated:lastupdated];
+    
+            
+            [newRem setRate:(NSNumber *)[dic objectForKey:@"rate"]];
+            
+            
+        }
+        else
+        {
+            //update
+            
+            Remittance *newRem = [arraryobject objectAtIndex:0];
+            [newRem setAddress:[dic objectForKey:@"address"]];
+            [newRem setContact:[dic objectForKey:@"contact"]];
+            [newRem setCountryCode:[dic objectForKey:@"countryCode"]];
+            [newRem setCurrencyKey:[dic objectForKey:@"currencyKey"]];
+            [newRem setEmailAddress:[dic objectForKey:@"emailAddress"]];
+            [newRem setLogo:[dic objectForKey:@"logo"]];
+            [newRem setRemittanceName:[dic objectForKey:@"remittanceName"]];
+            [newRem setRemmittanceGUID:[dic objectForKey:@"remmittanceGUID"]];
+            [newRem setIsDeleted1:[dic objectForKey:@"isDeleted"]];
+            
+            NSDate *asofDate = [CommonFunction mfDateFromDotNetJSONString:[dic objectForKey:@"asofDate"]];
+            [newRem setAsofDate:asofDate];
+            
+            NSDate *lastupdated = [CommonFunction mfDateFromDotNetJSONString:[dic objectForKey:@"lastupdated"]];
+            
+            [newRem setLastupdated:lastupdated];
+            
+            
+            [newRem setRate:(NSNumber *)[dic objectForKey:@"rate"]];        }
+        
+        
+        if (![context save:&error]) {
+            NSLog(@"Error in country : %@", error);
+        }
+        
+        //image
+        
+        
+    }
+    
+}
+
+
 -(NSString *)getLastUpdatedCountry
 {
     NSError *error;
@@ -461,6 +549,44 @@
         [format setTimeZone:gmt];
         
         return [format stringFromDate:country.lastModified];// country.lastModified
+        
+    }
+    
+}
+
+-(NSString *)getLastUpdatedAgent
+{
+    NSError *error;
+    
+    delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+    
+    NSFetchRequest *fetch1 = [[NSFetchRequest alloc]initWithEntityName:@"Remittance"];
+    
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"lastupdated" ascending:NO];
+    
+    [fetch1 setSortDescriptors:[NSArray arrayWithObjects:sort, nil]];
+    
+    
+    NSArray *arraryobject = [context executeFetchRequest:fetch1 error:&error];
+    
+    
+    if ([arraryobject count]==0) {
+        return @"-1";
+    }
+    else
+    {
+        Remittance *rem = [arraryobject objectAtIndex:0];
+        
+        NSDateFormatter *format = [[NSDateFormatter alloc]init];
+        [format setDateFormat:@"yyyyMMddhhmmssa"];
+        
+        NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+        
+        [format setTimeZone:gmt];
+        
+        return [format stringFromDate:rem.lastupdated];// country.lastModified
         
     }
     

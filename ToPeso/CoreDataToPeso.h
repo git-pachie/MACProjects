@@ -29,4 +29,8 @@
 -(void)syncCoreData :(NSArray *)arrayCountr;
 -(NSString *)getLastUpdatedCountry;
 
+
+-(void)syncCoreDataAgent :(NSArray *)arrayAgent;
+-(NSString *)getLastUpdatedAgent;
+
 @end

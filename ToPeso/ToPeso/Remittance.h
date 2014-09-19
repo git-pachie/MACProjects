@@ -2,7 +2,7 @@
 //  Remittance.h
 //  ToPeso
 //
-//  Created by pachie on 14/9/14.
+//  Created by pachie on 19/9/14.
 //  Copyright (c) 2014 Private. All rights reserved.
 //
 
@@ -23,5 +23,6 @@
 @property (nonatomic, retain) NSNumber * rate;
 @property (nonatomic, retain) NSString * remittanceName;
 @property (nonatomic, retain) NSString * remmittanceGUID;
+@property (nonatomic, retain) NSString * isDeleted1;
 
 @end
