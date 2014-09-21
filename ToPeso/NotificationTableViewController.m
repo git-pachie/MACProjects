@@ -9,11 +9,12 @@
 #import "NotificationTableViewController.h"
 #import "com_pachie_topesoAppDelegate.h"
 #import "Notification.h"
-
+#import "SendAndRequest.h"
 
 @interface NotificationTableViewController ()
 {
     com_pachie_topesoAppDelegate *delegate;
+    SendAndRequest *send;
     
 }
 @end
@@ -34,7 +35,7 @@
     [super viewDidLoad];
     
     delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
-    
+    send = [[SendAndRequest alloc]init];
     
 }
 
@@ -178,18 +179,61 @@
         //remove the deleted object from your data source.
         //If your data source is an NSMutableArray, do this
       //  [self.fetched  removeObjectAtIndex:indexPath.row];
-        [delegate.managedObjectContext deleteObject:[self.fetched objectAtIndexPath:indexPath]];
         
-        NSError *error = nil;
-        if (![delegate.managedObjectContext save:&error]) {
-            // handle error
-        }
+        Notification1 *no = [self.fetched objectAtIndexPath:indexPath];
         
-        [tableView reloadData]; // tell table to refresh now
+        NSDateFormatter *dformat = [[NSDateFormatter alloc]init];
+        [dformat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSString *strDate = [dformat stringFromDate:[NSDate date]];
+
+        NSDictionary *payloadDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     @"", @"notificationGUID"
+                                     , delegate.DevinceToken, @"deviceUDID"
+                                     , no.remittanceGUID,@"remittanceGUID"
+                                     , no.agentName,@"agentName"
+                                     , no.countryCode,@"countryCode"
+                                     , no.countryName,@"countryName"
+                                     , no.currencyKey,@"currencyKey"
+                                     , strDate,@"lastUpdated"
+                                     , strDate,@"dateCreated"
+                                     , @"false",@"isInsertDelete",
+                                     nil];
         
-        if ([[self.fetched fetchedObjects]count] == 0) {
-            self.btnEdit.title =  @"Edit";
-        }
+        
+        NSString *strURL =[NSString stringWithFormat:@"%@/insertnotification", [send getToPisoURL]];
+        [send syncNotificationToServer:[NSURL URLWithString:strURL] notificationData:payloadDict CompletionBlock:^(bool succeeded, NSError *error) {
+            
+            if (succeeded) {
+                [delegate.managedObjectContext deleteObject:[self.fetched objectAtIndexPath:indexPath]];
+                
+                NSError *error = nil;
+                if (![delegate.managedObjectContext save:&error]) {
+                    // handle error
+                }
+                
+                [tableView reloadData]; // tell table to refresh now
+                
+                if ([[self.fetched fetchedObjects]count] == 0) {
+                    self.btnEdit.title =  @"Edit";
+                }
+            }
+            else
+            {
+                //NSLog(@"not succeeded");
+                
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Unable to connect to server" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
+                
+                [alert show];
+                
+                
+                
+            }
+            
+        }];
+        
+        
+
+        
     }
 }
 

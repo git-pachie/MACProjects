@@ -20,6 +20,7 @@
     CoreDataToPeso *core;
     EntNotification *notifcation;
     SendAndRequest *send;
+    bool preNotificationValue;
 }
 
 @end
@@ -102,6 +103,8 @@
     notifcation.agentName = self.remitanceAgent.remittanceName;
 
     self.swNotification.on = [core isNotificationExist:notifcation];
+    
+    preNotificationValue = self.swNotification.on;
     
 }
 
@@ -236,19 +239,7 @@
     
     
     
-    NSDictionary *payloadDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 @"", @"notificationGUID"
-                                 , delegate.DevinceToken, @"deviceUDID"
-                                 , self.remitanceAgent.remmittanceGUID,@"remittanceGUID"
-                                 , self.remitanceAgent.remittanceName,@"agentName"
-                                 , self.remitanceAgent.countryCode,@"countryCode"
-                                 , self.country.countryName,@"countryName"
-                                 , self.remitanceAgent.currencyKey,@"currencyKey"
-                                 , strDate,@"lastUpdated"
-                                 , strDate,@"dateCreated"
-                                 , @"true",@"isInsertDelete",
-                                 nil];
-    bool onOff;
+       bool onOff;
     
     
     
@@ -263,8 +254,32 @@
         //[core insertUpdateNotification:notifcation EnableDisable:NO];
     }
     
-    NSString *strURL = @"http://www.greetify.net:1980/ToPisoWCF/Service1.svc/insertnotification";
     
+    NSString *strOnOff;
+    
+    if (onOff== true) {
+        strOnOff = @"true";
+    }
+    else
+    {
+        strOnOff = @"false";
+    }
+    
+    NSDictionary *payloadDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"", @"notificationGUID"
+                                 , delegate.DevinceToken, @"deviceUDID"
+                                 , self.remitanceAgent.remmittanceGUID,@"remittanceGUID"
+                                 , self.remitanceAgent.remittanceName,@"agentName"
+                                 , self.remitanceAgent.countryCode,@"countryCode"
+                                 , self.country.countryName,@"countryName"
+                                 , self.remitanceAgent.currencyKey,@"currencyKey"
+                                 , strDate,@"lastUpdated"
+                                 , strDate,@"dateCreated"
+                                 , strOnOff,@"isInsertDelete",
+                                 nil];
+
+    
+    NSString *strURL =[NSString stringWithFormat:@"%@/insertnotification", [send getToPisoURL]];
     [send syncNotificationToServer:[NSURL URLWithString:strURL] notificationData:payloadDict CompletionBlock:^(bool succeeded, NSError *error) {
      
         if (succeeded) {
@@ -272,7 +287,14 @@
         }
         else
         {
-            NSLog(@"not succeeded");
+            //NSLog(@"not succeeded");
+            
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Unable to connect to server" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
+            
+            [alert show];
+            
+            self.swNotification.on = preNotificationValue;
+            
         }
         
     }];
