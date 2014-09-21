@@ -186,18 +186,31 @@
         [dformat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSString *strDate = [dformat stringFromDate:[NSDate date]];
 
-        NSDictionary *payloadDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     @"", @"notificationGUID"
-                                     , delegate.DevinceToken, @"deviceUDID"
-                                     , no.remittanceGUID,@"remittanceGUID"
-                                     , no.agentName,@"agentName"
-                                     , no.countryCode,@"countryCode"
-                                     , no.countryName,@"countryName"
-                                     , no.currencyKey,@"currencyKey"
-                                     , strDate,@"lastUpdated"
-                                     , strDate,@"dateCreated"
-                                     , @"false",@"isInsertDelete",
-                                     nil];
+//        NSDictionary *payloadDict = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                     @"", @"notificationGUID"
+//                                     , delegate.DevinceToken, @"deviceUDID"
+//                                     , no.remittanceGUID,@"remittanceGUID"
+//                                     , no.agentName,@"agentName"
+//                                     , no.countryCode,@"countryCode"
+//                                     , no.countryName,@"countryName"
+//                                     , no.currencyKey,@"currencyKey"
+//                                     , strDate,@"lastUpdated"
+//                                     , strDate,@"dateCreated"
+//                                     , @"false",@"isInsertDelete",
+//                                     nil];
+        
+        
+        NSDictionary *payloadDict = @{  @"notificationGUID":@"yttyghyy"
+                                        , @"deviceUDID" : delegate.DevinceToken
+                                        , @"remittanceGUID" : no.remittanceGUID
+                                        , @"agentName" : no.agentName
+                                        , @"countryCode" : no.countryCode
+                                        , @"countryName" : no.countryName
+                                        , @"currencyKey" : no.currencyKey
+                                        , @"lastUpdated" : strDate
+                                        , @"dateCreated" : strDate
+                                        , @"isInsertDelete": @"false"
+                                        };
         
         
         NSString *strURL =[NSString stringWithFormat:@"%@/insertnotification", [send getToPisoURL]];

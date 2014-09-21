@@ -265,18 +265,17 @@
         strOnOff = @"false";
     }
     
-    NSDictionary *payloadDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 @"", @"notificationGUID"
-                                 , delegate.DevinceToken, @"deviceUDID"
-                                 , self.remitanceAgent.remmittanceGUID,@"remittanceGUID"
-                                 , self.remitanceAgent.remittanceName,@"agentName"
-                                 , self.remitanceAgent.countryCode,@"countryCode"
-                                 , self.country.countryName,@"countryName"
-                                 , self.remitanceAgent.currencyKey,@"currencyKey"
-                                 , strDate,@"lastUpdated"
-                                 , strDate,@"dateCreated"
-                                 , strOnOff,@"isInsertDelete",
-                                 nil];
+    NSDictionary *payloadDict = @{  @"notificationGUID":@"yttyghyy"
+                                  , @"deviceUDID" : delegate.DevinceToken
+                                  , @"remittanceGUID" : self.remitanceAgent.remmittanceGUID
+                                  , @"agentName" : self.remitanceAgent.remittanceName
+                                  , @"countryCode" : self.remitanceAgent.countryCode
+                                  , @"countryName" : self.country.countryName
+                                  , @"currencyKey" : self.remitanceAgent.currencyKey
+                                  , @"lastUpdated" : strDate
+                                  , @"dateCreated" : strDate
+                                  , @"isInsertDelete": strOnOff
+                                  };
 
     
     NSString *strURL =[NSString stringWithFormat:@"%@/insertnotification", [send getToPisoURL]];

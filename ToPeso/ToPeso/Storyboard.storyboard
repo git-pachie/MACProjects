@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XA6-xD-9oA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XA6-xD-9oA">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--Remittance Table View Controller - Agents-->
+        <!--Agents-->
         <scene sceneID="UeF-3Q-DYW">
             <objects>
                 <tableViewController id="lve-Yq-4sp" customClass="RemittanceTableViewController" sceneMemberID="viewController">
@@ -37,7 +37,7 @@
             </objects>
             <point key="canvasLocation" x="2268" y="32"/>
         </scene>
-        <!--Country Main Table View Controller - Country-->
+        <!--Country-->
         <scene sceneID="lJH-Q3-lZR">
             <objects>
                 <tableViewController id="GPd-2Z-h3z" customClass="CountryMainTableViewController" sceneMemberID="viewController">
@@ -69,7 +69,7 @@
             </objects>
             <point key="canvasLocation" x="1862" y="32"/>
         </scene>
-        <!--Notification Table View Controller - My Notification-->
+        <!--My Notification-->
         <scene sceneID="0vh-1c-qCh">
             <objects>
                 <tableViewController id="R58-g3-GSn" customClass="NotificationTableViewController" sceneMemberID="viewController">
@@ -107,7 +107,7 @@
             </objects>
             <point key="canvasLocation" x="1862" y="831"/>
         </scene>
-        <!--Table View Controller - About-->
+        <!--About-->
         <scene sceneID="YLg-OJ-AXE">
             <objects>
                 <tableViewController id="amo-0A-xXQ" sceneMemberID="viewController">
@@ -136,7 +136,7 @@
             </objects>
             <point key="canvasLocation" x="1862" y="1533"/>
         </scene>
-        <!--Agent Details Table View Controller - Rate Detail-->
+        <!--Rate Detail-->
         <scene sceneID="QvR-0E-qWb">
             <objects>
                 <tableViewController id="17s-Bo-Vx1" customClass="AgentDetailsTableViewController" sceneMemberID="viewController">
@@ -156,25 +156,21 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xbp-tP-Bw6">
                                                     <rect key="frame" x="20" y="14" width="70" height="75"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kabayan Remittance" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Du0-HC-Yqb">
                                                     <rect key="frame" x="98" y="14" width="173" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BLK 359 Admiralty Drive Singapore 08-192 Singapore" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="173" translatesAutoresizingMaskIntoConstraints="NO" id="HB2-F2-62d">
                                                     <rect key="frame" x="98" y="34" width="173" height="33"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contact : 85713568" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSZ-Vn-gXU">
                                                     <rect key="frame" x="98" y="60" width="173" height="33"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -191,14 +187,12 @@
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1,253.78" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoC-tB-kfd">
                                                     <rect key="frame" x="20" y="0.0" width="280" height="57"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="64"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="As of July 12, 2014 09:00 PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgS-ib-n3G">
                                                     <rect key="frame" x="22" y="48" width="278" height="33"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -215,7 +209,6 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FN7-Uq-mvf">
                                                     <rect key="frame" x="29" y="5" width="54" height="54"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" backgroundImage="facebook2.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -225,7 +218,6 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhk-sz-baA">
                                                     <rect key="frame" x="99" y="5" width="54" height="54"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" backgroundImage="twitter_2.png"/>
                                                     <connections>
                                                         <action selector="acTweeter:" destination="17s-Bo-Vx1" eventType="touchUpInside" id="OM8-8d-jRA"/>
@@ -233,7 +225,6 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdv-Fs-ZVu">
                                                     <rect key="frame" x="169" y="5" width="54" height="54"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" backgroundImage="imessage2.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -243,7 +234,6 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Seb-D4-30z">
                                                     <rect key="frame" x="239" y="5" width="55" height="54"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" backgroundImage="email.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -264,14 +254,12 @@
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nofity me when this rate has changes." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="206" translatesAutoresizingMaskIntoConstraints="NO" id="FN3-36-Tux">
                                                     <rect key="frame" x="20" y="20" width="206" height="38"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Kp-2E-Jla">
                                                     <rect key="frame" x="251" y="20" width="51" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
                                                         <action selector="swNotification:" destination="17s-Bo-Vx1" eventType="valueChanged" id="FfS-8H-vQy"/>
                                                     </connections>
@@ -326,7 +314,7 @@
             </objects>
             <point key="canvasLocation" x="761" y="32"/>
         </scene>
-        <!--Navigation Controller - Home-->
+        <!--Home-->
         <scene sceneID="Zqb-TI-st2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uNM-Y0-bhc" sceneMemberID="viewController">
@@ -346,7 +334,7 @@
             </objects>
             <point key="canvasLocation" x="1336" y="32"/>
         </scene>
-        <!--Navigation Controller - My Notification-->
+        <!--My Notification-->
         <scene sceneID="NE2-15-Ct4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3AM-hZ-ZHq" sceneMemberID="viewController">
@@ -365,7 +353,7 @@
             </objects>
             <point key="canvasLocation" x="1336" y="831"/>
         </scene>
-        <!--Navigation Controller - About-->
+        <!--About-->
         <scene sceneID="OWS-ff-oqN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="u6h-UO-bVn" sceneMemberID="viewController">
