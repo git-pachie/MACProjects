@@ -39,8 +39,45 @@
 //        
 //    }];
 //    
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
+
     
     return YES;
+}
+
+
+
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSLog(@"deviceToken: %@", deviceToken);
+    
+    NSString *strToken = [NSString stringWithFormat:@"%@",deviceToken];
+    strToken = [strToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+    strToken = [strToken stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    strToken = [strToken stringByReplacingOccurrencesOfString:@">" withString:@""];
+    self.DevinceToken = strToken;
+    
+  //  CommonSendRequest *common = [[CommonSendRequest alloc]init];
+    //[common InsertDeviceToken:self.DevinceToken];
+//    [common InsertDeviceToken:self.DevinceToken withBlock:^(NSString *phoneNumber) {
+//        self.PhoneNumber = phoneNumber;
+//    }];
+    
+}
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"Error in registration. Error: %@", error);
+    self.DevinceToken = @"1111111111";
+ //   CommonSendRequest *common = [[CommonSendRequest alloc]init];
+    //[common InsertDeviceToken:self.DevinceToken];
+//    [common InsertDeviceToken:self.DevinceToken withBlock:^(NSString *phoneNumber) {
+//        self.PhoneNumber = phoneNumber;
+//    }];
+}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"%@",userInfo);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

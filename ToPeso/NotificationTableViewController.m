@@ -154,6 +154,13 @@
         case NSFetchedResultsChangeDelete:
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
+            
+        case NSFetchedResultsChangeMove:
+            NSLog(@"A table item was moved");
+            break;
+        case NSFetchedResultsChangeUpdate:
+            NSLog(@"A table item was updated");
+            break;
     }
 }
 

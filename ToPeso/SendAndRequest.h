@@ -16,6 +16,8 @@
 
 - (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock;
 
+-(void)syncNotificationToServer : (NSURL *)url notificationData:(NSDictionary *)dic CompletionBlock:(void(^)(bool succeeded, NSError *error))completionBlock;
+
 +(NSString *)UrlImageConnection;
 
 @end

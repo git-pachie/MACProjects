@@ -14,9 +14,11 @@
 #import "CommonFunction.h"
 #import "Remittance.h"
 
+
 @implementation CoreDataToPeso
 {
     com_pachie_topesoAppDelegate *delegate;
+    
 }
 
 
@@ -27,6 +29,8 @@
         return _fetchedController;
         
     }
+    
+
     
     delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
     
@@ -275,6 +279,8 @@
 {
     delegate = (com_pachie_topesoAppDelegate*)[[UIApplication sharedApplication]delegate];
     
+    
+
     NSManagedObjectContext *context = delegate.managedObjectContext;
     
     NSError *error;
@@ -298,6 +304,103 @@
         if (![context save:&error]) {
             NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
         }
+        
+        
+ 
+        
+//        
+//        NSDictionary *payloadDict = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                        @"", @"notificationGUID"
+//                                        , @"DEVID", @"deviceUDID"
+//                                        , @"QWERQWERQWERQWre",@"remittanceGUID"
+//                                        , @"TESTAGENT",@"agentName"
+//                                        , @"SG",@"countryCode"
+//                                        , @"SINGAPORE",@"countryName"
+//                                        , @"PHP-USD",@"currencyKey"
+//                                        , @"2014-09-09 12:12:12 PM",@"lastUpdated"
+//                                        , @"2014-09-09 12:12:12 PM",@"dateCreated"
+//                                        , @"true",@"isInsertDelete",
+//                                        nil];
+//
+//        
+//        //NSDictionary *payloadDict = [NSDictionary dictionaryWithObjectsAndKeys:@"ASDFQWRASDFASREFWERQWERQWER",@"sessionID", nil];
+//        NSString *operationName = @"InsertNotification";
+//        
+//        
+//        
+//        NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] init];
+//        urlRequest.URL = [NSURL URLWithString:[@"http://www.greetify.net:1980/ToPisoWCF/Service1.svc/" stringByAppendingString:operationName]];
+//                          [urlRequest setHTTPMethod:@"POST"];
+//                          [urlRequest addValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-type"];
+//                          
+//                          NSData *jsonData = [NSJSONSerialization dataWithJSONObject:payloadDict options:0 error:NULL];
+//                          [urlRequest setHTTPBody:jsonData];
+//                          
+//                          //ITLog(@"Issuing request: %@ %@", self.operationName, [self payloadDict]);
+//        
+//        
+//      
+//        
+//        
+//        
+//        [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+//            if (!error && data.length > 0) {
+//                NSError *jsonError = nil;
+//                id jsonObj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+//                if (!jsonError && [jsonObj isKindOfClass:[NSDictionary class]]) {
+//                    // process result here
+//                } else {
+//                    // error handling
+//                }
+//            } else {
+//                // error handling
+//            }
+//        }];
+        
+        
+//        if ([jsonObject isKindOfClass:[NSArray class]]) {
+//            NSArray *dictarr=(NSArray*)jsonObject;
+//            NSMutableArray *resultarr=[[NSMutableArray alloc] init];
+//            for (NSDictionary *dict in dictarr) {
+//                ITJourney *journey =[[ITJourney alloc]initWithDictionary:dict];
+//                [resultarr addObject:journey];
+//            }
+//            // use resultarr from here...
+//        }
+        
+        //build an info object and convert to json
+        
+        //convert object to data
+//        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:newDatasetInfo options:kNilOptions error:&error];
+//        
+////        NSError *err;
+////        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:newDatasetInfo  options:NSJSONWritingPrettyPrinted error:&err];
+//
+//        
+//        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+//        [request setURL:[NSURL URLWithString:@"http://www.greetify.net:1980/ToPisoWCF/Service1.svc/InsertNotification"]];
+//        [request setHTTPMethod:@"POST"];
+//        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//        [request setHTTPBody:jsonData];
+//        
+//        // print json:
+//        NSLog(@"JSON summary: %@", [[NSString alloc] initWithData:jsonData
+//                                                         encoding:NSUTF8StringEncoding]);
+//        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//        [connection start];
+//        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     else
     {

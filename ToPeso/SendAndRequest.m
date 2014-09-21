@@ -10,6 +10,7 @@
 #import "CommonFunction.h"
 
 
+
 @implementation SendAndRequest
 
 -(NSString*)getToPisoURL
@@ -186,5 +187,57 @@
                            }];
     
     
+}
+
+
+-(void)syncNotificationToServer : (NSURL *)url notificationData:(NSDictionary *)dic CompletionBlock:(void(^)(bool succeeded, NSError *error))completionBlock
+{
+//    NSDictionary *payloadDict = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                 @"", @"notificationGUID"
+//                                 , @"DEVID", @"deviceUDID"
+//                                 , @"QWERQWERQWERQWre",@"remittanceGUID"
+//                                 , @"TESTAGENT",@"agentName"
+//                                 , @"SG",@"countryCode"
+//                                 , @"SINGAPORE",@"countryName"
+//                                 , @"PHP-USD",@"currencyKey"
+//                                 , @"2014-09-09 12:12:12 PM",@"lastUpdated"
+//                                 , @"2014-09-09 12:12:12 PM",@"dateCreated"
+//                                 , @"true",@"isInsertDelete",
+//                                 nil];
+    
+    
+    //NSDictionary *payloadDict = [NSDictionary dictionaryWithObjectsAndKeys:@"ASDFQWRASDFASREFWERQWERQWER",@"sessionID", nil];
+    //NSString *operationName = @"InsertNotification";
+    
+    
+    
+    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] init];
+    urlRequest.URL = url;
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest addValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-type"];
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:NULL];
+    [urlRequest setHTTPBody:jsonData];
+   
+    
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (!error && data.length > 0) {
+            NSError *jsonError = nil;
+            id jsonObj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+            if (!jsonError && [jsonObj isKindOfClass:[NSDictionary class]]) {
+                // process result here
+                if ([jsonObj isEqualToString:@"1"]) {
+                    completionBlock(false,jsonError);
+                }
+            } else {
+                // error handling
+                completionBlock(true,jsonError);
+            }
+        } else {
+            // error handling
+            completionBlock(false,error);
+        }
+    }];
+
 }
 @end

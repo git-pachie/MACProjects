@@ -95,25 +95,25 @@
              //image
              
              for (NSDictionary *dic in array) {
-//                 NSString *strImg = [dic objectForKey:@"countryFlag"];
-//                 NSString *strURL = [NSString stringWithFormat:@"%@%@",[SendAndRequest UrlImageConnection],strImg];
-//                 
-//                 [send downloadImageWithURL:[NSURL URLWithString:strURL] completionBlock:^(BOOL succeeded, UIImage *image) {
-//                     
-//                     //UIImage *im = image;
-//                     
-//                     if (image != nil)
-//                     {
-//                         
-//                         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-//                         NSString *documentsDirectory = [paths objectAtIndex:0];
-//                         NSString *path = [documentsDirectory stringByAppendingPathComponent:strImg];
-//                         NSData *data = UIImagePNGRepresentation(image);
-//                         [data writeToFile:path atomically:YES];
-//                         
-//                     }
-//                     
-//                 }];
+                 NSString *strImg = [dic objectForKey:@"logo"];
+                 NSString *strURL = [NSString stringWithFormat:@"%@%@",[SendAndRequest UrlImageConnection],strImg];
+                 
+                 [send downloadImageWithURL:[NSURL URLWithString:strURL] completionBlock:^(BOOL succeeded, UIImage *image) {
+                     
+                     //UIImage *im = image;
+                     
+                     if (image != nil)
+                     {
+                         
+                         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+                         NSString *documentsDirectory = [paths objectAtIndex:0];
+                         NSString *path = [documentsDirectory stringByAppendingPathComponent:strImg];
+                         NSData *data = UIImagePNGRepresentation(image);
+                         [data writeToFile:path atomically:YES];
+                         
+                     }
+                     
+                 }];
              }
              
              
@@ -256,7 +256,21 @@
     
     
 
-   
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString* path = [documentsDirectory stringByAppendingPathComponent:
+                      [rem valueForKey:@"logo"]];
+    UIImage* image = [UIImage imageWithContentsOfFile:path];
+
+    
+    
+    if (image == nil) {
+        image = [UIImage imageNamed:@"default.png"];
+    }
+    
+    
+    cell.imgRemittanceImage.image = image;
     
 //    cell.imageView.image = [UIImage imageNamed:@"default.png"];
     cell.imgRemittanceImage.layer.cornerRadius = 10;

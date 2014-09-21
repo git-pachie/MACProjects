@@ -11,6 +11,7 @@
 #import "CoreDataToPeso.h"
 #import "com_pachie_topesoAppDelegate.h"
 #import "EntNotification.h"
+#import "SendAndRequest.h"
 
 @interface AgentDetailsTableViewController ()
 
@@ -18,6 +19,7 @@
     com_pachie_topesoAppDelegate * delegate;
     CoreDataToPeso *core;
     EntNotification *notifcation;
+    SendAndRequest *send;
 }
 
 @end
@@ -40,6 +42,7 @@
     delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
     
     core = [[CoreDataToPeso alloc]init];
+    send  = [[SendAndRequest alloc]init];
     
     self.lblAgentName.text = self.remitanceAgent.remittanceName;
     self.lblAgentAddress.text = self.remitanceAgent.address;
@@ -62,7 +65,21 @@
     
     self.lblAsOfDate.text =[NSString stringWithFormat:@"As of date %@",[dateFormate stringFromDate:self.remitanceAgent.asofDate]];
     
-    self.imgAgentPhoto.image = [UIImage imageNamed:@"default.png"];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString* path = [documentsDirectory stringByAppendingPathComponent:
+                       self.remitanceAgent.logo];
+    UIImage* image = [UIImage imageWithContentsOfFile:path];
+    
+    
+    
+    if (image == nil) {
+        image = [UIImage imageNamed:@"default.png"];
+    }
+    
+    self.imgAgentPhoto.image = image;// [UIImage imageNamed:@"default.png"];
     self.imgAgentPhoto.layer.cornerRadius = 10;
     self.imgAgentPhoto.clipsToBounds = YES;
     self.imgAgentPhoto.layer.borderWidth = 0.4;
@@ -213,16 +230,53 @@
 
 - (IBAction)swNotification:(id)sender {
     
+    NSDateFormatter *dformat = [[NSDateFormatter alloc]init];
+    [dformat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *strDate = [dformat stringFromDate:[NSDate date]];
+    
+    
+    
+    NSDictionary *payloadDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"", @"notificationGUID"
+                                 , delegate.DevinceToken, @"deviceUDID"
+                                 , self.remitanceAgent.remmittanceGUID,@"remittanceGUID"
+                                 , self.remitanceAgent.remittanceName,@"agentName"
+                                 , self.remitanceAgent.countryCode,@"countryCode"
+                                 , self.country.countryName,@"countryName"
+                                 , self.remitanceAgent.currencyKey,@"currencyKey"
+                                 , strDate,@"lastUpdated"
+                                 , strDate,@"dateCreated"
+                                 , @"true",@"isInsertDelete",
+                                 nil];
+    bool onOff;
     
     
     
     if (self.swNotification.on) {
-        [core insertUpdateNotification:notifcation EnableDisable:YES];
+        
+        onOff = YES;
+  
     }
     else
     {
-        [core insertUpdateNotification:notifcation EnableDisable:NO];
+        onOff = NO;
+        //[core insertUpdateNotification:notifcation EnableDisable:NO];
     }
+    
+    NSString *strURL = @"http://www.greetify.net:1980/ToPisoWCF/Service1.svc/insertnotification";
+    
+    [send syncNotificationToServer:[NSURL URLWithString:strURL] notificationData:payloadDict CompletionBlock:^(bool succeeded, NSError *error) {
+     
+        if (succeeded) {
+            [core insertUpdateNotification:notifcation EnableDisable:onOff];
+        }
+        else
+        {
+            NSLog(@"not succeeded");
+        }
+        
+    }];
+    
 }
 
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
