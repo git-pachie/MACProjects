@@ -142,6 +142,8 @@
     
     
     [self refreshTable];
+    
+    NSLog(@"id: %@", del.DevinceToken);
    
 }
 

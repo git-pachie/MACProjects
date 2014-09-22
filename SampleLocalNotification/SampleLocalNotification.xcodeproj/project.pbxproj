@@ -209,6 +209,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Private;
 				TargetAttributes = {
+					0C2A6B9319855A7D00800606 = {
+						DevelopmentTeam = R3F22UC8DK;
+					};
 					0C2A6BAE19855A7E00800606 = {
 						TestTargetID = 0C2A6B9319855A7D00800606;
 					};
@@ -379,10 +382,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleLocalNotification/SampleLocalNotification-Prefix.pch";
 				INFOPLIST_FILE = "SampleLocalNotification/SampleLocalNotification-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1322f987-2c38-4bc4-8276-3849ccb59224";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -392,10 +398,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleLocalNotification/SampleLocalNotification-Prefix.pch";
 				INFOPLIST_FILE = "SampleLocalNotification/SampleLocalNotification-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1322f987-2c38-4bc4-8276-3849ccb59224";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

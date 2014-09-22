@@ -42,8 +42,8 @@
     
     //UIApplication *application = [UIApplication sharedApplication];
     
-    self.DevinceToken = @"1111111111";
-    
+//    self.DevinceToken = @"1111111111";
+//    
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge
                                                                                              |UIRemoteNotificationTypeSound
@@ -53,8 +53,8 @@
         UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
         [application registerForRemoteNotificationTypes:myTypes];
     }
-
-    
+//
+//    
 //#ifdef __IPHONE_8_0
 //    //Right, that is the point
 //    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge
@@ -66,13 +66,18 @@
 //    UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
 //    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
 //#endif
-    
-    
-    
-    
+//    
+//    
+//    
+//    
 //    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
 //
     
+//    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+//        // use registerUserNotificationSettings
+//    } else {
+//        // use registerForRemoteNotifications
+//    }
     return YES;
 }
 
