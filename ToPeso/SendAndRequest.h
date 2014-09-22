@@ -18,6 +18,7 @@
 
 -(void)syncNotificationToServer : (NSURL *)url notificationData:(NSDictionary *)dic CompletionBlock:(void(^)(bool succeeded, NSError *error))completionBlock;
 
+-(void)deleteAllNotificationToServer : (NSURL *)url notificationData:(NSDictionary *)dic CompletionBlock:(void(^)(bool succeeded, NSError *error))completionBlock;
 
 -(NSString*)getToPisoURL;
 +(NSString *)UrlImageConnection;

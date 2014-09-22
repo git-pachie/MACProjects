@@ -45,6 +45,8 @@
     
     
     
+    
+    
     [send getLastesCountry:lastModified withBlock:^(NSArray *array, NSError *connectionError)
      {
          
@@ -58,6 +60,22 @@
          else
          {
              //image
+             
+             
+             if ([lastModified isEqualToString:@"-1"]) {
+                 
+                 
+                 NSDictionary *dic = @{@"deviceUDID":del.DevinceToken};
+                 NSString *strURL =[NSString stringWithFormat:@"%@/DeleteAllNotification", [send getToPisoURL]];
+                 
+                 [send deleteAllNotificationToServer:[NSURL URLWithString:strURL] notificationData:dic CompletionBlock:^(bool succeeded, NSError *error) {
+                     NSLog(@"all notification deleted");
+                 }];
+             }
+
+             
+             
+             
              
              for (NSDictionary *dic in array) {
                  NSString *strImg = [dic objectForKey:@"countryFlag"];
