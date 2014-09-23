@@ -13,4 +13,8 @@
 
 @property (nonatomic,strong)NSFetchedResultsController *fectched;
 
+
+-(void)LoadFromNotification :(NSString *)remittanceGUID;
+
+
 @end

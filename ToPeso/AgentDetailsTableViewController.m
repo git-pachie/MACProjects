@@ -106,6 +106,11 @@
     
     preNotificationValue = self.swNotification.on;
     
+    
+    if (delegate.isFromNotification== true) {
+        delegate.isFromNotification = false;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning

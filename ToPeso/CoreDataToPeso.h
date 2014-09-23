@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Notification.h"
 #import "EntNotification.h"
+#import "Remittance.h"
 
 
 @interface CoreDataToPeso : NSObject
@@ -32,5 +33,7 @@
 
 -(void)syncCoreDataAgent :(NSArray *)arrayAgent;
 -(NSString *)getLastUpdatedAgent;
+
+-(Remittance *)getRemittanceByID :(NSString *)remittanceGUID;
 
 @end

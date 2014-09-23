@@ -695,6 +695,38 @@
     
 }
 
+-(Remittance *)getRemittanceByID :(NSString *)remittanceGUID
+{
+    NSError *error;
+    
+    delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+    
+    NSFetchRequest *fetch1 = [[NSFetchRequest alloc]initWithEntityName:@"Remittance"];
+    
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"lastupdated" ascending:NO];
+    
+    [fetch1 setSortDescriptors:[NSArray arrayWithObjects:sort, nil]];
+    
+    [fetch1 setPredicate:[NSPredicate predicateWithFormat:@"remmittanceGUID ==[cd]%@", remittanceGUID]];
+    
+    
+    NSArray *arraryobject = [context executeFetchRequest:fetch1 error:&error];
+    
+    
+    if ([arraryobject count]==0) {
+        return nil;
+    }
+    else
+    {
+        Remittance *re = [arraryobject objectAtIndex:0];
+        
+        return re;
+    }
+    
+}
+
 
 
 @end

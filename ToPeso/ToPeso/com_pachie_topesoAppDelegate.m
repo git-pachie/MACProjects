@@ -9,6 +9,8 @@
 #import "com_pachie_topesoAppDelegate.h"
 #import "CoreDataToPeso.h"
 #import "SendAndRequest.h"
+#import "CountryMainTableViewController.h"
+
 
 @implementation com_pachie_topesoAppDelegate
 
@@ -131,6 +133,32 @@
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     NSLog(@"%@",userInfo);
+    
+    
+    [[self window] makeKeyAndVisible];
+    
+    
+    UITabBarController *tab =(UITabBarController *)self.window.rootViewController;
+    
+    tab.selectedIndex = 0;
+    
+    UINavigationController *nav = (UINavigationController *)[tab selectedViewController];
+    
+     CountryMainTableViewController *dv = [[CountryMainTableViewController alloc]init];
+    
+    dv = [[nav viewControllers] objectAtIndex:0];
+    
+    com_pachie_topesoAppDelegate *del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    del.isFromNotification = true;
+    
+    del.notficationCountryCode = [userInfo objectForKey:@"countryCode"];
+    
+    del.notifcationAgentID = [userInfo objectForKey:@"remittanceGUID"];
+    
+    [dv LoadFromNotification:[userInfo objectForKey:@"remittanceGUID"]];
+
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

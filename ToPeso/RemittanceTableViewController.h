@@ -15,5 +15,10 @@
 //@property (nonatomic, strong) NSString * countryCode;
 @property (nonatomic,strong) NSFetchedResultsController *fetched;
 @property (nonatomic, strong)Country *country;
+@property (nonatomic)bool isFromNotification;
+@property (nonatomic, strong) NSString *countryCode;
+
+
+
 
 @end

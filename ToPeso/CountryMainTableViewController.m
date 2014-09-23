@@ -257,6 +257,7 @@
     
     if ([segue.identifier isEqualToString:@"showDetails"]) {
         
+        
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         RemittanceTableViewController *rem = (RemittanceTableViewController *)segue.destinationViewController;
@@ -265,6 +266,14 @@
         
         rem.country = m;//[m valueForKey:@"countryCode"];
         
+        
+        if (del.isFromNotification == true) {
+            
+            
+            rem.countryCode = del.notficationCountryCode;
+            
+            
+        }
         
     }
     
@@ -309,6 +318,13 @@
     UIGraphicsEndImageContext();
     
     return imview;
+}
+
+-(void)LoadFromNotification :(NSString *)remittanceGUID
+{
+    
+    [self performSegueWithIdentifier:@"showDetails" sender:self];
+    
 }
 
 @end

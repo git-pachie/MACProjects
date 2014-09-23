@@ -135,6 +135,11 @@
          
          [self performSelector:@selector(Done) withObject:nil afterDelay:1];
          
+         if (del.isFromNotification== true) {
+             
+             [self performSegueWithIdentifier:@"agentDetails" sender:self];
+         }
+         
          
      }];
     
@@ -300,7 +305,15 @@
         
         Remittance *rem = [self.fetched objectAtIndexPath:indexpath];
         
-        rem  = [self.fetched objectAtIndexPath:indexpath];
+        if (del.isFromNotification== true) {
+            rem = [self getAgentDetail:del.notifcationAgentID];
+        }
+        else
+        {
+            rem  = [self.fetched objectAtIndexPath:indexpath];
+        }
+        
+        
         
         agent.remitanceAgent = rem;
         agent.country = self.country;
@@ -361,7 +374,18 @@
     
     [request setSortDescriptors:[NSArray arrayWithObjects:sort1,sort2, nil]];
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"countryCode = %@",self.country.countryCode];
+    
+    NSPredicate *pred ;
+    
+    if (del.isFromNotification == true) {
+        pred = [NSPredicate predicateWithFormat:@"countryCode = %@",del.notficationCountryCode];
+    }
+    else
+    {
+        pred = [NSPredicate predicateWithFormat:@"countryCode = %@",self.country.countryCode];
+    }
+    
+    
     
     
     [request setPredicate:pred];
@@ -373,6 +397,15 @@
     [self.fetched setDelegate: self];
     
     return self.fetched;
+    
+    
+}
+
+-(Remittance *)getAgentDetail :(NSString *)remittanceGUID
+{
+    CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
+    
+    return [core getRemittanceByID:del.notifcationAgentID];
     
     
 }

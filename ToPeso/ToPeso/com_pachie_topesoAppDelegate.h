@@ -17,6 +17,9 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong)NSString *DevinceToken;
+@property (nonatomic) bool isFromNotification;
+@property (nonatomic, strong) NSString *notficationCountryCode;
+@property (nonatomic, strong) NSString *notifcationAgentID;
 
 
 
