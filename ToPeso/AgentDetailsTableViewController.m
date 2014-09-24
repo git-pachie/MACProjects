@@ -52,6 +52,11 @@
     
     NSNumberFormatter *numFormat = [[NSNumberFormatter alloc]init];
     [numFormat setNumberStyle:NSNumberFormatterDecimalStyle];
+    [numFormat setMaximumFractionDigits:2];
+    [numFormat setMinimumFractionDigits:2];
+    
+    //NSString *strRate =  [NSString stringWithFormat:@"%02d", self.remitanceAgent.rate];
+    
     self.lblCurrentRate.text = [numFormat stringFromNumber:self.remitanceAgent.rate];
     
     

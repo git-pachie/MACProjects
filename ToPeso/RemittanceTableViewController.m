@@ -118,7 +118,6 @@
              
              
              
-             
              [core syncCoreDataAgent:array];
              
              
@@ -131,8 +130,7 @@
              exit(-1);  // Fail
          }
          
-         
-         
+
          [self performSelector:@selector(Done) withObject:nil afterDelay:1];
          
          if (del.isFromNotification== true) {
@@ -374,15 +372,17 @@
     
     [request setSortDescriptors:[NSArray arrayWithObjects:sort1,sort2, nil]];
     
+    //[request setPredicate:[NSPredicate predicateWithFormat:@"isDeleted1 == YES"]];
+    
     
     NSPredicate *pred ;
     
     if (del.isFromNotification == true) {
-        pred = [NSPredicate predicateWithFormat:@"countryCode = %@",del.notficationCountryCode];
+        pred = [NSPredicate predicateWithFormat:@"countryCode = %@ AND isDeleted1 == NO",del.notficationCountryCode];
     }
     else
     {
-        pred = [NSPredicate predicateWithFormat:@"countryCode = %@",self.country.countryCode];
+        pred = [NSPredicate predicateWithFormat:@"countryCode = %@ AND isDeleted1 == NO",self.country.countryCode];
     }
     
     

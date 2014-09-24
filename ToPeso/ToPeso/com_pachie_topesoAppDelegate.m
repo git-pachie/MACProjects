@@ -138,6 +138,7 @@
     [[self window] makeKeyAndVisible];
     
     
+    
     UITabBarController *tab =(UITabBarController *)self.window.rootViewController;
     
     tab.selectedIndex = 0;
@@ -157,6 +158,10 @@
     del.notifcationAgentID = [userInfo objectForKey:@"remittanceGUID"];
     
     [dv LoadFromNotification:[userInfo objectForKey:@"remittanceGUID"]];
+    
+    application.applicationIconBadgeNumber = application.applicationIconBadgeNumber - 1;
+    
+    
 
     
 }
