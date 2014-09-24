@@ -48,6 +48,7 @@
     self.lblAgentName.text = self.remitanceAgent.remittanceName;
     self.lblAgentAddress.text = self.remitanceAgent.address;
     self.lblAgentContact.text =[NSString stringWithFormat:@"Contact: %@",self.remitanceAgent.contact];
+    self.lblCurrencyKey.text = self.remitanceAgent.currencyKey;
     
     
     NSNumberFormatter *numFormat = [[NSNumberFormatter alloc]init];
@@ -97,6 +98,12 @@
     [self.btnTweeter setFrame:CGRectMake(0, 0, 50, 50)];
     [self.btnEmail setFrame:CGRectMake(0,0,50,50)];
     [self.btnSMS setFrame:CGRectMake(0,0,50,50)];
+    
+    
+    self.btnFB.layer.opacity=.60;
+    self.btnTweeter.layer.opacity = .60;
+    self.btnSMS.layer.opacity = .60;
+    self.btnEmail.layer.opacity = .60;
    
     notifcation = [[EntNotification alloc]init];
     
@@ -135,7 +142,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return 4;
+    return 5;
 }
 
 

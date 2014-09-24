@@ -187,7 +187,7 @@
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1,253.78" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoC-tB-kfd">
                                                     <rect key="frame" x="20" y="0.0" width="280" height="57"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="64"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="71"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -195,6 +195,21 @@
                                                     <rect key="frame" x="22" y="48" width="278" height="33"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="67" id="pkZ-mX-3ot">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pkZ-mX-3ot" id="Abx-J2-vni">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SGD-PHP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8L-kp-qvn">
+                                                    <rect key="frame" x="66" y="0.0" width="188" height="54"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -286,13 +301,14 @@
                         <outlet property="lblAgentContact" destination="zSZ-Vn-gXU" id="ktR-8t-azA"/>
                         <outlet property="lblAgentName" destination="Du0-HC-Yqb" id="mBV-mF-9Kf"/>
                         <outlet property="lblAsOfDate" destination="sgS-ib-n3G" id="ReP-gI-ipB"/>
+                        <outlet property="lblCurrencyKey" destination="c8L-kp-qvn" id="1mF-lR-C78"/>
                         <outlet property="lblCurrentRate" destination="RoC-tB-kfd" id="JRj-At-a9X"/>
                         <outlet property="swNotification" destination="6Kp-2E-Jla" id="xS5-Pg-RcA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfy-Nw-IwK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2691" y="32"/>
+            <point key="canvasLocation" x="2726" y="32"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="UeZ-J4-LNh">
@@ -318,7 +334,7 @@
         <scene sceneID="Zqb-TI-st2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uNM-Y0-bhc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="8pA-Jj-ZwT"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home-26.png" id="8pA-Jj-ZwT"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="4W5-oU-QoP"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pP5-XF-m0G">
@@ -338,7 +354,7 @@
         <scene sceneID="NE2-15-Ct4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3AM-hZ-ZHq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Notification" id="Bbv-Ix-F4N"/>
+                    <tabBarItem key="tabBarItem" title="My Notification" image="alert-26.png" id="Bbv-Ix-F4N"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UD3-V5-IvU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -357,7 +373,7 @@
         <scene sceneID="OWS-ff-oqN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="u6h-UO-bVn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="About" id="bHG-7s-yu5"/>
+                    <tabBarItem key="tabBarItem" title="About" image="info-26.png" id="bHG-7s-yu5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oTF-fA-Dvr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -374,9 +390,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="alert-26.png" width="26" height="26"/>
         <image name="email.png" width="100" height="96"/>
         <image name="facebook2.png" width="299" height="299"/>
+        <image name="home-26.png" width="26" height="26"/>
         <image name="imessage2.png" width="299" height="299"/>
+        <image name="info-26.png" width="26" height="26"/>
         <image name="twitter_2.png" width="299" height="299"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

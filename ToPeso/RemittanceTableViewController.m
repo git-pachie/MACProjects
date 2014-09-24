@@ -378,11 +378,11 @@
     NSPredicate *pred ;
     
     if (del.isFromNotification == true) {
-        pred = [NSPredicate predicateWithFormat:@"countryCode = %@ AND isDeleted1 == NO",del.notficationCountryCode];
+        pred = [NSPredicate predicateWithFormat:@"countryCode = %@ AND isDeleted1 = %@",del.notficationCountryCode,@"NO"];
     }
     else
     {
-        pred = [NSPredicate predicateWithFormat:@"countryCode = %@ AND isDeleted1 == NO",self.country.countryCode];
+        pred = [NSPredicate predicateWithFormat:@"countryCode = %@ AND isDeleted1 = %@",self.country.countryCode,@"NO"];
     }
     
     

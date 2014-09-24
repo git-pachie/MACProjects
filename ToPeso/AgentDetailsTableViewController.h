@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnFB;
 @property (weak, nonatomic) IBOutlet UIButton *btnTweeter;
 - (IBAction)acFlicker:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *lblCurrencyKey;
 
 
 @property (nonatomic,strong)Remittance *remitanceAgent;
