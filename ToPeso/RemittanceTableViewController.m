@@ -49,8 +49,21 @@
 //        exit(-1);  // Fail
 //    }
     
+    del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+   // CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
+    //[core insertTempData];
+    //SendAndRequest *send = [[SendAndRequest alloc]init];
+    
+    NSError *error;
+    if (![self.fetched performFetch:&error]) {
+        // Update to handle the error appropriately.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }
     
     
+    [self.tableView reloadData];
 
     
     refreshControl = [[UIRefreshControl alloc]init];
@@ -60,7 +73,10 @@
     [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     
     
-    [self refreshTable];
+    //[self refreshTable];
+    
+   
+
 
     
     
