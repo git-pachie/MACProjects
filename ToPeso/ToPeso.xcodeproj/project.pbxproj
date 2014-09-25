@@ -13,6 +13,7 @@
 		0C2961CA19C42CA300CFAB85 /* AgentDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2961C919C42CA300CFAB85 /* AgentDetailsTableViewController.m */; };
 		0C2961CF19C45B3600CFAB85 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2961CE19C45B3600CFAB85 /* Social.framework */; };
 		0C31839A19C87EBC00ED08B8 /* CommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C31839919C87EBC00ED08B8 /* CommonFunction.m */; };
+		0CA84DBF19D42F4300F1026E /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA84DBE19D42F4300F1026E /* AboutTableViewController.m */; };
 		0CA9FBC319CAAC8A006A9A98 /* countryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CA9FBC219CAAC8A006A9A98 /* countryCell.xib */; };
 		0CA9FBC619CAAD4A006A9A98 /* countryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA9FBC519CAAD4A006A9A98 /* countryTableViewCell.m */; };
 		0CB5131819C2EAB7006D1653 /* RemittanceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */; };
@@ -78,6 +79,8 @@
 		0C2961CE19C45B3600CFAB85 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		0C31839819C87EBC00ED08B8 /* CommonFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFunction.h; sourceTree = "<group>"; };
 		0C31839919C87EBC00ED08B8 /* CommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunction.m; sourceTree = "<group>"; };
+		0CA84DBD19D42F4300F1026E /* AboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutTableViewController.h; sourceTree = "<group>"; };
+		0CA84DBE19D42F4300F1026E /* AboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutTableViewController.m; sourceTree = "<group>"; };
 		0CA9FBC219CAAC8A006A9A98 /* countryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = countryCell.xib; sourceTree = "<group>"; };
 		0CA9FBC419CAAD4A006A9A98 /* countryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = countryTableViewCell.h; sourceTree = "<group>"; };
 		0CA9FBC519CAAD4A006A9A98 /* countryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countryTableViewCell.m; sourceTree = "<group>"; };
@@ -186,6 +189,15 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
+		0CA84DBC19D42F1200F1026E /* About */ = {
+			isa = PBXGroup;
+			children = (
+				0CA84DBD19D42F4300F1026E /* AboutTableViewController.h */,
+				0CA84DBE19D42F4300F1026E /* AboutTableViewController.m */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
 		0CB5131C19C36F40006D1653 /* flags */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +230,7 @@
 		0CD49B8B19ADDFFB0078920D = {
 			isa = PBXGroup;
 			children = (
+				0CA84DBC19D42F1200F1026E /* About */,
 				0C31839B19C87EC200ED08B8 /* Common */,
 				0CF3E94019C8490200C4844A /* SendRequestJSON */,
 				0CC70C2819C6087400D0E2E1 /* Notification */,
@@ -499,6 +512,7 @@
 				0CD49BD619ADE5230078920D /* CustomTableViewCell.m in Sources */,
 				0CC70C2719C6032500D0E2E1 /* Notification.m in Sources */,
 				0CF7AD1219C2D43C0059EB6C /* CountryMainTableViewController.m in Sources */,
+				0CA84DBF19D42F4300F1026E /* AboutTableViewController.m in Sources */,
 				0CD49BAD19ADDFFB0078920D /* ToPeso.xcdatamodeld in Sources */,
 				0C31839A19C87EBC00ED08B8 /* CommonFunction.m in Sources */,
 			);
