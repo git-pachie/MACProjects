@@ -19,6 +19,9 @@
 {
     com_pachie_topesoAppDelegate *del;
     UIRefreshControl *refreshControl;
+    UIActivityIndicatorView *spinner;
+    dispatch_queue_t que;
+    
 }
 
 @end
@@ -49,22 +52,7 @@
 //        exit(-1);  // Fail
 //    }
     
-    del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
     
-   // CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
-    //[core insertTempData];
-    //SendAndRequest *send = [[SendAndRequest alloc]init];
-    
-    NSError *error;
-    if (![self.fetched performFetch:&error]) {
-        // Update to handle the error appropriately.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        exit(-1);  // Fail
-    }
-    
-    
-    [self.tableView reloadData];
-
     
     refreshControl = [[UIRefreshControl alloc]init];
     
@@ -73,11 +61,70 @@
     [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     
     
-    //[self refreshTable];
+    if (!que) {
+        que = dispatch_queue_create("loadingque", NULL);
+    }
     
-   
+    del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    dispatch_async(que, ^{
+        
+        
+        [self showHideLoadingBar:true];
+        [self refreshTable];
+        
+        
+        
+        
+    });
+    
+    
+    
+    
+    
 
+    
+}
 
+-(void)showHideLoadingBar :(BOOL)isShow
+{
+    
+        
+    if (isShow == true) {
+        spinner = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        
+        CGRect loadingSize = CGRectMake((self.view.bounds.size.width-120)/2, (self.view.bounds.size.height-170) / 2, 120, 100);
+        
+        spinner.frame = loadingSize;
+        spinner.tag = 12;
+        [spinner startAnimating];
+        
+        UIView *shaddow = [[UIView alloc]initWithFrame:loadingSize];
+        [shaddow setBackgroundColor:[UIColor blackColor]];
+        [shaddow.layer setOpacity:0.5];
+        shaddow.layer.cornerRadius = 10;
+        shaddow.tag = 12;
+        
+        [self.view addSubview:shaddow];
+        
+        [self.view addSubview:spinner];
+        [self.view bringSubviewToFront:spinner];
+        
+    }
+    else{
+        
+            dispatch_async(que, ^{
+                
+                sleep(2);
+                [spinner stopAnimating];
+                [[self.view viewWithTag:12] removeFromSuperview];
+                
+            });
+        
+        
+        
+    }
+    
     
     
 }
@@ -85,80 +132,96 @@
 -(void)refreshTable
 {
     
-    del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
-    
-    CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
-    //[core insertTempData];
-    SendAndRequest *send = [[SendAndRequest alloc]init];
-    
-    NSString *lastModified = [core getLastUpdatedAgent];
     
     
-    
-    [send getLastesAgent:lastModified withBlock:^(NSArray *array, NSError *connectionError)
-     {
-         
-         
-         if (connectionError!=nil) {
-             
-             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Unable to connect to fetched latest updates" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
-             
-             [alert show];
-             
-         }
-         else
+        CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
+        //[core insertTempData];
+        SendAndRequest *send = [[SendAndRequest alloc]init];
+        
+        NSString *lastModified = [core getLastUpdatedAgent];
+        
+        
+        
+        [send getLastesAgent:lastModified withBlock:^(NSArray *array, NSError *connectionError)
          {
-             //image
              
-             for (NSDictionary *dic in array) {
-                 NSString *strImg = [dic objectForKey:@"logo"];
-                 NSString *strURL = [NSString stringWithFormat:@"%@%@",[SendAndRequest UrlImageConnection],strImg];
+             
+             if (connectionError!=nil) {
                  
-                 [send downloadImageWithURL:[NSURL URLWithString:strURL] completionBlock:^(BOOL succeeded, UIImage *image) {
+                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Unable to connect to fetched latest updates" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
+                 
+                 //[self showHideLoadingBar:false];
+                 
+                 dispatch_async(dispatch_get_main_queue(), ^{
                      
-                     //UIImage *im = image;
+                     [self showHideLoadingBar:false];
                      
-                     if (image != nil)
-                     {
+                 });
+                 
+                 [alert show];
+                 
+             }
+             else
+             {
+                 //image
+                 
+                 for (NSDictionary *dic in array) {
+                     NSString *strImg = [dic objectForKey:@"logo"];
+                     NSString *strURL = [NSString stringWithFormat:@"%@%@",[SendAndRequest UrlImageConnection],strImg];
+                     
+                     [send downloadImageWithURL:[NSURL URLWithString:strURL] completionBlock:^(BOOL succeeded, UIImage *image) {
                          
-                         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-                         NSString *documentsDirectory = [paths objectAtIndex:0];
-                         NSString *path = [documentsDirectory stringByAppendingPathComponent:strImg];
-                         NSData *data = UIImagePNGRepresentation(image);
-                         [data writeToFile:path atomically:YES];
+                         //UIImage *im = image;
                          
-                     }
-                     
-                 }];
+                         if (image != nil)
+                         {
+                             
+                             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+                             NSString *documentsDirectory = [paths objectAtIndex:0];
+                             NSString *path = [documentsDirectory stringByAppendingPathComponent:strImg];
+                             NSData *data = UIImagePNGRepresentation(image);
+                             [data writeToFile:path atomically:YES];
+                             
+                         }
+                         
+                     }];
+                 }
+                 
+                 
+                 
+                 [core syncCoreDataAgent:array];
+                 
+                 
+             }
+             
+             NSError *error;
+             if (![self.fetched performFetch:&error]) {
+                 // Update to handle the error appropriately.
+                 NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                 exit(-1);  // Fail
              }
              
              
+             [self performSelector:@selector(Done) withObject:nil afterDelay:1];
              
-             [core syncCoreDataAgent:array];
+             if (del.isFromNotification== true) {
+                 
+                 [self performSegueWithIdentifier:@"agentDetails" sender:self];
+             }
              
              
-         }
-         
-         NSError *error;
-         if (![self.fetched performFetch:&error]) {
-             // Update to handle the error appropriately.
-             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-             exit(-1);  // Fail
-         }
-         
+                 
+             [self showHideLoadingBar:false];
+                 
+             
+             
+         }];
+        
+    
+    
+    
 
-         [self performSelector:@selector(Done) withObject:nil afterDelay:1];
-         
-         if (del.isFromNotification== true) {
-             
-             [self performSegueWithIdentifier:@"agentDetails" sender:self];
-         }
-         
-         
-     }];
-    
-    
-    
+
     
     
 }
