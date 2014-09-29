@@ -71,15 +71,15 @@
         
         
         [self showHideLoadingBar:true];
-        [self refreshTable];
         
         
         
         
+
     });
     
     
-    
+    [self refreshTable];
     
     
 
@@ -88,7 +88,7 @@
 
 -(void)showHideLoadingBar :(BOOL)isShow
 {
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
         
     if (isShow == true) {
         spinner = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -113,25 +113,34 @@
     }
     else{
         
-            dispatch_async(que, ^{
-                
-                sleep(2);
+        dispatch_async(que, ^{
+            
+            sleep(2);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [spinner stopAnimating];
                 [[self.view viewWithTag:12] removeFromSuperview];
                 
             });
+            
+            
+
+        });
+        
+        
         
         
         
     }
     
+        
+    });
     
     
 }
 
 -(void)refreshTable
 {
-    
     
     
         CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
@@ -210,14 +219,19 @@
              }
              
              
-                 
+             
+             
              [self showHideLoadingBar:false];
-                 
+             
+             
+             
              
              
          }];
         
-    
+  
+
+
     
     
 

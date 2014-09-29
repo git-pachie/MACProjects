@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RemittanceTableViewController.m"
-            timestampString = "433185564.519374"
+            filePath = "ToPeso/com_pachie_topesoAppDelegate.m"
+            timestampString = "433184756.252856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "404"
-            endingLineNumber = "404"
-            landmarkName = "-getAgentDetail:"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "-application:didReceiveRemoteNotification:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ToPeso/com_pachie_topesoAppDelegate.m"
-            timestampString = "433184756.252856"
+            filePath = "SendAndRequest.m"
+            timestampString = "433616605.031137"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "-application:didReceiveRemoteNotification:"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "-getLastesCountry:withBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

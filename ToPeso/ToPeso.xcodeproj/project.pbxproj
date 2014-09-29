@@ -638,7 +638,7 @@
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "15571a9a-ace9-482d-a2a6-352fe4736d46";
+				PROVISIONING_PROFILE = "5db831a9-86aa-4d26-b2ca-18313e0a6c48";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -655,7 +655,7 @@
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "29145bba-88f7-4156-a5d3-798d48a368fd";
+				PROVISIONING_PROFILE = "8de10b21-960b-4b86-8b1f-591a6951dcbc";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
