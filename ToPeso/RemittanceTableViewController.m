@@ -198,10 +198,12 @@
                  
                  
                  
-                 [core syncCoreDataAgent:array];
+                 
                  
                  
              }
+             
+             [core syncCoreDataAgent:array];
              
              NSError *error;
              if (![self.fetched performFetch:&error]) {
@@ -209,19 +211,24 @@
                  NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
                  exit(-1);  // Fail
              }
+             else
+             {
+                 
+             }
              
-             
-             [self performSelector:@selector(Done) withObject:nil afterDelay:1];
+             [self showHideLoadingBar:false];
              
              if (del.isFromNotification== true) {
                  
-                 [self performSegueWithIdentifier:@"agentDetails" sender:self];
+                 
+                 [self performSelector:@selector(doSeg) withObject:nil afterDelay:3];
+                 
+                 
              }
-             
-             
-             
-             
-             [self showHideLoadingBar:false];
+             else
+             {
+                 [self performSelector:@selector(Done) withObject:nil afterDelay:1];
+             }
              
              
              
@@ -229,15 +236,13 @@
              
          }];
         
-  
-
 
     
-    
+}
 
-
-    
-    
+-(void)doSeg
+{
+    [self performSegueWithIdentifier:@"agentDetails" sender:self];
 }
 
 -(void)Done
@@ -397,6 +402,7 @@
         Remittance *rem = [self.fetched objectAtIndexPath:indexpath];
         
         if (del.isFromNotification== true) {
+            
             rem = [self getAgentDetail:del.notifcationAgentID];
         }
         else

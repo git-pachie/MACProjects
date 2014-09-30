@@ -86,7 +86,7 @@
     
     if (userInfo != nil) {
         
-        [[self window] makeKeyAndVisible];
+       // [[self window] makeKeyAndVisible];
         
         
         
@@ -111,6 +111,10 @@
         [dv LoadFromNotification:[userInfo objectForKey:@"remittanceGUID"]];
         
         application.applicationIconBadgeNumber = application.applicationIconBadgeNumber - 1;
+        
+        
+        //[nav.visibleViewController.navigationController pushViewController:dv animated:YES];
+        
 
     }
     
@@ -196,6 +200,9 @@
     [dv LoadFromNotification:[userInfo objectForKey:@"remittanceGUID"]];
     
     application.applicationIconBadgeNumber = application.applicationIconBadgeNumber - 1;
+    
+    
+    //[nav.visibleViewController.navigationController pushViewController:dv animated:YES];
     
     
 

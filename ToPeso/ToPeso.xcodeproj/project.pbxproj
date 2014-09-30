@@ -655,7 +655,7 @@
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8de10b21-960b-4b86-8b1f-591a6951dcbc";
+				PROVISIONING_PROFILE = "29145bba-88f7-4156-a5d3-798d48a368fd";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
