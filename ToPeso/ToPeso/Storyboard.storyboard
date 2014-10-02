@@ -78,7 +78,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="2Qz-Ev-271">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="2Qz-Ev-271">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Qz-Ev-271" id="TG1-gY-e0L">
@@ -101,6 +101,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="btnEdit" destination="G9R-jE-3pX" id="I2e-Lt-Oeg"/>
+                        <segue destination="17s-Bo-Vx1" kind="push" identifier="agentDetails" id="MQf-st-9tM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hy-rC-fep" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -342,7 +343,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfy-Nw-IwK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2726" y="32"/>
+            <point key="canvasLocation" x="2346" y="708"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="UeZ-J4-LNh">
@@ -438,4 +439,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="MQf-st-9tM"/>
+    </inferredMetricsTieBreakers>
 </document>

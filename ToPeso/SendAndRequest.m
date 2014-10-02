@@ -15,13 +15,16 @@
 
 -(NSString*)getToPisoURL
 {
-    return @"http://www.greetify.net:1980/ToPisoWCF/Service1.svc/";
+    //return @"http://www.greetify.net:1980/ToPisoWCF/Service1.svc/";
+    return @"http://www.greetify.net/topiso/Service1.svc/";
 }
 
 
 +(NSString *)UrlImageConnection
 {
-    return @"http://www.greetify.net:1980/PickupLinesProfile2/countryimage.aspx?fFilename=";
+   // return @"http://www.greetify.net:1980/PickupLinesProfile2/countryimage.aspx?fFilename=";
+    
+    return @"http://www.greetify.net/ToPisoProfile/countryimage.aspx?fFilename=";
 }
 
 - (void)getLastesCountry :(NSString *)lastModified withBlock:(void (^)(NSArray *array, NSError *er ))block

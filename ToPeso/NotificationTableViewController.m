@@ -10,6 +10,8 @@
 #import "com_pachie_topesoAppDelegate.h"
 #import "Notification.h"
 #import "SendAndRequest.h"
+#import "AgentDetailsTableViewController.h"
+#import "Remittance.h"
 
 @interface NotificationTableViewController ()
 {
@@ -315,6 +317,85 @@
         
         // Save the changes if needed and change the views to noneditable.
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"agentDetails" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqual:@"agentDetails"]) {
+        
+        NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
+        
+        AgentDetailsTableViewController *agent = (AgentDetailsTableViewController *)segue.destinationViewController;
+        
+        Notification1 *rem = [self.fetched objectAtIndexPath:indexpath];
+        
+        
+        rem  = [self.fetched objectAtIndexPath:indexpath];
+        
+        
+        
+        
+        agent.remitanceAgent = [self getRemittanceByGUID:rem.remittanceGUID];
+        agent.country = [self getCountryByCountryCode:rem.countryCode];
+        
+    }
+}
+
+-(Country *)getCountryByCountryCode : (NSString *)countrCode
+{
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Country" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"countryCode ==[cd]%@", countrCode];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+//                                                                   ascending:YES];
+   // [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+        NSLog(@"Error %@", fetchedObjects);
+    }
+    
+    return [fetchedObjects objectAtIndex:0];
+    
+}
+
+-(Remittance *)getRemittanceByGUID: (NSString *)remittanceGUID
+{
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Remittance" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"remmittanceGUID ==[cd]%@", remittanceGUID];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    //    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    //                                                                   ascending:YES];
+    // [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+        NSLog(@"Error %@", fetchedObjects);
+    }
+    
+    return [fetchedObjects objectAtIndex:0];
+    
 }
 
 @end
