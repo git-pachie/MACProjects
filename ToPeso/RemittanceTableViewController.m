@@ -285,6 +285,38 @@
     return [sectionInfo name];
 }
 
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 36;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    
+    
+    
+    //view.tintColor = [UIColor purpleColor];
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:[UIColor grayColor]];
+    //[header.textLabel setFont:<#(UIFont *)#>]
+    
+    //view.layer.cornerRadius = view.frame.size.height / 2;
+    //view.layer.masksToBounds = YES;
+    
+    view.alpha  = 0.8;
+    //view.layer.borderColor = [UIColor whiteColor].CGColor;
+    //view.layer.borderWidth = 10;
+    
+    
+    [header.textLabel setTextAlignment:NSTextAlignmentCenter];
+    
+    
+    //button.alpha = 0.6;
+    
+    
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomTableViewCell *cell = (CustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
@@ -376,8 +408,8 @@
 //    cell.imageView.image = [UIImage imageNamed:@"default.png"];
     cell.imgRemittanceImage.layer.cornerRadius = 10;
     cell.imgRemittanceImage.clipsToBounds = YES;
-    cell.imgRemittanceImage.layer.borderWidth = .4;
-    cell.imgRemittanceImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    cell.imgRemittanceImage.layer.borderWidth = .5;
+    cell.imgRemittanceImage.layer.borderColor = [UIColor grayColor].CGColor;
 
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -506,6 +538,25 @@
     
     return [core getRemittanceByID:del.notifcationAgentID];
     
+    
+}
+
+#pragma mark iAd Deleage
+
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1];
+    [banner setAlpha:1];
+    [UIView commitAnimations];
+}
+
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1];
+    [banner setAlpha:0];
+    [UIView commitAnimations];
     
 }
 

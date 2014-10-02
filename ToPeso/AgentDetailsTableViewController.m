@@ -426,4 +426,23 @@
     return [NSString stringWithFormat:@"%@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso.",self.remitanceAgent.currencyKey,strNumber,self.remitanceAgent.remittanceName];
 
 }
+
+#pragma mark iAd Deleage
+
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1];
+    [banner setAlpha:1];
+    [UIView commitAnimations];
+}
+
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1];
+    [banner setAlpha:0];
+    [UIView commitAnimations];
+    
+}
 @end

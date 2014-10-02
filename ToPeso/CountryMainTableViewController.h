@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import <iAd/iAd.h>
 
-@interface CountryMainTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface CountryMainTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, ADBannerViewDelegate>
 
 @property (nonatomic,strong)NSFetchedResultsController *fectched;
 

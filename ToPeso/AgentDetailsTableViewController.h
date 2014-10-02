@@ -10,7 +10,8 @@
 #import "Remittance.h"
 #import "Country.h"
 #import <MessageUI/MessageUI.h>
-@interface AgentDetailsTableViewController : UITableViewController <MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate>
+#import <iAd/iAd.h>
+@interface AgentDetailsTableViewController : UITableViewController <MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, ADBannerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgAgentPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *lblAgentName;
