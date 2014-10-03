@@ -20,6 +20,8 @@
 
 -(void)deleteAllNotificationToServer : (NSURL *)url notificationData:(NSDictionary *)dic CompletionBlock:(void(^)(bool succeeded, NSError *error))completionBlock;
 
+-(void)pingToPisoServer : (NSURL *)url notificationData:(NSDictionary *)dic CompletionBlock:(void(^)(bool succeeded, NSError *error))completionBlock;
+
 -(NSString*)getToPisoURL;
 +(NSString *)UrlImageConnection;
 

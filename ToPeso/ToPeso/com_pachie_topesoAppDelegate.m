@@ -158,6 +158,16 @@
 //        self.PhoneNumber = phoneNumber;
 //    }];
     
+    
+    SendAndRequest *send = [[SendAndRequest alloc]init];
+    
+    NSDictionary *dic = @{@"deviceUDID":self.DevinceToken};
+    NSString *strURL =[NSString stringWithFormat:@"%@/PingServer", [send getToPisoURL]];
+    
+    [send pingToPisoServer:[NSURL URLWithString:strURL] notificationData:dic CompletionBlock:^(bool succeeded, NSError *error)
+    {
+        //NSLog(@"all notification deleted");
+    }];
 }
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
