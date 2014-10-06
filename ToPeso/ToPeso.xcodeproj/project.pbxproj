@@ -9,10 +9,15 @@
 /* Begin PBXBuildFile section */
 		0C1B445D19CBA77700DCB3EC /* Remittance.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1B445C19CBA77700DCB3EC /* Remittance.m */; };
 		0C249D7119C98664009FAFBD /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C249D7019C98664009FAFBD /* Country.m */; };
-		0C2961C619C3FFD000CFAB85 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2961C519C3FFD000CFAB85 /* default.png */; };
 		0C2961CA19C42CA300CFAB85 /* AgentDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2961C919C42CA300CFAB85 /* AgentDetailsTableViewController.m */; };
 		0C2961CF19C45B3600CFAB85 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2961CE19C45B3600CFAB85 /* Social.framework */; };
 		0C31839A19C87EBC00ED08B8 /* CommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C31839919C87EBC00ED08B8 /* CommonFunction.m */; };
+		0C7935F219E1DF080056FCBC /* aga_58_58.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7935EE19E1DF080056FCBC /* aga_58_58.png */; };
+		0C7935F319E1DF080056FCBC /* aga_80_80.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7935EF19E1DF080056FCBC /* aga_80_80.png */; };
+		0C7935F419E1DF080056FCBC /* aga_120_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7935F019E1DF080056FCBC /* aga_120_120.png */; };
+		0C7935F519E1DF080056FCBC /* aga_180_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7935F119E1DF080056FCBC /* aga_180_180.png */; };
+		0C7935F719E1E0F80056FCBC /* iphone5_ios7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C7935F619E1E0F80056FCBC /* iphone5_ios7.jpg */; };
+		0C7935F919E26FD00056FCBC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7935F819E26FD00056FCBC /* Default.png */; };
 		0CA84DBF19D42F4300F1026E /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA84DBE19D42F4300F1026E /* AboutTableViewController.m */; };
 		0CA9FBC319CAAC8A006A9A98 /* countryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CA9FBC219CAAC8A006A9A98 /* countryCell.xib */; };
 		0CA9FBC619CAAD4A006A9A98 /* countryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA9FBC519CAAD4A006A9A98 /* countryTableViewCell.m */; };
@@ -74,12 +79,17 @@
 		0C1B445C19CBA77700DCB3EC /* Remittance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Remittance.m; sourceTree = "<group>"; };
 		0C249D6F19C98664009FAFBD /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
 		0C249D7019C98664009FAFBD /* Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
-		0C2961C519C3FFD000CFAB85 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		0C2961C819C42CA300CFAB85 /* AgentDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgentDetailsTableViewController.h; sourceTree = "<group>"; };
 		0C2961C919C42CA300CFAB85 /* AgentDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgentDetailsTableViewController.m; sourceTree = "<group>"; };
 		0C2961CE19C45B3600CFAB85 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		0C31839819C87EBC00ED08B8 /* CommonFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFunction.h; sourceTree = "<group>"; };
 		0C31839919C87EBC00ED08B8 /* CommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunction.m; sourceTree = "<group>"; };
+		0C7935EE19E1DF080056FCBC /* aga_58_58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aga_58_58.png; sourceTree = "<group>"; };
+		0C7935EF19E1DF080056FCBC /* aga_80_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aga_80_80.png; sourceTree = "<group>"; };
+		0C7935F019E1DF080056FCBC /* aga_120_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aga_120_120.png; sourceTree = "<group>"; };
+		0C7935F119E1DF080056FCBC /* aga_180_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aga_180_180.png; sourceTree = "<group>"; };
+		0C7935F619E1E0F80056FCBC /* iphone5_ios7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iphone5_ios7.jpg; sourceTree = "<group>"; };
+		0C7935F819E26FD00056FCBC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		0CA84DBD19D42F4300F1026E /* AboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutTableViewController.h; sourceTree = "<group>"; };
 		0CA84DBE19D42F4300F1026E /* AboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutTableViewController.m; sourceTree = "<group>"; };
 		0CA9FBC219CAAC8A006A9A98 /* countryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = countryCell.xib; sourceTree = "<group>"; };
@@ -204,10 +214,10 @@
 		0CB5131C19C36F40006D1653 /* flags */ = {
 			isa = PBXGroup;
 			children = (
+				0C7935F819E26FD00056FCBC /* Default.png */,
 				0D5F263619D318D6009EC54F /* Icons */,
 				0CF2FF7119C4B1C90071BDC6 /* Social */,
 				0CF2FF5619C47AEC0071BDC6 /* AppIcons */,
-				0C2961C519C3FFD000CFAB85 /* default.png */,
 			);
 			path = flags;
 			sourceTree = "<group>";
@@ -372,6 +382,11 @@
 		0D5F263619D318D6009EC54F /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				0C7935F619E1E0F80056FCBC /* iphone5_ios7.jpg */,
+				0C7935EE19E1DF080056FCBC /* aga_58_58.png */,
+				0C7935EF19E1DF080056FCBC /* aga_80_80.png */,
+				0C7935F019E1DF080056FCBC /* aga_120_120.png */,
+				0C7935F119E1DF080056FCBC /* aga_180_180.png */,
 				0D5F263919D31ED0009EC54F /* info-26.png */,
 				0D5F263719D31DF2009EC54F /* alert-26.png */,
 				0D5F263419D31737009EC54F /* home-26.png */,
@@ -472,16 +487,21 @@
 				0CA9FBC319CAAC8A006A9A98 /* countryCell.xib in Resources */,
 				0CD49BD019ADE2D70078920D /* Storyboard.storyboard in Resources */,
 				0CD49BCE19ADE0300078920D /* View.xib in Resources */,
-				0C2961C619C3FFD000CFAB85 /* default.png in Resources */,
 				0D5F263A19D31ED0009EC54F /* info-26.png in Resources */,
 				0CF2FF6B19C49F190071BDC6 /* ToPiso_120x120.png in Resources */,
 				0CF2FF6A19C49F190071BDC6 /* ToPiso_80x80.png in Resources */,
 				0CF2FF7D19C4BE210071BDC6 /* twitter_2.png in Resources */,
+				0C7935F319E1DF080056FCBC /* aga_80_80.png in Resources */,
 				0CF2FF6919C49F190071BDC6 /* Launch_R4.png in Resources */,
 				0CD49BAF19ADDFFB0078920D /* Images.xcassets in Resources */,
+				0C7935F219E1DF080056FCBC /* aga_58_58.png in Resources */,
 				0D5F263819D31DF2009EC54F /* alert-26.png in Resources */,
 				0D5F263519D31737009EC54F /* home-26.png in Resources */,
+				0C7935F519E1DF080056FCBC /* aga_180_180.png in Resources */,
+				0C7935F719E1E0F80056FCBC /* iphone5_ios7.jpg in Resources */,
 				0CC01EAA19C57BC500F3A2B5 /* email.png in Resources */,
+				0C7935F919E26FD00056FCBC /* Default.png in Resources */,
+				0C7935F419E1DF080056FCBC /* aga_120_120.png in Resources */,
 				0CF2FF6E19C4A28E0071BDC6 /* Launch__64x960.png in Resources */,
 				0CF2FF6C19C49F190071BDC6 /* ToPiso_5858.png in Resources */,
 			);
@@ -634,7 +654,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -651,7 +671,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Archie Angeles (R3F22UC8DK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Archie Angeles (R3F22UC8DK)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

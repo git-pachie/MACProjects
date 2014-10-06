@@ -357,11 +357,20 @@
     
     cell.lblRemmitanceName.text = rem.remittanceName;
     
-    NSNumberFormatter *numberformatter = [[NSNumberFormatter alloc]init];
+//    NSNumberFormatter *numberformatter = [[NSNumberFormatter alloc]init];
+//    
+//    [numberformatter setNumberStyle:NSNumberFormatterDecimalStyle];
+//    
     
-    [numberformatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSNumberFormatter *numFormat = [[NSNumberFormatter alloc]init];
+    [numFormat setNumberStyle:NSNumberFormatterDecimalStyle];
+    [numFormat setMaximumFractionDigits:2];
+    [numFormat setMinimumFractionDigits:2];
+   
     
-    NSString *str = [numberformatter stringFromNumber:rem.rate];
+    
+    
+    NSString *str = [numFormat stringFromNumber:rem.rate];
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
     NSDateFormatter *timeFormat = [[NSDateFormatter alloc]init];

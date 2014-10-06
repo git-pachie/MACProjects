@@ -37,5 +37,10 @@
     return nil;
 }
 
++ (NSString *)getToPisoInstallURL
+{
+    return @"http://www.topiso.greetify.net";
+}
+
 
 @end

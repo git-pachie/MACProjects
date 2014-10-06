@@ -12,6 +12,7 @@
 #import "com_pachie_topesoAppDelegate.h"
 #import "EntNotification.h"
 #import "SendAndRequest.h"
+#import "CommonFunction.h"
 
 @interface AgentDetailsTableViewController ()
 
@@ -100,10 +101,10 @@
     [self.btnSMS setFrame:CGRectMake(0,0,50,50)];
     
     
-    self.btnFB.layer.opacity=.60;
-    self.btnTweeter.layer.opacity = .60;
-    self.btnSMS.layer.opacity = .60;
-    self.btnEmail.layer.opacity = .60;
+    self.btnFB.layer.opacity=.90;
+    self.btnTweeter.layer.opacity = .90;
+    self.btnSMS.layer.opacity = .90;
+    self.btnEmail.layer.opacity = .90;
    
     notifcation = [[EntNotification alloc]init];
     
@@ -398,10 +399,10 @@
     NSString *strNumber = [numFormat stringFromNumber:self.remitanceAgent.rate];
     
     
-    [controller setInitialText:[NSString stringWithFormat:@"%@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso.",self.remitanceAgent.currencyKey,strNumber,self.remitanceAgent.remittanceName]];
+    [controller setInitialText:[NSString stringWithFormat:@"%@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso. ",self.remitanceAgent.currencyKey,strNumber,self.remitanceAgent.remittanceName]];
     
     [controller addImage:[UIImage imageNamed:@"ToPiso_120x120.png"]];
-    [controller addURL:[NSURL URLWithString:@"http://www.toIpiso.com"]];
+    [controller addURL:[NSURL URLWithString:[CommonFunction getToPisoInstallURL]]];
     
     
     UIImageView *imgv = [[UIImageView alloc]init];
@@ -413,7 +414,7 @@
     
     
     [controller addImage:imgv.image];
-    [controller addURL:[NSURL URLWithString:@"http://www.toPiso.com"]];
+    [controller addURL:[NSURL URLWithString:[CommonFunction getToPisoInstallURL]]];
 }
 -(NSString *)generateSMSBody
 {
@@ -423,7 +424,7 @@
     NSString *strNumber = [numFormat stringFromNumber:self.remitanceAgent.rate];
     
     
-    return [NSString stringWithFormat:@"%@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso.",self.remitanceAgent.currencyKey,strNumber,self.remitanceAgent.remittanceName];
+    return [NSString stringWithFormat:@"%@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso. %@",self.remitanceAgent.currencyKey,strNumber,self.remitanceAgent.remittanceName,[CommonFunction getToPisoInstallURL]];
 
 }
 

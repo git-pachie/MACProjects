@@ -11,5 +11,6 @@
 @interface CommonFunction : NSObject
 
 + (NSDate *)mfDateFromDotNetJSONString:(NSString *)string;
++ (NSString *)getToPisoInstallURL;
 
 @end
