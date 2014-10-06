@@ -49,6 +49,8 @@
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"topbg.png"] forBarMetrics:UIBarMetricsDefault];
 
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:255/255.0 green:122/255.0 blue:28/255.0 alpha:1.0]];
 
     
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
