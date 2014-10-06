@@ -5,7 +5,6 @@
       "idiom" : "iphone",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "iphone5_ios6.png",
       "scale" : "2x"
     },
     {
@@ -21,6 +20,7 @@
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
+      "filename" : "1_320x480.png",
       "scale" : "1x"
     },
     {
@@ -33,6 +33,7 @@
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
+      "filename" : "retina_iphone5_ios7.png",
       "subtype" : "retina4",
       "scale" : "2x"
     }

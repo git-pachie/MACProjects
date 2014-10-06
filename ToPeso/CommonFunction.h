@@ -12,5 +12,8 @@
 
 + (NSDate *)mfDateFromDotNetJSONString:(NSString *)string;
 + (NSString *)getToPisoInstallURL;
++ (NSString *)getToPisoEmailAddress;
++ (NSString *)getToPisoFacebookURL;
++ (NSString *)getToPisoTwitterURL;
 
 @end

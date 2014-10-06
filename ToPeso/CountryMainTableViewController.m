@@ -327,6 +327,8 @@
     
 }
 
+
+
 #pragma mark iAd Deleage
 
 -(void)bannerViewDidLoadAd:(ADBannerView *)banner

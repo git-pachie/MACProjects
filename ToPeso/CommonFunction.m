@@ -42,5 +42,24 @@
     return @"http://www.topiso.greetify.net";
 }
 
++ (NSString *)getToPisoEmailAddress
+{
+    return @"topiso101@gmail.com";
+}
+
+
++ (NSString *)getToPisoFacebookURL
+{
+    return @"https://www.facebook.com/pages/ToPiso/871642766203690";
+}
+
+
++ (NSString *)getToPisoTwitterURL
+{
+    return @"https://twitter.com/topiso101";
+}
+
+
+
 
 @end

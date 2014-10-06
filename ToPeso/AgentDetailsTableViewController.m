@@ -47,8 +47,8 @@
     send  = [[SendAndRequest alloc]init];
     
     self.lblAgentName.text = self.remitanceAgent.remittanceName;
-    self.lblAgentAddress.text = self.remitanceAgent.address;
-    self.lblAgentContact.text =[NSString stringWithFormat:@"Contact: %@",self.remitanceAgent.contact];
+//    self.lblAgentAddress.text = self.remitanceAgent.address;
+//    self.lblAgentContact.text =[NSString stringWithFormat:@"Contact: %@",self.remitanceAgent.contact];
     self.lblCurrencyKey.text = self.remitanceAgent.currencyKey;
     
     
@@ -143,7 +143,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return 5;
+    return 4;
 }
 
 
@@ -401,12 +401,12 @@
     
     [controller setInitialText:[NSString stringWithFormat:@"%@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso. ",self.remitanceAgent.currencyKey,strNumber,self.remitanceAgent.remittanceName]];
     
-    [controller addImage:[UIImage imageNamed:@"ToPiso_120x120.png"]];
+    [controller addImage:[UIImage imageNamed:@"aga_180_180.png.png"]];
     [controller addURL:[NSURL URLWithString:[CommonFunction getToPisoInstallURL]]];
     
     
     UIImageView *imgv = [[UIImageView alloc]init];
-    imgv.image = [UIImage imageNamed:@"ToPiso_120x120.png"];
+    imgv.image = [UIImage imageNamed:@"aga_180_180.png.png"];
     imgv.layer.cornerRadius = 10;
     imgv.clipsToBounds = YES;
     imgv.layer.borderWidth = 1;

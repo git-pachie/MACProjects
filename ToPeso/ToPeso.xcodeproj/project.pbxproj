@@ -18,7 +18,6 @@
 		0C7935F519E1DF080056FCBC /* aga_180_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7935F119E1DF080056FCBC /* aga_180_180.png */; };
 		0C7935F719E1E0F80056FCBC /* iphone5_ios7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C7935F619E1E0F80056FCBC /* iphone5_ios7.jpg */; };
 		0C7935F919E26FD00056FCBC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7935F819E26FD00056FCBC /* Default.png */; };
-		0CA84DBF19D42F4300F1026E /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA84DBE19D42F4300F1026E /* AboutTableViewController.m */; };
 		0CA9FBC319CAAC8A006A9A98 /* countryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CA9FBC219CAAC8A006A9A98 /* countryCell.xib */; };
 		0CA9FBC619CAAD4A006A9A98 /* countryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA9FBC519CAAD4A006A9A98 /* countryTableViewCell.m */; };
 		0CB5131819C2EAB7006D1653 /* RemittanceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */; };
@@ -62,6 +61,13 @@
 		0D5F263519D31737009EC54F /* home-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F263419D31737009EC54F /* home-26.png */; };
 		0D5F263819D31DF2009EC54F /* alert-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F263719D31DF2009EC54F /* alert-26.png */; };
 		0D5F263A19D31ED0009EC54F /* info-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F263919D31ED0009EC54F /* info-26.png */; };
+		0DF746D119E2A9D80072C5C0 /* topbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DF746D019E2A9D80072C5C0 /* topbg.png */; };
+		0DF746D419E2B2510072C5C0 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DF746D319E2B2510072C5C0 /* AboutViewController.m */; };
+		0DFAF36419E2EEC90077EB69 /* chat-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFAF36019E2EEC90077EB69 /* chat-48.png */; };
+		0DFAF36519E2EEC90077EB69 /* facebook-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFAF36119E2EEC90077EB69 /* facebook-48.png */; };
+		0DFAF36619E2EEC90077EB69 /* message-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFAF36219E2EEC90077EB69 /* message-48.png */; };
+		0DFAF36719E2EEC90077EB69 /* twitter-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFAF36319E2EEC90077EB69 /* twitter-48.png */; };
+		0DFAF36919E300640077EB69 /* ToPiso_57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFAF36819E300640077EB69 /* ToPiso_57x57.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,8 +96,6 @@
 		0C7935F119E1DF080056FCBC /* aga_180_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aga_180_180.png; sourceTree = "<group>"; };
 		0C7935F619E1E0F80056FCBC /* iphone5_ios7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iphone5_ios7.jpg; sourceTree = "<group>"; };
 		0C7935F819E26FD00056FCBC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		0CA84DBD19D42F4300F1026E /* AboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutTableViewController.h; sourceTree = "<group>"; };
-		0CA84DBE19D42F4300F1026E /* AboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutTableViewController.m; sourceTree = "<group>"; };
 		0CA9FBC219CAAC8A006A9A98 /* countryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = countryCell.xib; sourceTree = "<group>"; };
 		0CA9FBC419CAAD4A006A9A98 /* countryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = countryTableViewCell.h; sourceTree = "<group>"; };
 		0CA9FBC519CAAD4A006A9A98 /* countryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countryTableViewCell.m; sourceTree = "<group>"; };
@@ -147,6 +151,14 @@
 		0D5F263419D31737009EC54F /* home-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-26.png"; path = "../ToPeso/home-26.png"; sourceTree = "<group>"; };
 		0D5F263719D31DF2009EC54F /* alert-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert-26.png"; sourceTree = "<group>"; };
 		0D5F263919D31ED0009EC54F /* info-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-26.png"; sourceTree = "<group>"; };
+		0DF746D019E2A9D80072C5C0 /* topbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topbg.png; sourceTree = "<group>"; };
+		0DF746D219E2B2510072C5C0 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		0DF746D319E2B2510072C5C0 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		0DFAF36019E2EEC90077EB69 /* chat-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat-48.png"; sourceTree = "<group>"; };
+		0DFAF36119E2EEC90077EB69 /* facebook-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-48.png"; sourceTree = "<group>"; };
+		0DFAF36219E2EEC90077EB69 /* message-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message-48.png"; sourceTree = "<group>"; };
+		0DFAF36319E2EEC90077EB69 /* twitter-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-48.png"; sourceTree = "<group>"; };
+		0DFAF36819E300640077EB69 /* ToPiso_57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToPiso_57x57.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,8 +217,8 @@
 		0CA84DBC19D42F1200F1026E /* About */ = {
 			isa = PBXGroup;
 			children = (
-				0CA84DBD19D42F4300F1026E /* AboutTableViewController.h */,
-				0CA84DBE19D42F4300F1026E /* AboutTableViewController.m */,
+				0DF746D219E2B2510072C5C0 /* AboutViewController.h */,
+				0DF746D319E2B2510072C5C0 /* AboutViewController.m */,
 			);
 			name = About;
 			sourceTree = "<group>";
@@ -214,6 +226,7 @@
 		0CB5131C19C36F40006D1653 /* flags */ = {
 			isa = PBXGroup;
 			children = (
+				0DF746D019E2A9D80072C5C0 /* topbg.png */,
 				0C7935F819E26FD00056FCBC /* Default.png */,
 				0D5F263619D318D6009EC54F /* Icons */,
 				0CF2FF7119C4B1C90071BDC6 /* Social */,
@@ -382,6 +395,7 @@
 		0D5F263619D318D6009EC54F /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				0DFAF35F19E2EEB10077EB69 /* Icon2 */,
 				0C7935F619E1E0F80056FCBC /* iphone5_ios7.jpg */,
 				0C7935EE19E1DF080056FCBC /* aga_58_58.png */,
 				0C7935EF19E1DF080056FCBC /* aga_80_80.png */,
@@ -392,6 +406,18 @@
 				0D5F263419D31737009EC54F /* home-26.png */,
 			);
 			name = Icons;
+			sourceTree = "<group>";
+		};
+		0DFAF35F19E2EEB10077EB69 /* Icon2 */ = {
+			isa = PBXGroup;
+			children = (
+				0DFAF36819E300640077EB69 /* ToPiso_57x57.png */,
+				0DFAF36019E2EEC90077EB69 /* chat-48.png */,
+				0DFAF36119E2EEC90077EB69 /* facebook-48.png */,
+				0DFAF36219E2EEC90077EB69 /* message-48.png */,
+				0DFAF36319E2EEC90077EB69 /* twitter-48.png */,
+			);
+			name = Icon2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,6 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CF2FF7C19C4BE210071BDC6 /* imessage2.png in Resources */,
+				0DFAF36619E2EEC90077EB69 /* message-48.png in Resources */,
 				0CF2FF7B19C4BE210071BDC6 /* facebook2.png in Resources */,
 				0CD49BA419ADDFFB0078920D /* InfoPlist.strings in Resources */,
 				0CA9FBC319CAAC8A006A9A98 /* countryCell.xib in Resources */,
@@ -489,6 +516,9 @@
 				0CD49BCE19ADE0300078920D /* View.xib in Resources */,
 				0D5F263A19D31ED0009EC54F /* info-26.png in Resources */,
 				0CF2FF6B19C49F190071BDC6 /* ToPiso_120x120.png in Resources */,
+				0DFAF36719E2EEC90077EB69 /* twitter-48.png in Resources */,
+				0DF746D119E2A9D80072C5C0 /* topbg.png in Resources */,
+				0DFAF36519E2EEC90077EB69 /* facebook-48.png in Resources */,
 				0CF2FF6A19C49F190071BDC6 /* ToPiso_80x80.png in Resources */,
 				0CF2FF7D19C4BE210071BDC6 /* twitter_2.png in Resources */,
 				0C7935F319E1DF080056FCBC /* aga_80_80.png in Resources */,
@@ -500,6 +530,8 @@
 				0C7935F519E1DF080056FCBC /* aga_180_180.png in Resources */,
 				0C7935F719E1E0F80056FCBC /* iphone5_ios7.jpg in Resources */,
 				0CC01EAA19C57BC500F3A2B5 /* email.png in Resources */,
+				0DFAF36919E300640077EB69 /* ToPiso_57x57.png in Resources */,
+				0DFAF36419E2EEC90077EB69 /* chat-48.png in Resources */,
 				0C7935F919E26FD00056FCBC /* Default.png in Resources */,
 				0C7935F419E1DF080056FCBC /* aga_120_120.png in Resources */,
 				0CF2FF6E19C4A28E0071BDC6 /* Launch__64x960.png in Resources */,
@@ -531,12 +563,12 @@
 				0CD49BA619ADDFFB0078920D /* main.m in Sources */,
 				0CF3E94319C8493000C4844A /* SendAndRequest.m in Sources */,
 				0CB5131819C2EAB7006D1653 /* RemittanceTableViewController.m in Sources */,
+				0DF746D419E2B2510072C5C0 /* AboutViewController.m in Sources */,
 				0CA9FBC619CAAD4A006A9A98 /* countryTableViewCell.m in Sources */,
 				0CC70C2B19C6089300D0E2E1 /* NotificationTableViewController.m in Sources */,
 				0CD49BD619ADE5230078920D /* CustomTableViewCell.m in Sources */,
 				0CC70C2719C6032500D0E2E1 /* Notification.m in Sources */,
 				0CF7AD1219C2D43C0059EB6C /* CountryMainTableViewController.m in Sources */,
-				0CA84DBF19D42F4300F1026E /* AboutTableViewController.m in Sources */,
 				0CD49BAD19ADDFFB0078920D /* ToPeso.xcdatamodeld in Sources */,
 				0C31839A19C87EBC00ED08B8 /* CommonFunction.m in Sources */,
 			);
@@ -679,7 +711,7 @@
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "29145bba-88f7-4156-a5d3-798d48a368fd";
+				PROVISIONING_PROFILE = "8de10b21-960b-4b86-8b1f-591a6951dcbc";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

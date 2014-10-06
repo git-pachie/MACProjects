@@ -15,8 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgAgentPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *lblAgentName;
-@property (weak, nonatomic) IBOutlet UILabel *lblAgentAddress;
-@property (weak, nonatomic) IBOutlet UILabel *lblAgentContact;
+//@property (weak, nonatomic) IBOutlet UILabel *lblAgentAddress;
+//@property (weak, nonatomic) IBOutlet UILabel *lblAgentContact;
 @property (weak, nonatomic) IBOutlet UILabel *lblCurrentRate;
 @property (weak, nonatomic) IBOutlet UILabel *lblAsOfDate;
 @property (weak, nonatomic) IBOutlet UIButton *btnEmail;
