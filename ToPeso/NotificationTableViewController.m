@@ -65,6 +65,143 @@
 
 #pragma mark - Table view data source
 
+-(UIImageView *)imageRound:(UIImageView *)imview;
+{
+    
+    //imview.layer.cornerRadius = 10;
+    //imview.layer.masksToBounds = YES;
+    
+    //imview.frame = CGRectMake(0,0,32,32);
+    
+    //[imview.layer setFrame:CGRectMake(0,0,20,20)];
+    //return imview;
+    
+    
+    UIGraphicsBeginImageContextWithOptions(imview.bounds.size, NO, [UIScreen mainScreen].scale);
+    
+    // Add a clip before drawing anything, in the shape of an rounded rect
+    
+    [[UIBezierPath bezierPathWithRoundedRect:imview.bounds
+                                cornerRadius:10.0 ] addClip];
+    // Draw your image
+    [imview.image drawInRect:imview.bounds];
+    
+    // Get the image, here setting the UIImageView image
+    imview.image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    //            cell.imageView.layer.borderWidth  =1;
+    //            cell.imageView.layer.borderColor = [UIColor grayColor].CGColor;
+    //
+    // Lets forget about that we were drawing
+    
+    
+    UIGraphicsEndImageContext();
+    
+    return imview;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    // 1. Dequeue the custom header cell
+//    CustomHeaderCell* headerCell = [tableView dequeueReusableCellWithIdentifier:@"HeaderCell"];
+//    
+//    // 2. Set the various properties
+//    headerCell.title.text = @"Custom header from cell";
+//    [headerCell.title sizeToFit];
+//    
+//    headerCell.subtitle.text = @"The subtitle";
+//    [headerCell.subtitle sizeToFit];
+//    
+//    headerCell.image.image = [UIImage imageNamed:@"smiley-face"];
+//    
+//    // 3. And return
+//    return headercell;
+    
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetched sections]objectAtIndex:section];
+    
+    //return [sectionInfo name];
+    
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    [view setBackgroundColor:[UIColor whiteColor]];
+    
+    
+    UIColor *yellowColor =  [UIColor colorWithRed:(255/255.0) green:(194/255.0) blue:(30/255.0) alpha:.1] ;
+    
+    
+    [view setBackgroundColor:yellowColor];
+    
+    NSString *countryFlag = [self getCountryFlagByCountryName:[sectionInfo name]];
+    
+    
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString* path = [documentsDirectory stringByAppendingPathComponent:countryFlag];
+    
+    
+    UIImage* img = [UIImage imageWithContentsOfFile:path];
+    
+    if (img == nil) {
+        img = [UIImage imageNamed:@"default.png"];
+    }
+    
+    
+    
+    UIImageView* imgView=[[UIImageView alloc]initWithFrame:CGRectMake(14, 10, 30, 30)];
+    imgView.image =img;
+    
+    imgView.layer.cornerRadius = 10;
+    imgView.clipsToBounds = YES;
+    imgView.layer.borderWidth = .5;
+    imgView.layer.borderColor = [UIColor orangeColor].CGColor;
+    
+    
+    [view addSubview:imgView];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(60, 16, tableView.frame.size.width, 18)];
+    
+    label.text = [sectionInfo name];
+    label.textColor = [UIColor darkGrayColor];
+    //label.textAlignment = NSTextAlignmentRight;
+    label.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
+    
+    
+    
+    
+    [view addSubview:label];
+    
+    
+    
+    
+    
+   // UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+//    /* Create custom view to display section header... */
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+//    [label setFont:[UIFont boldSystemFontOfSize:12]];
+//    NSString *string =[list objectAtIndex:section];
+//    /* Section header is in 0th index... */
+//    [label setText:string];
+    
+    
+    
+   // UIImageView *imgView = [[UIImageView alloc]init];
+   // imgView.image = img;
+    
+    
+    
+    
+   // [view addSubview:imgView];
+    //[view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
+    return view;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 50;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     id sections = [[self fetched] sections];
@@ -99,10 +236,42 @@
     
     cell.textLabel.text =  noti.agentName;
     
+    Remittance *rem = [self getRemittanceByGUID:noti.remittanceGUID];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString* path = [documentsDirectory stringByAppendingPathComponent:rem.logo];
+    
+    UIImage* image = [UIImage imageWithContentsOfFile:path];
+    
+    
+    UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(0,0,30,30)];
+    
+    imgv.image = image;
+    
+    //[[UIImageView alloc]initWithImage:image];
+    
+    if (imgv.image == nil) {
+        imgv.image = [UIImage imageNamed:@"default.png"];
+    }
+    
+    
+    
+   // [self imageRound:cell.imageView];
+    
+    cell.textLabel.textColor = [UIColor darkGrayColor];
+    
+    cell.imageView.image = [self imageRound:imgv].image;
     // Configure the cell...
+    
+    
     
     return cell;
 }
+
+
 
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
@@ -337,9 +506,6 @@
         
         rem  = [self.fetched objectAtIndexPath:indexpath];
         
-        
-        
-        
         agent.remitanceAgent = [self getRemittanceByGUID:rem.remittanceGUID];
         agent.country = [self getCountryByCountryCode:rem.countryCode];
         
@@ -372,6 +538,37 @@
     
 }
 
+-(NSString *)getCountryFlagByCountryName : (NSString *)CountryName
+{
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Country" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"countryName ==[cd]%@", CountryName];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    //    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    //                                                                   ascending:YES];
+    // [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+        NSLog(@"Error %@", fetchedObjects);
+    }
+    
+    Country *country = [fetchedObjects objectAtIndex:0];
+    
+    return country.countryFlag;
+    
+}
+
+
+
+
 -(Remittance *)getRemittanceByGUID: (NSString *)remittanceGUID
 {
     NSManagedObjectContext *context = delegate.managedObjectContext;
@@ -397,6 +594,8 @@
     return [fetchedObjects objectAtIndex:0];
     
 }
+
+
 
 
 #pragma mark iAd Deleage
