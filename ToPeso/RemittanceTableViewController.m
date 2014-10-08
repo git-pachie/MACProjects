@@ -37,6 +37,8 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -71,9 +73,6 @@
         
         
         [self showHideLoadingBar:true];
-        
-        
-        
         
 
     });
@@ -413,15 +412,33 @@
     
     
     cell.imgRemittanceImage.image = image;
-    
-//    cell.imageView.image = [UIImage imageNamed:@"default.png"];
     cell.imgRemittanceImage.layer.cornerRadius = 10;
     cell.imgRemittanceImage.clipsToBounds = YES;
     cell.imgRemittanceImage.layer.borderWidth = .5;
     cell.imgRemittanceImage.layer.borderColor = [UIColor grayColor].CGColor;
-
+    
+    
+    //cell.imgOver1.image = image;
+    cell.imgOver1.layer.cornerRadius = 10;
+    cell.imgOver1.clipsToBounds = YES;
+    cell.imgOver1.layer.borderWidth = .5;
+    cell.imgOver1.layer.borderColor = [UIColor grayColor].CGColor;
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    
+    //find favorite
+    
+    BOOL isFav = [self isAgentFavoriteByGuid:rem.remmittanceGUID];
+    
+    if (isFav == true) {
+        
+        cell.imgOver1.hidden = false;
+    }
+    else
+    {
+        cell.imgOver1.hidden = true;
+    }
     
     return cell;
                             
@@ -549,6 +566,43 @@
     
     
 }
+
+-(BOOL)isAgentFavoriteByGuid: (NSString *)remittanceGUID
+{
+    NSManagedObjectContext *context = del.managedObjectContext;
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"remittanceGUID ==[cd]%@", remittanceGUID];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    //    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    //                                                                   ascending:YES];
+    // [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+        NSLog(@"Error %@", fetchedObjects);
+    }
+    
+    
+    if ([fetchedObjects count] == 0) {
+        return  false;
+    }
+    else
+    {
+        return true;
+    }
+    
+    
+    //return [fetchedObjects objectAtIndex:0];
+    
+}
+
 
 #pragma mark iAd Deleage
 

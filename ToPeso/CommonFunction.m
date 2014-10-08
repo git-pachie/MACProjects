@@ -39,7 +39,7 @@
 
 + (NSString *)getToPisoInstallURL
 {
-    return @"http://www.topiso.greetify.net";
+    return @"https://www.facebook.com/pages/ToPiso/871642766203690";
 }
 
 + (NSString *)getToPisoEmailAddress

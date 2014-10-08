@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgRemittanceImage;
 @property (weak, nonatomic) IBOutlet UILabel *lblRate;
 @property (weak, nonatomic) IBOutlet UILabel *lbltime;
+@property (weak, nonatomic) IBOutlet UIImageView *imgOver1;
 
 
 @end

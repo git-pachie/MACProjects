@@ -61,6 +61,7 @@
 		0D5F263519D31737009EC54F /* home-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F263419D31737009EC54F /* home-26.png */; };
 		0D5F263819D31DF2009EC54F /* alert-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F263719D31DF2009EC54F /* alert-26.png */; };
 		0D5F263A19D31ED0009EC54F /* info-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F263919D31ED0009EC54F /* info-26.png */; };
+		0D8D849F19E570CB0022F4B2 /* toPiso_bell_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D8D849E19E570CB0022F4B2 /* toPiso_bell_green.png */; };
 		0DF746D119E2A9D80072C5C0 /* topbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DF746D019E2A9D80072C5C0 /* topbg.png */; };
 		0DF746D419E2B2510072C5C0 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DF746D319E2B2510072C5C0 /* AboutViewController.m */; };
 		0DFAF36419E2EEC90077EB69 /* chat-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFAF36019E2EEC90077EB69 /* chat-48.png */; };
@@ -151,6 +152,7 @@
 		0D5F263419D31737009EC54F /* home-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-26.png"; path = "../ToPeso/home-26.png"; sourceTree = "<group>"; };
 		0D5F263719D31DF2009EC54F /* alert-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert-26.png"; sourceTree = "<group>"; };
 		0D5F263919D31ED0009EC54F /* info-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-26.png"; sourceTree = "<group>"; };
+		0D8D849E19E570CB0022F4B2 /* toPiso_bell_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toPiso_bell_green.png; sourceTree = "<group>"; };
 		0DF746D019E2A9D80072C5C0 /* topbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topbg.png; sourceTree = "<group>"; };
 		0DF746D219E2B2510072C5C0 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		0DF746D319E2B2510072C5C0 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 		0DFAF35F19E2EEB10077EB69 /* Icon2 */ = {
 			isa = PBXGroup;
 			children = (
+				0D8D849E19E570CB0022F4B2 /* toPiso_bell_green.png */,
 				0DFAF36819E300640077EB69 /* ToPiso_57x57.png */,
 				0DFAF36019E2EEC90077EB69 /* chat-48.png */,
 				0DFAF36119E2EEC90077EB69 /* facebook-48.png */,
@@ -511,6 +514,7 @@
 				0DFAF36619E2EEC90077EB69 /* message-48.png in Resources */,
 				0CF2FF7B19C4BE210071BDC6 /* facebook2.png in Resources */,
 				0CD49BA419ADDFFB0078920D /* InfoPlist.strings in Resources */,
+				0D8D849F19E570CB0022F4B2 /* toPiso_bell_green.png in Resources */,
 				0CA9FBC319CAAC8A006A9A98 /* countryCell.xib in Resources */,
 				0CD49BD019ADE2D70078920D /* Storyboard.storyboard in Resources */,
 				0CD49BCE19ADE0300078920D /* View.xib in Resources */,
@@ -687,14 +691,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToPeso/ToPeso-Prefix.pch";
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5db831a9-86aa-4d26-b2ca-18313e0a6c48";
+				PROVISIONING_PROFILE = "af3a353e-08cf-4752-86d7-7ad598c68f03";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -704,14 +708,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Archie Angeles (R3F22UC8DK)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Archie Angeles (R3F22UC8DK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToPeso/ToPeso-Prefix.pch";
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8de10b21-960b-4b86-8b1f-591a6951dcbc";
+				PROVISIONING_PROFILE = "585f646b-9d43-4939-ac9f-39b93ec5fd6e";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
