@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import <iAd/iAd.h>
 
-@interface CountryMainTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, ADBannerViewDelegate>
+@interface CountryMainTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic,strong)NSFetchedResultsController *fectched;
 

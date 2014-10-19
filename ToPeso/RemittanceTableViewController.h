@@ -11,7 +11,7 @@
 #import "Country.h"
 #import <iAd/iAd.h>
 
-@interface RemittanceTableViewController : UITableViewController <NSFetchedResultsControllerDelegate , ADBannerViewDelegate>
+@interface RemittanceTableViewController : UITableViewController <NSFetchedResultsControllerDelegate >
 
 //@property (nonatomic, strong) NSString * countryCode;
 @property (nonatomic,strong) NSFetchedResultsController *fetched;
