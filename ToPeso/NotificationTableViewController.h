@@ -10,7 +10,7 @@
 #import <iAd/iAd.h>
 
 
-@interface NotificationTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface NotificationTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, ADBannerViewDelegate>
 
 @property (nonatomic, strong)NSFetchedResultsController *fetched;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *btnEdit;
