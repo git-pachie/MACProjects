@@ -694,7 +694,7 @@
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "723d1a7d-653c-4ea4-88db-5d753a413e2a";
+				PROVISIONING_PROFILE = "4a5b08d2-a9a0-4a32-b4e5-83c29e61f894";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -704,14 +704,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToPeso/ToPeso-Prefix.pch";
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1f8101ff-e45e-413c-a905-193c9368338d";
+				PROVISIONING_PROFILE = "564daa59-c2f8-4329-89c7-c211157a88c6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

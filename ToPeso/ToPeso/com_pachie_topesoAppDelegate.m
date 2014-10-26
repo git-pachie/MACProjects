@@ -54,12 +54,11 @@
 
     
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge
-                                                                                             |UIRemoteNotificationTypeSound
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeSound
                                                                                              |UIRemoteNotificationTypeAlert) categories:nil];
         [application registerUserNotificationSettings:settings];
     } else {
-        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
+        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
         [application registerForRemoteNotificationTypes:myTypes];
     }
 //

@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>763E2830-D037-4224-96EC-71C1FFD9CCFA</string>
+	<string>B2214FA4-6F39-4226-BB1A-AB53E0303C54</string>
 	<key>IDESourceControlProjectName</key>
-	<string>ToPeso</string>
+	<string>TestSwiftTable</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A4EE0F87A28242D8580C720CCF5CA903E881D9AC</key>
 		<string>https://github.com/git-pachie/MACProjects.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ToPeso/ToPeso.xcodeproj</string>
+	<string>TestSwiftTable/TestSwiftTable.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A4EE0F87A28242D8580C720CCF5CA903E881D9AC</key>
