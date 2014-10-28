@@ -13,6 +13,9 @@
 #import "AgentDetailsTableViewController.h"
 #import "CoreDataToPeso.h"
 #import "SendAndRequest.h"
+#import "CommonAddMob.h"
+
+
 
 @interface RemittanceTableViewController ()
 
@@ -80,8 +83,12 @@
     
     [self refreshTable];
     
+    //[self.view insertSubview:[commonAddMob ImplementBaner:self] belowSubview:self.tableView];
+    UIView *abView = [[UIView alloc]init];
+    abView.backgroundColor = [UIColor greenColor];
+    abView.frame = CGRectMake(0, 0, 100, 100);
     
-
+    [self.view insertSubview:abView belowSubview:self.view];
     
 }
 
@@ -621,6 +628,38 @@
 //    [banner setAlpha:0];
 //    [UIView commitAnimations];
 //    
+//}
+
+//- (CGFloat)tableView:(UITableView *)tableView
+//heightForHeaderInSection:(NSInteger)section
+//{
+//    CGFloat height = 50.0; // this should be the height of your admob view
+//    
+//    return height;
+//}
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    CGFloat height = 50.0; // this should be the height of your admob view
+//    
+//    return height;
+//}
+
+//- (UIView *)tableView:(UITableView *)tableView
+//viewForHeaderInSection:(NSInteger)section
+//{
+//    
+//    UIView *headerView = [commonAddMob ImplementBaner:self]; // init your view or reference your admob
+//    
+//    return headerView;
+//}
+
+//-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    UIView *headerView = [commonAddMob ImplementBaner:self]; // init your view or reference your admob
+//    
+//    return headerView;
+//
 //}
 
 @end

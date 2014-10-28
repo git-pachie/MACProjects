@@ -7,12 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
-#import <iAd/iAd.h>
+//#import "DFPBannerView.h"
+
+//@protocol GADAdSizeDelegate <NSObject>
+//- (void)adView:(GADBannerView *)view willChangeAdSizeTo:(GADAdSize)size;
+//@end
 
 @interface CountryMainTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic,strong)NSFetchedResultsController *fectched;
+
+//@property (strong, nonatomic) IBOutlet GADBannerView *myBannerView;
+
+//@property (weak, nonatomic) id <GADAdSizeDelegate> delegate;
 
 
 -(void)LoadFromNotification :(NSString *)remittanceGUID;

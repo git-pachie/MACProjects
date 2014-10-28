@@ -12,11 +12,18 @@
 #import "CoreDataToPeso.h"
 #import "SendAndRequest.h"
 #import "countryTableViewCell.h"
+#import "CommonAddMob.h"
+
+
+
+
 
 @interface CountryMainTableViewController ()
 {
     com_pachie_topesoAppDelegate *del;
     UIRefreshControl *refreshControl;
+    
+    
 }
 
 @end
@@ -138,6 +145,7 @@
     
     del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
     
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"countryCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
     refreshControl = [[UIRefreshControl alloc]init];
@@ -159,7 +167,27 @@
              }
     
     NSLog(@"id: %@", del.DevinceToken);
+    
    
+
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView
+heightForHeaderInSection:(NSInteger)section
+{
+    CGFloat height = 50.0; // this should be the height of your admob view
+    
+    return height;
+}
+
+- (UIView *)tableView:(UITableView *)tableView
+viewForHeaderInSection:(NSInteger)section
+{
+    
+    UIView *headerView = [commonAddMob ImplementBaner:self]; // init your view or reference your admob
+    
+    return headerView;
 }
 
 - (void)didReceiveMemoryWarning
