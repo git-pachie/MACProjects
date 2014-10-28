@@ -35,7 +35,7 @@
     [validSizes addObject:[NSValue valueWithBytes:&size3 objCType:@encode(GADAdSize)]];
     self.bannerView.validAdSizes = validSizes;
     
-    [self.bannerView setAdSizeDelegate:self];
+    //[self.bannerView setAdSizeDelegate:self];
     
     self.bannerView.adUnitID = @"ca-app-pub-1492629769877969/5454029335";
     self.bannerView.rootViewController = self;

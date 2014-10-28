@@ -251,21 +251,43 @@
 
 - (IBAction)swNotification:(id)sender {
     
-    UIRemoteNotificationType types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-    if (types == UIRemoteNotificationTypeNone)
+    
+#define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+    
+    NSUInteger rntypes;
+    UIAlertView *alert;
+    if (!SYSTEM_VERSION_LESS_THAN(@"8.0")) {
+        rntypes = [[[UIApplication sharedApplication] currentUserNotificationSettings] types];
+        alert = [[UIAlertView alloc]initWithTitle:@"Push Notification not enabled" message:@"Unable to continue, please enable Push Notification in Settings > ToPiso > Notifications : Allow Notifications " delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
+    }else{
+        
+        rntypes = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+        alert = [[UIAlertView alloc]initWithTitle:@"Push Notification not enabled" message:@"Unable to continue, please enable Push Notification in Settings > Notification Center : Show in Notification Center " delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
+        
+        
+    }
+    
+    
+    
+    
+    if (rntypes == 0)
     {
         // Disabled
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Push Notification not enabled" message:@"Unable to continue, please enable Push Notification in Settings > ToPiso > Notifications : Allow Notifications " delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
+        
         
         [alert show];
         
         self.swNotification.on = false;
         return;
     }
+   
     
     
     
-    
+    if (delegate.DevinceToken == nil) {
+        self.swNotification.on = false;
+        return;
+    }
     
     
     
