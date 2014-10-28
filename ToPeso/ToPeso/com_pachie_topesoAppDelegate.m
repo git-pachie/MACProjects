@@ -61,34 +61,8 @@
         UIRemoteNotificationType myTypes = UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
         [application registerForRemoteNotificationTypes:myTypes];
     }
-//
-//    
-//#ifdef __IPHONE_8_0
-//    //Right, that is the point
-//    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge
-//                                                                                         |UIRemoteNotificationTypeSound
-//                                                                                         |UIRemoteNotificationTypeAlert) categories:nil];
-//    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-//#else
-//    //register to receive notifications
-//    UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
-//    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
-//#endif
-//    
-//    
-//    
-//    
-//    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
-//
-    
-//    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-//        // use registerUserNotificationSettings
-//    } else {
-//        // use registerForRemoteNotifications
-//    }
-    
+
     NSDictionary* userInfo = [launchOptions valueForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
-    //NSDictionary *apsInfo = [userInfo objectForKey:@"aps"];
     
     if (userInfo != nil) {
         

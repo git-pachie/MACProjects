@@ -251,6 +251,25 @@
 
 - (IBAction)swNotification:(id)sender {
     
+    UIRemoteNotificationType types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+    if (types == UIRemoteNotificationTypeNone)
+    {
+        // Disabled
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Push Notification not enabled" message:@"Unable to continue, please enable Push Notification in Settings > ToPiso > Notifications : Allow Notifications " delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
+        
+        [alert show];
+        
+        self.swNotification.on = false;
+        return;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     NSDateFormatter *dformat = [[NSDateFormatter alloc]init];
     [dformat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *strDate = [dformat stringFromDate:[NSDate date]];

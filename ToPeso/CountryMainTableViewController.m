@@ -35,7 +35,7 @@
 -(void)refreshTable
 {
     
-    del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+    
     
     CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
     //[core insertTempData];
@@ -65,12 +65,17 @@
              if ([lastModified isEqualToString:@"-1"]) {
                  
                  
-                 NSDictionary *dic = @{@"deviceUDID":del.DevinceToken};
-                 NSString *strURL =[NSString stringWithFormat:@"%@/DeleteAllNotification", [send getToPisoURL]];
+                 if (del.DevinceToken != nil)
+                 {
+                     NSDictionary *dic = @{@"deviceUDID":del.DevinceToken};
+                     NSString *strURL =[NSString stringWithFormat:@"%@/DeleteAllNotification", [send getToPisoURL]];
+                     
+                     [send deleteAllNotificationToServer:[NSURL URLWithString:strURL] notificationData:dic CompletionBlock:^(bool succeeded, NSError *error) {
+                         NSLog(@"all notification deleted");
+                     }];
+                 }
                  
-                 [send deleteAllNotificationToServer:[NSURL URLWithString:strURL] notificationData:dic CompletionBlock:^(bool succeeded, NSError *error) {
-                     NSLog(@"all notification deleted");
-                 }];
+                 
              }
 
              
@@ -131,6 +136,8 @@
 {
     [super viewDidLoad];
     
+    del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"countryCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
     refreshControl = [[UIRefreshControl alloc]init];
@@ -142,6 +149,14 @@
     
     
     [self refreshTable];
+    
+    
+             NSError *error;
+             if (![[self fectched] performFetch:&error]) {
+                 // Update to handle the error appropriately.
+                 NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                 exit(-1);  // Fail
+             }
     
     NSLog(@"id: %@", del.DevinceToken);
    
@@ -196,9 +211,9 @@
         
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:del.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         
-        self.fectched = theFetchedResultsController;
+        _fectched = theFetchedResultsController;
         
-        self.fectched.delegate = self;
+        _fectched.delegate = self;
         
         return _fectched;
         
