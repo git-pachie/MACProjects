@@ -24,6 +24,8 @@
     UIRefreshControl *refreshControl;
     UIActivityIndicatorView *spinner;
     dispatch_queue_t que;
+    //UIView *abView;
+    commonAddMob *_commonBanner;
     
 }
 
@@ -45,6 +47,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _commonBanner = [[commonAddMob alloc]init];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"View" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
@@ -83,13 +86,21 @@
     
     [self refreshTable];
     
-    //[self.view insertSubview:[commonAddMob ImplementBaner:self] belowSubview:self.tableView];
-    UIView *abView = [[UIView alloc]init];
-    abView.backgroundColor = [UIColor greenColor];
-    abView.frame = CGRectMake(0, 0, 100, 100);
+
     
-    [self.view insertSubview:abView belowSubview:self.view];
+    //abView = [commonAddMob ImplementBanerBottom:self];
+    [self.view addSubview:[_commonBanner ImplementBanerBottom:self]];
     
+    
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    UIView *xView = [_commonBanner ImplementBanerBottom:self];
+    
+    CGRect fixedFrame = xView.frame;
+    fixedFrame.origin.y = 0 + scrollView.contentOffset.y + ((self.view.bounds.size.height) - 100);
+    xView.frame = fixedFrame;
 }
 
 -(void)showHideLoadingBar :(BOOL)isShow

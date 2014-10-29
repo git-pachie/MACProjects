@@ -13,6 +13,7 @@
 #import "EntNotification.h"
 #import "SendAndRequest.h"
 #import "CommonFunction.h"
+#import "CommonAddMob.h"
 
 @interface AgentDetailsTableViewController ()
 
@@ -22,6 +23,7 @@
     EntNotification *notifcation;
     SendAndRequest *send;
     bool preNotificationValue;
+    commonAddMob *_commonAddMob;
 }
 
 @end
@@ -42,6 +44,7 @@
     [super viewDidLoad];
     
     delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+    _commonAddMob = [[commonAddMob alloc]init];
     
     core = [[CoreDataToPeso alloc]init];
     send  = [[SendAndRequest alloc]init];
@@ -124,7 +127,19 @@
         delegate.isFromNotification = false;
     }
     
+    
+    [self.view addSubview:[_commonAddMob ImplementBanerBottom:self]];
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    UIView *xView = [_commonAddMob ImplementBanerBottom:self];
+    
+    CGRect fixedFrame = xView.frame;
+    fixedFrame.origin.y = 0 + scrollView.contentOffset.y + ((self.view.bounds.size.height) - 100);
+    xView.frame = fixedFrame;
+}
+
 
 - (void)didReceiveMemoryWarning
 {

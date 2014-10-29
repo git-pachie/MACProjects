@@ -18,11 +18,12 @@
 
 
 
+
 @interface CountryMainTableViewController ()
 {
     com_pachie_topesoAppDelegate *del;
     UIRefreshControl *refreshControl;
-    
+    commonAddMob *_commonAddMob;
     
 }
 
@@ -144,7 +145,7 @@
     [super viewDidLoad];
     
     del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
-    
+    _commonAddMob = [[commonAddMob alloc]init];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"countryCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
@@ -168,27 +169,19 @@
     
     NSLog(@"id: %@", del.DevinceToken);
     
-   
+    [self.view addSubview:[_commonAddMob ImplementBanerBottom:self]];
 
 }
 
-
-- (CGFloat)tableView:(UITableView *)tableView
-heightForHeaderInSection:(NSInteger)section
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGFloat height = 50.0; // this should be the height of your admob view
+    UIView *xView = [_commonAddMob ImplementBanerBottom:self];
     
-    return height;
+    CGRect fixedFrame = xView.frame;
+    fixedFrame.origin.y = 0 + scrollView.contentOffset.y + ((self.view.bounds.size.height) - 100);
+    xView.frame = fixedFrame;
 }
 
-- (UIView *)tableView:(UITableView *)tableView
-viewForHeaderInSection:(NSInteger)section
-{
-    
-    UIView *headerView = [commonAddMob ImplementBaner:self]; // init your view or reference your admob
-    
-    return headerView;
-}
 
 - (void)didReceiveMemoryWarning
 {

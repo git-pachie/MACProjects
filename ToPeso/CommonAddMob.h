@@ -12,13 +12,13 @@
 #import <UIKit/UIKit.h>
 
 
+#define admobID  @"ca-app-pub-1492629769877969/5454029335"
+#define isSimulator @"YES"
+
 
 @interface commonAddMob : NSObject
 
 + (GADBannerView *)ImplementBaner:(UITableViewController *)tableView;
-
-
-
-
+- (GADBannerView *)ImplementBanerBottom:(UIViewController *)uiviewController;
 
 @end

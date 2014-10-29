@@ -12,12 +12,13 @@
 #import "SendAndRequest.h"
 #import "AgentDetailsTableViewController.h"
 #import "Remittance.h"
+#import "CommonAddMob.h"
 
 @interface NotificationTableViewController ()
 {
     com_pachie_topesoAppDelegate *delegate;
     SendAndRequest *send;
-    
+    commonAddMob *_commonAddMob;
 }
 @end
 
@@ -38,7 +39,10 @@
     
     delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
     send = [[SendAndRequest alloc]init];
+    _commonAddMob = [[commonAddMob alloc]init];
     
+    
+    [self.view addSubview:[_commonAddMob ImplementBanerBottom:self]];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -616,4 +620,13 @@
 //    [UIView commitAnimations];
 //    
 //}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    UIView *xView = [_commonAddMob ImplementBanerBottom:self];
+    
+    CGRect fixedFrame = xView.frame;
+    fixedFrame.origin.y = 0 + scrollView.contentOffset.y + ((self.view.bounds.size.height) - 100);
+    xView.frame = fixedFrame;
+}
 @end

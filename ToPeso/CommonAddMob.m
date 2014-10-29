@@ -12,7 +12,15 @@
 #import "DFPBannerView.h"
 #import "GADRequest.h"
 
+
+
 @implementation commonAddMob
+
+{
+    GADBannerView *_bannerView;
+
+}
+
 
 
 
@@ -20,16 +28,58 @@
 {
     GADBannerView *xBan = [[GADBannerView alloc]init];
     
-    xBan.adUnitID = @"ca-app-pub-1492629769877969/5454029335";
+    xBan.adUnitID = admobID ;
     xBan.rootViewController = tableView;
     
     //simulator
     GADRequest *request = [GADRequest request];
-    request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID,nil];
+    
+    if ([isSimulator isEqualToString:@"YES"]) {
+        
+        request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID,nil];
+    }
+    
     
     [xBan loadRequest:request];
     
     return  xBan;
 }
+
+
+
+- (GADBannerView *)ImplementBanerBottom:(UIViewController *)uiviewController
+{
+    
+    if (_bannerView != nil) {
+        return _bannerView;
+        
+    }
+    
+    _bannerView = [[GADBannerView alloc]init];
+    
+    _bannerView.adUnitID = @"ca-app-pub-1492629769877969/5454029335";
+    _bannerView.rootViewController = uiviewController;
+    
+    //simulator
+    GADRequest *request = [GADRequest request];
+    
+    if ([isSimulator isEqualToString:@"YES"]) {
+        
+        request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID,nil];
+    }
+    
+    
+    CGRect loadingSize = CGRectMake(0, (uiviewController.view.bounds.size.height) - 164 , (uiviewController.view.bounds.size.width), 50);
+    
+    _bannerView.frame = loadingSize;
+    
+    [_bannerView loadRequest:request];
+    
+    
+    return  _bannerView;
+}
+
+
+
 
 @end
