@@ -69,7 +69,7 @@
     }
     
     
-    CGRect loadingSize = CGRectMake(0, (uiviewController.view.bounds.size.height) - 164 , (uiviewController.view.bounds.size.width), 50);
+    CGRect loadingSize = CGRectMake(0, 0  , (uiviewController.view.bounds.size.width), 50);
     
     _bannerView.frame = loadingSize;
     

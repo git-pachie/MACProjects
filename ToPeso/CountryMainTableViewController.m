@@ -170,9 +170,26 @@
     NSLog(@"id: %@", del.DevinceToken);
     
     [self.view addSubview:[_commonAddMob ImplementBanerBottom:self]];
-
+    
+//    CGRect tableFrame = self.tableView.frame;
+//    tableFrame.size.height = 200;
+//    self.tableView.frame = tableFrame;
+    ////CGRect frame = self.tableView.frame;
+    //frame.size.height = 113;
+    //self.tableView.frame = CGRectMake(0,30,320,100);
+    
 }
 
+
+
+-(void)viewDidLayoutSubviews
+{
+
+    
+   // self.tabBarController.view.frame = CGRectMake(0, 200, self.view.window.bounds.size.width, 50);
+
+
+}
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     UIView *xView = [_commonAddMob ImplementBanerBottom:self];
