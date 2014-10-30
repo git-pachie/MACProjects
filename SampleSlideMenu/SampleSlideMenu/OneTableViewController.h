@@ -1,5 +1,5 @@
 //
-//  MenuTableViewController.h
+//  OneTableViewController.h
 //  SampleSlideMenu
 //
 //  Created by Archie Angeles on 30/10/14.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MenuTableViewController : UITableViewController
+@interface OneTableViewController : UITableViewController
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sideMenu;
 
 @end

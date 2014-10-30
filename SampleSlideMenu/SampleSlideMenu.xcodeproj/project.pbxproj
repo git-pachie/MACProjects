@@ -9,14 +9,16 @@
 /* Begin PBXBuildFile section */
 		0C2212011A022DA500F12340 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2212001A022DA500F12340 /* main.m */; };
 		0C2212041A022DA500F12340 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2212031A022DA500F12340 /* AppDelegate.m */; };
-		0C22120A1A022DA500F12340 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C2212081A022DA500F12340 /* Main.storyboard */; };
 		0C22120C1A022DA500F12340 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C22120B1A022DA500F12340 /* Images.xcassets */; };
 		0C22120F1A022DA500F12340 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C22120D1A022DA500F12340 /* LaunchScreen.xib */; };
 		0C22121B1A022DA500F12340 /* SampleSlideMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C22121A1A022DA500F12340 /* SampleSlideMenuTests.m */; };
-		0C2212271A022E0C00F12340 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2212261A022E0C00F12340 /* SWRevealViewController.m */; };
 		0C22122A1A02314D00F12340 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2212291A02314D00F12340 /* MainViewController.m */; };
 		0CF0A0851A02409500D8D34D /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF0A0831A02409500D8D34D /* menu.png */; };
 		0CF0A0861A02409500D8D34D /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF0A0841A02409500D8D34D /* menu@2x.png */; };
+		0DCE30F71A02821D00A216C0 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCE30F61A02821D00A216C0 /* MenuTableViewController.m */; };
+		0DCE30FA1A028ABA00A216C0 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCE30F91A028ABA00A216C0 /* SWRevealViewController.m */; };
+		0DCE30FD1A0290C900A216C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DCE30FB1A0290C900A216C0 /* Main.storyboard */; };
+		0DCE31001A02926300A216C0 /* OneTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCE30FF1A02926300A216C0 /* OneTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,18 +37,22 @@
 		0C2212001A022DA500F12340 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0C2212021A022DA500F12340 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0C2212031A022DA500F12340 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0C2212091A022DA500F12340 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C22120B1A022DA500F12340 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0C22120E1A022DA500F12340 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		0C2212141A022DA500F12340 /* SampleSlideMenuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleSlideMenuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C2212191A022DA500F12340 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C22121A1A022DA500F12340 /* SampleSlideMenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleSlideMenuTests.m; sourceTree = "<group>"; };
-		0C2212251A022E0C00F12340 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		0C2212261A022E0C00F12340 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		0C2212281A02314D00F12340 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		0C2212291A02314D00F12340 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		0CF0A0831A02409500D8D34D /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		0CF0A0841A02409500D8D34D /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
+		0DCE30F51A02821D00A216C0 /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
+		0DCE30F61A02821D00A216C0 /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
+		0DCE30F81A028ABA00A216C0 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		0DCE30F91A028ABA00A216C0 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		0DCE30FC1A0290C900A216C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0DCE30FE1A02926300A216C0 /* OneTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneTableViewController.h; sourceTree = "<group>"; };
+		0DCE30FF1A02926300A216C0 /* OneTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,17 +94,21 @@
 		0C2211FD1A022DA500F12340 /* SampleSlideMenu */ = {
 			isa = PBXGroup;
 			children = (
+				0DCE30FB1A0290C900A216C0 /* Main.storyboard */,
 				0CF0A0831A02409500D8D34D /* menu.png */,
 				0CF0A0841A02409500D8D34D /* menu@2x.png */,
 				0C2212241A022E0C00F12340 /* SWRevealViewController */,
 				0C2212021A022DA500F12340 /* AppDelegate.h */,
 				0C2212031A022DA500F12340 /* AppDelegate.m */,
-				0C2212081A022DA500F12340 /* Main.storyboard */,
 				0C22120B1A022DA500F12340 /* Images.xcassets */,
 				0C22120D1A022DA500F12340 /* LaunchScreen.xib */,
 				0C2211FE1A022DA500F12340 /* Supporting Files */,
 				0C2212281A02314D00F12340 /* MainViewController.h */,
 				0C2212291A02314D00F12340 /* MainViewController.m */,
+				0DCE30F51A02821D00A216C0 /* MenuTableViewController.h */,
+				0DCE30F61A02821D00A216C0 /* MenuTableViewController.m */,
+				0DCE30FE1A02926300A216C0 /* OneTableViewController.h */,
+				0DCE30FF1A02926300A216C0 /* OneTableViewController.m */,
 			);
 			path = SampleSlideMenu;
 			sourceTree = "<group>";
@@ -132,8 +142,8 @@
 		0C2212241A022E0C00F12340 /* SWRevealViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0C2212251A022E0C00F12340 /* SWRevealViewController.h */,
-				0C2212261A022E0C00F12340 /* SWRevealViewController.m */,
+				0DCE30F81A028ABA00A216C0 /* SWRevealViewController.h */,
+				0DCE30F91A028ABA00A216C0 /* SWRevealViewController.m */,
 			);
 			path = SWRevealViewController;
 			sourceTree = "<group>";
@@ -219,7 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CF0A0851A02409500D8D34D /* menu.png in Resources */,
-				0C22120A1A022DA500F12340 /* Main.storyboard in Resources */,
+				0DCE30FD1A0290C900A216C0 /* Main.storyboard in Resources */,
 				0CF0A0861A02409500D8D34D /* menu@2x.png in Resources */,
 				0C22120F1A022DA500F12340 /* LaunchScreen.xib in Resources */,
 				0C22120C1A022DA500F12340 /* Images.xcassets in Resources */,
@@ -240,10 +250,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DCE31001A02926300A216C0 /* OneTableViewController.m in Sources */,
 				0C2212041A022DA500F12340 /* AppDelegate.m in Sources */,
 				0C2212011A022DA500F12340 /* main.m in Sources */,
-				0C2212271A022E0C00F12340 /* SWRevealViewController.m in Sources */,
+				0DCE30FA1A028ABA00A216C0 /* SWRevealViewController.m in Sources */,
 				0C22122A1A02314D00F12340 /* MainViewController.m in Sources */,
+				0DCE30F71A02821D00A216C0 /* MenuTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,20 +278,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0C2212081A022DA500F12340 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0C2212091A022DA500F12340 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0C22120D1A022DA500F12340 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				0C22120E1A022DA500F12340 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		0DCE30FB1A0290C900A216C0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0DCE30FC1A0290C900A216C0 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -365,9 +377,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Archie Angeles (A4JFXR598D)";
 				INFOPLIST_FILE = SampleSlideMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "bdf14b06-5b19-482e-877e-d8027369d71c";
 			};
 			name = Debug;
 		};
@@ -378,6 +392,7 @@
 				INFOPLIST_FILE = SampleSlideMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "bdf14b06-5b19-482e-877e-d8027369d71c";
 			};
 			name = Release;
 		};
