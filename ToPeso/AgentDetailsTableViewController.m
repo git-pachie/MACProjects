@@ -212,28 +212,35 @@
 
 - (IBAction)acTweeter:(id)sender {
     
+//    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+//    {
+//        SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+//        [tweetSheet setInitialText:@"Tweeting from my own app! :)"];
+//        [self presentViewController:tweetSheet animated:YES completion:nil];
+//    }
+//    else
+//    {
+//        UIAlertView *alertView = [[UIAlertView alloc]
+//                                  initWithTitle:@"Sorry"
+//                                  message:@"You can't send a tweet right now, make sure  your device has an internet connection and you have at least one Twitter account setup"  delegate:self
+//                                  cancelButtonTitle:@"OK"
+//                                  otherButtonTitles:nil];
+//        [alertView show];
+//    }
+//    
+    
+    
+    
+    
+    
+    
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
-        SLComposeViewController *tweeter = [SLComposeViewController
-                                             composeViewControllerForServiceType:SLServiceTypeTwitter];
+        SLComposeViewController *tweeter = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         
-//        NSNumberFormatter *numFormat = [[NSNumberFormatter alloc]init];
-//        [numFormat setNumberStyle:NSNumberFormatterDecimalStyle];
-//        
-//        NSString *strNumber = [numFormat stringFromNumber:self.remitanceAgent.rate];
-//        
-//        [tweeter setInitialText:[NSString stringWithFormat:@"%@ %@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso. \n",self.remitanceAgent.currencyKey,strNumber,self.remitanceAgent.countryCode,self.remitanceAgent.remittanceName]];
-//        
-//        UIImageView *imgv = [[UIImageView alloc]init];
-//        imgv.image = [UIImage imageNamed:@"ToPiso_120x120.png"];
-//        imgv.layer.cornerRadius = 10;
-//        imgv.clipsToBounds = YES;
-//        imgv.layer.borderWidth = 0.4;
-//        [imgv.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-//        
-//        
-//        [tweeter addImage:imgv.image];
-//        [tweeter addURL:[NSURL URLWithString:@"http://www.toPiso.com"]];
+        //[tweeter setInitialText:@"Tweeting from my own app! :)"];
+        
+        //[tweeter addImage:<#(UIImage *)#>]
         
         [self prepareSocialMessage:tweeter];
         
@@ -456,22 +463,24 @@
     NSString *strNumber = [numFormat stringFromNumber:self.remitanceAgent.rate];
     
     
-    [controller setInitialText:[NSString stringWithFormat:@"%@ %@ - %@, Install toPiso iOS application to get the latest conversion of foreign currencies to Philippine peso. ",self.remitanceAgent.currencyKey,strNumber,self.remitanceAgent.remittanceName]];
+    [controller setInitialText:[NSString stringWithFormat:@"%@ %@ rate by %@. Install ToPiso to get the latest remittance rate to Philippine peso ",self.remitanceAgent.currencyKey,strNumber,self.remitanceAgent.remittanceName]];
     
-    [controller addImage:[UIImage imageNamed:@"aga_180_180.png.png"]];
-    [controller addURL:[NSURL URLWithString:[CommonFunction getToPisoInstallURL]]];
+//    [controller addImage:[UIImage imageNamed:@"aga_180_180.png"]];
+//    [controller addURL:[NSURL URLWithString:[CommonFunction getToPisoInstallURL]]];
+//    
+    
+   // UIImageView *imgv = [[UIImageView alloc]init];
+    //imgv.image = [UIImage imageNamed:@"aga_180_180.png"];
+    //imgv.layer.cornerRadius = 10;
+   // imgv.clipsToBounds = YES;
+    //imgv.layer.borderWidth = 1;
+    //[imgv.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    
+    [controller addImage:[UIImage imageNamed:@"aga_180_180.png"]];
     
     
-    UIImageView *imgv = [[UIImageView alloc]init];
-    imgv.image = [UIImage imageNamed:@"aga_180_180.png.png"];
-    imgv.layer.cornerRadius = 10;
-    imgv.clipsToBounds = YES;
-    imgv.layer.borderWidth = 1;
-    [imgv.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-    
-    
-    [controller addImage:imgv.image];
-    [controller addURL:[NSURL URLWithString:[CommonFunction getToPisoInstallURL]]];
+   // [controller addImage:imgv.image];
+    //[controller addURL:[NSURL URLWithString:[CommonFunction getToPisoInstallURL]]];
 }
 -(NSString *)generateSMSBody
 {

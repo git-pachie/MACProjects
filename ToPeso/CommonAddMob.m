@@ -36,6 +36,8 @@
     
     if ([isSimulator isEqualToString:@"YES"]) {
         
+        
+        request.testDevices = @[ @"e14a75ec5cbe72c69e54d47a8aecb2ea" ];
         request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID,nil];
     }
     
