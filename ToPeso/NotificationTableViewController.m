@@ -487,7 +487,7 @@
         [self setEditing:NO animated:YES];
     }
     
-    [self hideShowButton];
+    //[self hideShowButton];
 }
 
 -(void)hideShowButton
@@ -502,7 +502,10 @@
         
         self.navigationItem.rightBarButtonItem = self.btnEdit;
 
-        UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(acEdit:) ];
+        UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(Pam) ];
+        
+    
+        
         
         self.navigationItem.rightBarButtonItem = right;
         
@@ -530,6 +533,10 @@
     
 }
 
+-(void)Pam
+{
+    [self acEdit:self];
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
