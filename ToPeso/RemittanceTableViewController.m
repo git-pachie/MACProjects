@@ -90,7 +90,7 @@
     
     //abView = [commonAddMob ImplementBanerBottom:self];
     [self.view addSubview:[_commonBanner ImplementBanerBottom:self]];
-    
+    [self.tableView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];    
     
 }
 
@@ -99,7 +99,7 @@
     UIView *xView = [_commonBanner ImplementBanerBottom:self];
     
     CGRect fixedFrame = xView.frame;
-    fixedFrame.origin.y = 0 + scrollView.contentOffset.y + ((self.view.bounds.size.height) - 100);
+    fixedFrame.origin.y = 0 + scrollView.contentOffset.y + 64;
     xView.frame = fixedFrame;
 }
 

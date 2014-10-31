@@ -171,7 +171,9 @@
     
     [self.view addSubview:[_commonAddMob ImplementBanerBottom:self]];
     
-//    CGRect tableFrame = self.tableView.frame;
+    [self.tableView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
+    
+    //    CGRect tableFrame = self.tableView.frame;
 //    tableFrame.size.height = 200;
 //    self.tableView.frame = tableFrame;
     ////CGRect frame = self.tableView.frame;
@@ -182,9 +184,11 @@
 
 
 
+
 -(void)viewDidLayoutSubviews
 {
 
+    
     
    // self.tabBarController.view.frame = CGRectMake(0, 200, self.view.window.bounds.size.width, 50);
 
@@ -195,7 +199,7 @@
     UIView *xView = [_commonAddMob ImplementBanerBottom:self];
     
     CGRect fixedFrame = xView.frame;
-    fixedFrame.origin.y = 0 + scrollView.contentOffset.y + ((self.view.bounds.size.height) - 100);
+    fixedFrame.origin.y = 0 + scrollView.contentOffset.y + 64;
     xView.frame = fixedFrame;
 }
 
