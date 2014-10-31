@@ -45,6 +45,7 @@
     
     [self hideShowButton];
     
+
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -491,24 +492,27 @@
 
 -(void)hideShowButton
 {
-    NSMutableArray *toolbarItem = [self.toolbarItems mutableCopy];
+   // NSMutableArray *toolbarItem = [self.navigationItem mutableCopy];
     
     
     if ([_fetched.fetchedObjects count] == 0) {
-        [toolbarItem removeObject:self.btnEdit];
-        [self setToolbarItems:toolbarItem animated:YES];
+        self.navigationItem.rightBarButtonItem = nil;
     }
     else{
         
-        if (![toolbarItem containsObject:self.btnEdit]) {
-            [toolbarItem addObject:self.btnEdit];
-            [self setToolbarItems:toolbarItem animated:YES];
-        }
+        self.navigationItem.rightBarButtonItem = self.btnEdit;
+
+        UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(acEdit:) ];
         
+        self.navigationItem.rightBarButtonItem = right;
         
+        //self.navigationtem.rightaruttontem = rightutton;
+            
         
     }
 }
+
+
 
 - (void)setEditing:(BOOL)flag animated:(BOOL)animated
 {
@@ -524,10 +528,8 @@
         // Save the changes if needed and change the views to noneditable.
     }
     
-    
-   
-    
 }
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
