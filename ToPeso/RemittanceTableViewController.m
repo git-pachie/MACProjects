@@ -110,7 +110,7 @@
     if (isShow == true) {
         spinner = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         
-        CGRect loadingSize = CGRectMake((self.view.bounds.size.width-120)/2, (self.view.bounds.size.height-170) / 2, 120, 100);
+        CGRect loadingSize = CGRectMake((self.view.bounds.size.width-120)/2, (self.view.bounds.size.height-300) / 2, 120, 100);
         
         spinner.frame = loadingSize;
         spinner.tag = 12;
