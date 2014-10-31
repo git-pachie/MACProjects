@@ -41,9 +41,10 @@
     send = [[SendAndRequest alloc]init];
     _commonAddMob = [[commonAddMob alloc]init];
     
-    
-    [self.view addSubview:[_commonAddMob ImplementBanerBottom:self]];
     [self.tableView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
+    
+    [self hideShowButton];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -57,6 +58,11 @@
     
     [[self tableView]reloadData];
     
+    UIView *adsView = [_commonAddMob ImplementBanerBottom:self];
+
+    [self.view addSubview:adsView];
+    
+[self hideShowButton];
     
 }
 
@@ -131,7 +137,7 @@
     [view setBackgroundColor:[UIColor whiteColor]];
     
     
-    UIColor *yellowColor =  [UIColor colorWithRed:(255/255.0) green:(194/255.0) blue:(30/255.0) alpha:.1] ;
+    UIColor *yellowColor =  [UIColor colorWithRed:(255/255.0) green:(231/255.0) blue:(206/255.0) alpha:1] ;
     
     
     [view setBackgroundColor:yellowColor];
@@ -200,6 +206,9 @@
     
    // [view addSubview:imgView];
     //[view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
+    
+    [view.layer setOpacity:10];
+    
     return view;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -404,6 +413,8 @@
                 
                 if ([[self.fetched fetchedObjects]count] == 0) {
                     self.btnEdit.title =  @"Edit";
+                    
+                    [self hideShowButton];
                 }
             }
             else
@@ -465,6 +476,7 @@
 
 - (IBAction)acEdit:(id)sender {
     
+    
     if ([self.btnEdit.title isEqualToString:@"Edit"]) {
         
         [self setEditing:YES animated:YES];
@@ -474,8 +486,28 @@
         [self setEditing:NO animated:YES];
     }
     
+    [self hideShowButton];
+}
+
+-(void)hideShowButton
+{
+    NSMutableArray *toolbarItem = [self.toolbarItems mutableCopy];
     
     
+    if ([_fetched.fetchedObjects count] == 0) {
+        [toolbarItem removeObject:self.btnEdit];
+        [self setToolbarItems:toolbarItem animated:YES];
+    }
+    else{
+        
+        if (![toolbarItem containsObject:self.btnEdit]) {
+            [toolbarItem addObject:self.btnEdit];
+            [self setToolbarItems:toolbarItem animated:YES];
+        }
+        
+        
+        
+    }
 }
 
 - (void)setEditing:(BOOL)flag animated:(BOOL)animated
@@ -491,6 +523,10 @@
         
         // Save the changes if needed and change the views to noneditable.
     }
+    
+    
+   
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
