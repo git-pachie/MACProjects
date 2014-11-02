@@ -146,6 +146,8 @@
 {
     [super viewDidLoad];
     
+    
+    
     del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
     
     

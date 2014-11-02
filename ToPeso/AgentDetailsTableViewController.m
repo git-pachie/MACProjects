@@ -43,6 +43,10 @@
 {
     [super viewDidLoad];
     
+    
+    
+    
+    
     delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
     _commonAddMob = [[commonAddMob alloc]init];
     

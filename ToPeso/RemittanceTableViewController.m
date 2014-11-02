@@ -26,6 +26,11 @@
     dispatch_queue_t que;
     //UIView *abView;
     commonAddMob *_commonBanner;
+    UISegmentedControl *segmentedControl;
+    
+    NSFetchedResultsController *_fetchedHighest;
+    NSFetchedResultsController *_fetchedRecent;
+    
     
 }
 
@@ -49,7 +54,8 @@
     [super viewDidLoad];
     _commonBanner = [[commonAddMob alloc]init];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"View" bundle:nil] forCellReuseIdentifier:@"Cell"];
+    
+    
     
 //    del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
 //    
@@ -90,8 +96,63 @@
     
     //abView = [commonAddMob ImplementBanerBottom:self];
     [self.view addSubview:[_commonBanner ImplementBanerBottom:self]];
-    [self.tableView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];    
+    [self.tableView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
     
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"View" bundle:nil] forCellReuseIdentifier:@"Cell"];
+    
+    segmentedControl = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"Highest to Lowest", @"Most Recent Update", nil]];
+    segmentedControl.frame = CGRectMake((segmentedControl.frame.size.width) / 2 -115, 10, (self.view.bounds.size.width) - 50 , 30);
+    
+    [segmentedControl addTarget:self action:@selector(changeSegment) forControlEvents:UIControlEventValueChanged];
+    
+    UIView *viewSegment = [[UIView alloc]initWithFrame:CGRectMake(0, 0, (self.view.bounds.size.width), 30)];
+    
+    
+    [viewSegment addSubview:segmentedControl];
+    
+
+    
+    self.tableView.tableHeaderView = viewSegment;
+    
+    
+
+    UIColor *selectedColor = [UIColor colorWithRed: 98/255.0 green:156/255.0 blue:247/255.0 alpha:1.0];
+    UIColor *deselectedColor = [UIColor colorWithRed: 54/255.0 green:52/255.0 blue:48/255.0 alpha:1.0];
+    
+    for (UIControl *subview in [segmentedControl subviews]) {
+        if ([subview isSelected])
+            [subview setTintColor:selectedColor];
+        else
+            [subview setTintColor:deselectedColor];
+    }
+    
+    
+
+}
+
+-(void)changeSegment
+{
+    NSLog(@"Segment %ld",(long)segmentedControl.selectedSegmentIndex);
+    
+    if (segmentedControl.selectedSegmentIndex==0) {
+        self.fetched = [self fetchedHighest];
+    }
+    else
+    {
+        self.fetched = [self fetchedRecent];
+    }
+    
+    NSError *error;
+    if (![self.fetched performFetch:&error]) {
+        // Update to handle the error appropriately.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }
+
+    [self.tableView reloadData];
+    
+    //[self refreshTable];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -143,9 +204,6 @@
             
 
         });
-        
-        
-        
         
         
     }
@@ -212,10 +270,6 @@
                          
                      }];
                  }
-                 
-                 
-                 
-                 
                  
                  
              }
@@ -500,34 +554,118 @@
 
 #pragma mark -fetched controller
 
+- (NSFetchedResultsController *)fetchedHighest{
+    
+    if (_fetchedHighest) {
+        return _fetchedHighest;
+    }
+    
+   
+        
+        
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc]init];
+        
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Remittance" inManagedObjectContext:del.managedObjectContext];
+        
+        [request setEntity:entity];
+        
+        NSSortDescriptor *sort1 = [[NSSortDescriptor alloc]initWithKey:@"rate" ascending:NO];
+        
+        NSSortDescriptor *sort2 = [[NSSortDescriptor alloc]initWithKey:@"remittanceName" ascending:YES];
+        
+        
+        [request setSortDescriptors:[NSArray arrayWithObjects:sort1,sort2, nil]];
+        
+        //[request setPredicate:[NSPredicate predicateWithFormat:@"isDeleted1 == YES"]];
+        
+        
+        NSPredicate *pred ;
+        
+        if (del.isFromNotification == true) {
+            
+            pred = [NSPredicate predicateWithFormat:@"countryCode = %@ AND isDeleted1 = %@",del.notficationCountryCode,@"NO"];
+        }
+        else
+        {
+            pred = [NSPredicate predicateWithFormat:@"countryCode = %@ AND isDeleted1 = %@",self.country.countryCode,@"NO"];
+        }
+        
+        
+        
+        
+        [request setPredicate:pred];
+        
+        NSFetchedResultsController *f = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:del.managedObjectContext sectionNameKeyPath:@"currencyKey" cacheName:nil];
+        
+        _fetchedHighest = f;
+        
+        [_fetchedHighest setDelegate: self];
+    
+    _fetched = _fetchedHighest;
+        
+        return _fetched;
+    
+
+}
+
+- (NSFetchedResultsController *)fetchedRecent {
+    
+    if (_fetchedRecent) {
+        return _fetchedRecent;
+    }
+    
+    
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc]init];
+        
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Remittance" inManagedObjectContext:del.managedObjectContext];
+        
+        [request setEntity:entity];
+        
+        NSSortDescriptor *sort1 = [[NSSortDescriptor alloc]initWithKey:@"asofDate" ascending:NO];
+        
+        //NSSortDescriptor *sort2 = [[NSSortDescriptor alloc]initWithKey:@"remittanceName" ascending:YES];
+        
+        
+        [request setSortDescriptors:[NSArray arrayWithObjects:sort1, nil]];
+        
+        //[request setPredicate:[NSPredicate predicateWithFormat:@"isDeleted1 == YES"]];
+        
+        
+        NSPredicate *pred ;
+        
+        if (del.isFromNotification == true) {
+            
+            pred = [NSPredicate predicateWithFormat:@"countryCode = %@ AND isDeleted1 = %@",del.notficationCountryCode,@"NO"];
+        }
+        else
+        {
+            pred = [NSPredicate predicateWithFormat:@"countryCode = %@ AND isDeleted1 = %@",self.country.countryCode,@"NO"];
+        }
+        
+        
+        
+        
+        [request setPredicate:pred];
+        
+        NSFetchedResultsController *f = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:del.managedObjectContext sectionNameKeyPath:@"currencyKey" cacheName:nil];
+        
+        _fetchedRecent = f;
+        
+        [_fetchedRecent setDelegate: self];
+    
+    _fetched = _fetchedRecent;
+    
+        return _fetched;
+        
+        
+
+}
+
+
 -(NSFetchedResultsController *)fetched
 {
-//    if (_fetched) {
-//        return  _fetched;
-//    }
-//    
-//    NSFetchRequest *request = [[NSFetchRequest alloc]init];
-//    
-//    NSEntityDescription *des = [NSEntityDescripti	on entityForName:@"Remittance" inManagedObjectContext:del.managedObjectContext];
-//    
-//    [request setEntity:des];
-//    
-//    NSSortDescriptor *sort1 = [[NSSortDescriptor alloc]initWithKey:@"remittanceName" ascending:YES];
-//    
-//    [request setSortDescriptors:[NSArray arrayWithObject:sort1]];
-//    
-//    [request setFetchBatchSize:20];
-//    
-//    
-//    NSFetchedResultsController *f = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:del.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-//    
-//    
-//    self.fetched = f;
-//    
-//    [self.fetched setDelegate:self];
-//    
-//    return _fetched;
-    
     
     if (_fetched) {
         return _fetched;
