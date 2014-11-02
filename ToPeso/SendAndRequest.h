@@ -25,4 +25,6 @@
 -(NSString*)getToPisoURL;
 +(NSString *)UrlImageConnection;
 
+-(void)pingServer :(NSString *)deviceToken AppVersion:(NSString *)appVersion;
+
 @end

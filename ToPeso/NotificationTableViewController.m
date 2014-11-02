@@ -43,7 +43,7 @@
     
     [self.tableView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
     
-    [self hideShowButton];
+    
     
 
 }
@@ -63,7 +63,9 @@
 
     [self.view addSubview:adsView];
     
-[self hideShowButton];
+    self.editing = NO;
+    
+
     
 }
 
@@ -114,20 +116,6 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    // 1. Dequeue the custom header cell
-//    CustomHeaderCell* headerCell = [tableView dequeueReusableCellWithIdentifier:@"HeaderCell"];
-//    
-//    // 2. Set the various properties
-//    headerCell.title.text = @"Custom header from cell";
-//    [headerCell.title sizeToFit];
-//    
-//    headerCell.subtitle.text = @"The subtitle";
-//    [headerCell.subtitle sizeToFit];
-//    
-//    headerCell.image.image = [UIImage imageNamed:@"smiley-face"];
-//    
-//    // 3. And return
-//    return headercell;
     
     id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetched sections]objectAtIndex:section];
     
@@ -162,14 +150,18 @@
     
     
     
-    UIImageView* imgView=[[UIImageView alloc]initWithFrame:CGRectMake(14, 10, 30, 30)];
+    UIImageView* imgView=[[UIImageView alloc]initWithFrame:CGRectMake(16, 8, 30, 30)];
     imgView.image =img;
     
-    imgView.layer.cornerRadius = 10;
-    imgView.clipsToBounds = YES;
-    imgView.layer.borderWidth = .5;
-    imgView.layer.borderColor = [UIColor orangeColor].CGColor;
+    //imgView.image = [self imageRound:imgView].image;
     
+    //imgView.layer.cornerRadius = 10;
+   // imgView.clipsToBounds = YES;
+    //imgView.layer.borderWidth = .5;
+    //imgView.layer.borderColor = [UIColor orangeColor].CGColor;
+    
+    
+    [view addSubview:[self imageRound:imgView]];
     
     [view addSubview:imgView];
     
@@ -178,43 +170,24 @@
     label.text = [sectionInfo name];
     label.textColor = [UIColor darkGrayColor];
     //label.textAlignment = NSTextAlignmentRight;
-    label.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
+    //label.font = [UIFont fontWithName:@"Helvetica-Normal" size:14];
     
     
     
     
     [view addSubview:label];
     
-    
-    
-    
-    
-   // UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
-//    /* Create custom view to display section header... */
-//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
-//    [label setFont:[UIFont boldSystemFontOfSize:12]];
-//    NSString *string =[list objectAtIndex:section];
-//    /* Section header is in 0th index... */
-//    [label setText:string];
-    
-    
-    
-   // UIImageView *imgView = [[UIImageView alloc]init];
-   // imgView.image = img;
-    
-    
-    
-    
-   // [view addSubview:imgView];
-    //[view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
+  
     
     [view.layer setOpacity:10];
+    
+    
     
     return view;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50;
+    return 46;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -413,9 +386,12 @@
                 [tableView reloadData]; // tell table to refresh now
                 
                 if ([[self.fetched fetchedObjects]count] == 0) {
+                    
+                    
                     self.btnEdit.title =  @"Edit";
                     
-                    [self hideShowButton];
+                    
+                    
                 }
             }
             else
@@ -490,30 +466,7 @@
     //[self hideShowButton];
 }
 
--(void)hideShowButton
-{
-   // NSMutableArray *toolbarItem = [self.navigationItem mutableCopy];
-    
-    
-    if ([_fetched.fetchedObjects count] == 0) {
-        self.navigationItem.rightBarButtonItem = nil;
-    }
-    else{
-        
-        self.navigationItem.rightBarButtonItem = self.btnEdit;
 
-        UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(Pam) ];
-        
-    
-        
-        
-        self.navigationItem.rightBarButtonItem = right;
-        
-        //self.navigationtem.rightaruttontem = rightutton;
-            
-        
-    }
-}
 
 
 

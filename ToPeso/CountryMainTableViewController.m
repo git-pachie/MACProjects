@@ -140,11 +140,16 @@
     
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    
+    
     _commonAddMob = [[commonAddMob alloc]init];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"countryCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
@@ -179,6 +184,8 @@
     ////CGRect frame = self.tableView.frame;
     //frame.size.height = 113;
     //self.tableView.frame = CGRectMake(0,30,320,100);
+    
+    [self.tableView reloadData];
     
 }
 
@@ -299,7 +306,7 @@
 //    
 //    [self imageRound:cell.imgProfile];
     
-    cell.imgProfile.image = imgv.image;
+    cell.imgProfile.image = [self imageRound:imgv].image ;//imgv.image;
     [self imageRound:cell.imgProfile];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -375,6 +382,12 @@
     UIGraphicsEndImageContext();
     
     return imview;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    SendAndRequest *send = [[SendAndRequest alloc]init];
+    [send pingServer:del.DevinceToken AppVersion:del.appVersion];
 }
 
 -(void)LoadFromNotification :(NSString *)remittanceGUID

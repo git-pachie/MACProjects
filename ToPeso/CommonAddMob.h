@@ -13,7 +13,7 @@
 
 
 #define admobID  @"ca-app-pub-1492629769877969/5454029335"
-#define isSimulator @"YES"
+#define isSimulator @"NO"
 
 
 @interface commonAddMob : NSObject

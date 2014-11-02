@@ -98,7 +98,7 @@
 
     }
     
-    
+    self.appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     
     return YES;
 }
@@ -140,15 +140,11 @@
     
     
     SendAndRequest *send = [[SendAndRequest alloc]init];
-    
-    NSDictionary *dic = @{@"deviceUDID":self.DevinceToken};
-    NSString *strURL =[NSString stringWithFormat:@"%@/PingServer", [send getToPisoURL]];
-    
-    [send pingToPisoServer:[NSURL URLWithString:strURL] notificationData:dic CompletionBlock:^(bool succeeded, NSError *error)
-    {
-        //NSLog(@"all notification deleted");
-    }];
+    [send pingServer:self.DevinceToken AppVersion:self.appVersion];
 }
+
+
+
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
     NSLog(@"Error in registration. Error: %@", error);

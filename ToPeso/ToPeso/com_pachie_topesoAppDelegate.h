@@ -20,6 +20,8 @@
 @property (nonatomic) bool isFromNotification;
 @property (nonatomic, strong) NSString *notficationCountryCode;
 @property (nonatomic, strong) NSString *notifcationAgentID;
+@property (nonatomic, strong) NSString *appVersion;
+
 
 
 
@@ -28,5 +30,6 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+
 
 @end

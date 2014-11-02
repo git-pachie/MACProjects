@@ -314,5 +314,26 @@
     
 }
 
+-(void)pingServer :(NSString *)deviceToken AppVersion:(NSString *)appVersion
+{
+    if (deviceToken == nil) {
+        return;
+    }
+    
+    if ([deviceToken  isEqual: @"1111111111"]) {
+        return;
+    }
+    
+    SendAndRequest *send = [[SendAndRequest alloc]init];
+    
+    NSDictionary *dic = @{@"deviceUDID":deviceToken,@"version":appVersion};
+    NSString *strURL =[NSString stringWithFormat:@"%@/PingServerWithVersion", [send getToPisoURL]];
+    
+    [send pingToPisoServer:[NSURL URLWithString:strURL] notificationData:dic CompletionBlock:^(bool succeeded, NSError *error)
+     {
+         //NSLog(@"all notification deleted");
+     }];
+}
+
 
 @end
