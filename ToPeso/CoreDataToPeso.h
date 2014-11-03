@@ -10,6 +10,7 @@
 #import "Notification.h"
 #import "EntNotification.h"
 #import "Remittance.h"
+#import "Country.h"
 
 
 @interface CoreDataToPeso : NSObject
@@ -35,5 +36,6 @@
 -(NSString *)getLastUpdatedAgent;
 
 -(Remittance *)getRemittanceByID :(NSString *)remittanceGUID;
+- (void)getNotificationData :(NSString *)remittanceGUID withBlock:(void (^)(Remittance *rem, Country *country ))block;
 
 @end

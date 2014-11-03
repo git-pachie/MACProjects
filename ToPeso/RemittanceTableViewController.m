@@ -527,7 +527,11 @@
         
         NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
         
-        AgentDetailsTableViewController *agent = (AgentDetailsTableViewController *)segue.destinationViewController;
+        
+        AgentDetailsTableViewController *agent = (AgentDetailsTableViewController *) segue.destinationViewController;
+        
+        
+        
         
         Remittance *rem = [self.fetched objectAtIndexPath:indexpath];
         
@@ -545,6 +549,10 @@
         agent.remitanceAgent = rem;
         agent.country = self.country;
         
+        
+        //[self presentViewController:agent animated:YES completion:nil];
+        
+        
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -559,10 +567,6 @@
     if (_fetchedHighest) {
         return _fetchedHighest;
     }
-    
-   
-        
-        
         
         NSFetchRequest *request = [[NSFetchRequest alloc]init];
         

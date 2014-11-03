@@ -727,6 +727,61 @@
     
 }
 
+- (void)getNotificationData :(NSString *)remittanceGUID withBlock:(void (^)(Remittance *rem, Country *country ))block
+{
+
+
+    NSError *error;
+    
+    delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+    
+    NSFetchRequest *fetch1 = [[NSFetchRequest alloc]initWithEntityName:@"Remittance"];
+    
+    //NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"lastupdated" ascending:NO];
+    
+    //[fetch1 setSortDescriptors:[NSArray arrayWithObjects:sort, nil]];
+    
+    [fetch1 setPredicate:[NSPredicate predicateWithFormat:@"remmittanceGUID ==[cd]%@", remittanceGUID]];
+    
+    
+    NSArray *arraryobject = [context executeFetchRequest:fetch1 error:&error];
+    
+    
+    Remittance *re;
+    
+    if ([arraryobject count]==0) {
+        //return nil;
+    }
+    else
+    {
+        re = [arraryobject objectAtIndex:0];
+    }
+    
+    
+    NSFetchRequest *fetchCountry = [[ NSFetchRequest alloc]initWithEntityName:@"Country"];
+    
+    [fetchCountry setPredicate:[NSPredicate predicateWithFormat:@"countryCode == [cd]%@",re.countryCode]];
+    
+    NSArray *arrCountry = [context executeFetchRequest:fetchCountry error:&error];
+    
+    Country *c;
+    
+    if ([arrCountry count]==0) {
+        //return nil;
+    }
+    else
+    {
+        c = [arrCountry objectAtIndex:0];
+    }
+
+    
+    
+    block(re,c);
+
+}
+
 
 
 @end

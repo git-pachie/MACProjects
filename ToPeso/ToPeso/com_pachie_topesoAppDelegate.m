@@ -10,6 +10,8 @@
 #import "CoreDataToPeso.h"
 #import "SendAndRequest.h"
 #import "CountryMainTableViewController.h"
+#import "AgentDetailsTableViewController.h"
+
 
 
 @implementation com_pachie_topesoAppDelegate
@@ -165,30 +167,59 @@
     
     
     
+    
+    
     UITabBarController *tab =(UITabBarController *)self.window.rootViewController;
     
-    tab.selectedIndex = 0;
+    tab.selectedIndex = 3;
     
     UINavigationController *nav = (UINavigationController *)[tab selectedViewController];
     
-     CountryMainTableViewController *dv = [[CountryMainTableViewController alloc]init];
-    
-    dv = [[nav viewControllers] objectAtIndex:0];
-    
+//     CountryMainTableViewController *dv = [[CountryMainTableViewController alloc]init];
+//    
+//    dv = [[nav viewControllers] objectAtIndex:0];
+//    
     com_pachie_topesoAppDelegate *del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
-    
+//    
     del.isFromNotification = true;
-    
+//    
     del.notficationCountryCode = [userInfo objectForKey:@"countryCode"];
-    
+//    
     del.notifcationAgentID = [userInfo objectForKey:@"remittanceGUID"];
+//    
+//    [dv LoadFromNotification:[userInfo objectForKey:@"remittanceGUID"]];
+//    
+//    application.applicationIconBadgeNumber = application.applicationIconBadgeNumber - 1;
+   // AgentDetailsTableViewController *dv = [[AgentDetailsTableViewController alloc]init];
     
-    [dv LoadFromNotification:[userInfo objectForKey:@"remittanceGUID"]];
+    CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
+    [core getNotificationData:del.notifcationAgentID withBlock:^(Remittance *rem, Country *country) {
+        //dv.remitanceAgent = rem;
+       // dv.country = country;
+        
+        
+        
+        //UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+        //AgentDetailsTableViewController *notificationViewController = [[AgentDetailsTableViewController alloc] init];
+        
+        AgentDetailsTableViewController *dv = [[AgentDetailsTableViewController alloc]init];
+        
+        dv = [[nav viewControllers] objectAtIndex:0] ;
+        
+        dv.remitanceAgent = rem;
+        dv.country = country;
+        
+        //[navController.visibleViewController.navigationController pushViewController:notificationViewController animated:YES];
+        
+        //[navController.visibleViewController.navigationController pushViewController:notificationViewController];
+        
+    }];
+
     
-    application.applicationIconBadgeNumber = application.applicationIconBadgeNumber - 1;
     
     
-    //[nav.visibleViewController.navigationController pushViewController:dv animated:YES];
+    
+    
     
     
 

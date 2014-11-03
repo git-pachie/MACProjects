@@ -44,7 +44,6 @@
 		0CD49BC119ADDFFB0078920D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0CD49BBF19ADDFFB0078920D /* InfoPlist.strings */; };
 		0CD49BC319ADDFFB0078920D /* ToPesoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD49BC219ADDFFB0078920D /* ToPesoTests.m */; };
 		0CD49BCE19ADE0300078920D /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CD49BCD19ADE0300078920D /* View.xib */; };
-		0CD49BD019ADE2D70078920D /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CD49BCF19ADE2D70078920D /* Storyboard.storyboard */; };
 		0CD49BD619ADE5230078920D /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD49BD519ADE5230078920D /* CustomTableViewCell.m */; };
 		0CF2FF6919C49F190071BDC6 /* Launch_R4.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2FF6519C49F190071BDC6 /* Launch_R4.png */; };
 		0CF2FF6A19C49F190071BDC6 /* ToPiso_80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2FF6619C49F190071BDC6 /* ToPiso_80x80.png */; };
@@ -64,6 +63,7 @@
 		0D228FEE19FFFF23001DE312 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D228FED19FFFF23001DE312 /* CoreTelephony.framework */; };
 		0D228FF019FFFF3C001DE312 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D228FEF19FFFF3C001DE312 /* SystemConfiguration.framework */; };
 		0D22900F1A000815001DE312 /* CommonAddMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D22900E1A000815001DE312 /* CommonAddMob.m */; };
+		0D3C6A581A07EC19007E1E12 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D3C6A571A07EC19007E1E12 /* Storyboard.storyboard */; };
 		0D5F263519D31737009EC54F /* home-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F263419D31737009EC54F /* home-26.png */; };
 		0D5F263819D31DF2009EC54F /* alert-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F263719D31DF2009EC54F /* alert-26.png */; };
 		0D5F263A19D31ED0009EC54F /* info-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F263919D31ED0009EC54F /* info-26.png */; };
@@ -139,7 +139,6 @@
 		0CD49BC019ADDFFB0078920D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0CD49BC219ADDFFB0078920D /* ToPesoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToPesoTests.m; sourceTree = "<group>"; };
 		0CD49BCD19ADE0300078920D /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
-		0CD49BCF19ADE2D70078920D /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		0CD49BD419ADE5230078920D /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		0CD49BD519ADE5230078920D /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		0CF2FF6519C49F190071BDC6 /* Launch_R4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launch_R4.png; sourceTree = "<group>"; };
@@ -163,6 +162,7 @@
 		0D228FEF19FFFF3C001DE312 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0D22900D1A000815001DE312 /* CommonAddMob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAddMob.h; sourceTree = "<group>"; };
 		0D22900E1A000815001DE312 /* CommonAddMob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAddMob.m; sourceTree = "<group>"; };
+		0D3C6A571A07EC19007E1E12 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		0D5F263419D31737009EC54F /* home-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-26.png"; path = "../ToPeso/home-26.png"; sourceTree = "<group>"; };
 		0D5F263719D31DF2009EC54F /* alert-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert-26.png"; sourceTree = "<group>"; };
 		0D5F263919D31ED0009EC54F /* info-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-26.png"; sourceTree = "<group>"; };
@@ -350,6 +350,7 @@
 		0CD49B9F19ADDFFB0078920D /* ToPeso */ = {
 			isa = PBXGroup;
 			children = (
+				0D3C6A571A07EC19007E1E12 /* Storyboard.storyboard */,
 				0CD49BCC19ADE00D0078920D /* CustomCell */,
 				0CD49BA819ADDFFB0078920D /* com_pachie_topesoAppDelegate.h */,
 				0CD49BA919ADDFFB0078920D /* com_pachie_topesoAppDelegate.m */,
@@ -362,7 +363,6 @@
 				0CC70C2519C6032500D0E2E1 /* Notification.h */,
 				0CC70C2619C6032500D0E2E1 /* Notification.m */,
 				0CD49BA019ADDFFB0078920D /* Supporting Files */,
-				0CD49BCF19ADE2D70078920D /* Storyboard.storyboard */,
 				0CC01EC319C5F56200F3A2B5 /* EntNotification.h */,
 				0CC01EC419C5F56200F3A2B5 /* EntNotification.m */,
 			);
@@ -591,7 +591,6 @@
 				0CD49BA419ADDFFB0078920D /* InfoPlist.strings in Resources */,
 				0D8D849F19E570CB0022F4B2 /* toPiso_bell_green.png in Resources */,
 				0CA9FBC319CAAC8A006A9A98 /* countryCell.xib in Resources */,
-				0CD49BD019ADE2D70078920D /* Storyboard.storyboard in Resources */,
 				0CD49BCE19ADE0300078920D /* View.xib in Resources */,
 				0D5F263A19D31ED0009EC54F /* info-26.png in Resources */,
 				0CF2FF6B19C49F190071BDC6 /* ToPiso_120x120.png in Resources */,
@@ -615,6 +614,7 @@
 				0C7935F419E1DF080056FCBC /* aga_120_120.png in Resources */,
 				0CF2FF6E19C4A28E0071BDC6 /* Launch__64x960.png in Resources */,
 				0CF2FF6C19C49F190071BDC6 /* ToPiso_5858.png in Resources */,
+				0D3C6A581A07EC19007E1E12 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,8 +767,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Archie Angeles (A4JFXR598D)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Archie Angeles (A4JFXR598D)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToPeso/ToPeso-Prefix.pch";
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
@@ -776,7 +776,7 @@
 				LIBRARY_SEARCH_PATHS = "/Users/PachieMac/Downloads/GoogleMobileAdsSdkiOS-6.12.0";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "bdf14b06-5b19-482e-877e-d8027369d71c";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -786,8 +786,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToPeso/ToPeso-Prefix.pch";
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
@@ -795,7 +795,7 @@
 				LIBRARY_SEARCH_PATHS = "/Users/PachieMac/Downloads/GoogleMobileAdsSdkiOS-6.12.0";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "035cfc29-90d0-4e4e-b365-83e906731d95";
+				PROVISIONING_PROFILE = "564daa59-c2f8-4329-89c7-c211157a88c6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
