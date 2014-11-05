@@ -102,7 +102,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"View" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
     segmentedControl = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"Highest to Lowest", @"Most Recent Update", nil]];
-    segmentedControl.frame = CGRectMake((segmentedControl.frame.size.width) / 2 -115, 10, (self.view.bounds.size.width) - 50 , 30);
+    segmentedControl.frame = CGRectMake((segmentedControl.frame.size.width) / 2 -115, 10, (self.view.bounds.size.width) - 40 , 34);
     
     [segmentedControl addTarget:self action:@selector(changeSegment) forControlEvents:UIControlEventValueChanged];
     
@@ -359,7 +359,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 36;
+    return 46;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
@@ -528,7 +528,7 @@
         NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
         
         
-        AgentDetailsTableViewController *agent = (AgentDetailsTableViewController *) segue.destinationViewController;
+      AgentDetailsTableViewController *agent = (AgentDetailsTableViewController *) segue.destinationViewController;
         
         
         
@@ -544,11 +544,13 @@
             rem  = [self.fetched objectAtIndexPath:indexpath];
         }
         
+        //AgentDetailsTableViewController *viewController = [[AgentDetailsTableViewController alloc] init];
         
         
         agent.remitanceAgent = rem;
         agent.country = self.country;
         
+       // [self presentViewController:viewController animated:YES completion:nil];
         
         //[self presentViewController:agent animated:YES completion:nil];
         

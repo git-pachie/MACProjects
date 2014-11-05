@@ -160,24 +160,26 @@
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    if (application.applicationState == UIApplicationStateActive ) {
+        
+        return;
+    }
+    
     NSLog(@"%@",userInfo);
     
     
     [[self window] makeKeyAndVisible];
     
     
-    
-    
-    
     UITabBarController *tab =(UITabBarController *)self.window.rootViewController;
     
-    tab.selectedIndex = 3;
+    tab.selectedIndex = 0;
     
     UINavigationController *nav = (UINavigationController *)[tab selectedViewController];
     
-//     CountryMainTableViewController *dv = [[CountryMainTableViewController alloc]init];
+     CountryMainTableViewController *dv = [[CountryMainTableViewController alloc]init];
 //    
-//    dv = [[nav viewControllers] objectAtIndex:0];
+    dv = [[nav viewControllers] objectAtIndex:0];
 //    
     com_pachie_topesoAppDelegate *del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
 //    
@@ -187,14 +189,14 @@
 //    
     del.notifcationAgentID = [userInfo objectForKey:@"remittanceGUID"];
 //    
-//    [dv LoadFromNotification:[userInfo objectForKey:@"remittanceGUID"]];
+    [dv LoadFromNotification:[userInfo objectForKey:@"remittanceGUID"]];
 //    
 //    application.applicationIconBadgeNumber = application.applicationIconBadgeNumber - 1;
    // AgentDetailsTableViewController *dv = [[AgentDetailsTableViewController alloc]init];
     
-    CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
-    [core getNotificationData:del.notifcationAgentID withBlock:^(Remittance *rem, Country *country) {
-        //dv.remitanceAgent = rem;
+//    CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
+//    [core getNotificationData:del.notifcationAgentID withBlock:^(Remittance *rem, Country *country) {
+//        //dv.remitanceAgent = rem;
        // dv.country = country;
         
         
@@ -202,18 +204,35 @@
         //UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
         //AgentDetailsTableViewController *notificationViewController = [[AgentDetailsTableViewController alloc] init];
         
-        AgentDetailsTableViewController *dv = [[AgentDetailsTableViewController alloc]init];
+       // CountryMainTableViewController *dv = [[CountryMainTableViewController alloc]init];
         
-        dv = [[nav viewControllers] objectAtIndex:0] ;
+       // dv = [[nav viewControllers] objectAtIndex:0] ;
         
-        dv.remitanceAgent = rem;
-        dv.country = country;
+        
+        
+        //dv.remitanceAgent = rem;
+        //dv.country = country;
+        
+//        
+//        AgentDetailsTableViewController *viewController = [[AgentDetailsTableViewController alloc] init];
+//        
+//        viewController.remitanceAgent = rem;
+//        viewController.country = country;
+//        
+        // [self presentViewController:viewController animated:YES completion:nil];
+        //[dv presentViewController:viewController animated:YES completion:nil];
+        
+        //[self presentViewController:viewController animated:YES completion:nil];
+
         
         //[navController.visibleViewController.navigationController pushViewController:notificationViewController animated:YES];
         
         //[navController.visibleViewController.navigationController pushViewController:notificationViewController];
         
-    }];
+        //[nav presentViewController:viewController animated:YES completion:nil];
+       // [nav performSegueWithIdentifier:@"agentDetails" sender:self];
+        
+//    }];
 
     
     
