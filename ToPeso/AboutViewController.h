@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnLatest;
 - (IBAction)actionLatest:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *labelAppVersion;
 
 @end

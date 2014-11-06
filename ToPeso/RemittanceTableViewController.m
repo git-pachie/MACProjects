@@ -30,7 +30,7 @@
     
     NSFetchedResultsController *_fetchedHighest;
     NSFetchedResultsController *_fetchedRecent;
-    
+    UIView *xView;
     
 }
 
@@ -52,6 +52,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIView *xView = [[UIView alloc]init];
     _commonBanner = [[commonAddMob alloc]init];
     
     
@@ -109,6 +110,8 @@
     UIView *viewSegment = [[UIView alloc]initWithFrame:CGRectMake(0, 0, (self.view.bounds.size.width), 30)];
     
     
+    
+    
     [viewSegment addSubview:segmentedControl];
     
 
@@ -157,11 +160,21 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    UIView *xView = [_commonBanner ImplementBanerBottom:self];
+    if (!self.isFromNotification) {
+        
+        xView = [_commonBanner ImplementBanerBottom:self];
+        
+        
+        CGRect fixedFrame = xView.frame;
+        fixedFrame.origin.y = 0 + scrollView.contentOffset.y + 64;
+        xView.frame = fixedFrame;
+
+    }
+    else
+    {
+        self.isFromNotification = false;
+    }
     
-    CGRect fixedFrame = xView.frame;
-    fixedFrame.origin.y = 0 + scrollView.contentOffset.y + 64;
-    xView.frame = fixedFrame;
 }
 
 -(void)showHideLoadingBar :(BOOL)isShow

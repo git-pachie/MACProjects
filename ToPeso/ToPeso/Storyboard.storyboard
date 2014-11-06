@@ -369,10 +369,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iphone5_ios7.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="GnW-mn-g3m">
-                                <rect key="frame" x="-48" y="-350" width="400" height="930"/>
+                                <rect key="frame" x="-48" y="-340" width="400" height="930"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nIZ-z9-wOr">
-                                <rect key="frame" x="16" y="256" width="140" height="49"/>
+                                <rect key="frame" x="16" y="270" width="140" height="49"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Contact Us">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -382,7 +382,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Fm-Qz-qmw">
-                                <rect key="frame" x="16" y="315" width="140" height="49"/>
+                                <rect key="frame" x="16" y="329" width="140" height="49"/>
                                 <state key="normal" title="Facebook">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -392,13 +392,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Version 1.3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWJ-sx-DCs">
-                                <rect key="frame" x="80" y="187" width="160" height="21"/>
+                                <rect key="frame" x="80" y="214" width="160" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.40000000000000002" alpha="0.79000000000000004" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGy-Bf-w5F">
-                                <rect key="frame" x="164" y="315" width="140" height="49"/>
+                                <rect key="frame" x="164" y="329" width="140" height="49"/>
                                 <state key="normal" title="Latest Version">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -409,7 +409,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0MO-pW-1Gl">
-                                <rect key="frame" x="164" y="256" width="140" height="49"/>
+                                <rect key="frame" x="164" y="270" width="140" height="49"/>
                                 <state key="normal" title="Twitter">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -427,6 +427,7 @@
                         <outlet property="btnFacebook" destination="1Fm-Qz-qmw" id="2A7-JN-ah3"/>
                         <outlet property="btnLatest" destination="tGy-Bf-w5F" id="FNR-tW-q8c"/>
                         <outlet property="btnTwitter" destination="0MO-pW-1Gl" id="wNc-UF-F1Z"/>
+                        <outlet property="labelAppVersion" destination="CWJ-sx-DCs" id="PeL-cD-PHo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQg-fz-SdB" userLabel="First Responder" sceneMemberID="firstResponder"/>

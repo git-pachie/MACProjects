@@ -8,8 +8,11 @@
 
 #import "AboutViewController.h"
 #import "CommonFunction.h"
+#import "com_pachie_topesoAppDelegate.h"
 
 @interface AboutViewController ()
+
+
 
 @end
 
@@ -52,7 +55,9 @@
     
     
     
+    com_pachie_topesoAppDelegate *del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
     
+    self.labelAppVersion.text = [NSString stringWithFormat:@"Version %@",del.appVersion] ;//del.appVersion;
     
 }
 
