@@ -14,7 +14,7 @@
 		<string>https://github.com/git-pachie/MACProjects.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SampleJSON/PickupLines.xcodeproj/project.xcworkspace</string>
+	<string>SampleJSON/PickupLines.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A4EE0F87A28242D8580C720CCF5CA903E881D9AC</key>

@@ -24,10 +24,16 @@
     [self.btnContactUs.layer setBorderWidth:0.5];
     [self.btnFacebook.layer setBorderWidth:0.5];
     [self.btnTwitter.layer setBorderWidth:0.5];
+    [self.btnLatest.layer setBorderWidth:0.5];
     
-    [self.btnContactUs.layer setCornerRadius:10];
-    [self.btnFacebook.layer setCornerRadius:10];
-    [self.btnTwitter.layer setCornerRadius:10];
+    
+    
+    [self.btnContactUs.layer setCornerRadius:self.btnContactUs.frame.size.height / 2];
+    [self.btnFacebook.layer setCornerRadius:self.btnFacebook.frame.size.height / 2];
+    [self.btnTwitter.layer setCornerRadius:self.btnTwitter.frame.size.height / 2];
+    [self.btnLatest.layer setCornerRadius:self.btnLatest.frame.size.height / 2];
+    
+    
     
     UIColor *greenco =  [UIColor colorWithRed:(112/255.0) green:(194/255.0) blue:(0/255.0) alpha:.50] ;
     UIColor *greencoDark =  [UIColor colorWithRed:(112/255.0) green:(194/255.0) blue:(0/255.0) alpha:.1] ;
@@ -36,10 +42,13 @@
     [self.btnContactUs setBackgroundColor:greenco];
     [self.btnFacebook setBackgroundColor:greenco];
     [self.btnTwitter setBackgroundColor:greenco];
+    [self.btnLatest setBackgroundColor:greenco];
+    
     
     [self.btnContactUs.layer setBorderColor:greencoDark.CGColor];
     [self.btnFacebook.layer setBorderColor:greencoDark.CGColor];
     [self.btnTwitter.layer setBorderColor:greencoDark.CGColor];
+    [self.btnLatest.layer setBorderColor:greencoDark.CGColor];
     
     
     
@@ -118,4 +127,10 @@
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[CommonFunction getToPisoTwitterURL]]];
 }
+
+- (IBAction)actionLatest:(id)sender
+{
+    
+}
+
 @end

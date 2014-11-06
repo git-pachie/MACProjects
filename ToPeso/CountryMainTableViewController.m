@@ -187,7 +187,7 @@
     //frame.size.height = 113;
     //self.tableView.frame = CGRectMake(0,30,320,100);
     
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
     
 }
 
@@ -284,32 +284,66 @@
     }
 
     
+  
+    
+    
+    
     NSManagedObject *o = [self.fectched objectAtIndexPath:indexPath];
     
     cell.lblCountryName.text = [o valueForKey:@"countryName"];
     
-    //cell.imageView.image = [UIImage imageNamed:[o valueForKey:@"countryFlag"]];
+    UIImageView *imgV = [[UIImageView alloc]init];
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
+    cell.imgProfile.image = [UIImage imageNamed:@"Default.png"];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString* path = [documentsDirectory stringByAppendingPathComponent:
-                      [o valueForKey:@"countryFlag"]];
+    
+    NSString* path = [documentsDirectory stringByAppendingPathComponent:[o valueForKey:@"countryFlag"]];
+    
     UIImage* image = [UIImage imageWithContentsOfFile:path];
     
     
-    UIImageView *imgv =  [[UIImageView alloc]initWithImage:image];
     
-    if (imgv.image == nil) {
-        imgv.image = [UIImage imageNamed:@"default.png"];
-    }
+    cell.imgProfile.image = image;
+    
+    [self applyRoundBorderToImage:cell.imgProfile];
+    
+    
+    //UIImageView *imgv =  [[UIImageView alloc]initWithImage:image];
+    
     
 //    [cell.imgProfile setImage:[self imageRound:imgv].image];
 //    
 //    [self imageRound:cell.imgProfile];
     
-    cell.imgProfile.image = [self imageRound:imgv].image ;//imgv.image;
-    [self imageRound:cell.imgProfile];
+    //cell.imgProfile.image = [self imageRound:imgv].image ;//imgv.image;
+    
+//    [self loadImageLater:o :^(UIImage *image) {
+//        
+//        //imgV.image = image;
+//        
+//        cell.imgProfile.image = image;
+////
+//        //cell.imageView.image = image;// [self imageRound:cell.imageView].image;
+////        
+//    }];
+    
+    if (imgV.image == nil) {
+        imgV.image =  [UIImage imageNamed:@"Default.png"];
+    }
+    
+
+    
+    //cell.imageView.image =imgV.image;// [self imageRound:imgV].image;
+    
+    //cell.imgProfile.image = imgV.image;
+    
+    //[self imageRound:cell.imgProfile];
+    
+    cell.imgProfile.layer.opacity = .80;
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     
@@ -317,6 +351,32 @@
     return cell;
     
 }
+
+-(void)applyRoundBorderToImage :(UIImageView *)imview
+{
+    UIGraphicsBeginImageContextWithOptions(imview.bounds.size, NO, [UIScreen mainScreen].scale);
+    
+    // Add a clip before drawing anything, in the shape of an rounded rect
+    
+    [[UIBezierPath bezierPathWithRoundedRect:imview.bounds
+                                cornerRadius:imview.frame.size.width/2 ] addClip];
+    // Draw your image
+    [imview.image drawInRect:imview.bounds];
+    
+    // Get the image, here setting the UIImageView image
+    imview.image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    //            cell.imageView.layer.borderWidth  =1;
+    //            cell.imageView.layer.borderColor = [UIColor grayColor].CGColor;
+    //
+    // Lets forget about that we were drawing
+    
+    
+    UIGraphicsEndImageContext();
+    
+}
+
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

@@ -18,4 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnTwitter;
 - (IBAction)actionTwitter:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnLatest;
+- (IBAction)actionLatest:(id)sender;
+
+
 @end
