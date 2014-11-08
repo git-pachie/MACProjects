@@ -16,7 +16,9 @@
 
 
 
+@interface UIViewController() <GADBannerViewDelegate>
 
+@end
 
 
 @interface CountryMainTableViewController ()
@@ -24,6 +26,7 @@
     com_pachie_topesoAppDelegate *del;
     UIRefreshControl *refreshControl;
     commonAddMob *_commonAddMob;
+    BOOL isBannerLoaded;
     
 }
 
@@ -197,19 +200,20 @@
 -(void)viewDidLayoutSubviews
 {
 
-    
-    
-   // self.tabBarController.view.frame = CGRectMake(0, 200, self.view.window.bounds.size.width, 50);
-
-
+   
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    UIView *xView = [_commonAddMob ImplementBanerBottom:self];
+    GADBannerView *xView = [_commonAddMob ImplementBanerBottom:self];
     
     CGRect fixedFrame = xView.frame;
     fixedFrame.origin.y = 0 + scrollView.contentOffset.y + 64;
     xView.frame = fixedFrame;
+    
+    xView.delegate = self;
+    
+    
+    
 }
 
 
@@ -342,7 +346,7 @@
     
     //[self imageRound:cell.imgProfile];
     
-    cell.imgProfile.layer.opacity = .80;
+    cell.imgProfile.layer.opacity = .90;
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -359,7 +363,7 @@
     // Add a clip before drawing anything, in the shape of an rounded rect
     
     [[UIBezierPath bezierPathWithRoundedRect:imview.bounds
-                                cornerRadius:imview.frame.size.width/2 ] addClip];
+                                cornerRadius:10] addClip];
     // Draw your image
     [imview.image drawInRect:imview.bounds];
     
@@ -440,6 +444,10 @@
     //
     // Lets forget about that we were drawing
     
+    imview.clipsToBounds = YES;
+    imview.layer.borderWidth = .2;
+    imview.layer.borderColor = [UIColor grayColor].CGColor;
+
     
     UIGraphicsEndImageContext();
     
@@ -479,5 +487,30 @@
 //    [UIView commitAnimations];
 //    
 //}
+
+
+/// Called when an ad request loaded an ad.
+- (void)adViewDidReceiveAd:(GADBannerView *)adView {
+    NSLog(@"adViewDidReceiveAd");
+    
+    
+    //[self.tableView reloadData];
+    
+    [self.tableView reloadData];
+
+    [self.tableView setNeedsLayout];
+    [self.tableView setNeedsDisplay];
+    
+    //[self.tableView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
+       // [self.tableView reloadData];
+}
+
+/// Called when an ad request failed.
+- (void)adView:(GADBannerView *)adView didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"adViewDidFailToReceiveAdWithError: %@", [error localizedDescription]);
+        //[self.tableView setContentInset:UIEdgeInsetsMake(70, 0, 0, 0)];
+}
+
+
 
 @end

@@ -91,12 +91,13 @@
     //return imview;
     
     
+   
     UIGraphicsBeginImageContextWithOptions(imview.bounds.size, NO, [UIScreen mainScreen].scale);
     
     // Add a clip before drawing anything, in the shape of an rounded rect
     
     [[UIBezierPath bezierPathWithRoundedRect:imview.bounds
-                                cornerRadius:10.0 ] addClip];
+                                cornerRadius:4.0 ] addClip];
     // Draw your image
     [imview.image drawInRect:imview.bounds];
     
@@ -165,9 +166,10 @@
     
     [view addSubview:imgView];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(60, 16, tableView.frame.size.width, 18)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(62, 14, tableView.frame.size.width, 16)];
     
     label.text = [sectionInfo name];
+    label.font = [UIFont systemFontOfSize:14];
     label.textColor = [UIColor darkGrayColor];
     //label.textAlignment = NSTextAlignmentRight;
     //label.font = [UIFont fontWithName:@"Helvetica-Normal" size:14];
@@ -187,7 +189,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 46;
+    return 44;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -235,7 +237,7 @@
     UIImage* image = [UIImage imageWithContentsOfFile:path];
     
     
-    UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(0,0,30,30)];
+    UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(0,0,32,32)];
     
     imgv.image = image;
     
@@ -251,8 +253,19 @@
     
     cell.textLabel.textColor = [UIColor darkGrayColor];
     
-    cell.imageView.image = [self imageRound:imgv].image;
+    cell.imageView.image = imgv.image;
+    
+    
     // Configure the cell...
+    
+
+    
+    cell.imageView.image = [self imageRound:imgv].image;
+    
+    cell.imageView.layer.cornerRadius = 4;
+    cell.imageView.clipsToBounds = YES;
+    cell.imageView.layer.borderWidth = .1;
+    cell.imageView.layer.borderColor = [UIColor grayColor].CGColor;
     
     
     

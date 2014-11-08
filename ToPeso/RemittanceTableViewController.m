@@ -413,6 +413,7 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"View" owner:self options:nil];
         cell = (CustomTableViewCell *) [nib objectAtIndex:0];
         
+        
     }
     
 //    
@@ -499,17 +500,24 @@
     cell.imgRemittanceImage.image = image;
     cell.imgRemittanceImage.layer.cornerRadius = 10;
     cell.imgRemittanceImage.clipsToBounds = YES;
-    cell.imgRemittanceImage.layer.borderWidth = .5;
+    cell.imgRemittanceImage.layer.borderWidth = .2;
     cell.imgRemittanceImage.layer.borderColor = [UIColor grayColor].CGColor;
     
     
     //cell.imgOver1.image = image;
     cell.imgOver1.layer.cornerRadius = 10;
     cell.imgOver1.clipsToBounds = YES;
-    cell.imgOver1.layer.borderWidth = .5;
+    cell.imgOver1.layer.borderWidth = .2;
     cell.imgOver1.layer.borderColor = [UIColor grayColor].CGColor;
+    [cell.imgOver1.layer setOpacity:.5];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    [self imageRound:cell.imgRemittanceImage];
+    
+    //UIImageView *v = [[UIImageView alloc] initWithImage:image];
+    
+    //cell.imgRemittanceImage.image = [self imageRound:v].image;
     
     
     //find favorite
@@ -776,6 +784,42 @@
     
     //return [fetchedObjects objectAtIndex:0];
     
+}
+
+
+-(UIImageView *)imageRound:(UIImageView *)imview;
+{
+    
+    //imview.layer.cornerRadius = 10;
+    //imview.layer.masksToBounds = YES;
+    
+    //imview.frame = CGRectMake(0,0,32,32);
+    
+    //[imview.layer setFrame:CGRectMake(0,0,20,20)];
+    //return imview;
+    
+    
+    UIGraphicsBeginImageContextWithOptions(imview.bounds.size, NO, [UIScreen mainScreen].scale);
+    
+    // Add a clip before drawing anything, in the shape of an rounded rect
+    
+    [[UIBezierPath bezierPathWithRoundedRect:imview.bounds
+                                cornerRadius:10.0 ] addClip];
+    // Draw your image
+    [imview.image drawInRect:imview.bounds];
+    
+    // Get the image, here setting the UIImageView image
+    imview.image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    //            cell.imageView.layer.borderWidth  =1;
+    //            cell.imageView.layer.borderColor = [UIColor grayColor].CGColor;
+    //
+    // Lets forget about that we were drawing
+    
+    
+    UIGraphicsEndImageContext();
+    
+    return imview;
 }
 
 

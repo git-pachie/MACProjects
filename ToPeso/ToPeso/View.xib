@@ -35,7 +35,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.94999998807907104" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="toPiso_bell_green.png" translatesAutoresizingMaskIntoConstraints="NO" id="auU-0J-Wmv">
-                        <rect key="frame" x="41" y="37" width="15" height="15"/>
+                        <rect key="frame" x="40" y="36" width="15" height="15"/>
                     </imageView>
                 </subviews>
             </tableViewCellContentView>

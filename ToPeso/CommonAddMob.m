@@ -12,7 +12,9 @@
 #import "DFPBannerView.h"
 #import "GADRequest.h"
 
+@interface UIViewController() <GADBannerViewDelegate>
 
+@end
 
 @implementation commonAddMob
 
@@ -26,7 +28,7 @@
 
 + (GADBannerView *)ImplementBaner:(UITableViewController *)tableView
 {
-    GADBannerView *xBan = [[GADBannerView alloc]init];
+    GADBannerView *xBan = [[GADBannerView alloc]initWithAdSize:kGADAdSizeBanner];
     
     xBan.adUnitID = admobID ;
     xBan.rootViewController = tableView;
@@ -43,6 +45,7 @@
     
     
     [xBan loadRequest:request];
+    xBan.delegate = tableView;
     
     return  xBan;
 }
@@ -80,7 +83,6 @@
     
     return  _bannerView;
 }
-
 
 
 
