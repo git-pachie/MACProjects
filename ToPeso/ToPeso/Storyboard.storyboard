@@ -404,7 +404,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="actionFacebook:" destination="0F7-6J-EUr" eventType="touchUpInside" id="5Oe-WG-61Y"/>
                                     <action selector="actionLatest:" destination="0F7-6J-EUr" eventType="touchUpInside" id="4Vd-fm-4r0"/>
                                 </connections>
                             </button>

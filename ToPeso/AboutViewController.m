@@ -135,6 +135,9 @@
 
 - (IBAction)actionLatest:(id)sender
 {
+    NSURL *url = [NSURL URLWithString:@"itms://itunes.apple.com/us/app/topiso-remittance/id925294389?mt=8"];
+    
+    [[UIApplication sharedApplication] openURL:url];
     
 }
 

@@ -173,6 +173,17 @@
     
     UITabBarController *tab =(UITabBarController *)self.window.rootViewController;
     
+    NSString *pushtype = [userInfo objectForKey:@"pushtype"];
+    
+    if ([pushtype isEqualToString:@"1"]) {
+        
+        tab.selectedIndex = 2;
+        
+        NSLog(@"update page here");
+        
+        return;
+    }
+    
     tab.selectedIndex = 0;
     
     UINavigationController *nav = (UINavigationController *)[tab selectedViewController];
@@ -185,10 +196,16 @@
 //    
     del.isFromNotification = true;
 //    
+    
+    
     del.notficationCountryCode = [userInfo objectForKey:@"countryCode"];
 //    
     del.notifcationAgentID = [userInfo objectForKey:@"remittanceGUID"];
-//    
+//
+    
+    
+    
+    
     [dv LoadFromNotification:[userInfo objectForKey:@"remittanceGUID"]];
 //    
 //    application.applicationIconBadgeNumber = application.applicationIconBadgeNumber - 1;
