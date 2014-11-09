@@ -38,4 +38,6 @@
 -(Remittance *)getRemittanceByID :(NSString *)remittanceGUID;
 - (void)getNotificationData :(NSString *)remittanceGUID withBlock:(void (^)(Remittance *rem, Country *country ))block;
 
+- (Country *)getCountryByCurrencyKey :(NSString *)currencyKey;
+
 @end

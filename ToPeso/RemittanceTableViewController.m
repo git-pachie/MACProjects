@@ -52,7 +52,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIView *xView = [[UIView alloc]init];
+    //UIView *xView = [[UIView alloc]init];
     _commonBanner = [[commonAddMob alloc]init];
     
     
@@ -311,6 +311,7 @@
              }
              else
              {
+                 
                  [self performSelector:@selector(Done) withObject:nil afterDelay:1];
              }
              
@@ -366,13 +367,22 @@
 {
     id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetched sections]objectAtIndex:section];
     
-    return [sectionInfo name];
+    
+    CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
+    
+    Country *country = [core getCountryByCurrencyKey:[sectionInfo name]];
+    
+    
+    NSString *headerText = [NSString stringWithFormat:@"%@, %@", country.countryName, [sectionInfo name]];
+    
+    
+    return headerText;
 }
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 46;
+    return 50;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
@@ -388,7 +398,7 @@
     //view.layer.cornerRadius = view.frame.size.height / 2;
     //view.layer.masksToBounds = YES;
     
-    view.alpha  = 0.8;
+    view.alpha  = 0.9;
     //view.layer.borderColor = [UIColor whiteColor].CGColor;
     //view.layer.borderWidth = 10;
     
@@ -498,14 +508,14 @@
     
     
     cell.imgRemittanceImage.image = image;
-    cell.imgRemittanceImage.layer.cornerRadius = 10;
+    cell.imgRemittanceImage.layer.cornerRadius = 6;
     cell.imgRemittanceImage.clipsToBounds = YES;
     cell.imgRemittanceImage.layer.borderWidth = .2;
     cell.imgRemittanceImage.layer.borderColor = [UIColor grayColor].CGColor;
     
     
     //cell.imgOver1.image = image;
-    cell.imgOver1.layer.cornerRadius = 10;
+    cell.imgOver1.layer.cornerRadius = 6;
     cell.imgOver1.clipsToBounds = YES;
     cell.imgOver1.layer.borderWidth = .2;
     cell.imgOver1.layer.borderColor = [UIColor grayColor].CGColor;
@@ -580,7 +590,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 56;
+    return 54;
 }
 
 #pragma mark -fetched controller
@@ -689,6 +699,9 @@
         
 
 }
+
+
+
 
 
 -(NSFetchedResultsController *)fetched
@@ -804,7 +817,7 @@
     // Add a clip before drawing anything, in the shape of an rounded rect
     
     [[UIBezierPath bezierPathWithRoundedRect:imview.bounds
-                                cornerRadius:10.0 ] addClip];
+                                cornerRadius:6 ] addClip];
     // Draw your image
     [imview.image drawInRect:imview.bounds];
     

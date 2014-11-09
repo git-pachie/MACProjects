@@ -72,30 +72,32 @@
         
         
         
-        UITabBarController *tab =(UITabBarController *)self.window.rootViewController;
-        
-        tab.selectedIndex = 0;
-        
-        UINavigationController *nav = (UINavigationController *)[tab selectedViewController];
-        
-        CountryMainTableViewController *dv = [[CountryMainTableViewController alloc]init];
-        
-        dv = [[nav viewControllers] objectAtIndex:0];
-        
-        com_pachie_topesoAppDelegate *del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
-        
-        del.isFromNotification = true;
-        
-        del.notficationCountryCode = [userInfo objectForKey:@"countryCode"];
-        
-        del.notifcationAgentID = [userInfo objectForKey:@"remittanceGUID"];
-        
-        [dv LoadFromNotification:[userInfo objectForKey:@"remittanceGUID"]];
-        
+//        UITabBarController *tab =(UITabBarController *)self.window.rootViewController;
+//        
+//        tab.selectedIndex = 0;
+//        
+//        UINavigationController *nav = (UINavigationController *)[tab selectedViewController];
+//        
+//        CountryMainTableViewController *dv = [[CountryMainTableViewController alloc]init];
+//        
+//        dv = [[nav viewControllers] objectAtIndex:0];
+//        
+//        com_pachie_topesoAppDelegate *del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+//        
+//        del.isFromNotification = true;
+//        
+//        del.notficationCountryCode = [userInfo objectForKey:@"countryCode"];
+//        
+//        del.notifcationAgentID = [userInfo objectForKey:@"remittanceGUID"];
+//        
+//        [dv LoadFromNotification:[userInfo objectForKey:@"remittanceGUID"]];
+//        
         application.applicationIconBadgeNumber = application.applicationIconBadgeNumber - 1;
+//        
+//        
+//        //[nav.visibleViewController.navigationController pushViewController:dv animated:YES];
         
-        
-        //[nav.visibleViewController.navigationController pushViewController:dv animated:YES];
+        [self redirectFromNotification:userInfo];
         
 
     }
@@ -158,21 +160,14 @@
 //    }];
 }
 
--(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+-(void)redirectFromNotification :(NSDictionary *)userInfo
 {
-    if (application.applicationState == UIApplicationStateActive ) {
-        
-        return;
-    }
-    
-    NSLog(@"%@",userInfo);
-    
+    self.appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     
     [[self window] makeKeyAndVisible];
     
     
     UITabBarController *tab =(UITabBarController *)self.window.rootViewController;
-    
     NSString *pushtype = [userInfo objectForKey:@"pushtype"];
     
     if ([pushtype isEqualToString:@"1"]) {
@@ -188,26 +183,66 @@
     
     UINavigationController *nav = (UINavigationController *)[tab selectedViewController];
     
-     CountryMainTableViewController *dv = [[CountryMainTableViewController alloc]init];
-//    
+    CountryMainTableViewController *dv = [[CountryMainTableViewController alloc]init];
     dv = [[nav viewControllers] objectAtIndex:0];
-//    
     com_pachie_topesoAppDelegate *del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
-//    
     del.isFromNotification = true;
-//    
-    
-    
     del.notficationCountryCode = [userInfo objectForKey:@"countryCode"];
-//    
     del.notifcationAgentID = [userInfo objectForKey:@"remittanceGUID"];
-//
-    
-    
-    
-    
     [dv LoadFromNotification:[userInfo objectForKey:@"remittanceGUID"]];
+    
+}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    if (application.applicationState == UIApplicationStateActive ) {
+        
+        return;
+    }
+    
+    NSLog(@"%@",userInfo);
+    
+    
+//    [[self window] makeKeyAndVisible];
 //    
+//    
+//    UITabBarController *tab =(UITabBarController *)self.window.rootViewController;
+//    
+//    NSString *pushtype = [userInfo objectForKey:@"pushtype"];
+//    
+//    if ([pushtype isEqualToString:@"1"]) {
+//        
+//        tab.selectedIndex = 2;
+//        
+//        NSLog(@"update page here");
+//        
+//        return;
+//    }
+//    
+//    tab.selectedIndex = 0;
+//    
+//    UINavigationController *nav = (UINavigationController *)[tab selectedViewController];
+//    
+//     CountryMainTableViewController *dv = [[CountryMainTableViewController alloc]init];
+////    
+//    dv = [[nav viewControllers] objectAtIndex:0];
+////    
+//    com_pachie_topesoAppDelegate *del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
+////    
+//    del.isFromNotification = true;
+////    
+//    
+//    
+//    del.notficationCountryCode = [userInfo objectForKey:@"countryCode"];
+////    
+//    del.notifcationAgentID = [userInfo objectForKey:@"remittanceGUID"];
+////
+//    
+//    
+//    
+//    
+//    [dv LoadFromNotification:[userInfo objectForKey:@"remittanceGUID"]];
+//
 //    application.applicationIconBadgeNumber = application.applicationIconBadgeNumber - 1;
    // AgentDetailsTableViewController *dv = [[AgentDetailsTableViewController alloc]init];
     
@@ -253,7 +288,7 @@
 
     
     
-    
+    [self redirectFromNotification:userInfo];
     
     
     

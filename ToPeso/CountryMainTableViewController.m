@@ -288,10 +288,7 @@
     }
 
     
-  
-    
-    
-    
+
     NSManagedObject *o = [self.fectched objectAtIndexPath:indexPath];
     
     cell.lblCountryName.text = [o valueForKey:@"countryName"];
@@ -363,7 +360,7 @@
     // Add a clip before drawing anything, in the shape of an rounded rect
     
     [[UIBezierPath bezierPathWithRoundedRect:imview.bounds
-                                cornerRadius:10] addClip];
+                                cornerRadius:6] addClip];
     // Draw your image
     [imview.image drawInRect:imview.bounds];
     

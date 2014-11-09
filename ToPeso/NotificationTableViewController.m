@@ -123,11 +123,16 @@
     //return [sectionInfo name];
     
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 17)];
+    
+    //UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, sc, 14)];
+
+    
     [view setBackgroundColor:[UIColor whiteColor]];
     
     
-    UIColor *yellowColor =  [UIColor colorWithRed:(255/255.0) green:(231/255.0) blue:(206/255.0) alpha:1] ;
+    UIColor *yellowColor =  [UIColor colorWithRed:(255/255.0) green:(251/255.0) blue:(246/255.0) alpha:1] ;
     
     
     [view setBackgroundColor:yellowColor];
@@ -151,7 +156,7 @@
     
     
     
-    UIImageView* imgView=[[UIImageView alloc]initWithFrame:CGRectMake(16, 8, 30, 30)];
+    UIImageView* imgView=[[UIImageView alloc]initWithFrame:CGRectMake(16, 8, 40, 40)];
     imgView.image =img;
     
     //imgView.image = [self imageRound:imgView].image;
@@ -162,14 +167,16 @@
     //imgView.layer.borderColor = [UIColor orangeColor].CGColor;
     
     
+    
     [view addSubview:[self imageRound:imgView]];
     
     [view addSubview:imgView];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(62, 14, tableView.frame.size.width, 16)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(70, 16, tableView.frame.size.width, 20)];
     
     label.text = [sectionInfo name];
-    label.font = [UIFont systemFontOfSize:14];
+    label.font = [UIFont fontWithName:@"Helvetica-Bold" size:15];//[UIFont systemFontOfSize:14];
+    
     label.textColor = [UIColor darkGrayColor];
     //label.textAlignment = NSTextAlignmentRight;
     //label.font = [UIFont fontWithName:@"Helvetica-Normal" size:14];
@@ -180,6 +187,7 @@
     [view addSubview:label];
     
   
+
     
     [view.layer setOpacity:10];
     
@@ -189,7 +197,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 44;
+    return 56;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -237,7 +245,7 @@
     UIImage* image = [UIImage imageWithContentsOfFile:path];
     
     
-    UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(0,0,32,32)];
+    UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(0,0,40,40)];
     
     imgv.image = image;
     
@@ -263,6 +271,7 @@
     cell.imageView.image = [self imageRound:imgv].image;
     
     cell.imageView.layer.cornerRadius = 4;
+    cell.imageView.layer.opacity = .80;
     cell.imageView.clipsToBounds = YES;
     cell.imageView.layer.borderWidth = .1;
     cell.imageView.layer.borderColor = [UIColor grayColor].CGColor;
