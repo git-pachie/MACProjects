@@ -15,5 +15,6 @@
 + (NSString *)getToPisoEmailAddress;
 + (NSString *)getToPisoFacebookURL;
 + (NSString *)getToPisoTwitterURL;
++(UIImage *)getImageCapture :(UIView *)currentView FrameRect:(CGRect)rect;
 
 @end

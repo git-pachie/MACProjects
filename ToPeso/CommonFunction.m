@@ -7,6 +7,7 @@
 //
 
 #import "CommonFunction.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation CommonFunction
 
@@ -60,6 +61,35 @@
 }
 
 
++(UIImage *)getImageCapture :(UIView *)currentView FrameRect:(CGRect)rect
+{
+//    //CGRect rect = CGRectMake(50, 50, 300,200);
+//
+    
+    //UIGraphicsBeginImageContext(rect.size);
+    
+    //CGContextRef context = UIGraphicsGetCurrentContext();
+  
+    //[currentView.layer renderInContext:context];
 
+    
+   // UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(rect.size.width, rect.size.height), currentView.opaque, 0.0);
+    
+
+    
+    [currentView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return img;
+    
+   
+    //return  image;
+}
 
 @end

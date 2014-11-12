@@ -31,12 +31,14 @@
 
 @property (nonatomic,strong)Remittance *remitanceAgent;
 @property (nonatomic,strong)Country *country;
+@property (weak, nonatomic) IBOutlet UIImageView *imageCaputre;
 
 - (IBAction)acFB:(id)sender;
 - (IBAction)acTweeter:(id)sender;
 - (IBAction)acEmail:(id)sender;
 
 - (IBAction)swNotification:(id)sender;
+
 
 
 @end

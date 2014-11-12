@@ -95,7 +95,7 @@
     }
     
     self.imgAgentPhoto.image = image;// [UIImage imageNamed:@"default.png"];
-    self.imgAgentPhoto.layer.cornerRadius = 10;
+    self.imgAgentPhoto.layer.cornerRadius = 6;
     self.imgAgentPhoto.clipsToBounds = YES;
     self.imgAgentPhoto.layer.borderWidth = 0.4;
     self.imgAgentPhoto.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -386,6 +386,7 @@
     
 }
 
+
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     switch (result)
@@ -466,8 +467,9 @@
     
     NSString *strNumber = [numFormat stringFromNumber:self.remitanceAgent.rate];
     
+    NSURL *ulr = [SendAndRequest AppStoreLink];
     
-    [controller setInitialText:[NSString stringWithFormat:@"%@ %@ rate by %@. Install ToPiso to get the latest remittance rate to Philippine peso ",self.remitanceAgent.currencyKey,strNumber,self.remitanceAgent.remittanceName]];
+    [controller setInitialText:[NSString stringWithFormat:@"%@ %@ %@ rate by %@.\nInstall for iOS: %@",self.country.countryName, self.remitanceAgent.currencyKey,strNumber,self.remitanceAgent.remittanceName,ulr]];
     
 //    [controller addImage:[UIImage imageNamed:@"aga_180_180.png"]];
 //    [controller addURL:[NSURL URLWithString:[CommonFunction getToPisoInstallURL]]];
@@ -480,8 +482,19 @@
     //imgv.layer.borderWidth = 1;
     //[imgv.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     
-    [controller addImage:[UIImage imageNamed:@"aga_180_180.png"]];
+    UIImage *preImage = self.imgAgentPhoto.image;
     
+    self.imgAgentPhoto.image = [UIImage imageNamed:@"sharelogo.png"];
+    
+    UIImage *imageCapture = [[UIImage alloc]init];
+    imageCapture = [CommonFunction getImageCapture:self.view FrameRect:CGRectMake((self.view.bounds.size.width/2)+25, 50, self.view.bounds.size.width - 10 , 210)];
+    
+    self.imgAgentPhoto.image = preImage;
+    
+    
+    //[controller addImage:[UIImage imageNamed:@"aga_180_180.png"]];
+    
+    [controller addImage:imageCapture];
     
    // [controller addImage:imgv.image];
     //[controller addURL:[NSURL URLWithString:[CommonFunction getToPisoInstallURL]]];

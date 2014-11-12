@@ -67,6 +67,7 @@
 		0D5F263519D31737009EC54F /* home-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F263419D31737009EC54F /* home-26.png */; };
 		0D5F263819D31DF2009EC54F /* alert-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F263719D31DF2009EC54F /* alert-26.png */; };
 		0D5F263A19D31ED0009EC54F /* info-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F263919D31ED0009EC54F /* info-26.png */; };
+		0D5F9DD11A13C79A002C28DC /* sharelogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F9DD01A13C79A002C28DC /* sharelogo.png */; };
 		0D8D849F19E570CB0022F4B2 /* toPiso_bell_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D8D849E19E570CB0022F4B2 /* toPiso_bell_green.png */; };
 		0DC6E4891A065F2A00A8D1E6 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DC6E4881A065F2A00A8D1E6 /* libGoogleAdMobAds.a */; };
 		0DF746D119E2A9D80072C5C0 /* topbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DF746D019E2A9D80072C5C0 /* topbg.png */; };
@@ -166,6 +167,7 @@
 		0D5F263419D31737009EC54F /* home-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-26.png"; path = "../ToPeso/home-26.png"; sourceTree = "<group>"; };
 		0D5F263719D31DF2009EC54F /* alert-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert-26.png"; sourceTree = "<group>"; };
 		0D5F263919D31ED0009EC54F /* info-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-26.png"; sourceTree = "<group>"; };
+		0D5F9DD01A13C79A002C28DC /* sharelogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharelogo.png; sourceTree = "<group>"; };
 		0D8D849E19E570CB0022F4B2 /* toPiso_bell_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toPiso_bell_green.png; sourceTree = "<group>"; };
 		0DC6E4751A065EEC00A8D1E6 /* GADAdMobExtras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
 		0DC6E4761A065EEC00A8D1E6 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 		0CB5131C19C36F40006D1653 /* flags */ = {
 			isa = PBXGroup;
 			children = (
+				0D5F9DD01A13C79A002C28DC /* sharelogo.png */,
 				0DF746D019E2A9D80072C5C0 /* topbg.png */,
 				0C7935F819E26FD00056FCBC /* Default.png */,
 				0D5F263619D318D6009EC54F /* Icons */,
@@ -593,6 +596,7 @@
 				0CA9FBC319CAAC8A006A9A98 /* countryCell.xib in Resources */,
 				0CD49BCE19ADE0300078920D /* View.xib in Resources */,
 				0D5F263A19D31ED0009EC54F /* info-26.png in Resources */,
+				0D5F9DD11A13C79A002C28DC /* sharelogo.png in Resources */,
 				0CF2FF6B19C49F190071BDC6 /* ToPiso_120x120.png in Resources */,
 				0DFAF36719E2EEC90077EB69 /* twitter-48.png in Resources */,
 				0DF746D119E2A9D80072C5C0 /* topbg.png in Resources */,

@@ -10,6 +10,11 @@
 #import <CoreData/CoreData.h>
 #import "Country.h"
 #import <iAd/iAd.h>
+#import <Social/Social.h>
+//#import <MessageUI/MessageUI.h>
+
+
+
 
 @interface RemittanceTableViewController : UITableViewController <NSFetchedResultsControllerDelegate >
 
@@ -20,6 +25,7 @@
 @property (nonatomic, strong) NSString *countryCode;
 
 
+- (IBAction)ShareToFB:(id)sender;
 
 
 @end

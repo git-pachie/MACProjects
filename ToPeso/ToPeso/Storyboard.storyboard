@@ -29,7 +29,13 @@
                             <outlet property="delegate" destination="lve-Yq-4sp" id="Ama-dc-Kg3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Agents" id="nlc-WD-36z"/>
+                    <navigationItem key="navigationItem" title="Agents" id="nlc-WD-36z">
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="HXp-xl-TTQ">
+                            <connections>
+                                <action selector="ShareToFB:" destination="lve-Yq-4sp" id="vtg-z8-7cp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="17s-Bo-Vx1" kind="push" identifier="agentDetails" id="Rat-nz-Hhw"/>
                     </connections>
@@ -450,6 +456,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="y9B-4o-1WW"/>
+        <segue reference="Rat-nz-Hhw"/>
     </inferredMetricsTieBreakers>
 </document>

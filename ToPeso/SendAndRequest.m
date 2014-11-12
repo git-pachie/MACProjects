@@ -27,6 +27,11 @@
     return @"http://www.greetify.net/ToPisoProfile/countryimage.aspx?fFilename=";
 }
 
++(NSURL *)AppStoreLink
+{
+    return  [NSURL URLWithString:@"https://appsto.re/sg/18Tj3.i"];
+}
+
 - (void)getLastesCountry :(NSString *)lastModified withBlock:(void (^)(NSArray *array, NSError *er ))block
 {
     

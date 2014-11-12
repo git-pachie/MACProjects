@@ -14,6 +14,7 @@
 #import "CoreDataToPeso.h"
 #import "SendAndRequest.h"
 #import "CommonAddMob.h"
+#import "CommonFunction.h"
 
 
 
@@ -96,30 +97,29 @@
 
     
     //abView = [commonAddMob ImplementBanerBottom:self];
-    [self.view addSubview:[_commonBanner ImplementBanerBottom:self]];
+    //[self.view addSubview:[_commonBanner ImplementBanerBottom:self]];
+    
     [self.tableView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
     
+    segmentedControl = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"Highest to Lowest", @"Most Recent Update", nil]];
+    //segmentedControl.frame = CGRectMake(((segmentedControl.frame.size.width)/2)- 130 , 20, (self.view.bounds.size.width) - 20 , 34);
+
     
     [self.tableView registerNib:[UINib nibWithNibName:@"View" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
-    segmentedControl = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"Highest to Lowest", @"Most Recent Update", nil]];
-    segmentedControl.frame = CGRectMake((segmentedControl.frame.size.width) / 2 -115, 10, (self.view.bounds.size.width) - 40 , 34);
+    //[self.view addSubview:segmentedControl];
+    
+    
     
     [segmentedControl addTarget:self action:@selector(changeSegment) forControlEvents:UIControlEventValueChanged];
     
-    UIView *viewSegment = [[UIView alloc]initWithFrame:CGRectMake(0, 0, (self.view.bounds.size.width), 30)];
+    //UIView *viewSegment = [[UIView alloc]initWithFrame:CGRectMake(0, 0, (self.view.bounds.size.width), 30)];
+    
+    //[viewSegment addSubview:segmentedControl];
     
     
+    self.tableView.tableHeaderView = segmentedControl;
     
-    
-    [viewSegment addSubview:segmentedControl];
-    
-
-    
-    self.tableView.tableHeaderView = viewSegment;
-    
-    
-
     UIColor *selectedColor = [UIColor colorWithRed: 98/255.0 green:156/255.0 blue:247/255.0 alpha:1.0];
     UIColor *deselectedColor = [UIColor colorWithRed: 54/255.0 green:52/255.0 blue:48/255.0 alpha:1.0];
     
@@ -129,9 +129,14 @@
         else
             [subview setTintColor:deselectedColor];
     }
+
     
     
 
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    
 }
 
 -(void)changeSegment
@@ -311,7 +316,7 @@
              }
              else
              {
-                 
+                 [self.view addSubview:[_commonBanner ImplementBanerBottom:self]];
                  [self performSelector:@selector(Done) withObject:nil afterDelay:1];
              }
              
@@ -382,7 +387,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50;
+    return 70;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
@@ -470,26 +475,39 @@
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
     NSDateFormatter *timeFormat = [[NSDateFormatter alloc]init];
     
-    [dateFormat setDateFormat:@"dd MMM yyyy"];
+    [dateFormat setDateFormat:@"dd MMM yyy"];
     [timeFormat setDateFormat:@"hh:mm a"];
     
-    NSString *strDate = [dateFormat stringFromDate:rem.asofDate];
+   
     //NSString *strTime = [timeFormat stringFromDate:rem.asofDate];
     
-    cell.lblRate.text =[NSString stringWithFormat:@"%@ as of %@",str,strDate];
     
 
-    NSDateFormatter *format = [[NSDateFormatter alloc]init];
-    [format setDateFormat:@"hh:mm a"];
+//    NSDateFormatter *format = [[NSDateFormatter alloc]init];
+//    [format setDateFormat:@"hh:mm a"];
     
     NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
     
-    [format setTimeZone:gmt];
+    [dateFormat setTimeZone:gmt];
+    [timeFormat setTimeZone:gmt];
+    
+     NSString *strDate = [dateFormat stringFromDate:rem.asofDate];
+    cell.lblRate.text =[NSString stringWithFormat:@"%@ as of %@",str,strDate];
+    
+    
+//    NSDateFormatter *dateFormate = [[NSDateFormatter alloc]init];
+//    [dateFormate setDateFormat:@"dd MMMM yyyy hh:mm a"];
+//    NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+//    
+//    [dateFormate setTimeZone:gmt];
+//
+//    self.lblAsOfDate.text =[NSString stringWithFormat:@"As of date %@",[dateFormate stringFromDate:self.remitanceAgent.asofDate]];
+
     
     
     
     
-    cell.lbltime.text = [format stringFromDate:rem.asofDate];
+    cell.lbltime.text = [timeFormat stringFromDate:rem.asofDate];
     
     
 
@@ -886,5 +904,63 @@
 //    return headerView;
 //
 //}
+
+- (IBAction)ShareToFB:(id)sender {
+    
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+    {
+        SLComposeViewController *facebook = [SLComposeViewController
+                                             composeViewControllerForServiceType:SLServiceTypeFacebook];
+    
+        
+        [self prepareSocialMessage:facebook];
+        
+        [self presentViewController:facebook animated:YES completion:nil];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Facebook not configured" message:@"Unable to continue, your facebook account not yet configured. Please configure it in settings menu" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
+        [alert show];
+    }
+    
+}
+
+-(void)prepareSocialMessage:(SLComposeViewController*)controller
+{
+    
+//    NSNumberFormatter *numFormat = [[NSNumberFormatter alloc]init];
+//    [numFormat setNumberStyle:NSNumberFormatterDecimalStyle];
+//    
+//    NSString *strNumber = [numFormat stringFromNumber:self.remitanceAgent.rate];
+//    
+    NSURL *ulr = [SendAndRequest AppStoreLink];
+    
+    [controller setInitialText:[NSString stringWithFormat:@"%@ rate as of today.\nInstall for iOS: %@",self.country.countryName,ulr]];
+    
+    //    [controller addImage:[UIImage imageNamed:@"aga_180_180.png"]];
+    //    [controller addURL:[NSURL URLWithString:[CommonFunction getToPisoInstallURL]]];
+    //
+    
+    // UIImageView *imgv = [[UIImageView alloc]init];
+    //imgv.image = [UIImage imageNamed:@"aga_180_180.png"];
+    //imgv.layer.cornerRadius = 10;
+    // imgv.clipsToBounds = YES;
+    //imgv.layer.borderWidth = 1;
+    //[imgv.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    
+    
+    UIImage *imageCapture = [[UIImage alloc]init];
+    imageCapture = [CommonFunction getImageCapture:self.view FrameRect:CGRectMake(0, 0, self.view.bounds.size.width , 400)];
+    
+
+    
+    
+    //[controller addImage:[UIImage imageNamed:@"aga_180_180.png"]];
+    
+    [controller addImage:imageCapture];
+    
+    // [controller addImage:imgv.image];
+    //[controller addURL:[NSURL URLWithString:[CommonFunction getToPisoInstallURL]]];
+}
 
 @end

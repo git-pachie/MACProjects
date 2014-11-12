@@ -195,6 +195,8 @@
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    application.applicationIconBadgeNumber = application.applicationIconBadgeNumber - 1;
+    
     if (application.applicationState == UIApplicationStateActive ) {
         
         return;

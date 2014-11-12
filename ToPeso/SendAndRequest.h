@@ -26,5 +26,6 @@
 +(NSString *)UrlImageConnection;
 
 -(void)pingServer :(NSString *)deviceToken AppVersion:(NSString *)appVersion;
++(NSURL *)AppStoreLink;
 
 @end
