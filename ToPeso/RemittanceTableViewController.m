@@ -99,7 +99,7 @@
     //abView = [commonAddMob ImplementBanerBottom:self];
     //[self.view addSubview:[_commonBanner ImplementBanerBottom:self]];
     
-    [self.tableView setContentInset:UIEdgeInsetsMake(60, 0, 0, 0)];
+ //   [self.tableView setContentInset:UIEdgeInsetsMake(60, 0, 0, 0)];
     
 //    segmentedControl = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"Highest to Lowest", @"Most Recent Update", nil]];
 //    segmentedControl.frame = CGRectMake(((segmentedControl.frame.size.width)/2)- 130 , 20, (self.view.bounds.size.width) - 20 , 34);
@@ -151,24 +151,24 @@
 //    //[self refreshTable];
 //}
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (!self.isFromNotification) {
-        
-        xView = [_commonBanner ImplementBanerBottom:self];
-        
-        
-        CGRect fixedFrame = xView.frame;
-        fixedFrame.origin.y = 0 + scrollView.contentOffset.y + 64;
-        xView.frame = fixedFrame;
-
-    }
-    else
-    {
-        self.isFromNotification = false;
-    }
-    
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    if (!self.isFromNotification) {
+//        
+//        xView = [_commonBanner ImplementBanerBottom:self];
+//        
+//        
+//        CGRect fixedFrame = xView.frame;
+//        fixedFrame.origin.y = 0 + scrollView.contentOffset.y + 64;
+//        xView.frame = fixedFrame;
+//
+//    }
+//    else
+//    {
+//        self.isFromNotification = false;
+//    }
+//    
+//}
 
 -(void)showHideLoadingBar :(BOOL)isShow
 {
@@ -304,7 +304,7 @@
              }
              else
              {
-                 [self.view addSubview:[_commonBanner ImplementBanerBottom:self]];
+                 //[self.view addSubview:[_commonBanner ImplementBanerBottom:self]];
                  [self performSelector:@selector(Done) withObject:nil afterDelay:1];
              }
              

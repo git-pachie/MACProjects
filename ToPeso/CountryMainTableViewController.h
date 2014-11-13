@@ -21,8 +21,10 @@
 
 //@property (weak, nonatomic) id <GADAdSizeDelegate> delegate;
 
+@property (nonatomic) bool isFromNotification;
 
 -(void)LoadFromNotification :(NSString *)remittanceGUID;
+
 
 
 @end

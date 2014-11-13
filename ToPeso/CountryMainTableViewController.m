@@ -135,6 +135,8 @@
          
          
          
+         
+         
      }];
     
     
@@ -179,18 +181,11 @@
     
     NSLog(@"id: %@", del.DevinceToken);
     
-    [self.view addSubview:[_commonAddMob ImplementBanerBottom:self]];
     
-    [self.tableView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
+   // [self.view addSubview:[_commonAddMob ImplementBanerBottom:self]];
     
-    //    CGRect tableFrame = self.tableView.frame;
-//    tableFrame.size.height = 200;
-//    self.tableView.frame = tableFrame;
-    ////CGRect frame = self.tableView.frame;
-    //frame.size.height = 113;
-    //self.tableView.frame = CGRectMake(0,30,320,100);
+   // [self.tableView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
     
-    //[self.tableView reloadData];
     
 }
 
@@ -202,19 +197,19 @@
 
    
 }
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    GADBannerView *xView = [_commonAddMob ImplementBanerBottom:self];
-    
-    CGRect fixedFrame = xView.frame;
-    fixedFrame.origin.y = 0 + scrollView.contentOffset.y + 64;
-    xView.frame = fixedFrame;
-    
-    xView.delegate = self;
-    
-    
-    
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    GADBannerView *xView = [_commonAddMob ImplementBanerBottom:self];
+//    
+//    CGRect fixedFrame = xView.frame;
+//    fixedFrame.origin.y = 0 + scrollView.contentOffset.y + 64;
+//    xView.frame = fixedFrame;
+//    
+//    xView.delegate = self;
+//    
+//    
+//    
+//}
 
 
 - (void)didReceiveMemoryWarning
