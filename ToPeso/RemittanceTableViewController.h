@@ -23,9 +23,11 @@
 @property (nonatomic, strong)Country *country;
 @property (nonatomic)bool isFromNotification;
 @property (nonatomic, strong) NSString *countryCode;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentOutlet;
 
 
 - (IBAction)ShareToFB:(id)sender;
+- (IBAction)segmentAction:(id)sender;
 
 
 @end

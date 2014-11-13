@@ -27,7 +27,7 @@
     dispatch_queue_t que;
     //UIView *abView;
     commonAddMob *_commonBanner;
-    UISegmentedControl *segmentedControl;
+    //UISegmentedControl *segmentedControl;
     
     NSFetchedResultsController *_fetchedHighest;
     NSFetchedResultsController *_fetchedRecent;
@@ -99,31 +99,19 @@
     //abView = [commonAddMob ImplementBanerBottom:self];
     //[self.view addSubview:[_commonBanner ImplementBanerBottom:self]];
     
-    [self.tableView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(60, 0, 0, 0)];
     
-    segmentedControl = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"Highest to Lowest", @"Most Recent Update", nil]];
-    //segmentedControl.frame = CGRectMake(((segmentedControl.frame.size.width)/2)- 130 , 20, (self.view.bounds.size.width) - 20 , 34);
-
+//    segmentedControl = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"Highest to Lowest", @"Most Recent Update", nil]];
+//    segmentedControl.frame = CGRectMake(((segmentedControl.frame.size.width)/2)- 130 , 20, (self.view.bounds.size.width) - 20 , 34);
+//
     
     [self.tableView registerNib:[UINib nibWithNibName:@"View" bundle:nil] forCellReuseIdentifier:@"Cell"];
-    
-    //[self.view addSubview:segmentedControl];
-    
-    
-    
-    [segmentedControl addTarget:self action:@selector(changeSegment) forControlEvents:UIControlEventValueChanged];
-    
-    //UIView *viewSegment = [[UIView alloc]initWithFrame:CGRectMake(0, 0, (self.view.bounds.size.width), 30)];
-    
-    //[viewSegment addSubview:segmentedControl];
-    
-    
-    self.tableView.tableHeaderView = segmentedControl;
+
     
     UIColor *selectedColor = [UIColor colorWithRed: 98/255.0 green:156/255.0 blue:247/255.0 alpha:1.0];
     UIColor *deselectedColor = [UIColor colorWithRed: 54/255.0 green:52/255.0 blue:48/255.0 alpha:1.0];
     
-    for (UIControl *subview in [segmentedControl subviews]) {
+    for (UIControl *subview in [self.segmentOutlet subviews]) {
         if ([subview isSelected])
             [subview setTintColor:selectedColor];
         else
@@ -139,29 +127,29 @@
     
 }
 
--(void)changeSegment
-{
-    NSLog(@"Segment %ld",(long)segmentedControl.selectedSegmentIndex);
-    
-    if (segmentedControl.selectedSegmentIndex==0) {
-        self.fetched = [self fetchedHighest];
-    }
-    else
-    {
-        self.fetched = [self fetchedRecent];
-    }
-    
-    NSError *error;
-    if (![self.fetched performFetch:&error]) {
-        // Update to handle the error appropriately.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        exit(-1);  // Fail
-    }
-
-    [self.tableView reloadData];
-    
-    //[self refreshTable];
-}
+//-(void)changeSegment
+//{
+//    NSLog(@"Segment %ld",(long)segmentedControl.selectedSegmentIndex);
+//    
+//    if (segmentedControl.selectedSegmentIndex==0) {
+//        self.fetched = [self fetchedHighest];
+//    }
+//    else
+//    {
+//        self.fetched = [self fetchedRecent];
+//    }
+//    
+//    NSError *error;
+//    if (![self.fetched performFetch:&error]) {
+//        // Update to handle the error appropriately.
+//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//        exit(-1);  // Fail
+//    }
+//
+//    [self.tableView reloadData];
+//    
+//    //[self refreshTable];
+//}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -387,7 +375,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 70;
+    return 30;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
@@ -922,6 +910,29 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Facebook not configured" message:@"Unable to continue, your facebook account not yet configured. Please configure it in settings menu" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
         [alert show];
     }
+    
+}
+
+- (IBAction)segmentAction:(id)sender {
+    
+    NSLog(@"Segment %ld",(long)self.segmentOutlet.selectedSegmentIndex);
+    
+    if (self.segmentOutlet.selectedSegmentIndex==0) {
+        self.fetched = [self fetchedHighest];
+    }
+    else
+    {
+        self.fetched = [self fetchedRecent];
+    }
+    
+    NSError *error;
+    if (![self.fetched performFetch:&error]) {
+        // Update to handle the error appropriately.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }
+    
+    [self.tableView reloadData];
     
 }
 
