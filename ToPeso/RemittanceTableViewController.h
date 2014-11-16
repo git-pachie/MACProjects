@@ -11,12 +11,12 @@
 #import "Country.h"
 #import <iAd/iAd.h>
 #import <Social/Social.h>
-//#import <MessageUI/MessageUI.h>
+#import <MessageUI/MessageUI.h>
 
 
 
 
-@interface RemittanceTableViewController : UITableViewController <NSFetchedResultsControllerDelegate >
+@interface RemittanceTableViewController : UITableViewController <NSFetchedResultsControllerDelegate,MFMailComposeViewControllerDelegate >
 
 //@property (nonatomic, strong) NSString * countryCode;
 @property (nonatomic,strong) NSFetchedResultsController *fetched;
@@ -25,6 +25,8 @@
 @property (nonatomic, strong) NSString *countryCode;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentOutlet;
 
+@property (weak, nonatomic) IBOutlet UILabel *labelHeader;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentKo;
 
 - (IBAction)ShareToFB:(id)sender;
 - (IBAction)segmentAction:(id)sender;

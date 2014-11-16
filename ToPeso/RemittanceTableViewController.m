@@ -55,7 +55,9 @@
     [super viewDidLoad];
     //UIView *xView = [[UIView alloc]init];
     _commonBanner = [[commonAddMob alloc]init];
-    
+    self.labelHeader.hidden = true;
+    self.labelHeader.layer.cornerRadius = 4;
+    self.labelHeader.clipsToBounds = YES;
     
     
     
@@ -124,7 +126,60 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc]
+                                    initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                    target:self
+                                    action:@selector(shareAction:)];
+    self.navigationItem.rightBarButtonItem = shareButton;
+}
+
+-(void)shareAction:(id)sender
+{
     
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle: @"Share or Save"
+                                                                        message: @"You can share or save the current remittance rate by choosing one of the options below"
+                                                                 preferredStyle: UIAlertControllerStyleAlert];
+    
+    
+    
+    UIAlertAction *alertFacebook = [UIAlertAction actionWithTitle: @"Facebook" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSLog(@"Facebook");
+        [self shareToSocial:@"facebook"];
+    }];
+    
+    
+    [controller addAction: alertFacebook];
+    
+    UIAlertAction *alertTwitter = [UIAlertAction actionWithTitle: @"Twitter" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSLog(@"Twitter");
+        [self shareToSocial:@"twitter"];
+    }];
+    [controller addAction: alertTwitter];
+    
+    UIAlertAction *alertEmail = [UIAlertAction actionWithTitle: @"Email" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSLog(@"Email");
+        [self shareToSocial:@"email"];
+    }];
+    [controller addAction: alertEmail];
+    
+    UIAlertAction *alertGallery = [UIAlertAction actionWithTitle: @"Save to Gallery" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSLog(@"Save to gallery");
+        [self shareToSocial:@"gallery"];
+    }];
+    [controller addAction: alertGallery];
+    
+    
+    
+    UIAlertAction *alertAction = [UIAlertAction actionWithTitle: @"Cancel"
+                                                          style: UIAlertActionStyleDestructive
+                                                        handler: ^(UIAlertAction *action) {
+                                                            NSLog(@"Dismiss button tapped!");
+                                                        }];
+    [controller addAction: alertAction];
+
+    
+    [self presentViewController: controller animated: YES completion: nil];
 }
 
 //-(void)changeSegment
@@ -844,54 +899,7 @@
 
 #pragma mark iAd Deleage
 
-//-(void)bannerViewDidLoadAd:(ADBannerView *)banner
-//{
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:1];
-//    [banner setAlpha:1];
-//    [UIView commitAnimations];
-//}
-//
-//-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
-//{
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:1];
-//    [banner setAlpha:0];
-//    [UIView commitAnimations];
-//    
-//}
 
-//- (CGFloat)tableView:(UITableView *)tableView
-//heightForHeaderInSection:(NSInteger)section
-//{
-//    CGFloat height = 50.0; // this should be the height of your admob view
-//    
-//    return height;
-//}
-
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    CGFloat height = 50.0; // this should be the height of your admob view
-//    
-//    return height;
-//}
-
-//- (UIView *)tableView:(UITableView *)tableView
-//viewForHeaderInSection:(NSInteger)section
-//{
-//    
-//    UIView *headerView = [commonAddMob ImplementBaner:self]; // init your view or reference your admob
-//    
-//    return headerView;
-//}
-
-//-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    UIView *headerView = [commonAddMob ImplementBaner:self]; // init your view or reference your admob
-//    
-//    return headerView;
-//
-//}
 
 - (IBAction)ShareToFB:(id)sender {
     
@@ -910,6 +918,108 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Facebook not configured" message:@"Unable to continue, your facebook account not yet configured. Please configure it in settings menu" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
         [alert show];
     }
+    
+}
+
+-(void)shareToSocial :(NSString *)socialType
+{
+  
+    
+    if ([socialType isEqualToString:@"facebook"]) {
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+        {
+            SLComposeViewController *facebook = [SLComposeViewController
+                                                 composeViewControllerForServiceType:SLServiceTypeFacebook];
+            
+            
+            [self prepareSocialMessage:facebook];
+            
+            [self presentViewController:facebook animated:YES completion:nil];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Facebook not configured" message:@"Unable to continue, your facebook account not yet configured. Please configure it in settings menu" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
+            [alert show];
+        }
+    }
+    else if ([socialType isEqualToString:@"twitter"])
+    {
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+        {
+            SLComposeViewController *twitter = [SLComposeViewController
+                                                 composeViewControllerForServiceType:SLServiceTypeTwitter];
+            
+            
+            [self prepareSocialMessage:twitter];
+            
+            [self presentViewController:twitter animated:YES completion:nil];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Facebook not configured" message:@"Unable to continue, your facebook account not yet configured. Please configure it in settings menu" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
+            [alert show];
+        }
+
+    }
+    else if ([socialType isEqualToString:@"email"])
+    {
+        // Email Subject
+        NSString *emailTitle = @"ToPiso Remittance Rate for iOS";
+        // Email Content
+        NSString *messageBody =[NSString stringWithFormat:@"%@",[self generateSMSBody]] ; // Change the message body to HTML
+        // To address
+        //NSArray *toRecipents = [NSArray arrayWithObject:@"support@appcoda.com"];
+        
+        MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+        mc.mailComposeDelegate = self;
+        [mc setSubject:emailTitle];
+        [mc setMessageBody:messageBody isHTML:YES];
+        
+        self.labelHeader.text = [self generateHeaderText];
+        self.labelHeader.hidden = false;
+        self.segmentKo.hidden= true;
+        
+        UIImage *imageCapture = [[UIImage alloc]init];
+        imageCapture = [CommonFunction getImageCapture:self.view FrameRect:CGRectMake(0, 0, self.view.bounds.size.width , 400)];
+        
+        self.labelHeader.hidden = true;
+        self.segmentKo.hidden= false;
+        
+        
+        NSData *imageData = UIImageJPEGRepresentation(imageCapture, 0.5);
+        [mc addAttachmentData:imageData mimeType:@"image/jpeg" fileName:[NSString stringWithFormat:@"a.jpg"]];
+        
+        // Present mail view controller on screen
+        [self presentViewController:mc animated:YES completion:NULL];
+
+    }
+    else if ([socialType isEqualToString:@"gallery"])
+    {
+        self.labelHeader.text = [self generateHeaderText];
+        self.labelHeader.hidden = false;
+        self.segmentKo.hidden= true;
+        
+        UIImage *imageCapture = [[UIImage alloc]init];
+        imageCapture = [CommonFunction getImageCapture:self.view FrameRect:CGRectMake(0, 0, self.view.bounds.size.width , 400)];
+        
+        self.labelHeader.hidden = true;
+        self.segmentKo.hidden= false;
+        UIImageWriteToSavedPhotosAlbum(imageCapture, nil, nil, nil);
+    }
+    
+}
+
+-(NSString *)generateSMSBody
+{
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm:ss a"];
+    NSString *dateString = [dateFormat stringFromDate:today];
+
+    NSURL *ulr = [SendAndRequest AppStoreLink];
+    
+    return [NSString stringWithFormat:@"%@ rate as of %@.<br /><br />Install for iOS: %@",self.country.countryName,dateString,ulr];
+
     
 }
 
@@ -939,6 +1049,11 @@
 -(void)prepareSocialMessage:(SLComposeViewController*)controller
 {
     
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm:ss a"];
+    NSString *dateString = [dateFormat stringFromDate:today];
+    
 //    NSNumberFormatter *numFormat = [[NSNumberFormatter alloc]init];
 //    [numFormat setNumberStyle:NSNumberFormatterDecimalStyle];
 //    
@@ -946,7 +1061,7 @@
 //    
     NSURL *ulr = [SendAndRequest AppStoreLink];
     
-    [controller setInitialText:[NSString stringWithFormat:@"%@ rate as of today.\nInstall for iOS: %@",self.country.countryName,ulr]];
+    [controller setInitialText:[NSString stringWithFormat:@"%@ rate as of %@.\nInstall for iOS: %@",self.country.countryName,dateString,ulr]];
     
     //    [controller addImage:[UIImage imageNamed:@"aga_180_180.png"]];
     //    [controller addURL:[NSURL URLWithString:[CommonFunction getToPisoInstallURL]]];
@@ -959,10 +1074,15 @@
     //imgv.layer.borderWidth = 1;
     //[imgv.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     
+    self.labelHeader.text = [self generateHeaderText];
+    self.labelHeader.hidden = false;
+    self.segmentKo.hidden= true;
     
     UIImage *imageCapture = [[UIImage alloc]init];
     imageCapture = [CommonFunction getImageCapture:self.view FrameRect:CGRectMake(0, 0, self.view.bounds.size.width , 400)];
     
+    self.labelHeader.hidden = true;
+    self.segmentKo.hidden= false;
 
     
     
@@ -972,6 +1092,42 @@
     
     // [controller addImage:imgv.image];
     //[controller addURL:[NSURL URLWithString:[CommonFunction getToPisoInstallURL]]];
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+-(NSString *)generateHeaderText
+{
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MMM dd, yyyy hh:mm:ss a"];
+    NSString *dateString = [dateFormat stringFromDate:today];
+    
+
+    NSString *strText = [NSString stringWithFormat:@"%@ ToPiso Remittance Rate as of %@",self.country.countryName,dateString];
+    return strText;
 }
 
 @end
