@@ -27,6 +27,7 @@
     UIRefreshControl *refreshControl;
     commonAddMob *_commonAddMob;
     BOOL isBannerLoaded;
+    NSString *remittanceGUID_Push;
     
 }
 
@@ -382,17 +383,26 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        RemittanceTableViewController *rem = (RemittanceTableViewController *)segue.destinationViewController;
+        RemittanceTableViewController *rem1 = (RemittanceTableViewController *)segue.destinationViewController;
         
         Country *m = [[self fectched]objectAtIndexPath:indexPath];
         
-        rem.country = m;//[m valueForKey:@"countryCode"];
+        rem1.country = m;//[m valueForKey:@"countryCode"];
         
         
         if (del.isFromNotification == true) {
             
             
-            rem.countryCode = del.notficationCountryCode;
+            
+            CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
+            [core getNotificationData:remittanceGUID_Push withBlock:^(Remittance *rem, Country *country) {
+                rem1.country = country;
+                rem1.countryCode =  country.countryCode;
+                
+            }];
+            
+            
+            
             
             
         }
@@ -454,6 +464,7 @@
 
 -(void)LoadFromNotification :(NSString *)remittanceGUID
 {
+    remittanceGUID_Push = remittanceGUID;
     
     [self performSegueWithIdentifier:@"showDetails" sender:self];
     
