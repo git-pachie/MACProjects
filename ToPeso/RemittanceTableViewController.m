@@ -1195,7 +1195,7 @@
 - (GADInterstitial *)createAndLoadInterstitial
 {
     GADInterstitial *interstitial = [[GADInterstitial alloc] init];
-    interstitial.adUnitID = @"ca-app-pub-3940256099942544/4411468910";
+    interstitial.adUnitID = @"ca-app-pub-1492629769877969/4402661334";
     interstitial.delegate = self;
     
     GADRequest *request = [GADRequest request];
