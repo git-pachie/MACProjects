@@ -11,6 +11,7 @@
 
 #import "DFPBannerView.h"
 #import "GADRequest.h"
+#import "GADInterstitial.h"
 
 @interface UIViewController() <GADBannerViewDelegate>
 
@@ -36,7 +37,7 @@
     //simulator
     GADRequest *request = [GADRequest request];
     
-    if ([isSimulator isEqualToString:@"YES"]) {
+    if ([isSimulator isEqualToString:@"NO"]) {
         
         
         request.testDevices = @[ @"e14a75ec5cbe72c69e54d47a8aecb2ea" ];
@@ -71,6 +72,7 @@
     if ([isSimulator isEqualToString:@"YES"]) {
         
         request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID,nil];
+        
     }
     
     
@@ -83,7 +85,6 @@
     
     return  _bannerView;
 }
-
 
 
 

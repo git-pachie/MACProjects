@@ -13,10 +13,13 @@
 #import "SendAndRequest.h"
 #import "countryTableViewCell.h"
 #import "CommonAddMob.h"
+#import "GADInterstitial.h"
 
 
 
-@interface UIViewController() <GADBannerViewDelegate>
+@interface UIViewController() <GADBannerViewDelegate, GADInterstitialDelegate>
+
+
 
 @end
 
@@ -28,6 +31,8 @@
     commonAddMob *_commonAddMob;
     BOOL isBannerLoaded;
     NSString *remittanceGUID_Push;
+    
+    
     
 }
 
@@ -136,8 +141,6 @@
          
          
          
-         
-         
      }];
     
     
@@ -148,9 +151,13 @@
 
 
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //GADInterstitial *interstitial = [[GADInterstitial alloc] init];
     
     
     

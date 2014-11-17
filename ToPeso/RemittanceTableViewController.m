@@ -59,7 +59,7 @@
     self.labelHeader.layer.cornerRadius = 4;
     self.labelHeader.clipsToBounds = YES;
     
-    
+    self.interstitial = [self createAndLoadInterstitial];
     
 //    del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
 //    
@@ -134,52 +134,99 @@
     self.navigationItem.rightBarButtonItem = shareButton;
 }
 
+
+-(void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (popup.tag == 1) {
+        if (buttonIndex == 0) {
+            NSLog(@"You click facebook");
+            [self shareToSocial:@"facebook"];
+        }
+        else if (buttonIndex == 1)
+        {
+            NSLog(@"You click twitter");
+            [self shareToSocial:@"twitter"];
+        }
+        else if (buttonIndex == 2)
+        {
+            NSLog(@"You click mail");
+            [self shareToSocial:@"email"];
+            
+        }
+        else if (buttonIndex==3)
+        {
+            NSLog(@"You calick camera roll");
+            [self shareToSocial:@"gallery"];
+        }
+        else
+        {
+            NSLog(@"You click default cancel");
+        }
+    }
+    
+}
+
 -(void)shareAction:(id)sender
 {
-    
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle: @"Share or Save"
-                                                                        message: @"You can share or save the current remittance rate by choosing one of the options below"
-                                                                 preferredStyle: UIAlertControllerStyleAlert];
-    
-    
-    
-    UIAlertAction *alertFacebook = [UIAlertAction actionWithTitle: @"Facebook" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        NSLog(@"Facebook");
-        [self shareToSocial:@"facebook"];
-    }];
+    UIActionSheet *pop= [[UIActionSheet alloc]initWithTitle:@"You can Share or Save to Camera Roll the current remittance rate by choosing one of the options below" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Facebook"
+    ,@"Twitter"
+    ,@"Email"
+    ,@"Save to Camera Roll"
+    ,@"Rate this app", nil];
     
     
-    [controller addAction: alertFacebook];
+    pop.tag = 1;
+    [pop showInView:[UIApplication sharedApplication].keyWindow];
     
-    UIAlertAction *alertTwitter = [UIAlertAction actionWithTitle: @"Twitter" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        NSLog(@"Twitter");
-        [self shareToSocial:@"twitter"];
-    }];
-    [controller addAction: alertTwitter];
-    
-    UIAlertAction *alertEmail = [UIAlertAction actionWithTitle: @"Email" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        NSLog(@"Email");
-        [self shareToSocial:@"email"];
-    }];
-    [controller addAction: alertEmail];
-    
-    UIAlertAction *alertGallery = [UIAlertAction actionWithTitle: @"Save to Gallery" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        NSLog(@"Save to gallery");
-        [self shareToSocial:@"gallery"];
-    }];
-    [controller addAction: alertGallery];
+    return;
     
     
     
-    UIAlertAction *alertAction = [UIAlertAction actionWithTitle: @"Cancel"
-                                                          style: UIAlertActionStyleDestructive
-                                                        handler: ^(UIAlertAction *action) {
-                                                            NSLog(@"Dismiss button tapped!");
-                                                        }];
-    [controller addAction: alertAction];
-
     
-    [self presentViewController: controller animated: YES completion: nil];
+    
+//    UIAlertController *controller = [UIAlertController alertControllerWithTitle: @"Share or Save"
+//                                                                        message: @"You can share or save the current remittance rate by choosing one of the options below"
+//                                                                 preferredStyle: UIAlertControllerStyleAlert];
+//    
+//    
+//    
+//    UIAlertAction *alertFacebook = [UIAlertAction actionWithTitle: @"Facebook" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        NSLog(@"Facebook");
+//        [self shareToSocial:@"facebook"];
+//    }];
+//    
+//    
+//    [controller addAction: alertFacebook];
+//    
+//    UIAlertAction *alertTwitter = [UIAlertAction actionWithTitle: @"Twitter" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        NSLog(@"Twitter");
+//        [self shareToSocial:@"twitter"];
+//    }];
+//    [controller addAction: alertTwitter];
+//    
+//    UIAlertAction *alertEmail = [UIAlertAction actionWithTitle: @"Email" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        NSLog(@"Email");
+//        [self shareToSocial:@"email"];
+//    }];
+//    [controller addAction: alertEmail];
+//    
+//    UIAlertAction *alertGallery = [UIAlertAction actionWithTitle: @"Save to Gallery" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        NSLog(@"Save to gallery");
+//        [self shareToSocial:@"gallery"];
+//    }];
+//    [controller addAction: alertGallery];
+//    
+//    
+//    
+//    UIAlertAction *alertAction = [UIAlertAction actionWithTitle: @"Cancel"
+//                                                          style: UIAlertActionStyleDestructive
+//                                                        handler: ^(UIAlertAction *action) {
+//                                                            NSLog(@"Dismiss button tapped!");
+//                                                        }];
+//    [controller addAction: alertAction];
+//
+//    
+//    [self presentViewController: controller animated: YES completion: nil];
 }
 
 //-(void)changeSegment
@@ -382,6 +429,11 @@
 {
     [refreshControl endRefreshing];
     [self.tableView reloadData];
+    
+    if ([self.interstitial isReady]) {
+        [self.interstitial presentFromRootViewController:self];
+    }
+
 
 }
 
@@ -622,8 +674,7 @@
         
       AgentDetailsTableViewController *agent = (AgentDetailsTableViewController *) segue.destinationViewController;
         
-        
-        
+    
         
         Remittance *rem = [self.fetched objectAtIndexPath:indexpath];
         
@@ -1051,7 +1102,7 @@
     
     NSDate *today = [NSDate date];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm:ss a"];
+    [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm a"];
     NSString *dateString = [dateFormat stringFromDate:today];
     
 //    NSNumberFormatter *numFormat = [[NSNumberFormatter alloc]init];
@@ -1122,12 +1173,37 @@
 {
     NSDate *today = [NSDate date];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MMM dd, yyyy hh:mm:ss a"];
+    [dateFormat setDateFormat:@"MMMM dd, yyyy hh:mm a"];
     NSString *dateString = [dateFormat stringFromDate:today];
     
 
     NSString *strText = [NSString stringWithFormat:@"%@ ToPiso Remittance Rate as of %@",self.country.countryName,dateString];
     return strText;
+}
+
+#pragma Interstitial
+
+
+
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+    self.interstitial = [self createAndLoadInterstitial];
+    
+    //self.interstitial = [commonAddMob ]
+}
+
+
+- (GADInterstitial *)createAndLoadInterstitial
+{
+    GADInterstitial *interstitial = [[GADInterstitial alloc] init];
+    interstitial.adUnitID = @"ca-app-pub-3940256099942544/4411468910";
+    interstitial.delegate = self;
+    
+    GADRequest *request = [GADRequest request];
+    //request.testing = NO;
+    
+    [interstitial loadRequest:request];
+    
+    return interstitial;
 }
 
 @end

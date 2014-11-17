@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 //#import "DFPBannerView.h"
+#import "GADInterstitial.h"
 
 //@protocol GADAdSizeDelegate <NSObject>
 //- (void)adView:(GADBannerView *)view willChangeAdSizeTo:(GADAdSize)size;
@@ -24,6 +25,7 @@
 @property (nonatomic) bool isFromNotification;
 
 -(void)LoadFromNotification :(NSString *)remittanceGUID;
+
 
 
 
