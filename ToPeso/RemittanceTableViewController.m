@@ -33,6 +33,7 @@
     NSFetchedResultsController *_fetchedRecent;
     UIView *xView;
     
+    
 }
 
 @end
@@ -60,6 +61,7 @@
     self.labelHeader.clipsToBounds = YES;
     
     self.interstitial = [self createAndLoadInterstitial];
+    
     
 //    del = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
 //    
@@ -132,6 +134,7 @@
                                     target:self
                                     action:@selector(shareAction:)];
     self.navigationItem.rightBarButtonItem = shareButton;
+    [self performSelector:@selector(showInterstitial) withObject:nil afterDelay:3];
 }
 
 
@@ -171,8 +174,7 @@
     UIActionSheet *pop= [[UIActionSheet alloc]initWithTitle:@"You can Share or Save to Camera Roll the current remittance rate by choosing one of the options below" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Facebook"
     ,@"Twitter"
     ,@"Email"
-    ,@"Save to Camera Roll"
-    ,@"Rate this app", nil];
+    ,@"Save to Camera Roll", nil];
     
     
     pop.tag = 1;
@@ -403,6 +405,7 @@
                  [self performSelector:@selector(doSeg) withObject:nil afterDelay:3];
                  
                  
+                 
              }
              else
              {
@@ -417,12 +420,14 @@
          }];
         
 
+    [self showInterstitial];
     
 }
 
 -(void)doSeg
 {
     [self performSegueWithIdentifier:@"agentDetails" sender:self];
+    self.isFromNotification = false;
 }
 
 -(void)Done
@@ -430,11 +435,48 @@
     [refreshControl endRefreshing];
     [self.tableView reloadData];
     
-    if ([self.interstitial isReady]) {
-        [self.interstitial presentFromRootViewController:self];
+    
+    
+    
+    
+
+}
+-(void)showInterstitial
+{
+    if (self.isFromNotification == false) {
+        
+        
+        
+        if ([self.interstitial isReady]) {
+            
+            if (del.lastShow == nil) {
+                
+                [self.interstitial presentFromRootViewController:self];
+                //del.lastShow = [NSDate date];
+            }
+            else
+            {
+                NSDate* date1 = del.lastShow;
+                NSDate* date2 = [NSDate date];
+                NSTimeInterval distanceBetweenDates = [date2 timeIntervalSinceDate:date1];
+                double minutesInAnHour = 60;
+                NSInteger minutesBetweenDates = distanceBetweenDates / minutesInAnHour;
+                
+                NSLog(@"minutesBetweenDates %ld",(long)minutesBetweenDates);
+                
+                if (minutesBetweenDates >=30) {
+                    [self.interstitial presentFromRootViewController:self];
+                    //del.lastShow = [NSDate date];
+                }
+                
+            }
+            
+            
+            
+            
+        }
+
     }
-
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -1007,7 +1049,7 @@
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Facebook not configured" message:@"Unable to continue, your facebook account not yet configured. Please configure it in settings menu" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Twitter not configured" message:@"Unable to continue, your Twitter account not yet configured. Please configure it in settings menu" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];//, nil
             [alert show];
         }
 
@@ -1112,7 +1154,7 @@
 //    
     NSURL *ulr = [SendAndRequest AppStoreLink];
     
-    [controller setInitialText:[NSString stringWithFormat:@"%@ rate as of %@.\nInstall for iOS: %@",self.country.countryName,dateString,ulr]];
+    [controller setInitialText:[NSString stringWithFormat:@"%@ rate as of %@.\nInstall ToPiso Remittance Rate for iOS: %@",self.country.countryName,dateString,ulr]];
     
     //    [controller addImage:[UIImage imageNamed:@"aga_180_180.png"]];
     //    [controller addURL:[NSURL URLWithString:[CommonFunction getToPisoInstallURL]]];
@@ -1189,6 +1231,7 @@
     self.interstitial = [self createAndLoadInterstitial];
     
     //self.interstitial = [commonAddMob ]
+    del.lastShow = [NSDate date];
 }
 
 
@@ -1199,7 +1242,11 @@
     interstitial.delegate = self;
     
     GADRequest *request = [GADRequest request];
-    //request.testing = NO;
+    
+    //remove this
+    //request.testDevices = @[ @"e14a75ec5cbe72c69e54d47a8aecb2ea" ];
+    //request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID,nil];
+    //end
     
     [interstitial loadRequest:request];
     

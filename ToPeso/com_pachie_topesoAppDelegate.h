@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSString *notficationCountryCode;
 @property (nonatomic, strong) NSString *notifcationAgentID;
 @property (nonatomic, strong) NSString *appVersion;
+@property (nonatomic, strong) NSDate *lastShow;
 
 
 

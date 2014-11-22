@@ -31,6 +31,8 @@
     commonAddMob *_commonAddMob;
     BOOL isBannerLoaded;
     NSString *remittanceGUID_Push;
+    NSDate *lastShowAds;
+    
     
     
     
@@ -151,7 +153,32 @@
 
 
 
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+    
+    if (lastShowAds == nil) {
+        
+        lastShowAds = [NSDate date];
+    }
+    else
+    {
+        NSDate* date1 = lastShowAds;
+        NSDate* date2 = [NSDate date];
+        NSTimeInterval distanceBetweenDates = [date2 timeIntervalSinceDate:date1];
+        double minutesInAnHour = 60;
+        NSInteger minutesBetweenDates = distanceBetweenDates / minutesInAnHour;
+        
+        NSLog(@"minutesBetweenDates %ld",(long)minutesBetweenDates);
+        
+        if (minutesBetweenDates >=1) {
+            lastShowAds = [NSDate date];
+        }
+        
+    }
+    
+    
+}
 
 - (void)viewDidLoad
 {

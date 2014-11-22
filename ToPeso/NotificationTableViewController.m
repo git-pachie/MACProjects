@@ -39,9 +39,9 @@
     
     delegate = (com_pachie_topesoAppDelegate *)[[UIApplication sharedApplication]delegate];
     send = [[SendAndRequest alloc]init];
-    _commonAddMob = [[commonAddMob alloc]init];
+   // _commonAddMob = [[commonAddMob alloc]init];
     
-    [self.tableView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
+    //[self.tableView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
     
     
     
@@ -642,12 +642,12 @@
 //    
 //}
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    UIView *xView = [_commonAddMob ImplementBanerBottom:self];
-    
-    CGRect fixedFrame = xView.frame;
-    fixedFrame.origin.y = 0 + scrollView.contentOffset.y + 64;
-    xView.frame = fixedFrame;
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    UIView *xView = [_commonAddMob ImplementBanerBottom:self];
+//    
+//    CGRect fixedFrame = xView.frame;
+//    fixedFrame.origin.y = 0 + scrollView.contentOffset.y + 64;
+//    xView.frame = fixedFrame;
+//}
 @end
