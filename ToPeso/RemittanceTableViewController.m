@@ -96,6 +96,7 @@
     });
     
     
+    
     [self refreshTable];
     
 
@@ -112,8 +113,12 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"View" bundle:nil] forCellReuseIdentifier:@"Cell"];
 
     
-    UIColor *selectedColor = [UIColor colorWithRed: 98/255.0 green:156/255.0 blue:247/255.0 alpha:1.0];
-    UIColor *deselectedColor = [UIColor colorWithRed: 54/255.0 green:52/255.0 blue:48/255.0 alpha:1.0];
+//    UIColor *selectedColor = [UIColor colorWithRed: 98/255.0 green:156/255.0 blue:247/255.0 alpha:1.0];
+//    UIColor *deselectedColor = [UIColor colorWithRed: 54/255.0 green:52/255.0 blue:48/255.0 alpha:1.0];
+//    
+    UIColor *selectedColor = [UIColor colorWithRed: 255/255.0 green:153/255.0 blue:0/255.0 alpha:1.0];
+    UIColor *deselectedColor = [UIColor colorWithRed: 255/255.0 green:153/255.0 blue:0/255.0 alpha:1.0];
+    
     
     for (UIControl *subview in [self.segmentOutlet subviews]) {
         if ([subview isSelected])
@@ -123,7 +128,7 @@
     }
 
     
-    
+    self.segmentOutlet.selectedSegmentIndex = 0;
 
 }
 -(void)viewDidAppear:(BOOL)animated
@@ -510,12 +515,12 @@
     id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetched sections]objectAtIndex:section];
     
     
-    CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
+   // CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
     
-    Country *country = [core getCountryByCurrencyKey:[sectionInfo name]];
+   // Country *country = [core getCountryByCountryCode:[sectionInfo name]];
     
     
-    NSString *headerText = [NSString stringWithFormat:@"%@, %@", country.countryName, [sectionInfo name]];
+    NSString *headerText = [NSString stringWithFormat:@"%@, %@", _country.countryName, [sectionInfo name]];
     
     
     return headerText;
@@ -760,13 +765,15 @@
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Remittance" inManagedObjectContext:del.managedObjectContext];
         
         [request setEntity:entity];
-        
+    
+    NSSortDescriptor *sort0 = [[NSSortDescriptor alloc]initWithKey:@"currencyKey" ascending:YES];
+    
         NSSortDescriptor *sort1 = [[NSSortDescriptor alloc]initWithKey:@"rate" ascending:NO];
         
         NSSortDescriptor *sort2 = [[NSSortDescriptor alloc]initWithKey:@"remittanceName" ascending:YES];
         
         
-        [request setSortDescriptors:[NSArray arrayWithObjects:sort1,sort2, nil]];
+        [request setSortDescriptors:[NSArray arrayWithObjects:sort0,sort1,sort2, nil]];
         
         //[request setPredicate:[NSPredicate predicateWithFormat:@"isDeleted1 == YES"]];
         
@@ -813,13 +820,15 @@
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Remittance" inManagedObjectContext:del.managedObjectContext];
         
         [request setEntity:entity];
+    
+     NSSortDescriptor *sort0 = [[NSSortDescriptor alloc]initWithKey:@"currencyKey" ascending:YES];
         
         NSSortDescriptor *sort1 = [[NSSortDescriptor alloc]initWithKey:@"asofDate" ascending:NO];
         
-        //NSSortDescriptor *sort2 = [[NSSortDescriptor alloc]initWithKey:@"remittanceName" ascending:YES];
+        NSSortDescriptor *sort2 = [[NSSortDescriptor alloc]initWithKey:@"remittanceName" ascending:YES];
         
         
-        [request setSortDescriptors:[NSArray arrayWithObjects:sort1, nil]];
+        [request setSortDescriptors:[NSArray arrayWithObjects:sort0,sort1,sort2, nil]];
         
         //[request setPredicate:[NSPredicate predicateWithFormat:@"isDeleted1 == YES"]];
         
@@ -897,7 +906,10 @@
     
     [request setPredicate:pred];
     
-    NSFetchedResultsController *f = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:del.managedObjectContext sectionNameKeyPath:@"currencyKey" cacheName:nil];
+    NSString *keyPath = [NSString stringWithFormat:@"%@",@"currencyKey"];
+    
+    
+    NSFetchedResultsController *f = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:del.managedObjectContext sectionNameKeyPath:keyPath cacheName:nil];
     
     self.fetched = f;
     
@@ -1121,6 +1133,11 @@
     NSLog(@"Segment %ld",(long)self.segmentOutlet.selectedSegmentIndex);
     
     if (self.segmentOutlet.selectedSegmentIndex==0) {
+        _fetched = nil;
+        self.fetched = [self fetched];
+    }
+    else if (self.segmentOutlet.selectedSegmentIndex==1)
+    {
         self.fetched = [self fetchedHighest];
     }
     else
@@ -1244,8 +1261,8 @@
     GADRequest *request = [GADRequest request];
     
     //remove this
-    //request.testDevices = @[ @"e14a75ec5cbe72c69e54d47a8aecb2ea" ];
-    //request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID,nil];
+    request.testDevices = @[ @"e14a75ec5cbe72c69e54d47a8aecb2ea" ];
+    request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID,nil];
     //end
     
     [interstitial loadRequest:request];
