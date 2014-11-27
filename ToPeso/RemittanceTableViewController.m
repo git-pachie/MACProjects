@@ -116,8 +116,8 @@
 //    UIColor *selectedColor = [UIColor colorWithRed: 98/255.0 green:156/255.0 blue:247/255.0 alpha:1.0];
 //    UIColor *deselectedColor = [UIColor colorWithRed: 54/255.0 green:52/255.0 blue:48/255.0 alpha:1.0];
 //    
-    UIColor *selectedColor = [UIColor colorWithRed: 255/255.0 green:153/255.0 blue:0/255.0 alpha:1.0];
-    UIColor *deselectedColor = [UIColor colorWithRed: 255/255.0 green:153/255.0 blue:0/255.0 alpha:1.0];
+    UIColor *selectedColor = [UIColor colorWithRed: 207/255.0 green:149/255.0 blue:0/255.0 alpha:1.0];
+    UIColor *deselectedColor = [UIColor colorWithRed: 207/255.0 green:149/255.0 blue:0/255.0 alpha:1.0];
     
     
     for (UIControl *subview in [self.segmentOutlet subviews]) {
@@ -540,7 +540,7 @@
     //view.tintColor = [UIColor purpleColor];
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     [header.textLabel setTextColor:[UIColor grayColor]];
-    //[header.textLabel setFont:<#(UIFont *)#>]
+    [header.textLabel setFont:[UIFont fontWithName:@"Trebuchet MS" size:21.0]];
     
     //view.layer.cornerRadius = view.frame.size.height / 2;
     //view.layer.masksToBounds = YES;
@@ -749,7 +749,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 54;
+    return 60;
 }
 
 #pragma mark -fetched controller
@@ -1261,8 +1261,8 @@
     GADRequest *request = [GADRequest request];
     
     //remove this
-    request.testDevices = @[ @"e14a75ec5cbe72c69e54d47a8aecb2ea" ];
-    request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID,nil];
+    //request.testDevices = @[ @"e14a75ec5cbe72c69e54d47a8aecb2ea" ];
+   //request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID,nil];
     //end
     
     [interstitial loadRequest:request];

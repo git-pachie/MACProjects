@@ -15,16 +15,16 @@
 
 -(NSString*)getToPisoURL
 {
-    return @"http://192.168.3.100/ToPisoWCF/Service1.svc/";
-    //return @"http://www.greetify.net/topiso/Service1.svc/";
+    //return @"http://192.168.3.100/ToPisoWCF/Service1.svc/";
+    return @"http://www.greetify.net/topiso/Service1.svc/";
 }
 
 
 +(NSString *)UrlImageConnection
 {
-    return @"http://192.168.3.100/PickupLinesProfile2/countryimage.aspx?fFilename=";
+    //return @"http://192.168.3.100/PickupLinesProfile2/countryimage.aspx?fFilename=";
     
-    //return @"http://www.greetify.net/ToPisoProfile/countryimage.aspx?fFilename=";
+    return @"http://www.greetify.net/ToPisoProfile/countryimage.aspx?fFilename=";
 }
 
 +(NSURL *)AppStoreLink

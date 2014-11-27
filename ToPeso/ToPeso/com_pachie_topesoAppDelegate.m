@@ -22,37 +22,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    // Override point for customization after application launch.
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
+
+//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"topbg.png"] forBarMetrics:UIBarMetricsDefault];
     
-//    CoreDataToPeso *core = [[CoreDataToPeso alloc]init];
-//    //[core insertTempData];
-//    SendAndRequest *send = [[SendAndRequest alloc]init];
-//    
-//    [send getLastesCountry:^(NSArray *array) {
-//        //NSLog(@"%@",array);
-//        
-//        for (NSArray *dic in array) {
-//            NSLog(@"%@",dic);
-//            
-//        }
-//        
-//        [core syncCoreData:array];
-//        
-//    }];
-    
-    
-    //UIApplication *application = [UIApplication sharedApplication];
-    
-//    self.DevinceToken = @"1111111111";
-//
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"topbg.png"] forBarMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance] setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.0]];
 
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
-    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:255/255.0 green:122/255.0 blue:28/255.0 alpha:1.0]];
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0]];
 
     
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
