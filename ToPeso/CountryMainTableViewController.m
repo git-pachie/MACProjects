@@ -416,6 +416,13 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
+    UIBarButtonItem *newBackButton =
+    [[UIBarButtonItem alloc] initWithTitle:@""
+                                     style:UIBarButtonItemStyleBordered
+                                    target:nil
+                                    action:nil];
+    [[self navigationItem] setBackBarButtonItem:newBackButton];
+    
     if ([segue.identifier isEqualToString:@"showDetails"]) {
         
         

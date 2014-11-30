@@ -175,7 +175,7 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(70, 16, tableView.frame.size.width, 20)];
     
     label.text = [sectionInfo name];
-    label.font = [UIFont fontWithName:@"Helvetica-Bold" size:15];//[UIFont systemFontOfSize:14];
+    label.font = [UIFont fontWithName:@"Arial Rounded MT Bold" size:15];//[UIFont systemFontOfSize:14];
     
     label.textColor = [UIColor darkGrayColor];
     //label.textAlignment = NSTextAlignmentRight;

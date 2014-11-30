@@ -520,10 +520,29 @@
    // Country *country = [core getCountryByCountryCode:[sectionInfo name]];
     
     
-    NSString *headerText = [NSString stringWithFormat:@"%@, %@", _country.countryName, [sectionInfo name]];
+    NSString *headerText = [NSString stringWithFormat:@"%@, %@", [sectionInfo name],_country.countryName ];
     
     
-    return headerText;
+    //NSUInteger length = [headerText length];
+    
+    if([_country.countryName length] >= 20)
+    {
+        //NSString *newStr;
+        
+        //newStr = [headerText substringToIndex:[headerText length]-5];
+        
+        NSString *newCountryName = [_country.countryName substringToIndex:17];
+        
+        headerText = [NSString stringWithFormat:@"%@, %@...", [sectionInfo name] ,newCountryName ];
+        
+        return headerText;
+    }
+    else
+    {
+        return headerText;
+    }
+    
+    
 }
 
 
@@ -540,12 +559,12 @@
     //view.tintColor = [UIColor purpleColor];
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     [header.textLabel setTextColor:[UIColor grayColor]];
-    [header.textLabel setFont:[UIFont fontWithName:@"Trebuchet MS" size:21.0]];
+    [header.textLabel setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:17.0]];
     
     //view.layer.cornerRadius = view.frame.size.height / 2;
     //view.layer.masksToBounds = YES;
     
-    view.alpha  = 0.9;
+    view.alpha  = 1.0;
     //view.layer.borderColor = [UIColor whiteColor].CGColor;
     //view.layer.borderWidth = 10;
     
@@ -714,6 +733,14 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
+    UIBarButtonItem *newBackButton =
+    [[UIBarButtonItem alloc] initWithTitle:@""
+                                     style:UIBarButtonItemStyleBordered
+                                    target:nil
+                                    action:nil];
+    [[self navigationItem] setBackBarButtonItem:newBackButton];
+    
     if ([segue.identifier isEqual:@"agentDetails"]) {
         
         NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
@@ -1085,7 +1112,7 @@
         self.segmentKo.hidden= true;
         
         UIImage *imageCapture = [[UIImage alloc]init];
-        imageCapture = [CommonFunction getImageCapture:self.view FrameRect:CGRectMake(0, 0, self.view.bounds.size.width , 400)];
+        imageCapture = [CommonFunction getImageCapture:self.view FrameRect:CGRectMake(0, 0, self.view.bounds.size.width , 450)];
         
         self.labelHeader.hidden = true;
         self.segmentKo.hidden= false;
@@ -1105,7 +1132,7 @@
         self.segmentKo.hidden= true;
         
         UIImage *imageCapture = [[UIImage alloc]init];
-        imageCapture = [CommonFunction getImageCapture:self.view FrameRect:CGRectMake(0, 0, self.view.bounds.size.width , 400)];
+        imageCapture = [CommonFunction getImageCapture:self.view FrameRect:CGRectMake(0, 0, self.view.bounds.size.width , 450)];
         
         self.labelHeader.hidden = true;
         self.segmentKo.hidden= false;
@@ -1189,7 +1216,7 @@
     self.segmentKo.hidden= true;
     
     UIImage *imageCapture = [[UIImage alloc]init];
-    imageCapture = [CommonFunction getImageCapture:self.view FrameRect:CGRectMake(0, 0, self.view.bounds.size.width , 400)];
+    imageCapture = [CommonFunction getImageCapture:self.view FrameRect:CGRectMake(0, 0, self.view.bounds.size.width , 450)];
     
     self.labelHeader.hidden = true;
     self.segmentKo.hidden= false;
@@ -1261,8 +1288,8 @@
     GADRequest *request = [GADRequest request];
     
     //remove this
-    //request.testDevices = @[ @"e14a75ec5cbe72c69e54d47a8aecb2ea" ];
-   //request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID,nil];
+    request.testDevices = @[ @"e14a75ec5cbe72c69e54d47a8aecb2ea" ];
+    request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID,nil];
     //end
     
     [interstitial loadRequest:request];

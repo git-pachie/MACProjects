@@ -23,15 +23,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"topbg.png"] forBarMetrics:UIBarMetricsDefault];
     
-//    [[UINavigationBar appearance] setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.0]];
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:77/255.0 green:77/255.0 blue:77/255.0 alpha:0.8]];
 
-    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    //NSShadow *shadow = [[NSShadow alloc] init];
+    //shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+    //shadow.shadowOffset = CGSizeMake(0, 1);
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor colorWithRed:0.0/255.0 green:39.0/255.0 blue:59.0/255.0 alpha:0.80],NSForegroundColorAttributeName,
+                                                           [UIFont fontWithName:@"Arial Rounded MT Bold" size:21.0], NSFontAttributeName, nil]];
     
-    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0]];
-
+    
+    //[UIFont fontWithName:@"Trebuchet MS" size:17.0]
     
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeSound

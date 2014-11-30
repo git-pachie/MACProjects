@@ -99,6 +99,7 @@
     self.imgAgentPhoto.clipsToBounds = YES;
     self.imgAgentPhoto.layer.borderWidth = 0.4;
     self.imgAgentPhoto.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.lblCountryName.text = _country.countryName;
     
     
     
@@ -121,6 +122,7 @@
     notifcation.lastUpdated= [NSDate date];
     notifcation.countryName = self.country.countryName;
     notifcation.agentName = self.remitanceAgent.remittanceName;
+    
 
     self.swNotification.on = [core isNotificationExist:notifcation];
     
@@ -482,14 +484,24 @@
     //imgv.layer.borderWidth = 1;
     //[imgv.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     
+    UIImage *tempImage = [[UIImage alloc]init];
+    
+    tempImage = self.imgAgentPhoto.image;
+    
+    
+    
+    //self.smalllogo.image = self.imgAgentPhoto.image;
+    
     UIImage *preImage = self.imgAgentPhoto.image;
     
     self.imgAgentPhoto.image = [UIImage imageNamed:@"sharelogo.png"];
     
     UIImage *imageCapture = [[UIImage alloc]init];
-    imageCapture = [CommonFunction getImageCapture:self.view FrameRect:CGRectMake((self.view.bounds.size.width/2)+25, 50, self.view.bounds.size.width - 10 , 210)];
+    imageCapture = [CommonFunction getImageCapture:self.view FrameRect:CGRectMake((self.view.bounds.size.width/2)+25, 50, self.view.bounds.size.width - 10 , 250)];
     
     self.imgAgentPhoto.image = preImage;
+    
+    //self.imgAgentPhoto.image = self.smalllogo
     
     
     //[controller addImage:[UIImage imageNamed:@"aga_180_180.png"]];

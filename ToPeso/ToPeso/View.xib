@@ -19,7 +19,7 @@
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SGD-PHP 078.56 as of Jul 27 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OvO-Bk-CMa">
                         <rect key="frame" x="66" y="27" width="164" height="22"/>
-                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="13"/>
+                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -32,7 +32,7 @@
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kabayan Remittance Centre" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n91-HL-EB6">
                         <rect key="frame" x="66" y="5" width="231" height="21"/>
                         <color key="tintColor" red="0.578125" green="0.892546622983871" blue="0.58603200604838712" alpha="0.78000000000000003" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>

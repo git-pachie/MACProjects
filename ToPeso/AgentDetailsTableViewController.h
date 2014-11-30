@@ -32,6 +32,8 @@
 @property (nonatomic,strong)Remittance *remitanceAgent;
 @property (nonatomic,strong)Country *country;
 @property (weak, nonatomic) IBOutlet UIImageView *imageCaputre;
+@property (weak, nonatomic) IBOutlet UILabel *lblCountryName;
+
 
 - (IBAction)acFB:(id)sender;
 - (IBAction)acTweeter:(id)sender;
