@@ -16,7 +16,7 @@
 -(NSString*)getToPisoURL
 {
     //return @"http://www.greetify.net:1980/ToPisoWCF/Service1.svc/";
-    return @"http://www.greetify.net/topiso/Service1.svc/";
+    return @"http://smssender.spalert.com/Service1.svc/";
 }
 
 
@@ -24,7 +24,7 @@
 {
     //return @"http://www.greetify.net:1980/PickupLinesProfile2/countryimage.aspx?fFilename=";
     
-    return @"http://www.greetify.net/ToPisoProfile/countryimage.aspx?fFilename=";
+    return @"http://service.spalert.com/ToPisoProfile/countryimage.aspx?fFilename=";
 }
 
 +(NSURL *)AppStoreLink

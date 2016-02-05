@@ -21,8 +21,6 @@
 		0CA9FBC319CAAC8A006A9A98 /* countryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CA9FBC219CAAC8A006A9A98 /* countryCell.xib */; };
 		0CA9FBC619CAAD4A006A9A98 /* countryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA9FBC519CAAD4A006A9A98 /* countryTableViewCell.m */; };
 		0CB5131819C2EAB7006D1653 /* RemittanceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */; };
-		0CC01EA319C4D36400F3A2B5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC01EA219C4D36400F3A2B5 /* GameKit.framework */; };
-		0CC01EA519C4D36D00F3A2B5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC01EA419C4D36D00F3A2B5 /* StoreKit.framework */; };
 		0CC01EAA19C57BC500F3A2B5 /* email.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CC01EA919C57BC500F3A2B5 /* email.png */; };
 		0CC01EC519C5F56200F3A2B5 /* EntNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC01EC419C5F56200F3A2B5 /* EntNotification.m */; };
 		0CC5FE1619C2B33B00323A7C /* CoreDataToPeso.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC5FE1519C2B33B00323A7C /* CoreDataToPeso.m */; };
@@ -110,8 +108,6 @@
 		0CA9FBC519CAAD4A006A9A98 /* countryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countryTableViewCell.m; sourceTree = "<group>"; };
 		0CB5131619C2EAB7006D1653 /* RemittanceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemittanceTableViewController.h; sourceTree = "<group>"; };
 		0CB5131719C2EAB7006D1653 /* RemittanceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemittanceTableViewController.m; sourceTree = "<group>"; };
-		0CC01EA219C4D36400F3A2B5 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		0CC01EA419C4D36D00F3A2B5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0CC01EA919C57BC500F3A2B5 /* email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email.png; sourceTree = "<group>"; };
 		0CC01EC319C5F56200F3A2B5 /* EntNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntNotification.h; sourceTree = "<group>"; };
 		0CC01EC419C5F56200F3A2B5 /* EntNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntNotification.m; sourceTree = "<group>"; };
@@ -213,8 +209,6 @@
 				0D228FE819FFFEFE001DE312 /* AudioToolbox.framework in Frameworks */,
 				0D228FE619FFFEF0001DE312 /* AdSupport.framework in Frameworks */,
 				0C2961CF19C45B3600CFAB85 /* Social.framework in Frameworks */,
-				0CC01EA319C4D36400F3A2B5 /* GameKit.framework in Frameworks */,
-				0CC01EA519C4D36D00F3A2B5 /* StoreKit.framework in Frameworks */,
 				0CD49B9A19ADDFFB0078920D /* CoreGraphics.framework in Frameworks */,
 				0CD49B9E19ADDFFB0078920D /* CoreData.framework in Frameworks */,
 				0CD49B9C19ADDFFB0078920D /* UIKit.framework in Frameworks */,
@@ -337,8 +331,6 @@
 				0D228FE919FFFF07001DE312 /* AVFoundation.framework */,
 				0D228FE719FFFEFE001DE312 /* AudioToolbox.framework */,
 				0D228FE519FFFEF0001DE312 /* AdSupport.framework */,
-				0CC01EA419C4D36D00F3A2B5 /* StoreKit.framework */,
-				0CC01EA219C4D36400F3A2B5 /* GameKit.framework */,
 				0CF2FF6F19C4AA8A0071BDC6 /* MessageUI.framework */,
 				0C2961CE19C45B3600CFAB85 /* Social.framework */,
 				0CD49B9719ADDFFB0078920D /* Foundation.framework */,
@@ -553,9 +545,12 @@
 						DevelopmentTeam = R3F22UC8DK;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -771,16 +766,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Archie Angeles (A4JFXR598D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Archie Angeles (A4JFXR598D)";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToPeso/ToPeso-Prefix.pch";
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "/Users/PachieMac/Downloads/GoogleMobileAdsSdkiOS-6.12.0";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bdf14b06-5b19-482e-877e-d8027369d71c";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -790,16 +786,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Archie Angeles (A4JFXR598D)";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToPeso/ToPeso-Prefix.pch";
 				INFOPLIST_FILE = "ToPeso/ToPeso-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "/Users/PachieMac/Downloads/GoogleMobileAdsSdkiOS-6.12.0";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "564daa59-c2f8-4329-89c7-c211157a88c6";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -807,7 +804,7 @@
 		0CD49BCA19ADDFFB0078920D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ToPeso.app/ToPeso";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -821,7 +818,7 @@
 				);
 				INFOPLIST_FILE = "ToPesoTests/ToPesoTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ToPeso.app/ToPeso";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -829,7 +826,7 @@
 		0CD49BCB19ADDFFB0078920D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ToPeso.app/ToPeso";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -839,7 +836,7 @@
 				GCC_PREFIX_HEADER = "ToPeso/ToPeso-Prefix.pch";
 				INFOPLIST_FILE = "ToPesoTests/ToPesoTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ToPeso.app/ToPeso";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
