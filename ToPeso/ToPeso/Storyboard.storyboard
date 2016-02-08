@@ -501,6 +501,10 @@
         <scene sceneID="fvu-Nx-a6k">
             <objects>
                 <viewController id="hSL-UW-Kgn" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="H3b-TV-u2V"/>
+                        <viewControllerLayoutGuide type="bottom" id="D5H-F2-DJN"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7mq-3X-gnC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
